@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Manifesto de execução da comparação ENAM",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["escopo", "documentos"],
+  "properties": {
+    "escopo": {"type": "string", "minLength": 1},
+    "documentos": {
+      "type": "array", "minItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "edicao", "arquivo", "tipo_fonte"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "edicao": {"type": "string", "minLength": 1},
+          "arquivo": {"type": "string", "minLength": 1},
+          "tipo_fonte": {"enum": ["edital oficial", "retificacao oficial", "material original", "quadro editorial", "fonte secundaria"]},
+          "paginas_consultadas": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    }
+  }
+}

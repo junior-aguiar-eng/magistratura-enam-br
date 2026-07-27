@@ -1,0 +1,20 @@
+{
+  "name": "magistratura-enam-br",
+  "interface": {
+    "displayName": "Magistratura e ENAM Brasil"
+  },
+  "plugins": [
+    {
+      "name": "magistratura-enam-br",
+      "source": {
+        "source": "local",
+        "path": "./plugins/magistratura-enam-br"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    }
+  ]
+}

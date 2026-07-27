@@ -1,0 +1,3 @@
+id,tema,tribunal,disciplina,prioridade,origem_erro
+RE-000000-DF,Tema de exemplo,STF,Direito Constitucional,alta,nao
+REsp-000000-RS,Tema de exemplo,STJ,Direito Processual Civil,padrao,nao

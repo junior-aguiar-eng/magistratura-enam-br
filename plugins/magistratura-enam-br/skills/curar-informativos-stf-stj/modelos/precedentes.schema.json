@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "precedentes.schema.json",
+  "title": "Registros de precedentes",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["processo", "tribunal", "estado_jurisprudencial", "grau_confianca"],
+    "properties": {
+      "id_decisao": {"type": "string", "minLength": 1},
+      "processo": {"type": "string", "minLength": 1},
+      "tema": {"type": "string"},
+      "tribunal": {"enum": ["STF", "STJ"]},
+      "orgao_julgador": {"type": "string"},
+      "disciplina": {"type": "string"},
+      "estado_jurisprudencial": {"enum": ["confirmado", "confirmado com ressalvas", "restringido ou distinguido", "superado", "controvertido", "não verificado"]},
+      "grau_confianca": {"enum": ["alto", "médio", "baixo"]},
+      "nota_estado": {"type": "string", "minLength": 1},
+      "data_julgamento": {"type": "string", "format": "date"},
+      "data_informativo": {"type": "string", "format": "date"},
+      "tese_resumida": {"type": "string"},
+      "fontes_essenciais": {"type": "array", "items": {"type": "string", "minLength": 1}}
+    },
+    "allOf": [
+      {
+        "if": {"properties": {"estado_jurisprudencial": {"not": {"const": "confirmado"}}}},
+        "then": {"required": ["nota_estado"]}
+      }
+    ]
+  }
+}

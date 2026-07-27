@@ -1,0 +1,6 @@
+interface:
+  display_name: "Comparar materiais do ENAM"
+  short_description: "Compara materiais do ENAM por mudanças juridicamente relevantes."
+  default_prompt: "Compare estes materiais do ENAM e indique apenas mudanças reais."
+  icon_small: "assets/icone-magistratura.png"
+  icon_large: "assets/icone-magistratura.png"

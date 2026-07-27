@@ -1,0 +1,18 @@
+{
+  "name": "magistratura-enam-br",
+  "version": "0.2.1",
+  "description": "Curadoria, estudo e revisão de Direito brasileiro para Magistratura e ENAM.",
+  "author": {
+    "name": "Boni Jr"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Magistratura e ENAM Brasil",
+    "shortDescription": "Curadoria e estudo jurídico brasileiro para Magistratura.",
+    "longDescription": "Apoia a curadoria de informativos, o estudo de Direito brasileiro, a comparação de materiais do ENAM e a revisão de jurisprudência.",
+    "developerName": "Boni Jr",
+    "category": "Education",
+    "capabilities": [],
+    "defaultPrompt": "Quero estudar Direito brasileiro para a Magistratura."
+  }
+}

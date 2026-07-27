@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "boletim.schema.json",
+  "title": "Boletim de curadoria de informativos",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["titulo_boletim", "data_geracao", "nota_metodologica", "julgados_stf", "julgados_stj"],
+  "properties": {
+    "titulo_boletim": {"type": "string", "minLength": 1},
+    "data_geracao": {"type": "string", "format": "date"},
+    "nota_metodologica": {"type": "string", "minLength": 1},
+    "julgados_stf": {"$ref": "#/$defs/listaJulgados"},
+    "julgados_stj": {"$ref": "#/$defs/listaJulgados"},
+    "nao_selecionados": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "pendencias": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "fontes_essenciais": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "listaJulgados": {"type": "array", "items": {"$ref": "#/$defs/julgado"}},
+    "julgado": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["titulo", "comentario", "estado_jurisprudencial", "grau_confianca", "data_verificacao"],
+      "properties": {
+        "titulo": {"type": "string", "minLength": 1},
+        "comentario": {"type": "string", "minLength": 1},
+        "estado_jurisprudencial": {"$ref": "#/$defs/estado"},
+        "grau_confianca": {"enum": ["alto", "médio", "baixo"]},
+        "data_verificacao": {"type": "string", "format": "date"},
+        "nota_estado": {"type": "string", "minLength": 1},
+        "fontes_essenciais": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      },
+      "allOf": [
+        {
+          "if": {
+            "anyOf": [
+              {"properties": {"estado_jurisprudencial": {"not": {"const": "confirmado"}}}},
+              {"properties": {"grau_confianca": {"not": {"const": "alto"}}}}
+            ]
+          },
+          "then": {"required": ["nota_estado"]}
+        }
+      ]
+    },
+    "estado": {
+      "enum": ["confirmado", "confirmado com ressalvas", "restringido ou distinguido", "superado", "controvertido", "não verificado"]
+    }
+  }
+}

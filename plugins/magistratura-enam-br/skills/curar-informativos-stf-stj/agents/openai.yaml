@@ -1,0 +1,6 @@
+﻿interface:
+  display_name: "Curar informativos STF e STJ"
+  short_description: "Seleciona e comenta julgados relevantes para Magistratura."
+  default_prompt: "Faça a curadoria deste informativo do STF ou STJ."
+  icon_small: "assets/icone-magistratura.png"
+  icon_large: "assets/icone-magistratura.png"
