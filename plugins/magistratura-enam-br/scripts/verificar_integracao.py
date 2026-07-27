@@ -41,8 +41,8 @@ def main() -> None:
             dados = json.loads(manifesto.read_text(encoding="utf-8"))
             if dados.get("name") != "magistratura-enam-br":
                 erros.append("Manifesto com nome de plugin inesperado.")
-            if dados.get("version") != "0.2.1":
-                erros.append("Manifesto sem a versão consolidada 0.2.1.")
+            if dados.get("version") != "0.2.2":
+                erros.append("Manifesto sem a versão consolidada 0.2.2.")
         except json.JSONDecodeError as exc:
             erros.append(f"Manifesto JSON inválido: {exc.msg}")
 
@@ -59,7 +59,7 @@ def main() -> None:
 
     resultado = {
         "status": "aprovado" if not erros else "reprovado",
-        "versao": "0.2.1",
+        "versao": "0.2.2",
         "checks": len(ARQUIVOS_ESSENCIAIS),
         "erros": erros,
     }
