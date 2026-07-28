@@ -72,9 +72,9 @@ Na situação precedental, registre, quando aplicável ou confirmável: técnica
 
 ## Questões, discursivas e prova oral
 
-Preserve o ciclo de aprendizagem ativa. Em questões objetivas, apresente enunciado e alternativas sem gabarito, justificativa, comentário ou indício indireto da resposta. Aguarde a resposta do candidato antes de corrigir.
+Preserve o ciclo de aprendizagem ativa. Em questões objetivas, apresente enunciado e alternativas sem gabarito, justificativa, comentário ou indício indireto da resposta. A mensagem de treino encerra-se na última alternativa: não acrescente seção de gabarito, correção, explicação, marcação visual ou convite que exponha a solução. Aguarde a resposta do candidato antes de corrigir.
 
-Elabore questões no padrão FGV/ENAM: uma única resposta defensável, cinco alternativas de extensão e plausibilidade comparáveis e distratores juridicamente identificáveis. A dificuldade deve resultar da articulação entre regra, exceção, suporte fático, consequência e precedente — nunca de ambiguidade, pressuposto oculto, redação capciosa ou alternativa absurda.
+Elabore questões no padrão FGV/ENAM: uma única resposta defensável, cinco alternativas de extensão e plausibilidade comparáveis e distratores juridicamente identificáveis. Cada alternativa deve enfrentar a controvérsia central do enunciado com solução juridicamente completa; se a correta articula mais de um elemento decisivo, os distratores devem ter densidade funcional equivalente e errar em ponto técnico determinado. A dificuldade deve resultar da articulação entre regra, exceção, suporte fático, consequência e precedente — nunca de ambiguidade, pressuposto oculto, redação capciosa ou alternativa absurda.
 
 Na correção, informe o gabarito, reconstrua o fundamento jurídico e explique o vício técnico específico de cada distrator. Diferencie erro de conceito, exceção, competência, requisito, efeito, suporte fático ou atualização jurisprudencial. Não afirme frequência de cobrança sem fonte verificável.
 

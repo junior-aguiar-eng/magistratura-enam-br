@@ -17,9 +17,11 @@ Evite questões de reconhecimento isolado. O enunciado deve obrigar o candidato 
 
 ## Alternativas e distratores
 
-Use cinco alternativas de extensão, estilo e plausibilidade semelhantes. Em questão de caso concreto, cada alternativa deve apresentar uma solução jurídica completa; em questão de afirmativas, as combinações devem corresponder exatamente à validade das proposições.
+Use cinco alternativas de extensão, estilo e plausibilidade semelhantes. Em questão de caso concreto, cada alternativa deve apresentar uma solução jurídica completa, com consequência para os fatos narrados e a premissa normativa ou jurisprudencial que a sustenta. Não reduza a alternativa a uma conclusão telegráfica quando o enunciado exigir ponderação entre regra, exceção, requisito ou limite: todas devem enfrentar o mesmo núcleo de tensão jurídica do caso, ainda que por caminhos incompatíveis. Em questão de afirmativas, redija cada proposição com densidade autônoma e faça as combinações corresponderem exatamente à sua validade.
 
-Construa distratores tecnicamente defensáveis à primeira leitura, mas incorretos por vício identificável: requisito cumulativo omitido; exceção tratada como regra; competência deslocada; efeito temporal, processual ou patrimonial indevidamente ampliado; tese correta aplicada fora de seu suporte fático; ou entendimento superado, incompleto ou confundido com instituto próximo. Use termos absolutos somente quando a norma ou a tese realmente os justificar. Não use alternativas absurdas, meramente opinativas, com extensão ostensivamente desigual ou que revelem a resposta pela redação.
+Construa distratores tecnicamente defensáveis à primeira leitura, mas incorretos por vício identificável: requisito cumulativo omitido; exceção tratada como regra; competência deslocada; efeito temporal, processual ou patrimonial indevidamente ampliado; tese correta aplicada fora de seu suporte fático; ou entendimento superado, incompleto ou confundido com instituto próximo. Cada distrator deve ser uma resposta que um candidato bem preparado poderia escolher por erro jurídico determinado, e não uma versão abreviada, genérica ou superficial da solução. Use termos absolutos somente quando a norma ou a tese realmente os justificar. Não use alternativas absurdas, meramente opinativas, com extensão ostensivamente desigual ou que revelem a resposta pela redação.
+
+Mantenha paridade funcional: se a alternativa correta mobiliza dois ou mais elementos decisivos, os distratores também devem mobilizar elementos comparáveis, errando na articulação entre eles. A extensão não precisa ser idêntica, mas nenhuma alternativa pode parecer incompleta diante da densidade jurídica do enunciado ou das demais.
 
 ## Controle de qualidade antes do envio
 
@@ -29,9 +31,11 @@ Revise internamente se:
 2. a dificuldade decorre de articulação jurídica, e não de ambiguidade ou memória literal isolada;
 3. o gabarito está integralmente apoiado no material delimitado e em fonte oficial atual, quando necessária;
 4. cada distrator corresponde a um erro jurídico específico;
-5. o enunciado e as alternativas têm densidade compatível com Magistratura e ENAM.
+5. o enunciado e as alternativas têm densidade compatível com Magistratura e ENAM, e cada alternativa enfrenta a mesma controvérsia fática e jurídica central;
+6. não há alternativa meramente conclusiva, genérica ou perceptivelmente menos elaborada;
+7. a mensagem de treino contém exclusivamente enunciado e alternativas, sem gabarito, marcação da correta, justificativa, explicação, tabela de correção, emoji, destaque tipográfico ou qualquer pista indireta.
 
-Em lotes extensos, distribua as letras corretas de forma equilibrada, sem criar padrão perceptível. Não revele gabarito, justificativa ou indício indireto da resposta antes do envio das respostas do usuário.
+Em lotes extensos, distribua as letras corretas de forma equilibrada, sem criar padrão perceptível. Antes da tentativa, a resposta deve encerrar-se imediatamente após a última alternativa; não revele gabarito, justificativa ou indício indireto da resposta. Aguarde as respostas do usuário; somente então inicie a correção.
 
 ## Correção
 
