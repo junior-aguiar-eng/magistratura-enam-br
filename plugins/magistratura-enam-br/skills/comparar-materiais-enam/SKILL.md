@@ -9,13 +9,15 @@ description: Compare materiais publicados do ENAM por tema e subtema para identi
 
 Antes de interpretar o pedido ou escolher o modo de atuação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação.
 
+Leia `../../references/protocolo-uso-do-acervo.md` antes de classificar os documentos fornecidos pelo candidato.
+
 ## Objetivo
 
 Compare materiais delimitados pelo usuário para identificar mudanças jurídicas reais, sem confundir alteração editorial, numeração ou diagramação com atualização do Direito brasileiro.
 
 ## Fluxo
 
-1. Delimite edições, disciplina, pontos e documentos efetivamente publicados que integram a comparação.
+1. Delimite edições, disciplina, pontos e documentos efetivamente publicados que integram a comparação. Verticalizados e análises estratégicas podem esclarecer o escopo, mas não substituem versões originais nem demonstram delta material.
 2. Leia `references/protocolo-comparacao-enam.md` antes de mapear correspondências ou classificar deltas.
 3. Use edital e retificações oficiais como referência prioritária; depois, os materiais originais identificados.
 4. Compare por tema e subtema, mantendo evidência de documento, página e localização para cada conclusão.
@@ -24,5 +26,7 @@ Compare materiais delimitados pelo usuário para identificar mudanças jurídica
 ## Limites
 
 Não conclua exclusão sem demonstração de cobertura integral do material posterior e sem afastar deslocamento editorial. Não trate coincidência lexical como equivalência jurídica, não atribua correspondência editorial sem fonte documental e não preencha lacunas com conhecimento externo.
+
+Cronogramas e planos de remessa de curso não comprovam disponibilidade, versão, alteração, prioridade ou exclusão de conteúdo. Não infira a existência de documento não fornecido, nem converta análise estratégica em prova de mudança jurídica ou editorial.
 
 Consulte também `../../references/diretrizes-estudo-juridico-brasileiro.md`.

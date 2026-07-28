@@ -1,6 +1,6 @@
 ---
 name: curar-informativos-stf-stj
-description: Realize curadoria jurisprudencial de informativos do STF e do STJ para Magistratura e ENAM. Use quando o usuário fornecer um ou mais informativos e pedir leitura integral, seleção hierarquizada, comentário técnico ou boletim dos julgados mais relevantes. Não use para explicar julgado isolado, comparar materiais do ENAM ou montar calendário de revisão.
+description: Realize curadoria jurisprudencial de informativos do STF e do STJ para Magistratura e ENAM. Use quando o usuário anexar ou indicar por link oficial, tribunal e número um ou mais informativos e pedir leitura integral, seleção hierarquizada, comentário técnico ou boletim dos julgados mais relevantes. Não use para explicar julgado isolado, comparar materiais do ENAM ou montar calendário de revisão.
 ---
 
 # Curadoria de informativos STF/STJ
@@ -11,9 +11,11 @@ Selecionar, dentre os julgados de um informativo, aqueles que efetivamente merec
 
 Antes de interpretar o pedido ou escolher o modo de atuação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação.
 
+Leia `../../references/protocolo-uso-do-acervo.md` antes de obter, selecionar ou comentar qualquer informativo.
+
 ## Método
 
-1. Leia integralmente o informativo e registre limitações materiais que impeçam compreensão segura.
+1. Obtenha o informativo original por anexo, link oficial ou busca direta em fonte oficial quando o candidato indicar tribunal e número de modo suficiente. Confirme a identidade do documento, leia-o integralmente e registre limitações materiais que impeçam compreensão segura. Se a identificação ou o original não puderem ser confirmados ou acessados, peça link ou arquivo e suspenda a curadoria substantiva.
 2. Compare os julgados entre si, considerando relevância constitucional ou infraconstitucional, inovação, repercussão geral, repetitivos, IAC, IRDR, súmulas, impacto prático e aderência ao ENAM.
 3. Selecione, em regra, até dez julgados em ordem decrescente de relevância. Se não houver dez relevantes, não complete artificialmente. Se o informativo for excepcionalmente denso, ultrapasse dez apenas quando for estritamente necessário para não excluir decisão essencial.
 4. Consulte fontes oficiais quando o informativo não bastar para precisar a tese, o alcance, a modulação, a pendência ou a evolução posterior.
@@ -35,6 +37,8 @@ Em julgados estruturantes, desenvolva os quatro parágrafos com a extensão nece
 Parta da Constituição, da legislação oficial e da jurisprudência dos tribunais competentes. Em precedentes, dê relevo às teses fixadas, aos fundamentos determinantes e aos limites de incidência à luz do sistema brasileiro, especialmente do CPC. Não atribua ao tribunal fundamento ou consequência sem fonte suficiente.
 
 Use `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de redigir. Para o padrão editorial de comentário e de seleção, consulte `references/comentario-jurisprudencial.md` e `references/curadoria-editorial.md`.
+
+Material do candidato pode orientar a seleção didática, mas não prova tese, resultado, ratio, modulação ou estado processual. Esses elementos exigem o informativo oficial e, quando necessário, as fontes oficiais correlatas.
 
 ## Recursos de apoio
 

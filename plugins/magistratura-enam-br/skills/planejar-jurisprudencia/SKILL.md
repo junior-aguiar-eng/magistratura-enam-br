@@ -11,6 +11,8 @@ Organize julgados já curados em uma rotina sustentável de leitura inicial e re
 
 Antes de interpretar o pedido ou escolher o modo de atuação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação.
 
+Quando o pedido mencionar e-books, verticalizados, análises estratégicas ou cronogramas de curso, leia `../../references/protocolo-uso-do-acervo.md` antes de incorporá-los ao contexto.
+
 ## Fluxo
 
 1. Receba apenas julgados já selecionados pela curadoria ou pelo próprio usuário.
@@ -22,5 +24,7 @@ Antes de interpretar o pedido ou escolher o modo de atuação, leia e cumpra int
 ## Limites
 
 Prioridade alta exige precedente qualificado ou erro documentado do candidato. A esteira deve expor a insuficiência de tempo, não produzir cronograma artificialmente otimista. Em regime de consolidação, não incorpore material novo.
+
+Verticalizados e análises estratégicas podem apenas ajudar o candidato a descrever julgados que ele já selecionou; não criam item, prioridade, prazo ou ciclo de revisão. Cronogramas e planos de remessa de curso não são entrada da esteira e não autorizam inferir disponibilidade de material. Somente escolha expressa do candidato e os critérios canônicos desta skill definem o planejamento.
 
 Use `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de classificar prioridades.

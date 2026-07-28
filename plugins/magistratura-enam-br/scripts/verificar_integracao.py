@@ -18,6 +18,7 @@ ARQUIVOS_ESSENCIAIS = (
     ".python-version",
     "uv.lock",
     "requirements.txt",
+    "references/protocolo-uso-do-acervo.md",
     "skills/curar-informativos-stf-stj/SKILL.md",
     "skills/curar-informativos-stf-stj/modelos/precedentes.schema.json",
     "skills/curar-informativos-stf-stj/scripts/atualizar_planilha_precedentes.py",
