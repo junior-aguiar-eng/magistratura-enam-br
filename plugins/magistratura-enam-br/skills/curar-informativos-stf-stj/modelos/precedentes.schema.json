@@ -16,7 +16,7 @@
       "disciplina": {"type": "string"},
       "estado_jurisprudencial": {"enum": ["confirmado", "confirmado com ressalvas", "restringido ou distinguido", "superado", "controvertido", "não verificado"]},
       "grau_confianca": {"enum": ["alto", "médio", "baixo"]},
-      "nota_estado": {"type": "string", "minLength": 1},
+      "nota_estado": {"type": "string"},
       "data_julgamento": {"type": "string", "format": "date"},
       "data_informativo": {"type": "string", "format": "date"},
       "tese_resumida": {"type": "string"},

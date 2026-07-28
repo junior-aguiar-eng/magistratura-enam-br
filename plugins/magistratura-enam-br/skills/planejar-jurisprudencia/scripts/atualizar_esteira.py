@@ -7,15 +7,16 @@ Uma esteira contínua de estudo de julgados com revisão espaçada, dois estoque
 diagnóstico honesto de vazão. Determinístico: sem aleatoriedade em nenhuma fila.
 
 Fluxo de uso:
+  Execute na raiz do plugin:
   1. Gerar a planilha vazia (ou a partir de uma lista de julgados curados):
-       python atualizar_esteira.py init --prova 2025-11-15 --saida esteira.xlsx
+       uv run python skills/planejar-jurisprudencia/scripts/atualizar_esteira.py init --prova 2025-11-15 --saida esteira.xlsx
   2. A cada semana: abrir a planilha, marcar o que foi feito na coluna "Feito?"
      (X ou "sim"), salvar, e rodar:
-       python atualizar_esteira.py atualizar --arquivo esteira.xlsx
+       uv run python skills/planejar-jurisprudencia/scripts/atualizar_esteira.py atualizar --arquivo esteira.xlsx
      O script recalcula datas de revisão, promove itens entre filas e regenera a
      aba Semana.
   3. Adicionar julgados novos (vindos da curadoria) sem recriar a planilha:
-       python atualizar_esteira.py add --arquivo esteira.xlsx --itens novos.csv
+       uv run python skills/planejar-jurisprudencia/scripts/atualizar_esteira.py add --arquivo esteira.xlsx --itens novos.csv
 
 O CSV de entrada de julgados novos deve ter as colunas:
   id, tema, tribunal, disciplina, prioridade, origem_erro
@@ -49,7 +50,7 @@ try:
     from openpyxl.utils import get_column_letter
 except ImportError:
     sys.stderr.write(
-        "openpyxl não encontrado. Instale com: pip install openpyxl --break-system-packages\n"
+        "openpyxl não encontrado. Na raiz do plugin, execute: uv sync --all-groups\n"
     )
     sys.exit(1)
 
@@ -62,6 +63,23 @@ CICLOS = {
     "padrao": [5, 21, 60],
 }
 
+TRIBUNAIS = {"STF", "STJ"}
+ESTADOS_JURISPRUDENCIAIS = {
+    "confirmado",
+    "confirmado com ressalvas",
+    "restringido ou distinguido",
+    "superado",
+    "controvertido",
+    "não verificado",
+}
+GRAUS_CONFIANCA = {"alto", "médio", "baixo"}
+ORIGENS_ERRO = {"sim", "nao"}
+COLUNAS_CSV_ITENS = [
+    "id", "tema", "tribunal", "disciplina", "estado_jurisprudencial",
+    "grau_confianca", "fontes_essenciais", "prioridade",
+    "motivo_prioridade", "origem_erro",
+]
+
 FOLGA = 0.20            # 20% da capacidade semanal fica livre como amortecedor
 DIAS_CONSOLIDACAO = 15  # janela final: entrada congela, varredura de prioridade alta
 
@@ -70,7 +88,7 @@ DIAS_CONSOLIDACAO = 15  # janela final: entrada congela, varredura de prioridade
 MIN_PRIMEIRA = 25
 MIN_REVISAO = 10
 
-ABAS = ("Entrada", "Revisao", "Semana", "Config")
+ABAS = ("Entrada", "Revisao", "Remediacao", "Semana", "Config")
 
 # ----------------------------------------------------------------------------
 # Estilos
@@ -139,12 +157,16 @@ def is_feito(v):
 # Estrutura de colunas
 # ----------------------------------------------------------------------------
 
-COLS_ENTRADA = ["id", "tema", "tribunal", "disciplina", "prioridade",
-                "origem_erro", "data_entrada", "Feito?"]
-COLS_REVISAO = ["id", "tema", "tribunal", "disciplina", "prioridade",
-                "origem_erro", "ciclo", "total_ciclos", "proxima_revisao", "Feito?"]
+COLS_ENTRADA = ["id", "tema", "tribunal", "disciplina", "estado_jurisprudencial",
+                "grau_confianca", "fontes_essenciais", "prioridade", "motivo_prioridade", "origem_erro",
+                "data_entrada", "Feito?"]
+COLS_REVISAO = ["id", "tema", "tribunal", "disciplina", "estado_jurisprudencial",
+                "grau_confianca", "fontes_essenciais", "prioridade", "motivo_prioridade", "origem_erro",
+                "ciclo", "total_ciclos", "proxima_revisao", "resultado_revisao", "encaminhamento", "Feito?"]
+COLS_REMEDIACAO = ["id", "tema", "tribunal", "disciplina", "resultado_revisao", "encaminhamento", "data_registro", "Feito?"]
 COLS_SEMANA = ["ordem", "tipo", "id", "tema", "tribunal", "disciplina",
-               "prioridade", "vencimento", "min_est", "Feito?"]
+               "estado_jurisprudencial", "grau_confianca", "fontes_essenciais",
+               "prioridade", "motivo_prioridade", "vencimento", "min_est", "Feito?"]
 COLS_CONFIG = ["chave", "valor"]
 
 
@@ -153,9 +175,14 @@ COLS_CONFIG = ["chave", "valor"]
 # ----------------------------------------------------------------------------
 
 def ler_aba(ws, cols):
+    cabecalho = {
+        str(ws.cell(row=1, column=coluna).value).strip(): coluna
+        for coluna in range(1, ws.max_column + 1)
+        if ws.cell(row=1, column=coluna).value is not None
+    }
     linhas = []
     for r in range(2, ws.max_row + 1):
-        vals = [ws.cell(row=r, column=i + 1).value for i in range(len(cols))]
+        vals = [ws.cell(row=r, column=cabecalho[coluna]).value if coluna in cabecalho else "" for coluna in cols]
         if all(v is None or str(v).strip() == "" for v in vals):
             continue
         linhas.append(dict(zip(cols, vals)))
@@ -175,7 +202,7 @@ def escrever_aba(ws, cols, linhas):
             cell.font = _cell_font()
             cell.border = BORDA
             cell.alignment = Alignment(vertical="center",
-                                       wrap_text=(c == "tema"))
+                                       wrap_text=(c in {"tema", "fontes_essenciais"}))
         # realce por tribunal na célula do tribunal
         tcol = cols.index("tribunal") + 1 if "tribunal" in cols else None
         if tcol:
@@ -199,7 +226,8 @@ def escrever_aba(ws, cols, linhas):
 def _ajustar_larguras(ws, cols):
     larguras = {
         "id": 16, "tema": 46, "tribunal": 10, "disciplina": 20,
-        "prioridade": 12, "origem_erro": 12, "data_entrada": 14,
+        "estado_jurisprudencial": 26, "grau_confianca": 18, "fontes_essenciais": 48,
+        "prioridade": 12, "motivo_prioridade": 28, "origem_erro": 12, "data_entrada": 14,
         "ciclo": 8, "total_ciclos": 12, "proxima_revisao": 16,
         "proxima_data": 16, "vencimento": 14, "min_est": 9,
         "ordem": 8, "tipo": 12, "Feito?": 9, "chave": 24, "valor": 30,
@@ -253,6 +281,8 @@ def capacidade_semanal_min(cfg):
 # ----------------------------------------------------------------------------
 
 def cmd_init(args):
+    if args.prova and not parse_data(args.prova):
+        raise ValueError("A data da prova deve usar AAAA-MM-DD.")
     wb = Workbook()
     wb.remove(wb.active)
     for nome in ABAS:
@@ -260,6 +290,7 @@ def cmd_init(args):
 
     escrever_aba(wb["Entrada"], COLS_ENTRADA, [])
     escrever_aba(wb["Revisao"], COLS_REVISAO, [])
+    escrever_aba(wb["Remediacao"], COLS_REMEDIACAO, [])
     escrever_aba(wb["Semana"], COLS_SEMANA, [])
 
     cfg = {
@@ -293,19 +324,43 @@ def cmd_init(args):
 
 def _ler_csv_itens(caminho):
     itens = []
+    identificadores = set()
     with open(caminho, newline="", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
-            prio = (row.get("prioridade") or "padrao").strip().lower()
-            if prio not in CICLOS:
-                prio = "padrao"
-            itens.append({
-                "id": (row.get("id") or "").strip(),
-                "tema": (row.get("tema") or "").strip(),
-                "tribunal": (row.get("tribunal") or "").strip().upper(),
-                "disciplina": (row.get("disciplina") or "").strip(),
-                "prioridade": prio,
-                "origem_erro": (row.get("origem_erro") or "nao").strip().lower(),
-            })
+        leitor = csv.DictReader(f)
+        cabecalho = set(leitor.fieldnames or [])
+        faltantes = [campo for campo in COLUNAS_CSV_ITENS if campo not in cabecalho]
+        if faltantes:
+            raise ValueError(f"CSV de itens sem colunas obrigatórias: {', '.join(faltantes)}.")
+        for numero, row in enumerate(leitor, start=2):
+            item = {campo: (row.get(campo) or "").strip() for campo in COLUNAS_CSV_ITENS}
+            item["tribunal"] = item["tribunal"].upper()
+            item["estado_jurisprudencial"] = item["estado_jurisprudencial"].lower()
+            item["grau_confianca"] = item["grau_confianca"].lower()
+            if item["grau_confianca"] == "medio":
+                item["grau_confianca"] = "médio"
+            item["prioridade"] = item["prioridade"].lower()
+            item["origem_erro"] = item["origem_erro"].lower()
+
+            obrigatorios = [campo for campo in COLUNAS_CSV_ITENS if not item[campo]]
+            if obrigatorios:
+                raise ValueError(f"Linha {numero}: campos obrigatórios vazios: {', '.join(obrigatorios)}.")
+            if item["id"] in identificadores:
+                raise ValueError(f"Linha {numero}: id duplicado no CSV: {item['id']}.")
+            if item["tribunal"] not in TRIBUNAIS:
+                raise ValueError(f"Linha {numero}: tribunal deve ser STF ou STJ.")
+            if item["estado_jurisprudencial"] not in ESTADOS_JURISPRUDENCIAIS:
+                raise ValueError(f"Linha {numero}: estado jurisprudencial inválido: {item['estado_jurisprudencial']}.")
+            if item["grau_confianca"] not in GRAUS_CONFIANCA:
+                raise ValueError(f"Linha {numero}: grau de confiança inválido: {item['grau_confianca']}.")
+            if item["prioridade"] not in CICLOS:
+                raise ValueError(f"Linha {numero}: prioridade deve ser alta ou padrao.")
+            if item["origem_erro"] not in ORIGENS_ERRO:
+                raise ValueError(f"Linha {numero}: origem_erro deve ser sim ou nao.")
+            if item["prioridade"] == "alta" and item["motivo_prioridade"] == "prioridade padrão":
+                raise ValueError(f"Linha {numero}: prioridade alta exige motivo específico.")
+
+            identificadores.add(item["id"])
+            itens.append(item)
     return itens
 
 
@@ -338,6 +393,7 @@ def cmd_add(args):
         it["data_entrada"] = fmt(hoje())
         it["Feito?"] = ""
         entrada.append(it)
+        existentes.add(it["id"])
         add += 1
 
     escrever_aba(wb["Entrada"], COLS_ENTRADA, entrada)
@@ -374,9 +430,13 @@ def _em_consolidacao(cfg):
 
 def cmd_atualizar(args):
     wb = load_workbook(args.arquivo)
+    if "Remediacao" not in wb.sheetnames:
+        wb.create_sheet("Remediacao")
+        escrever_aba(wb["Remediacao"], COLS_REMEDIACAO, [])
     cfg = ler_config(wb["Config"])
     entrada = ler_aba(wb["Entrada"], COLS_ENTRADA)
     revisao = ler_aba(wb["Revisao"], COLS_REVISAO)
+    remediacao = ler_aba(wb["Remediacao"], COLS_REMEDIACAO)
 
     hoje_d = hoje()
     consolidacao = _em_consolidacao(cfg)
@@ -394,11 +454,17 @@ def cmd_atualizar(args):
                 "tema": it["tema"],
                 "tribunal": it["tribunal"],
                 "disciplina": it["disciplina"],
+                "estado_jurisprudencial": it.get("estado_jurisprudencial", ""),
+                "grau_confianca": it.get("grau_confianca", ""),
+                "fontes_essenciais": it.get("fontes_essenciais", ""),
                 "prioridade": prio,
+                "motivo_prioridade": it.get("motivo_prioridade", "prioridade padrão"),
                 "origem_erro": it.get("origem_erro", "nao"),
                 "ciclo": 1,
                 "total_ciclos": len(ciclos),
                 "proxima_revisao": fmt(hoje_d + dt.timedelta(days=ciclos[0])),
+                "resultado_revisao": "",
+                "encaminhamento": "",
                 "Feito?": "",
             })
             promovidos += 1
@@ -411,6 +477,14 @@ def cmd_atualizar(args):
     revisao_nova = []
     for it in revisao:
         if is_feito(it.get("Feito?")):
+            resultado = str(it.get("resultado_revisao", "")).strip().lower()
+            encaminhamento = str(it.get("encaminhamento", "")).strip().lower()
+            if resultado in {"erro", "revisar"} and encaminhamento in {"questao_objetiva", "discursiva_curta", "prova_oral"}:
+                remediacao.append({
+                    "id": it["id"], "tema": it["tema"], "tribunal": it["tribunal"],
+                    "disciplina": it["disciplina"], "resultado_revisao": resultado,
+                    "encaminhamento": encaminhamento, "data_registro": fmt(hoje_d), "Feito?": "",
+                })
             prio = str(it.get("prioridade", "padrao")).lower()
             ciclos = CICLOS.get(prio, CICLOS["padrao"])
             ciclo_atual = int(it.get("ciclo", 1))
@@ -421,6 +495,8 @@ def cmd_atualizar(args):
             it["ciclo"] = ciclo_atual + 1
             it["proxima_revisao"] = fmt(hoje_d + dt.timedelta(days=prox))
             it["Feito?"] = ""
+            it["resultado_revisao"] = ""
+            it["encaminhamento"] = ""
             revisao_nova.append(it)
             avancados += 1
         else:
@@ -431,6 +507,7 @@ def cmd_atualizar(args):
 
     escrever_aba(wb["Entrada"], COLS_ENTRADA, entrada_restante)
     escrever_aba(wb["Revisao"], COLS_REVISAO, revisao)
+    escrever_aba(wb["Remediacao"], COLS_REMEDIACAO, remediacao)
 
     # ---- 3. Gerar aba SEMANA
     semana, diag = _montar_semana(entrada_restante, revisao, cfg, consolidacao)
@@ -482,7 +559,11 @@ def _montar_semana(entrada, revisao, cfg, consolidacao):
         linhas.append({
             "ordem": ordem, "tipo": "revisão", "id": it["id"], "tema": it["tema"],
             "tribunal": it["tribunal"], "disciplina": it["disciplina"],
+            "estado_jurisprudencial": it.get("estado_jurisprudencial", ""),
+            "grau_confianca": it.get("grau_confianca", ""),
+            "fontes_essenciais": it.get("fontes_essenciais", ""),
             "prioridade": it["prioridade"], "vencimento": fmt(venc),
+            "motivo_prioridade": it.get("motivo_prioridade", "prioridade padrão"),
             "min_est": MIN_REVISAO, "Feito?": "",
         })
         usado += MIN_REVISAO
@@ -502,7 +583,12 @@ def _montar_semana(entrada, revisao, cfg, consolidacao):
             linhas.append({
                 "ordem": ordem, "tipo": "varredura-final", "id": it["id"],
                 "tema": it["tema"], "tribunal": it["tribunal"],
-                "disciplina": it["disciplina"], "prioridade": it["prioridade"],
+                "disciplina": it["disciplina"],
+                "estado_jurisprudencial": it.get("estado_jurisprudencial", ""),
+                "grau_confianca": it.get("grau_confianca", ""),
+                "fontes_essenciais": it.get("fontes_essenciais", ""),
+                "prioridade": it["prioridade"],
+                "motivo_prioridade": it.get("motivo_prioridade", "prioridade padrão"),
                 "vencimento": "sprint", "min_est": MIN_REVISAO, "Feito?": "",
             })
             usado += MIN_REVISAO
@@ -515,7 +601,11 @@ def _montar_semana(entrada, revisao, cfg, consolidacao):
             linhas.append({
                 "ordem": ordem, "tipo": "novo", "id": it["id"], "tema": it["tema"],
                 "tribunal": it["tribunal"], "disciplina": it["disciplina"],
+                "estado_jurisprudencial": it.get("estado_jurisprudencial", ""),
+                "grau_confianca": it.get("grau_confianca", ""),
+                "fontes_essenciais": it.get("fontes_essenciais", ""),
                 "prioridade": it["prioridade"], "vencimento": "—",
+                "motivo_prioridade": it.get("motivo_prioridade", "prioridade padrão"),
                 "min_est": MIN_PRIMEIRA, "Feito?": "",
             })
             usado += MIN_PRIMEIRA
@@ -641,7 +731,10 @@ def main():
     ps.set_defaults(func=cmd_status)
 
     args = p.parse_args()
-    args.func(args)
+    try:
+        args.func(args)
+    except ValueError as exc:
+        raise SystemExit(f"ERRO: {exc}") from exc
 
 
 if __name__ == "__main__":

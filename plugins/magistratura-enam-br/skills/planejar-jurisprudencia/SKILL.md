@@ -9,12 +9,14 @@ description: Organize a leitura e a revisão espaçada de julgados brasileiros j
 
 Organize julgados já curados em uma rotina sustentável de leitura inicial e revisão espaçada, sempre subordinada à capacidade real do candidato e ao prazo até a prova. Esta skill administra o tempo de estudo; não seleciona precedentes e não altera sua análise jurídica.
 
+Antes de interpretar o pedido ou escolher o modo de atuação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação.
+
 ## Fluxo
 
 1. Receba apenas julgados já selecionados pela curadoria ou pelo próprio usuário.
 2. Priorize revisões vencidas, preserve folga semanal e comunique com clareza quando o volume não couber no prazo.
 3. Use `scripts/atualizar_esteira.py` para criar, alimentar, atualizar ou consultar a planilha de esteira.
-4. Quando a fonte for a planilha de precedentes da skill de curadoria, use `scripts/preparar_itens_esteira.py` para gerar o CSV de entrada. Não infira prioridade alta ou vínculo com erro sem indicação expressa.
+4. Quando a fonte for a planilha de precedentes da skill de curadoria, use `scripts/preparar_itens_esteira.py` para gerar o CSV de entrada. Preserve estado jurisprudencial, grau de confiança e fontes essenciais como metadados de consulta; não os use para inferir prioridade alta ou vínculo com erro.
 5. Consulte `references/fluxo-da-esteira.md` antes de explicar regras de prioridade, ciclos, regimes ou capacidade.
 
 ## Limites

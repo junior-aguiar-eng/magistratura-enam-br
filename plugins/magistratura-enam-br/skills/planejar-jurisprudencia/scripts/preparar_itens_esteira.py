@@ -11,7 +11,8 @@ from pathlib import Path
 
 
 CABECALHO_ESPERADO = {
-    "ID da decisão", "Processo", "Tema", "Tribunal", "Disciplina", "Estado jurisprudencial"
+    "ID da decisão", "Processo", "Tema", "Tribunal", "Disciplina", "Estado jurisprudencial",
+    "Grau de confiança", "Fontes essenciais",
 }
 
 
@@ -25,6 +26,16 @@ def carregar_openpyxl():
 
 def ids_normalizados(valores: list[str] | None) -> set[str]:
     return {str(valor).strip() for valor in valores or [] if str(valor).strip()}
+
+
+def motivos_prioridade(valores: list[str] | None) -> dict[str, str]:
+    motivos = {}
+    for valor in valores or []:
+        identificador, separador, motivo = str(valor).partition("=")
+        if not separador or not identificador.strip() or not motivo.strip():
+            raise ValueError("Use --motivo-prioridade no formato ID=MOTIVO.")
+        motivos[identificador.strip()] = motivo.strip()
+    return motivos
 
 
 def texto(valor) -> str:
@@ -61,13 +72,15 @@ def ler_precedentes(caminho: Path) -> list[dict[str, str]]:
                 "tribunal": tribunal,
                 "disciplina": texto(valores[indice["Disciplina"]] if indice["Disciplina"] < len(valores) else ""),
                 "estado": texto(valores[indice["Estado jurisprudencial"]] if indice["Estado jurisprudencial"] < len(valores) else "").lower(),
+                "grau_confianca": texto(valores[indice["Grau de confiança"]] if indice["Grau de confiança"] < len(valores) else "").lower(),
+                "fontes_essenciais": texto(valores[indice["Fontes essenciais"]] if indice["Fontes essenciais"] < len(valores) else ""),
             })
         return registros
     finally:
         wb.close()
 
 
-def converter(registros: list[dict[str, str]], altas: set[str], erros: set[str], incluir_superados: bool) -> tuple[list[dict[str, str]], int]:
+def converter(registros: list[dict[str, str]], altas: set[str], erros: set[str], motivos: dict[str, str], incluir_superados: bool) -> tuple[list[dict[str, str]], int]:
     itens = []
     superados_excluidos = 0
     vistos: set[str] = set()
@@ -79,12 +92,22 @@ def converter(registros: list[dict[str, str]], altas: set[str], erros: set[str],
         if registro["estado"] == "superado" and not incluir_superados:
             superados_excluidos += 1
             continue
+        prioridade = "alta" if identificador in altas else "padrao"
+        motivo = motivos.get(identificador, "")
+        if prioridade == "alta" and not motivo:
+            raise ValueError(f"Precedente {identificador}: prioridade alta exige --motivo-prioridade ID=MOTIVO.")
+        if not motivo:
+            motivo = "erro documentado" if identificador in erros else "prioridade padrão"
         itens.append({
             "id": identificador,
             "tema": registro["tema"],
             "tribunal": registro["tribunal"],
             "disciplina": registro["disciplina"],
-            "prioridade": "alta" if identificador in altas else "padrao",
+            "estado_jurisprudencial": registro["estado"],
+            "grau_confianca": registro["grau_confianca"],
+            "fontes_essenciais": registro["fontes_essenciais"],
+            "prioridade": prioridade,
+            "motivo_prioridade": motivo,
             "origem_erro": "sim" if identificador in erros else "nao",
         })
     return itens, superados_excluidos
@@ -93,7 +116,7 @@ def converter(registros: list[dict[str, str]], altas: set[str], erros: set[str],
 def escrever_csv(itens: list[dict[str, str]], saida: Path) -> None:
     saida.parent.mkdir(parents=True, exist_ok=True)
     with saida.open("w", encoding="utf-8", newline="") as arquivo:
-        campos = ["id", "tema", "tribunal", "disciplina", "prioridade", "origem_erro"]
+        campos = ["id", "tema", "tribunal", "disciplina", "estado_jurisprudencial", "grau_confianca", "fontes_essenciais", "prioridade", "motivo_prioridade", "origem_erro"]
         escritor = csv.DictWriter(arquivo, fieldnames=campos)
         escritor.writeheader()
         escritor.writerows(itens)
@@ -104,6 +127,7 @@ def main() -> None:
     parser.add_argument("entrada", type=Path, help="Planilha XLSX gerada pela curadoria.")
     parser.add_argument("saida", type=Path, help="CSV para usar em init ou add da esteira.")
     parser.add_argument("--prioridade-alta", action="append", default=[], metavar="ID", help="ID de precedente que deve receber prioridade alta; pode ser repetido.")
+    parser.add_argument("--motivo-prioridade", action="append", default=[], metavar="ID=MOTIVO", help="Justificativa registrada da prioridade; obrigatória para prioridade alta.")
     parser.add_argument("--origem-erro", action="append", default=[], metavar="ID", help="ID ligado a erro documentado; pode ser repetido.")
     parser.add_argument("--incluir-superados", action="store_true", help="Inclui registros marcados como superados.")
     args = parser.parse_args()
@@ -111,7 +135,7 @@ def main() -> None:
         raise SystemExit(f"Arquivo não encontrado: {args.entrada}")
     try:
         registros = ler_precedentes(args.entrada)
-        itens, excluidos = converter(registros, ids_normalizados(args.prioridade_alta), ids_normalizados(args.origem_erro), args.incluir_superados)
+        itens, excluidos = converter(registros, ids_normalizados(args.prioridade_alta), ids_normalizados(args.origem_erro), motivos_prioridade(args.motivo_prioridade), args.incluir_superados)
         escrever_csv(itens, args.saida)
     except (RuntimeError, ValueError) as exc:
         raise SystemExit(f"ERRO: {exc}")

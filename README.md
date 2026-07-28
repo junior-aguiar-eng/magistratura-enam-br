@@ -1,6 +1,6 @@
 # Magistratura e ENAM Brasil
 
-Marketplace local e compartilhável do plugin **Magistratura e ENAM Brasil** (versão 0.2.1).
+Marketplace local e compartilhável do plugin **Magistratura e ENAM Brasil**. A versão instalável é a declarada em `plugins/magistratura-enam-br/.codex-plugin/plugin.json`.
 
 ## Instalação por ZIP no Windows
 

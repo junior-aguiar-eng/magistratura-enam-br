@@ -1,3 +1,3 @@
-id,tema,tribunal,disciplina,prioridade,origem_erro
-RE-000000-DF,Tema de exemplo,STF,Direito Constitucional,alta,nao
-REsp-000000-RS,Tema de exemplo,STJ,Direito Processual Civil,padrao,nao
+id,tema,tribunal,disciplina,estado_jurisprudencial,grau_confianca,fontes_essenciais,prioridade,motivo_prioridade,origem_erro
+RE-000000-DF,Tema de exemplo,STF,Direito Constitucional,confirmado,alto,https://fonte-oficial.exemplo/1,alta,precedente qualificado,nao
+REsp-000000-RS,Tema de exemplo,STJ,Direito Processual Civil,confirmado com ressalvas,médio,https://fonte-oficial.exemplo/2,padrao,prioridade padrão,nao

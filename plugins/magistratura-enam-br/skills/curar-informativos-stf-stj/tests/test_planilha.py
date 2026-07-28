@@ -6,7 +6,7 @@ from pathlib import Path
 import openpyxl
 import pytest
 
-from atualizar_planilha_precedentes import validar_registro
+from atualizar_planilha_precedentes import validar_dados, validar_registro
 
 
 def registro(**kwargs):
@@ -30,6 +30,11 @@ def test_registro_invalido_rejeitado():
 def test_estado_nao_confirmado_exige_nota():
     with pytest.raises(ValueError):
         validar_registro(registro(estado_jurisprudencial="controvertido", grau_confianca="baixo"), 1)
+
+
+def test_entrada_rejeita_campo_fora_do_contrato():
+    with pytest.raises(ValueError, match="Contrato precedentes.schema.json"):
+        validar_dados([registro(campo_editorial_solto="não permitido")])
 
 
 def test_planilha_sanitiza_e_deduplica(tmp_path):

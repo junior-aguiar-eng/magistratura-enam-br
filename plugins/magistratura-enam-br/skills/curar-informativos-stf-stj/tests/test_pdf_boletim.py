@@ -36,6 +36,13 @@ def test_validacao_exige_nota_para_confianca_media():
         validar_dados(d)
 
 
+def test_validacao_rejeita_campo_fora_do_contrato():
+    d = dados_validos()
+    d["campo_editorial_solto"] = "não permitido"
+    with pytest.raises(ValueError, match="Contrato boletim.schema.json"):
+        validar_dados(d)
+
+
 def test_gera_pdf_com_caracteres_especiais(tmp_path):
     saida = tmp_path / "boletim.pdf"
     gerar(validar_dados(dados_validos()), saida)

@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+import json
 import re
 from datetime import datetime
+from pathlib import Path
 from typing import Any
+
+from jsonschema import Draft202012Validator, FormatChecker
 
 ESTADOS = {
     "confirmado",
@@ -14,6 +18,7 @@ ESTADOS = {
 }
 CONFIANCAS = {"alto", "médio", "baixo"}
 PADRAO_NUMERO = re.compile(r"\bn[ºo°.]*\s*", re.IGNORECASE)
+MODELOS = Path(__file__).resolve().parents[1] / "modelos"
 
 
 def texto(value: Any) -> str:
@@ -54,6 +59,19 @@ def validar_data_iso(value: Any, campo: str, contexto: str = "") -> None:
     except ValueError as exc:
         prefixo = f"{contexto}: " if contexto else ""
         raise ValueError(f"{prefixo}'{campo}' deve usar AAAA-MM-DD.") from exc
+
+
+def validar_schema(nome: str, instancia: Any) -> None:
+    schema = json.loads((MODELOS / nome).read_text(encoding="utf-8"))
+    erros = sorted(
+        Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(instancia),
+        key=lambda erro: list(erro.absolute_path),
+    )
+    if not erros:
+        return
+    erro = erros[0]
+    caminho = ".".join(str(parte) for parte in erro.absolute_path) or "raiz"
+    raise ValueError(f"Contrato {nome} violado em {caminho}: {erro.message}")
 
 
 def sanitizar_excel(value: Any) -> Any:

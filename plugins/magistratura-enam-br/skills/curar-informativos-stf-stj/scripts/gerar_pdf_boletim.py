@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from common import CONFIANCAS, ESTADOS, texto, validar_data_iso
+from common import CONFIANCAS, ESTADOS, texto, validar_data_iso, validar_schema
 
 
 def validar_julgado(julgado, contexto):
@@ -30,6 +30,7 @@ def validar_julgado(julgado, contexto):
 
 
 def validar_dados(dados):
+    validar_schema("boletim.schema.json", dados)
     if not isinstance(dados, dict):
         raise ValueError("A raiz do JSON deve ser objeto.")
     for campo in ("titulo_boletim", "data_geracao", "nota_metodologica"):

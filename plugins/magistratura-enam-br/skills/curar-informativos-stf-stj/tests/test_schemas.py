@@ -49,6 +49,13 @@ def test_schema_precedente_valido():
     }])
 
 
+def test_schema_precedente_confirmado_aceita_nota_vazia():
+    validar("precedentes.schema.json", [{
+        "processo": "RE 1/DF", "tribunal": "STF", "estado_jurisprudencial": "confirmado",
+        "grau_confianca": "alto", "nota_estado": ""
+    }])
+
+
 def test_schema_precedente_rejeita_tribunal():
     with pytest.raises(Exception):
         validar("precedentes.schema.json", [{

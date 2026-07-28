@@ -18,6 +18,8 @@ No regime ordinário, entrada e revisão convivem. Nos 15 dias anteriores à pro
 
 Use `init` para criar uma planilha, `add` para acrescentar CSV de novos julgados, `atualizar` depois de marcar `Feito?` e `status` para diagnóstico sem alterar o arquivo. Preserve os nomes das abas (`Entrada`, `Revisao`, `Semana`, `Config`) e das colunas, pois elas constituem a interface estável do motor.
 
+Quando uma revisão revelar erro ou necessidade de retomada, registre explicitamente `resultado_revisao` e, se desejar treino complementar, `encaminhamento` como `questao_objetiva`, `discursiva_curta` ou `prova_oral`. O motor apenas transfere essa indicação para a aba `Remediacao`; não cria exercício nem presume encaminhamento.
+
 ## Integração com a curadoria
 
-A planilha de precedentes gerada pela curadoria pode ser convertida em CSV pelo script `preparar_itens_esteira.py`. Por cautela, a conversão preserva processo, tema, tribunal e disciplina, exclui precedentes marcados como superados por padrão e atribui prioridade padrão, salvo indicação explícita por processo. A prioridade alta continua sendo decisão metodológica justificada — por precedente qualificado ou erro documentado — e não uma inferência automática do programa.
+A planilha de precedentes gerada pela curadoria pode ser convertida em CSV pelo script `preparar_itens_esteira.py`. Por cautela, a conversão preserva processo, tema, tribunal, disciplina, estado jurisprudencial, grau de confiança e fontes essenciais; esses três últimos são metadados de consulta e não alteram a ordem da esteira. Precedentes marcados como superados são excluídos por padrão. A prioridade alta continua sendo decisão metodológica justificada — por precedente qualificado ou erro documentado — e não uma inferência automática do programa.

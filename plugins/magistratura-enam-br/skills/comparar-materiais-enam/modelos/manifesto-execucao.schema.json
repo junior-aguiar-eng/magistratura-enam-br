@@ -3,8 +3,9 @@
   "title": "Manifesto de execução da comparação ENAM",
   "type": "object",
   "additionalProperties": false,
-  "required": ["escopo", "documentos"],
+  "required": ["id_execucao", "escopo", "documentos"],
   "properties": {
+    "id_execucao": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
     "escopo": {"type": "string", "minLength": 1},
     "documentos": {
       "type": "array", "minItems": 2,

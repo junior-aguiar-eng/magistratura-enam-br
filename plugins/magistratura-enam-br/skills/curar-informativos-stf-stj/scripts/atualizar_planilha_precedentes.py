@@ -14,6 +14,7 @@ from common import (
     sanitizar_excel,
     texto,
     validar_data_iso,
+    validar_schema,
 )
 
 CABECALHO = [
@@ -44,6 +45,11 @@ def validar_registro(item, indice):
     validar_data_iso(item.get("data_julgamento"), "data_julgamento", contexto)
     validar_data_iso(item.get("data_informativo"), "data_informativo", contexto)
     return item
+
+
+def validar_dados(dados):
+    validar_schema("precedentes.schema.json", dados)
+    return [validar_registro(item, i) for i, item in enumerate(dados, 1)]
 
 
 def carregar_openpyxl():
@@ -113,7 +119,7 @@ def main():
         raise SystemExit("O JSON deve ser uma lista de objetos.")
 
     try:
-        dados = [validar_registro(item, i) for i, item in enumerate(dados, 1)]
+        dados = validar_dados(dados)
         deps = carregar_openpyxl()
         wb, ws = abrir_ou_criar(args.planilha, deps[0], deps[1])
     except (ValueError, RuntimeError) as exc:
