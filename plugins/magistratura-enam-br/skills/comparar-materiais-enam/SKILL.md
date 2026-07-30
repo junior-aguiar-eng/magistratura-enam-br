@@ -1,6 +1,6 @@
 ---
 name: comparar-materiais-enam
-description: Compare materiais publicados do ENAM por tema e subtema para identificar mudanças juridicamente relevantes entre edições ou versões. Use quando o usuário fornecer materiais, edital ou retificações e pedir mapeamento, comparação, conferência de atualização ou auditoria de rastreabilidade. Não use para explicar tema isolado, triar informativo ou planejar revisões.
+description: Compare materiais publicados do ENAM por capítulo, tema e subtema para identificar mudanças juridicamente relevantes entre edições ou versões e orientar a atualização do estudo em tabela. Use quando o usuário fornecer materiais, edital ou retificações e pedir mapeamento, comparação, conferência de atualização ou auditoria de rastreabilidade. Não use para explicar tema isolado, triar informativo ou planejar revisões.
 ---
 
 # Comparação de materiais do ENAM
@@ -13,15 +13,15 @@ Leia `../../references/protocolo-uso-do-acervo.md` antes de classificar os docum
 
 ## Objetivo
 
-Compare materiais delimitados pelo usuário para identificar mudanças jurídicas reais, sem confundir alteração editorial, numeração ou diagramação com atualização do Direito brasileiro.
+Compare materiais delimitados pelo usuário para identificar mudanças jurídicas reais e sua utilidade para atualização do estudo, sem confundir alteração editorial, numeração ou diagramação com atualização do Direito brasileiro. A entrega padrão é uma tabela didática no chat, não uma sinopse, parecer ou mini-laudo.
 
 ## Fluxo
 
 1. Delimite edições, disciplina, pontos e documentos efetivamente publicados que integram a comparação. Verticalizados e análises estratégicas podem esclarecer o escopo, mas não substituem versões originais nem demonstram delta material.
 2. Leia `references/protocolo-comparacao-enam.md` antes de mapear correspondências ou classificar deltas.
 3. Use edital e retificações oficiais como referência prioritária; depois, os materiais originais identificados.
-4. Compare por tema e subtema, mantendo evidência de documento, página e localização para cada conclusão.
-5. Para uma entrega estruturada, use os modelos em `modelos/`, execute `scripts/auditar_rastreabilidade.py` e leia `references/formato-entrega-comparativo.md` antes de apresentar o resultado.
+4. Compare por capítulo, tema e subtema, mantendo evidência de documento, página e localização para cada conclusão. Para cada unidade, registre o que havia antes, o que há agora, a densidade relativa, eventual supressão ou deslocamento e a consequência concreta para o estudo.
+5. Leia `references/formato-entrega-comparativo.md` antes de apresentar o resultado e entregue a tabela no chat. Use os modelos em `modelos/` e execute `scripts/auditar_rastreabilidade.py` somente se o usuário pedir auditoria de rastreabilidade, JSON, artefatos estruturados ou arquivo; não crie nem cite arquivos de saída por padrão.
 
 ## Limites
 

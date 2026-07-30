@@ -1,23 +1,29 @@
 # Formato de entrega da comparação ENAM
 
-Use este formato somente após a aprovação do auditor. A entrega deve ser decisória, juridicamente precisa e proporcional ao recorte; não substitui explicação aprofundada de tema nem cria calendário de revisão.
+Use este formato para a entrega padrão no chat. A entrega deve ser decisória, juridicamente precisa e proporcional ao recorte; não substitui explicação aprofundada de tema nem cria calendário de revisão. A auditoria e os artefatos estruturados são condicionais: só os produza quando o usuário pedir rastreabilidade, JSON, planilha, Markdown, PDF ou outro arquivo.
 
-## 1. Conclusão executiva
+## 1. Quadro comparativo
 
-Informe o universo comparado, a quantidade de mudanças materiais, de itens sem delta e de pendências. Declare a limitação documental que impeça conclusão segura.
+Abra com uma frase que identifique as versões e o recorte. Em seguida, apresente uma única tabela Markdown no chat. A unidade é o capítulo quando a estrutura do material a permitir; em outro caso, tema ou subtema. Não agrupe mudanças heterogêneas em um bloco narrativo genérico.
 
-## 2. Mudanças que exigem ação
+Use as colunas abaixo, fundindo `Fonte/localização` à célula pertinente somente se a tabela ficar excessivamente larga:
 
-Apresente apenas os itens com `acao_recomendada` diferente de `SEM_ACAO`, ordenados por relevância jurídica. Em cada linha, informe: disciplina e tema/subtema; versões e referências comparadas; classificação; delta real; fundamento material quando houver; e ação recomendada.
+| Capítulo / tema | Material anterior | Material novo | Delta e densidade | Supressão / deslocamento | Importância | Ação de estudo |
+|---|---|---|---|---|---|---|
 
-## 3. Itens sem delta
+Em cada célula, sintetize com fidelidade, em uma ou duas frases curtas. Mostre com clareza o conteúdo antigo e o novo; não substitua a comparação por rótulos como “houve atualização”. Em `Delta e densidade`, distinga atualização jurídica, inclusão material, correção, alteração editorial sem efeito, ou ausência de delta, e indique se o novo material aprofunda, condensa ou apenas reorganiza o conteúdo. Em `Supressão / deslocamento`, use “não identificado” quando não houver indício; use “supressão aparente” quando o deslocamento não puder ser afastado; e só afirme exclusão confirmada com prova bilateral suficiente.
 
-Registre-os de forma compacta, por disciplina e tema/subtema, com as referências que demonstram a permanência da tese. Não reescreva conteúdo jurídico sem alteração material.
+Classifique `Importância` como **alta**, **média**, **baixa** ou **pendente**, justificando-a brevemente pelo impacto no núcleo jurídico, na atualização normativa/jurisprudencial, na densidade nova ou na segurança da conclusão. Em `Ação de estudo`, use a ação canônica (`INCLUIR`, `SUBSTITUIR`, `REVISAR`, `AGUARDAR_PUBLICACAO` ou `SEM_ACAO`) acompanhada de orientação material curta, sem calendário.
 
-## 4. Pendências e revisão humana
+Inclua também linhas compactas para unidades sem delta material quando isso ajudar o candidato a enxergar que foram preservadas. Não reescreva integralmente conteúdo estável, não reproduza grandes trechos das versões e não acrescente links, citações ou discussões laterais que não mudem a decisão de estudo.
 
-Separe `PENDENTE DE PUBLICACAO`, `SUPRESSAO APARENTE - REVISAO HUMANA` e `AMBIGUO - REVISAO HUMANA`. Explique qual documento, prova ou publicação falta; não converta a pendência em atualização afirmativa.
+## 2. Avaliação técnica e recomendação
 
-## 5. Limite da ação
+Depois da tabela, faça uma avaliação curta e organizada, com no máximo quatro itens:
 
-`INCLUIR`, `SUBSTITUIR`, `REVISAR`, `AGUARDAR_PUBLICACAO` e `SEM_ACAO` indicam apenas o tratamento do material de estudo. Datas, intervalos e capacidade de estudo pertencem à skill de planejamento de jurisprudência.
+1. **Leitura global:** diga se a edição nova é apenas reorganizada, mais densa, juridicamente atualizada ou materialmente reestruturada.
+2. **Prioridade de atualização:** identifique apenas os capítulos que justificam substituir ou complementar o estudo anterior, com a razão jurídica.
+3. **Conteúdo a preservar:** indique o que deve ser mantido provisoriamente do material anterior e por quê.
+4. **Limitações:** registre pendências documentais que impeçam conclusão sobre supressão, deslocamento ou completude.
+
+Não repita a tabela em prosa, não entregue uma sinopse do ponto, não anuncie contagem de páginas como conclusão substantiva e não gere Markdown, PDF, JSON ou links de artefatos salvo pedido expresso. Datas, intervalos e capacidade de estudo pertencem à skill de planejamento de jurisprudência.
