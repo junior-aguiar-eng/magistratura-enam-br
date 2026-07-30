@@ -9,9 +9,9 @@ description: Realize curadoria jurisprudencial de informativos do STF e do STJ p
 
 Selecionar, dentre os julgados de um informativo, aqueles que efetivamente merecem estudo aprofundado para a Magistratura. O resultado deve ser um boletim jurídico conciso e denso, não um resumo integral do informativo nem um capítulo de manual.
 
-Antes de interpretar o pedido ou escolher o modo de atuação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação.
+Na abertura de nova curadoria, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade do mesmo informativo ou boletim, reaproveite essa leitura e releia apenas se houver novo documento, mudança de escopo ou dúvida real de fonte.
 
-Leia `../../references/protocolo-uso-do-acervo.md` antes de obter, selecionar ou comentar qualquer informativo.
+Na abertura de nova curadoria com material do candidato, leia `../../references/protocolo-uso-do-acervo.md` antes de obter, selecionar ou comentar o informativo. Mantenha a classificação documental no contexto do boletim; não a repita a cada interação sem novo acervo.
 
 ## Método
 
@@ -20,6 +20,7 @@ Leia `../../references/protocolo-uso-do-acervo.md` antes de obter, selecionar ou
 3. Selecione, em regra, até dez julgados em ordem decrescente de relevância. Se não houver dez relevantes, não complete artificialmente. Se o informativo for excepcionalmente denso, ultrapasse dez apenas quando for estritamente necessário para não excluir decisão essencial.
 4. Consulte fontes oficiais quando o informativo não bastar para precisar a tese, o alcance, a modulação, a pendência ou a evolução posterior.
 5. Separe STF e STJ e aplique, sem exceção, o padrão de entrega obrigatória abaixo a cada julgado selecionado.
+6. Ao fim do boletim, se houver superação de precedente confirmada em fonte oficial, acrescente um único **Quadro de superações**. Para cada superação, informe de modo conciso: precedente ou orientação anterior, entendimento superado, nova orientação e alcance da mudança. Não produza o quadro para mera distinção, restrição, esclarecimento, oscilação interpretativa ou superação apenas inferida.
 
 ## Padrão de entrega obrigatório
 
@@ -30,13 +31,13 @@ Não entregue sinopses temáticas, tópicos telegráficos, ementas reescritas ou
 3. **Tese em destaque:** use **Tese:** para núcleo de formulação oficial fiel; na sua falta, use **Síntese da tese:** e identifique expressamente a formulação como editorial.
 4. **Quatro parágrafos analíticos autônomos:** (a) controvérsia e contexto necessário; (b) base normativa e fundamentos determinantes, com reconstrução da ratio; (c) aplicação, alcance e limites; e (d) consequência prática e chave de leitura para a Magistratura.
 
-Em julgados estruturantes, desenvolva os quatro parágrafos com a extensão necessária para explicar o caminho decisório. Não reduza nenhum deles a uma ou duas frases. A densidade decorre da reconstrução da razão de decidir e de suas fronteiras, não da multiplicação de tópicos ou da transcrição de ementas. Leia `references/comentario-jurisprudencial.md` integralmente antes de redigir.
+Em julgados estruturantes, desenvolva os quatro parágrafos com a extensão necessária para explicar o caminho decisório. Não reduza nenhum deles a uma ou duas frases. A densidade decorre da reconstrução da razão de decidir e de suas fronteiras, não da multiplicação de tópicos ou da transcrição de ementas. Leia `references/comentario-jurisprudencial.md` integralmente antes de redigir o primeiro comentário do boletim e reaproveite-o nos demais comentários do mesmo boletim.
 
 ## Direito brasileiro e fontes
 
 Parta da Constituição, da legislação oficial e da jurisprudência dos tribunais competentes. Em precedentes, dê relevo às teses fixadas, aos fundamentos determinantes e aos limites de incidência à luz do sistema brasileiro, especialmente do CPC. Não atribua ao tribunal fundamento ou consequência sem fonte suficiente.
 
-Use `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de redigir. Para o padrão editorial de comentário e de seleção, consulte `references/comentario-jurisprudencial.md` e `references/curadoria-editorial.md`.
+Use `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de redigir o primeiro comentário do boletim e reaproveite-o na continuidade, salvo nova controvérsia de fonte ou atualização relevante. Para o padrão editorial de comentário e de seleção, consulte `references/comentario-jurisprudencial.md` e `references/curadoria-editorial.md` uma vez por boletim e retome-as apenas diante de mudança de entrega.
 
 Material do candidato pode orientar a seleção didática, mas não prova tese, resultado, ratio, modulação ou estado processual. Esses elementos exigem o informativo oficial e, quando necessário, as fontes oficiais correlatas.
 

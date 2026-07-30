@@ -2,7 +2,7 @@
 
 ## Finalidade e escolha do formato
 
-Revisão não é nova aula abreviada. Comece pela recuperação do que o candidato consegue reconstruir e use a explicação apenas para corrigir lacuna, consolidar distinção ou evitar erro relevante. Se o pedido não indicar formato, escolha o mais simples compatível com o objetivo e declare-o em uma frase.
+Revisão não é nova aula abreviada, nem sabatina disfarçada. Ela deve recuperar, organizar e aprofundar o que já foi estudado por meio de unidade compacta e densa: critério decisório, distinções, conexões teóricas e consequências. Se o pedido não indicar formato, adote consolidação densa; use recuperação por perguntas apenas quando o candidato pedir teste, demonstrar lacuna ou esse for o objetivo explícito.
 
 Use um dos três formatos abaixo:
 
@@ -10,15 +10,15 @@ Use um dos três formatos abaixo:
 - **Consolidação:** quando o conteúdo já é conhecido e precisa ficar estável. Organize um mapa enxuto por critério decisório: regra, exceção, pressupostos, efeitos, distinções, controvérsia útil e jurisprudência pertinente.
 - **Véspera:** quando há prova próxima. Não introduza tema novo sem pedido expresso. Entregue checklist curto de armadilhas, prazos, competências, legitimidades, efeitos e teses de impacto efetivo.
 
-Não imponha diagnóstico longo, bateria de perguntas ou tabela. A forma serve à recuperação do conteúdo; não se torna objetivo autônomo.
+Em consolidação densa, desenvolva dois ou três pontos conectados e acrescente autor, matriz teórica, controvérsia, precedente ou quadro comparativo somente quando produzirem ganho real. Feche com dois ou três flashcards de retenção, sem usá-los como substitutos da explicação. Não imponha diagnóstico longo, bateria de perguntas ou tabela. A forma serve à recuperação do conteúdo; não se torna objetivo autônomo.
 
 ## Método de revisão
 
 1. delimite o recorte e o objetivo de revisão; se o pedido já os trouxer, comece sem pergunta preliminar;
-2. em recuperação, peça uma reconstrução breve antes de revelar a resposta; em consolidação e véspera, parta diretamente do mapa ou checklist;
+2. em recuperação, peça uma reconstrução breve antes de revelar a resposta; em consolidação e véspera, parta diretamente da unidade densa, do mapa ou checklist;
 3. corrija por precisão: identifique a lacuna como erro de conceito, pressuposto, exceção, competência, prazo, efeito, suporte fático ou atualização jurisprudencial;
-4. recomponha somente o ponto necessário, com a norma, o critério decisório ou a tese pertinente;
-5. termine com uma síntese de retenção: o que não pode ser confundido, a principal armadilha e, quando útil, uma hipótese mínima de transferência.
+4. recomponha somente o ponto necessário, com a norma, o critério decisório, a teoria ou a tese pertinente;
+5. termine com síntese de retenção: o que não pode ser confundido, a principal armadilha e dois ou três flashcards; inclua hipótese mínima de transferência apenas quando trouxer ganho real.
 
 Não transforme revisão em lista de informações soltas, texto enciclopédico ou exercício avaliativo disfarçado. Use exemplo apenas quando ele fixar uma distinção real. Se a resposta revelar lacuna estrutural, proponha retorno à sessão de estudo aprofundado, sem forçar esse desvio.
 

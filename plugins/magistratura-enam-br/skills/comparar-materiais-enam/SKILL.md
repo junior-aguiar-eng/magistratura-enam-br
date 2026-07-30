@@ -7,9 +7,9 @@ description: Compare materiais publicados do ENAM por capítulo, tema e subtema 
 
 ## Diretriz obrigatória do plugin
 
-Antes de interpretar o pedido ou escolher o modo de atuação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação.
+Na abertura de nova comparação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade do mesmo par documental e escopo, reaproveite essa leitura e releia apenas se houver nova versão, mudança de escopo ou dúvida real de fonte.
 
-Leia `../../references/protocolo-uso-do-acervo.md` antes de classificar os documentos fornecidos pelo candidato.
+Na abertura de nova comparação com documentos do candidato, leia `../../references/protocolo-uso-do-acervo.md` antes de classificá-los. Mantenha a classificação no contexto da comparação; não a refaça a cada mensagem sem novo documento.
 
 ## Objetivo
 
@@ -18,10 +18,10 @@ Compare materiais delimitados pelo usuário para identificar mudanças jurídica
 ## Fluxo
 
 1. Delimite edições, disciplina, pontos e documentos efetivamente publicados que integram a comparação. Verticalizados e análises estratégicas podem esclarecer o escopo, mas não substituem versões originais nem demonstram delta material.
-2. Leia `references/protocolo-comparacao-enam.md` antes de mapear correspondências ou classificar deltas.
+2. Leia `references/protocolo-comparacao-enam.md` antes de mapear correspondências ou classificar deltas de um novo par documental; reaproveite-o nas etapas posteriores da mesma comparação.
 3. Use edital e retificações oficiais como referência prioritária; depois, os materiais originais identificados.
 4. Compare por capítulo, tema e subtema, mantendo evidência de documento, página e localização para cada conclusão. Para cada unidade, registre o que havia antes, o que há agora, a densidade relativa, eventual supressão ou deslocamento e a consequência concreta para o estudo.
-5. Leia `references/formato-entrega-comparativo.md` antes de apresentar o resultado e entregue a tabela no chat. Use os modelos em `modelos/` e execute `scripts/auditar_rastreabilidade.py` somente se o usuário pedir auditoria de rastreabilidade, JSON, artefatos estruturados ou arquivo; não crie nem cite arquivos de saída por padrão.
+5. Leia `references/formato-entrega-comparativo.md` uma vez antes de apresentar o resultado e entregue a tabela no chat. Para cada delta material, acrescente leitura decisória concisa: o que mudou, por que importa no material de estudo, ação recomendada e grau de certeza documental. Use os modelos em `modelos/` e execute `scripts/auditar_rastreabilidade.py` somente se o usuário pedir auditoria de rastreabilidade, JSON, artefatos estruturados ou arquivo; não crie nem cite arquivos de saída por padrão.
 
 ## Limites
 
@@ -29,4 +29,4 @@ Não conclua exclusão sem demonstração de cobertura integral do material post
 
 Cronogramas e planos de remessa de curso não comprovam disponibilidade, versão, alteração, prioridade ou exclusão de conteúdo. Não infira a existência de documento não fornecido, nem converta análise estratégica em prova de mudança jurídica ou editorial.
 
-Consulte também `../../references/diretrizes-estudo-juridico-brasileiro.md`.
+Consulte `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de classificar delta jurídico, legislativo ou jurisprudencial; não o carregue para conferir alteração meramente editorial e reaproveite a leitura enquanto o conjunto documental permanecer o mesmo.
