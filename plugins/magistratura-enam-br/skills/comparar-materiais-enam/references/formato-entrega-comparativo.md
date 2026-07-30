@@ -19,11 +19,13 @@ Inclua também linhas compactas para unidades sem delta material quando isso aju
 
 ## 2. Avaliação técnica e recomendação
 
-Depois da tabela, faça uma avaliação curta e organizada, com no máximo quatro itens:
+Depois da tabela, faça uma avaliação técnica densa, organizada e proporcional ao recorte. Não imponha número máximo de tópicos: cubra todo comentário material que altere a decisão de estudo, mas omita o que apenas repete uma linha da tabela. Use os blocos abaixo quando aplicáveis e acrescente outro somente se trouxer conclusão nova:
 
 1. **Leitura global:** diga se a edição nova é apenas reorganizada, mais densa, juridicamente atualizada ou materialmente reestruturada.
-2. **Prioridade de atualização:** identifique apenas os capítulos que justificam substituir ou complementar o estudo anterior, com a razão jurídica.
-3. **Conteúdo a preservar:** indique o que deve ser mantido provisoriamente do material anterior e por quê.
-4. **Limitações:** registre pendências documentais que impeçam conclusão sobre supressão, deslocamento ou completude.
+2. **Prioridades de atualização:** identifique os capítulos que justificam substituir ou complementar o estudo anterior, com a razão jurídica e a consequência para a compreensão do ponto.
+3. **Impacto transversal:** explique quando uma alteração de premissa, precedente, classificação ou estrutura repercutir em mais de uma linha da tabela.
+4. **Qualidade e cautelas:** aponte eventual simplificação excessiva, formulação juridicamente frágil, contradição interna ou atualização que exija confirmação oficial antes de ser incorporada ao estudo.
+5. **Conteúdo a preservar:** indique o que deve ser mantido provisoriamente do material anterior e por quê.
+6. **Limitações e pendências:** registre pendências documentais que impeçam conclusão sobre supressão, deslocamento, completude ou relevância.
 
 Não repita a tabela em prosa, não entregue uma sinopse do ponto, não anuncie contagem de páginas como conclusão substantiva e não gere Markdown, PDF, JSON ou links de artefatos salvo pedido expresso. Datas, intervalos e capacidade de estudo pertencem à skill de planejamento de jurisprudência.

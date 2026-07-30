@@ -16,3 +16,6 @@ def test_comparador_entrega_tabela_no_chat_sem_artefato_padrao():
     assert "não crie nem cite arquivos de saída por padrão" in skill
     assert "| Capítulo / tema | Material anterior | Material novo |" in formato
     assert "Não repita a tabela em prosa" in formato
+    assert "Não imponha número máximo de tópicos" in formato
+    assert "Impacto transversal" in formato
+    assert "Qualidade e cautelas" in formato
