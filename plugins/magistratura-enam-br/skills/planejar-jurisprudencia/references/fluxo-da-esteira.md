@@ -20,6 +20,16 @@ Use `init` para criar uma planilha, `add` para acrescentar CSV de novos julgados
 
 Quando uma revisão revelar erro ou necessidade de retomada, registre explicitamente `resultado_revisao` e, se desejar treino complementar, `encaminhamento` como `questao_objetiva`, `discursiva_curta` ou `prova_oral`. O motor apenas transfere essa indicação para a aba `Remediacao`; não cria exercício nem presume encaminhamento.
 
+## Modo operacional
+
+Quando o candidato pedir “o que faço hoje?”, informar atraso ou solicitar ajuste imediato de carga, consulte o estado atual da esteira e entregue somente:
+
+1. **Carga mínima viável:** tempo disponível, tempo comprometido por revisões vencidas e margem preservada.
+2. **Fila de execução:** itens na ordem em que devem ser feitos, com etapa, motivo de prioridade e estimativa de tempo.
+3. **Adiados:** itens que não entram no dia, com a razão objetiva e o custo do adiamento, como tornar revisão vencida, postergar primeira leitura ou manter bloqueada a entrada por falta de capacidade.
+
+Não invente capacidade, não distribua tarefas em dias futuros sem pedido e não prometa recuperação automática da fila. Se a capacidade declarada não comportar nem as revisões vencidas, exponha o déficit e preserve a prioridade das revisões; a redução do acervo ou a ampliação de carga depende de escolha expressa do candidato.
+
 ## Integração com a curadoria
 
 A planilha de precedentes gerada pela curadoria pode ser convertida em CSV pelo script `preparar_itens_esteira.py`. Por cautela, a conversão preserva processo, tema, tribunal, disciplina, estado jurisprudencial, grau de confiança e fontes essenciais; esses três últimos são metadados de consulta e não alteram a ordem da esteira. Precedentes marcados como superados são excluídos por padrão. A prioridade alta continua sendo decisão metodológica justificada — por precedente qualificado ou erro documentado — e não uma inferência automática do programa.

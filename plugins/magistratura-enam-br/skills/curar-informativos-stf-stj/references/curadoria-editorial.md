@@ -29,3 +29,9 @@ Abra o boletim com nota de curadoria breve: informe o número do informativo, o 
 Separe os julgados do STF e do STJ, ainda que uma das seções seja menor. Em cada comentário, abra com cabeçalho técnico: classe, número, unidade federativa quando houver e título que traduza a controvérsia efetivamente decidida. Logo abaixo, identifique órgão julgador, relator, data de julgamento e natureza qualificada do precedente, se disponíveis em fonte oficial. Em parágrafo destacado, traga a **Tese:** com o núcleo literal e fiel da tese formal, resumido apenas sem alteração de sentido; se não houver tese formal, use **Síntese da tese:** e declare expressamente a natureza editorial da formulação.
 
 O objetivo é uma leitura de alto rendimento: densa o bastante para reconstruir a controvérsia, a ratio e o alcance; contida o bastante para preservar o foco. Contexto fático só entra quando altera a solução. A extensão deve variar conforme a centralidade do julgado, sem uniformização artificial, sem ementas transcritas e sem digressão doutrinária autônoma.
+
+## Quadro de superações
+
+Ao final do boletim, inclua **Quadro de superações** somente quando o informativo contiver superação confirmada em fonte oficial. Use uma tabela pequena, com uma linha por alteração e as colunas: precedente ou orientação anterior; entendimento superado; nova orientação; e alcance ou ressalva relevante. O quadro consolida a mudança já explicada no comentário do julgado; não substitui a situação precedental, a tese ou a reconstrução da ratio.
+
+Não use esse quadro para distinção, restrição, esclarecimento, aplicação nova de tese antiga, divergência entre órgãos ou aparente mudança sem confirmação oficial. Se não houver superação confirmada, omita inteiramente a seção.

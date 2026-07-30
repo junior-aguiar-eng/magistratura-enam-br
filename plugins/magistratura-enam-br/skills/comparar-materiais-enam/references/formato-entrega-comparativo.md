@@ -10,6 +10,15 @@ Informe o universo comparado, a quantidade de mudanças materiais, de itens sem 
 
 Apresente apenas os itens com `acao_recomendada` diferente de `SEM_ACAO`, ordenados por relevância jurídica. Em cada linha, informe: disciplina e tema/subtema; versões e referências comparadas; classificação; delta real; fundamento material quando houver; e ação recomendada.
 
+Depois da linha técnica, inclua uma **Leitura decisória** compacta:
+
+- **O que mudou:** síntese do delta, sem reproduzir o material.
+- **Por que importa:** efeito concreto sobre o material de estudo, distinguindo atualização jurídica de reorganização editorial.
+- **Ação no material:** reproduza a ação recomendada e indique, em uma frase, o que ela exige do candidato.
+- **Certeza documental:** `alta`, quando as versões e a fonte oficial pertinente confirmam o delta; `média`, quando há documentação suficiente para comparação, mas permanece ressalva relevante; ou `pendente`, quando faltar documento, publicação ou confirmação oficial.
+
+O grau de certeza qualifica a evidência documental da conclusão; não mede dificuldade do tema, probabilidade de cobrança nem força vinculante de precedente. Não atribua certeza `alta` a supressão aparente ou a classificação que dependa de documento não acessível.
+
 ## 3. Itens sem delta
 
 Registre-os de forma compacta, por disciplina e tema/subtema, com as referências que demonstram a permanência da tese. Não reescreva conteúdo jurídico sem alteração material.

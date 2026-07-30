@@ -14,6 +14,8 @@ Cada alteração deve preservar fronteiras claras entre skills, eliminar redund�
 
 Toda `SKILL.md` deste plugin deve determinar expressamente a leitura e o cumprimento deste `AGENTS.md` antes da interpretação do pedido ou da escolha do modo de atuação. Essa vinculação torna estas diretrizes operacionais na execução da skill, e não apenas na sua manutenção.
 
+Em uma mesma sessão contínua, a leitura inicial destas diretrizes e a classificação do acervo permanecem válidas. Não repita carregamentos integrais a cada resposta do candidato; reavalie apenas se houver novo material, mudança de modalidade, pedido de atualização ou dúvida real sobre a fonte.
+
 O verificador de integração deve ser determinístico e estritamente de leitura: deriva a versão do manifesto, valida somente a árvore distribuível e nunca cria bytecode, cache ou outro artefato na fonte canônica.
 
 No comparador ENAM, `id_item` é o vínculo canônico entre mapeamento e comparativo. O auditor deve rejeitar tipo de correspondência fora do vocabulário, item duplicado ou órfão, divergência de tipo e ausência de linha comparativa para item mapeado.
