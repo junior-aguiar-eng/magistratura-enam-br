@@ -1,43 +1,35 @@
-# Continuação — Magistratura ENAM BR
+# Continuação de manutenção
 
 ## Fonte canônica
 
-Trabalhe exclusivamente em `plugins/magistratura-enam-br` dentro deste repositório marketplace. A árvore antiga em `outputs/magistratura-enam-br` não é fonte de verdade. Leia `AGENTS.md` integralmente antes de qualquer alteração.
+Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junior-aguiar-eng/magistratura-enam-br`. O manifesto válido é `.codex-plugin/plugin.json`; não mantenha cópias aninhadas ou versões paralelas. Leia `AGENTS.md` antes de qualquer alteração.
 
-## Estado validado
+## Estado confirmado em 2026-08-01
 
-- Versão do plugin: `0.2.3`.
-- Ambiente canônico: `uv`, Python 3.14, `pyproject.toml`, `.python-version` e `uv.lock`.
-- Execução: não criar `venv` manual, não usar `pip install` e não usar PEP 723 nos scripts internos deste projeto.
-- Testes aprovados: 45.
-- Integridade, plugin e lockfile validados com êxito.
+- Versão publicada no manifesto: `0.2.3`.
+- Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
+- Suíte de testes: 68 testes aprovados.
+- Qualidade estática: `ruff check .` aprovado.
+- Integridade: verificador interno, validador de plugin e `uv lock --check` aprovados.
+- Árvore versionada: limpa após a auditoria; ambientes e caches locais permanecem ignorados pelo Git.
 
-## Alterações estruturais já concluídas
+## Contratos que exigem preservação
 
-1. Estudo para Magistratura: sessão aprofundada integrada; julgado identificado incorporado ao estudo; revisão ativa separada por recuperação, consolidação e véspera.
-2. Todas as skills exigem a leitura de `AGENTS.md`.
-3. Verificador de integração: somente leitura, sem bytecode; valida a árvore distribuível e `uv lock --check`.
-4. Comparador ENAM: `id_item` é o vínculo canônico; o auditor rejeita tipos inválidos, itens duplicados ou órfãos, divergência de tipo e ausência de delta. Os JSON Schemas agora são executados pelo auditor.
-5. Planejador: cobertura do ciclo completo, remediação, consolidação, deduplicação e contrato curadoria → esteira.
-6. Entrada do planejador: CSV estrito; rejeita coluna ausente, campo vazio, ID duplicado e vocabulário inválido.
-7. Dependências do plugin: declaradas no `pyproject.toml`, travadas em `uv.lock`; `requirements*.txt` permanecem como compatibilidade de instalação.
+1. Todas as `SKILL.md` leem e cumprem `AGENTS.md`.
+2. O comparador usa `id_execucao` e `id_item` como vínculos canônicos e valida JSON Schema antes das regras semânticas.
+3. A curadoria preserva a rastreabilidade de precedentes, a sanitização de fórmulas em planilhas e a validação de PDF e boletim.
+4. A esteira mantém as abas `Entrada`, `Revisao`, `Remediacao`, `Semana` e `Config`; o CSV de entrada é estrito e a remediação integra o ciclo de revisão.
+5. O verificador de integração é estritamente de leitura e não cria artefatos na árvore distribuível.
 
-## Comandos obrigatórios de validação
+## Validação obrigatória
 
 ```powershell
 uv sync --all-groups
-uv run pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests --basetemp .test-tmp
+uv lock --check
+uv run pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
+uvx ruff check .
 uv run python scripts/verificar_integracao.py
-python C:\Users\Boni Jr\.codex\skills\.system\plugin-creator\scripts\update_plugin_cachebuster.py .
-python C:\Users\Boni Jr\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py .
+uv run python "C:\Users\Boni Jr\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py" .
 ```
 
-Remova somente `.test-tmp` após a execução. Preserve `.venv`, que é gerenciada por `uv` e ignorada pelo Git.
-
-## Próximo passo sugerido
-
-Prosseguir a auditoria estrutural de forma cadenciada. Os eixos já corrigidos são integração, comparador, planejador, ambiente `uv` e execução dos schemas. Antes de novo redesenho funcional, inspecione o próximo contrato ainda sem cobertura equivalente — prioritariamente os limites entre curadoria, geração de PDF e planilha de precedentes.
-
-## Cuidado com o repositório
-
-O worktree já contém alterações anteriores do usuário e desta revisão. Não use `git reset`, `git checkout` destrutivo ou remoção ampla. Preserve alterações não relacionadas e atualize o cachebuster somente depois de uma alteração validada.
+Não crie ambiente virtual manualmente, não use `pip install` nos scripts internos e não versione `.venv`, caches, bytecode ou saídas temporárias.

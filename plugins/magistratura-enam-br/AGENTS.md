@@ -6,6 +6,10 @@ Estas diretrizes regem toda alteração e toda execução das skills deste plugi
 
 Esta árvore `plugins/magistratura-enam-br` é a única fonte canônica do plugin. Toda alteração de conteúdo, script, schema ou manifesto deve ocorrer aqui; cópias de saída não são fonte de verdade e só podem ser geradas a partir desta árvore após validação. Não incorpore ambientes virtuais, caches, bytecode, dependências instaladas ou resultados temporários à distribuição.
 
+## Documentação canônica
+
+`README.md` é o ponto de entrada do plugin; `CHANGELOG.md` registra alterações publicáveis; e `CONTINUACAO.md` descreve o estado técnico para a próxima manutenção. Eles devem refletir a árvore canônica, a versão do manifesto, o ambiente `uv` e os comandos de validação vigentes. Atualize os documentos afetados na mesma alteração que modificar comportamento, contratos, dependências, versão ou processo de publicação. Não mantenha manifestos, instruções ou registros de versão duplicados e divergentes.
+
 ## Padrão permanente de reformulação e qualidade
 
 Toda reformulação de skill deste plugin deve elevar, e nunca reduzir, o padrão de estudo, revisão, jurisprudência e questões para nível compatível com preparação séria para Magistratura e ENAM. O resultado não pode ser mediano, genérico, enciclopédico ou artificialmente complexo: deve ser juridicamente rigoroso, pedagogicamente intencional, adaptado ao objetivo do candidato e verificável nas fontes adequadas.

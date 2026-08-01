@@ -16,7 +16,7 @@ O motor considera cerca de 25 minutos para leitura inicial e 10 minutos para rev
 
 No regime ordinário, entrada e revisão convivem. Nos 15 dias anteriores à prova, entra em vigor o regime de consolidação: a entrada é congelada e a planilha prioriza uma varredura final dos julgados de prioridade alta ainda ativos.
 
-Use `init` para criar uma planilha, `add` para acrescentar CSV de novos julgados, `atualizar` depois de marcar `Feito?` e `status` para diagnóstico sem alterar o arquivo. Preserve os nomes das abas (`Entrada`, `Revisao`, `Semana`, `Config`) e das colunas, pois elas constituem a interface estável do motor.
+Use `init` para criar uma planilha, `add` para acrescentar CSV de novos julgados, `atualizar` depois de marcar `Feito?` e `status` para diagnóstico sem alterar o arquivo. Preserve os nomes das abas (`Entrada`, `Revisao`, `Remediacao`, `Semana`, `Config`) e das colunas, pois elas constituem a interface estável do motor.
 
 Quando uma revisão revelar erro ou necessidade de retomada, registre explicitamente `resultado_revisao` e, se desejar treino complementar, `encaminhamento` como `questao_objetiva`, `discursiva_curta` ou `prova_oral`. O motor apenas transfere essa indicação para a aba `Remediacao`; não cria exercício nem presume encaminhamento.
 
