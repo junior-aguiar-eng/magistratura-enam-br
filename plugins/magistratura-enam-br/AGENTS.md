@@ -16,6 +16,8 @@ Toda reformulação de skill deste plugin deve elevar, e nunca reduzir, o padrã
 
 Cada alteração deve preservar fronteiras claras entre skills, eliminar redundâncias e preferir uma estrutura canônica a camadas de compatibilidade. Antes de avançar para novo eixo ou modalidade, valide o eixo alterado por cenários representativos e registre neste arquivo a diretriz permanente que dele resultar. Recursos como PDF, planilha, histórico de erros ou integração com outra skill só devem ser acrescentados quando trouxerem ganho didático concreto, nunca como ritual obrigatório.
 
+Alterações substanciais nas skills de curadoria ou de questões devem ser avaliadas pelos cenários versionados da própria skill, com rubrica de aceitação aplicada apenas depois da resposta. Os cenários verificam estrutura, rastreabilidade de fontes, limites de inferência e ciclo de aprendizagem, sem antecipar ao agente a solução ou o gabarito.
+
 Toda `SKILL.md` deste plugin deve determinar expressamente a leitura e o cumprimento deste `AGENTS.md` antes da interpretação do pedido ou da escolha do modo de atuação. Essa vinculação torna estas diretrizes operacionais na execução da skill, e não apenas na sua manutenção.
 
 Em uma mesma sessão contínua, a leitura inicial destas diretrizes e a classificação do acervo permanecem válidas. Não repita carregamentos integrais a cada resposta do candidato; reavalie apenas se houver novo material, mudança de modalidade, pedido de atualização ou dúvida real sobre a fonte.

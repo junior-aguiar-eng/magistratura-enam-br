@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
 import subprocess
 import tomllib
@@ -19,9 +20,11 @@ ARQUIVOS_ESSENCIAIS = (
     "requirements.txt",
     "references/protocolo-uso-do-acervo.md",
     "skills/curar-informativos-stf-stj/SKILL.md",
+    "skills/curar-informativos-stf-stj/references/cenarios-avaliacao.md",
     "skills/curar-informativos-stf-stj/modelos/precedentes.schema.json",
     "skills/curar-informativos-stf-stj/scripts/atualizar_planilha_precedentes.py",
     "skills/estudar-direito-magistratura/SKILL.md",
+    "skills/estudar-direito-magistratura/references/cenarios-avaliacao.md",
     "skills/planejar-jurisprudencia/SKILL.md",
     "skills/planejar-jurisprudencia/scripts/atualizar_esteira.py",
     "skills/planejar-jurisprudencia/scripts/preparar_itens_esteira.py",
@@ -30,6 +33,8 @@ ARQUIVOS_ESSENCIAIS = (
     "skills/comparar-materiais-enam/scripts/auditar_rastreabilidade.py",
     "skills/comparar-materiais-enam/modelos/manifesto-execucao.schema.json",
 )
+
+SEMVER = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$")
 
 DIRETORIOS_GERADOS = frozenset({
     ".git",
@@ -92,6 +97,86 @@ def validar_ambiente_uv(raiz: Path, erros: list[str]) -> None:
         erros.append(f"uv.lock não está sincronizado com pyproject.toml: {detalhe or 'uv lock --check falhou.'}")
 
 
+def validar_caminho_do_plugin(raiz: Path, valor: object, campo: str, erros: list[str]) -> None:
+    """Garante que um recurso declarado permaneça dentro do plugin e exista."""
+    if not isinstance(valor, str) or not valor.strip():
+        erros.append(f"{campo} deve ser um caminho relativo não vazio.")
+        return
+    caminho = Path(valor.replace("\\", "/"))
+    if caminho.is_absolute() or ".." in caminho.parts:
+        erros.append(f"{campo} deve permanecer dentro do plugin.")
+        return
+    resolvido = (raiz / caminho).resolve()
+    if not resolvido.is_relative_to(raiz.resolve()) or not resolvido.is_file():
+        erros.append(f"{campo} aponta para recurso inexistente dentro do plugin.")
+
+
+def validar_frontmatter_skill(caminho: Path, erros: list[str]) -> None:
+    """Confere o contrato mínimo que torna uma skill descobrível pelo Codex."""
+    try:
+        conteudo = caminho.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as exc:
+        erros.append(f"Não foi possível ler {caminho}: {exc}")
+        return
+    if not conteudo.startswith("---\n"):
+        erros.append(f"{caminho}: frontmatter YAML inicial ausente.")
+        return
+    fim = conteudo.find("\n---", 4)
+    if fim == -1:
+        erros.append(f"{caminho}: frontmatter YAML não encerrado.")
+        return
+    campos = {
+        chave.strip(): valor.strip()
+        for linha in conteudo[4:fim].splitlines()
+        if ":" in linha
+        for chave, valor in [linha.split(":", 1)]
+    }
+    for campo in ("name", "description"):
+        if not campos.get(campo):
+            erros.append(f"{caminho}: frontmatter sem {campo} não vazio.")
+
+
+def validar_contrato_plugin(raiz: Path, manifesto: object, erros: list[str]) -> None:
+    """Valida o contrato distribuível que a árvore canônica controla localmente."""
+    if not isinstance(manifesto, dict):
+        return
+    for campo in ("name", "description"):
+        if not isinstance(manifesto.get(campo), str) or not manifesto[campo].strip():
+            erros.append(f"Manifesto sem {campo} não vazio.")
+    versao = manifesto.get("version")
+    if not isinstance(versao, str) or SEMVER.fullmatch(versao) is None:
+        erros.append("Manifesto deve conter versão SemVer válida.")
+    if Path(str(manifesto.get("skills", ""))).as_posix().rstrip("/") != "skills":
+        erros.append("Manifesto deve declarar skills como ./skills/.")
+    autor = manifesto.get("author")
+    if not isinstance(autor, dict) or not isinstance(autor.get("name"), str) or not autor["name"].strip():
+        erros.append("Manifesto deve conter author.name não vazio.")
+    interface = manifesto.get("interface")
+    if not isinstance(interface, dict):
+        erros.append("Manifesto deve conter interface como objeto.")
+    else:
+        for campo in ("displayName", "shortDescription", "longDescription", "developerName", "category", "defaultPrompt"):
+            if not isinstance(interface.get(campo), str) or not interface[campo].strip():
+                erros.append(f"Manifesto interface sem {campo} não vazio.")
+        if not isinstance(interface.get("capabilities"), list) or not all(
+            isinstance(item, str) and item.strip() for item in interface["capabilities"]
+        ):
+            erros.append("Manifesto interface.capabilities deve ser uma lista de strings.")
+        for campo in ("composerIcon", "logo", "logoDark"):
+            validar_caminho_do_plugin(raiz, interface.get(campo), f"interface.{campo}", erros)
+
+    diretorio_skills = raiz / "skills"
+    if not diretorio_skills.is_dir():
+        erros.append("Diretório skills ausente.")
+        return
+    for diretorio_skill in sorted(caminho for caminho in diretorio_skills.iterdir() if caminho.is_dir()):
+        skill = diretorio_skill / "SKILL.md"
+        if not skill.is_file():
+            erros.append(f"Skill sem SKILL.md: {diretorio_skill.name}.")
+            continue
+        validar_frontmatter_skill(skill, erros)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Verifica a integração do plugin Magistratura e ENAM Brasil.")
     parser.add_argument("--plugin", type=Path, default=Path(__file__).resolve().parents[1])
@@ -105,17 +190,21 @@ def main() -> None:
     validar_ambiente_uv(raiz, erros)
 
     manifesto = raiz / ".codex-plugin" / "plugin.json"
+    dados_manifesto: object = None
     versao = None
     if manifesto.is_file():
         try:
-            dados = json.loads(manifesto.read_text(encoding="utf-8"))
-            if dados.get("name") != "magistratura-enam-br":
+            dados_manifesto = json.loads(manifesto.read_text(encoding="utf-8"))
+            if not isinstance(dados_manifesto, dict):
+                erros.append("Manifesto JSON deve conter um objeto.")
+            elif dados_manifesto.get("name") != "magistratura-enam-br":
                 erros.append("Manifesto com nome de plugin inesperado.")
-            versao = dados.get("version")
+            versao = dados_manifesto.get("version") if isinstance(dados_manifesto, dict) else None
             if not isinstance(versao, str) or not versao.strip():
                 erros.append("Manifesto sem versão não vazia.")
         except (OSError, UnicodeError, json.JSONDecodeError) as exc:
             erros.append(f"Manifesto JSON inválido: {exc}")
+    validar_contrato_plugin(raiz, dados_manifesto, erros)
 
     total_json = 0
     for caminho in arquivos_fonte(raiz, "*.json"):

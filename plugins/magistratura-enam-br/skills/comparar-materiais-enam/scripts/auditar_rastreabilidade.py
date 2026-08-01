@@ -241,7 +241,7 @@ def auditar_comparativo(comparativo, documentos: set[str], itens_por_id: dict[st
                     erros.append(f"{prefixo}: fundamento_material.tipo deve ser {tipo_fundamento}.")
                 for campo in ("identificador", "fonte_oficial"):
                     if not texto(fundamento.get(campo)):
-                        erros.append(f"{prefixo}: fundamento_material.{campo} obrigatÃ³rio ausente.")
+                        erros.append(f"{prefixo}: fundamento_material.{campo} obrigatório ausente.")
     for identificador, classificacoes in classificacoes_por_item.items():
         if "SEM DELTA" in classificacoes and len(classificacoes) > 1:
             erros.append(f"comparativo: SEM DELTA deve ser exclusivo para {identificador}.")

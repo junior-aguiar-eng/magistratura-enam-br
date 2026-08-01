@@ -43,3 +43,7 @@ Leia `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de formul
 ## Continuidade de estudo
 
 Registre erros recorrentes ou progresso apenas quando houver mecanismo de persistência disponível e conteúdo material a preservar. Não simule memória persistente, não elimine histórico sem autorização e não permita que um registro substitua o estudo do material.
+
+## Avaliação de manutenção
+
+Ao alterar substancialmente a elaboração ou a correção de questões objetivas, execute o cenário pertinente de `references/cenarios-avaliacao.md` em sessão nova. Aplique a rubrica somente após a resposta e não revele seus critérios antes da tentativa do candidato.

@@ -8,9 +8,10 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 - Versão publicada no manifesto: `0.2.3`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
-- Suíte de testes: 68 testes aprovados.
+- Suíte de testes: 71 testes aprovados.
 - Qualidade estática: `ruff check .` aprovado.
-- Integridade: verificador interno, validador de plugin e `uv lock --check` aprovados.
+- Integridade: verificador interno de contrato do plugin e `uv lock --check` aprovados.
+- Integração contínua: `.github/workflows/validar.yml` executa a suíte canônica em `push` e pull request.
 - Árvore versionada: limpa após a auditoria; ambientes e caches locais permanecem ignorados pelo Git.
 
 ## Contratos que exigem preservação
@@ -29,7 +30,6 @@ uv lock --check
 uv run pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
 uvx ruff check .
 uv run python scripts/verificar_integracao.py
-uv run python "C:\Users\Boni Jr\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py" .
 ```
 
 Não crie ambiente virtual manualmente, não use `pip install` nos scripts internos e não versione `.venv`, caches, bytecode ou saídas temporárias.

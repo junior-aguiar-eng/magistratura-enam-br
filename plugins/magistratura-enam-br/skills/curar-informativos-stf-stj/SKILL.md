@@ -51,6 +51,10 @@ Os recursos desta skill servem a organizacao e a verificacao material do trabalh
 - Os modelos registram campos minimos e estados de verificacao; eles nao substituem a tese oficial, o inteiro teor ou a fundamentacao do julgado.
 - Execute os testes em `tests/` sempre que os scripts forem alterados ou migrados.
 
+## Avaliação de manutenção
+
+Ao alterar substancialmente a seleção ou o comentário de julgados, execute o cenário pertinente de `references/cenarios-avaliacao.md` em sessão nova. Aplique a rubrica apenas após a resposta e não incorpore seus critérios à entrega ao candidato.
+
 ## Limites
 
 Não transforme o boletim em lista de memorização, não atribua frequência de cobrança à FGV sem base objetiva e não trate decisão isolada, cautelar ou pendente como entendimento consolidado.

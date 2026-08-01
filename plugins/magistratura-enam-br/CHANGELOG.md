@@ -8,6 +8,8 @@ Todas as alterações relevantes deste plugin são registradas neste arquivo.
 - Cria documentação de entrada (`README.md`) e consolida o roteiro de manutenção em `CONTINUACAO.md`.
 - Atualiza a documentação da esteira para incluir a aba `Remediacao` na interface estável.
 - Passa a ignorar explicitamente o cache do Ruff.
+- Corrige mensagem com codificação inválida no auditor de rastreabilidade e torna a validação documentada independente de caminho local.
+- Adiciona validação contínua, contrato local do manifesto e cenários versionados de avaliação para curadoria e questões.
 
 ## 0.2.3 — 2026-08-01
 

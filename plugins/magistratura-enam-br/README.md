@@ -32,10 +32,11 @@ uv lock --check
 uv run pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
 uvx ruff check .
 uv run python scripts/verificar_integracao.py
-uv run python "C:\Users\Boni Jr\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py" .
 ```
 
-O verificador interno é somente leitura: ele valida arquivos distribuíveis, JSON, sintaxe Python, coerência de versão e o lockfile, sem criar artefatos no código-fonte.
+O verificador interno é somente leitura: ele valida arquivos distribuíveis, contrato do manifesto e das skills, JSON, sintaxe Python, coerência de versão e o lockfile, sem criar artefatos no código-fonte.
+
+O workflow em `.github/workflows/validar.yml` executa essa mesma sequência em cada `push` e pull request.
 
 ## Estrutura relevante
 

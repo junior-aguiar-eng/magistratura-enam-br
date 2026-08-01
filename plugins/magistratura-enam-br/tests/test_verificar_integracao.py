@@ -41,3 +41,40 @@ def test_validador_uv_rejeita_versao_de_python_incoerente(tmp_path, monkeypatch)
     verificador.validar_ambiente_uv(tmp_path, erros)
 
     assert erros == [".python-version deve fixar Python 3.14."]
+
+
+def test_validador_de_contrato_rejeita_skill_sem_descricao(tmp_path):
+    (tmp_path / ".codex-plugin").mkdir()
+    (tmp_path / "skills" / "exemplo").mkdir(parents=True)
+    (tmp_path / "assets").mkdir()
+    for nome in ("icone.png", "logo.png", "logo-dark.png"):
+        (tmp_path / "assets" / nome).write_bytes(b"imagem")
+    (tmp_path / "skills" / "exemplo" / "SKILL.md").write_text(
+        "---\nname: exemplo\n---\n", encoding="utf-8"
+    )
+    manifesto = {
+        "name": "magistratura-enam-br",
+        "version": "0.2.3",
+        "description": "Plugin de teste",
+        "skills": "./skills/",
+        "author": {"name": "Boni Jr"},
+        "interface": {
+            "displayName": "Teste",
+            "shortDescription": "Teste",
+            "longDescription": "Teste",
+            "developerName": "Boni Jr",
+            "category": "Education",
+            "capabilities": [],
+            "defaultPrompt": "Teste",
+            "composerIcon": "./assets/icone.png",
+            "logo": "./assets/logo.png",
+            "logoDark": "./assets/logo-dark.png",
+        },
+    }
+    erros = []
+
+    verificador.validar_contrato_plugin(tmp_path, manifesto, erros)
+
+    assert erros == [
+        f"{tmp_path / 'skills' / 'exemplo' / 'SKILL.md'}: frontmatter sem description não vazio."
+    ]

@@ -1,0 +1,28 @@
+name: Validar plugin
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Sincronizar ambiente
+        run: uv sync --all-groups
+      - name: Conferir lockfile
+        run: uv lock --check
+      - name: Executar testes
+        run: uv run pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
+      - name: Executar Ruff
+        run: uvx ruff check .
+      - name: Verificar integração
+        run: uv run python scripts/verificar_integracao.py
