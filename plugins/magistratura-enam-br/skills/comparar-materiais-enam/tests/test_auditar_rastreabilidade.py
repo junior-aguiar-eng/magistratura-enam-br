@@ -1,10 +1,9 @@
 import json
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 from auditar_rastreabilidade import TIPOS_CORRESPONDENCIA, auditar
-
 
 AUDITOR = Path(__file__).resolve().parents[1] / "scripts" / "auditar_rastreabilidade.py"
 

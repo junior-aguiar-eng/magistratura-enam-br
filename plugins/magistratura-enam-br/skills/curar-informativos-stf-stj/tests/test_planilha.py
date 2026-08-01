@@ -5,7 +5,6 @@ from pathlib import Path
 
 import openpyxl
 import pytest
-
 from atualizar_planilha_precedentes import validar_dados, validar_registro
 
 

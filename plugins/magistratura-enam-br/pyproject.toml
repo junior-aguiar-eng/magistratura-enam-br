@@ -1,8 +1,8 @@
 [project]
 name = "magistratura-enam-br"
-version = "0.2.2"
+version = "0.2.3"
 description = "Ferramentas locais de apoio ao estudo para Magistratura e ENAM."
-requires-python = ">=3.13,<3.14"
+requires-python = ">=3.14,<3.15"
 dependencies = [
     "jsonschema>=4.0",
     "openpyxl>=3.1",

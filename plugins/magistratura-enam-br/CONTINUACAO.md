@@ -6,8 +6,8 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` dentro deste repositó
 
 ## Estado validado
 
-- Versão do plugin: `0.2.2+codex.20260728011819`.
-- Ambiente canônico: `uv`, Python 3.13, `pyproject.toml`, `.python-version` e `uv.lock`.
+- Versão do plugin: `0.2.3`.
+- Ambiente canônico: `uv`, Python 3.14, `pyproject.toml`, `.python-version` e `uv.lock`.
 - Execução: não criar `venv` manual, não usar `pip install` e não usar PEP 723 nos scripts internos deste projeto.
 - Testes aprovados: 45.
 - Integridade, plugin e lockfile validados com êxito.

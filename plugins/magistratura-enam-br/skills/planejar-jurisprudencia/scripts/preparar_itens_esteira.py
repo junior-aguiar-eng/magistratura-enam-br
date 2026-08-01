@@ -6,9 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import sys
 from pathlib import Path
-
 
 CABECALHO_ESPERADO = {
     "ID da decisão", "Processo", "Tema", "Tribunal", "Disciplina", "Estado jurisprudencial",

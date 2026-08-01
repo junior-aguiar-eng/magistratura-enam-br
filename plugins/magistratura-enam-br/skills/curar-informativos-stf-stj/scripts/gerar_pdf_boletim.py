@@ -11,7 +11,7 @@ from common import CONFIANCAS, ESTADOS, texto, validar_data_iso, validar_schema
 
 def validar_julgado(julgado, contexto):
     if not isinstance(julgado, dict):
-        raise ValueError(f"{contexto} deve ser objeto.")
+        raise TypeError(f"{contexto} deve ser objeto.")
     for campo in ("titulo", "comentario", "estado_jurisprudencial", "grau_confianca", "data_verificacao"):
         if not texto(julgado.get(campo)):
             raise ValueError(f"{contexto}: campo obrigatório ausente: {campo}.")
@@ -32,7 +32,7 @@ def validar_julgado(julgado, contexto):
 def validar_dados(dados):
     validar_schema("boletim.schema.json", dados)
     if not isinstance(dados, dict):
-        raise ValueError("A raiz do JSON deve ser objeto.")
+        raise TypeError("A raiz do JSON deve ser objeto.")
     for campo in ("titulo_boletim", "data_geracao", "nota_metodologica"):
         if not texto(dados.get(campo)):
             raise ValueError(f"Campo obrigatório ausente: {campo}.")
@@ -40,13 +40,13 @@ def validar_dados(dados):
     for chave in ("julgados_stf", "julgados_stj"):
         lista = dados.get(chave)
         if not isinstance(lista, list):
-            raise ValueError(f"'{chave}' deve ser lista.")
+            raise TypeError(f"'{chave}' deve ser lista.")
         for i, julgado in enumerate(lista, 1):
             validar_julgado(julgado, f"{chave}[{i}]")
     for chave in ("nao_selecionados", "pendencias", "fontes_essenciais"):
         valor = dados.get(chave, [])
         if not isinstance(valor, list):
-            raise ValueError(f"'{chave}' deve ser lista.")
+            raise TypeError(f"'{chave}' deve ser lista.")
     return dados
 
 
@@ -59,7 +59,16 @@ def imports_reportlab():
         from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
     except ImportError as exc:
         raise RuntimeError("Instale 'reportlab' antes de gerar o PDF.") from exc
-    return locals()
+    return {
+        "A4": A4,
+        "Paragraph": Paragraph,
+        "ParagraphStyle": ParagraphStyle,
+        "SimpleDocTemplate": SimpleDocTemplate,
+        "Spacer": Spacer,
+        "TA_JUSTIFY": TA_JUSTIFY,
+        "cm": cm,
+        "getSampleStyleSheet": getSampleStyleSheet,
+    }
 
 
 def seguro(value):
@@ -138,7 +147,7 @@ def main():
     try:
         dados = validar_dados(json.loads(args.entrada.read_text(encoding="utf-8")))
         gerar(dados, args.saida)
-    except (json.JSONDecodeError, ValueError, RuntimeError) as exc:
+    except (json.JSONDecodeError, TypeError, ValueError, RuntimeError) as exc:
         raise SystemExit(f"ERRO: {exc}")
     print(args.saida)
 

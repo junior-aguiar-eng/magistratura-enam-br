@@ -5,7 +5,6 @@ from pathlib import Path
 
 import preparar_itens_esteira as preparador
 
-
 ROOT = Path(__file__).resolve().parents[3]
 ATUALIZADOR_CURADORIA = ROOT / "skills" / "curar-informativos-stf-stj" / "scripts" / "atualizar_planilha_precedentes.py"
 

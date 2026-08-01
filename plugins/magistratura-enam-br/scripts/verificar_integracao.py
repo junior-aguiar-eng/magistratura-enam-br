@@ -5,11 +5,10 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import shutil
 import subprocess
 import tomllib
-
+from pathlib import Path
 
 ARQUIVOS_ESSENCIAIS = (
     ".codex-plugin/plugin.json",
@@ -63,17 +62,17 @@ def validar_ambiente_uv(raiz: Path, erros: list[str]) -> None:
             projeto = tomllib.loads(pyproject.read_text(encoding="utf-8")).get("project", {})
             if projeto.get("name") != "magistratura-enam-br":
                 erros.append("pyproject.toml com nome de projeto inesperado.")
-            if projeto.get("requires-python") != ">=3.13,<3.14":
-                erros.append("pyproject.toml deve fixar compatibilidade em Python 3.13.")
+            if projeto.get("requires-python") != ">=3.14,<3.15":
+                erros.append("pyproject.toml deve fixar compatibilidade em Python 3.14.")
         except (OSError, UnicodeError, tomllib.TOMLDecodeError) as exc:
             erros.append(f"pyproject.toml inválido: {exc}")
-    if python_version.is_file() and python_version.read_text(encoding="utf-8").strip() != "3.13":
-        erros.append(".python-version deve fixar Python 3.13.")
+    if python_version.is_file() and python_version.read_text(encoding="utf-8").strip() != "3.14":
+        erros.append(".python-version deve fixar Python 3.14.")
     if lock.is_file():
         try:
             dados_lock = tomllib.loads(lock.read_text(encoding="utf-8"))
-            if dados_lock.get("requires-python") != "==3.13.*":
-                erros.append("uv.lock deve estar resolvido para Python 3.13.")
+            if dados_lock.get("requires-python") != "==3.14.*":
+                erros.append("uv.lock deve estar resolvido para Python 3.14.")
         except (OSError, UnicodeError, tomllib.TOMLDecodeError) as exc:
             erros.append(f"uv.lock inválido: {exc}")
 

@@ -46,7 +46,7 @@ from pathlib import Path
 
 try:
     from openpyxl import Workbook, load_workbook
-    from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
     from openpyxl.utils import get_column_letter
 except ImportError:
     sys.stderr.write(
@@ -82,6 +82,7 @@ COLUNAS_CSV_ITENS = [
 
 FOLGA = 0.20            # 20% da capacidade semanal fica livre como amortecedor
 DIAS_CONSOLIDACAO = 15  # janela final: entrada congela, varredura de prioridade alta
+FUSO_BRASIL = dt.timezone(dt.timedelta(hours=-3))
 
 # Minutos estimados por atividade (usados só para orçamento da aba Semana).
 # Primeira passada custa mais que revisão; jurisprudência revisa rápido depois da 1ª leitura.
@@ -127,7 +128,7 @@ def _style_header_row(ws, ncols):
 # ----------------------------------------------------------------------------
 
 def hoje():
-    return dt.date.today()
+    return dt.datetime.now(FUSO_BRASIL).date()
 
 
 def parse_data(s):
@@ -138,7 +139,7 @@ def parse_data(s):
     if not s:
         return None
     try:
-        return dt.datetime.strptime(str(s).strip()[:10], "%Y-%m-%d").date()
+        return dt.date.fromisoformat(str(s).strip()[:10])
     except ValueError:
         return None  # valores como "—" ou "sprint" não são datas
 
@@ -151,6 +152,27 @@ def is_feito(v):
     if v is None:
         return False
     return str(v).strip().lower() in {"x", "sim", "s", "1", "true", "ok", "feito"}
+
+
+def ler_ciclo(it, total_ciclos):
+    """Lê e valida o ciclo de uma revisão antes de avançá-la."""
+    valor = it.get("ciclo")
+    if valor is None or (isinstance(valor, str) and not valor.strip()):
+        return 1
+    if isinstance(valor, bool) or (isinstance(valor, float) and not valor.is_integer()):
+        ciclo = None
+    else:
+        try:
+            ciclo = int(valor)
+        except (TypeError, ValueError):
+            ciclo = None
+    if ciclo is None or not 1 <= ciclo <= total_ciclos:
+        identificador = it.get("id") or "sem id"
+        raise ValueError(
+            f"Ciclo inválido na revisão '{identificador}': esperado um inteiro entre "
+            f"1 e {total_ciclos}, encontrado {valor!r}. Corrija a coluna 'ciclo' e execute novamente."
+        )
+    return ciclo
 
 
 # ----------------------------------------------------------------------------
@@ -303,6 +325,8 @@ def cmd_init(args):
         cfg[f"cap_{d}"] = CAP_PADRAO[d]
     escrever_config(wb["Config"], cfg)
 
+    novos = []
+
     # Se veio lista de julgados, carrega direto na Entrada
     if args.itens:
         novos = _ler_csv_itens(args.itens)
@@ -317,7 +341,7 @@ def cmd_init(args):
         "status": "criado",
         "arquivo": args.saida,
         "prova": args.prova or "não definida",
-        "itens_iniciais": len(args.itens and _ler_csv_itens(args.itens) or []),
+        "itens_iniciais": len(novos),
         "dica": "Rode 'atualizar' após marcar a coluna Feito? para gerar a aba Semana.",
     }, ensure_ascii=False, indent=2))
 
@@ -487,7 +511,7 @@ def cmd_atualizar(args):
                 })
             prio = str(it.get("prioridade", "padrao")).lower()
             ciclos = CICLOS.get(prio, CICLOS["padrao"])
-            ciclo_atual = int(it.get("ciclo", 1))
+            ciclo_atual = ler_ciclo(it, len(ciclos))
             if ciclo_atual >= len(ciclos):
                 concluidos += 1  # consolidado; sai da esteira
                 continue
@@ -620,7 +644,6 @@ def _diagnostico(entrada, revisao, cap_total, orcamento, usado, revs, cfg, conso
     hoje_d = hoje()
     atrasadas = sum(1 for venc, _ in revs if venc < hoje_d)
     revisao_semana_min = sum(1 for venc, _ in revs) * MIN_REVISAO
-    entrada_total_min = len(entrada) * MIN_PRIMEIRA
 
     alertas = []
 

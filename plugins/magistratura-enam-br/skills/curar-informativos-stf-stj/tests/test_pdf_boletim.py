@@ -1,6 +1,4 @@
-from pathlib import Path
 import pytest
-
 from gerar_pdf_boletim import gerar, paragrafos, validar_dados
 
 

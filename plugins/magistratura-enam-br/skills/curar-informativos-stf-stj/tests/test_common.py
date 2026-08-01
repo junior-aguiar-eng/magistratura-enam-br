@@ -1,5 +1,10 @@
 import pytest
-from common import identificador_decisao, normalizar_processo, sanitizar_excel, validar_data_iso
+from common import (
+    identificador_decisao,
+    normalizar_processo,
+    sanitizar_excel,
+    validar_data_iso,
+)
 
 
 def test_normalizacao_equivale_formatos():

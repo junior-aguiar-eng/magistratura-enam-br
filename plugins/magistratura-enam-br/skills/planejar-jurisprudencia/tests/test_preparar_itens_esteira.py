@@ -1,6 +1,5 @@
-import pytest
-
 import preparar_itens_esteira as preparador
+import pytest
 
 
 def registro(identificador, estado="confirmado"):

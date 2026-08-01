@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import date
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from common import (
@@ -23,12 +23,13 @@ CABECALHO = [
     "Data do julgamento", "Data do informativo", "Tese resumida",
     "Fontes essenciais", "Data de inclusão",
 ]
+FUSO_BRASIL = timezone(timedelta(hours=-3))
 
 
 def validar_registro(item, indice):
     contexto = f"Registro {indice}"
     if not isinstance(item, dict):
-        raise ValueError(f"{contexto}: cada item deve ser um objeto JSON.")
+        raise TypeError(f"{contexto}: cada item deve ser um objeto JSON.")
     if not normalizar_processo(item.get("processo")):
         raise ValueError(f"{contexto}: campo 'processo' ausente ou inválido.")
     tribunal = texto(item.get("tribunal")).upper()
@@ -105,7 +106,7 @@ def main():
     parser.add_argument("novos_julgados", type=Path)
     parser.add_argument("planilha", type=Path)
     parser.add_argument("--saida", type=Path)
-    parser.add_argument("--data-inclusao", default=date.today().isoformat())
+    parser.add_argument("--data-inclusao", default=datetime.now(FUSO_BRASIL).date().isoformat())
     args = parser.parse_args()
 
     if not args.novos_julgados.exists():
@@ -122,7 +123,7 @@ def main():
         dados = validar_dados(dados)
         deps = carregar_openpyxl()
         wb, ws = abrir_ou_criar(args.planilha, deps[0], deps[1])
-    except (ValueError, RuntimeError) as exc:
+    except (TypeError, ValueError, RuntimeError) as exc:
         raise SystemExit(f"ERRO: {exc}")
 
     existentes = {texto(row[0]) for row in ws.iter_rows(min_row=2, values_only=True) if row and row[0]}
