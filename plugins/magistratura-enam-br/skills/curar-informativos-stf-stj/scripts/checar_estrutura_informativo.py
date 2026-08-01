@@ -6,13 +6,14 @@ import json
 import re
 from pathlib import Path
 
-PADRAO_CABECALHO = re.compile(r"\b(?:SUPREMO TRIBUNAL FEDERAL|SUPERIOR TRIBUNAL DE JUSTIÇA|INFORMATIVO)\b", re.I)
-PADRAO_TITULO = re.compile(r"(?m)^\s*(?:\d{1,3}[.)-]|(?:RE|ARE|ADI|ADC|ADPF|ADO|HC|RHC|MS|RMS|REsp|AgInt|EAREsp)\b).{15,}$", re.I)
+PADRAO_CABECALHO = re.compile(r"\b(?:SUPREMO TRIBUNAL FEDERAL|SUPERIOR TRIBUNAL DE JUSTIÇA|INFORMATIVO)\b", re.IGNORECASE)
+PADRAO_TITULO = re.compile(r"(?m)^\s*(?:\d{1,3}[.)-]|(?:RE|ARE|ADI|ADC|ADPF|ADO|HC|RHC|MS|RMS|REsp|AgInt|EAREsp)\b).{15,}$", re.IGNORECASE)
 
 
 def ler_pdf(caminho: Path):
     try:
         from pypdf import PdfReader
+        from pypdf.errors import PdfReadError
     except ImportError as exc:
         raise RuntimeError("Instale 'pypdf' antes de verificar o PDF.") from exc
     try:
@@ -24,7 +25,7 @@ def ler_pdf(caminho: Path):
         erro = ""
         try:
             texto = pagina.extract_text() or ""
-        except Exception as exc:
+        except PdfReadError as exc:
             texto = ""
             erro = str(exc)
         paginas.append({"pagina": i, "texto": texto, "caracteres": len(texto.strip()), "erro_extracao": erro})

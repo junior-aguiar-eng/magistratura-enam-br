@@ -13,7 +13,6 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
-
 TIPOS_EXPRESSOS = {
     "CORRESPONDENCIA EDITORIAL EXPRESSA",
     "DESLOCAMENTO EDITORIAL EXPRESSO",

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import datetime
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -55,7 +55,7 @@ def validar_data_iso(value: Any, campo: str, contexto: str = "") -> None:
     if not value:
         return
     try:
-        datetime.strptime(value, "%Y-%m-%d")
+        date.fromisoformat(value)
     except ValueError as exc:
         prefixo = f"{contexto}: " if contexto else ""
         raise ValueError(f"{prefixo}'{campo}' deve usar AAAA-MM-DD.") from exc

@@ -3,11 +3,9 @@ from datetime import date
 from pathlib import Path
 from types import SimpleNamespace
 
-from openpyxl import load_workbook
-import pytest
-
 import atualizar_esteira as motor
-
+import pytest
+from openpyxl import load_workbook
 
 HOJE = date(2026, 1, 1)
 
@@ -94,6 +92,29 @@ def test_ciclo_alta_promove_revisa_e_encaminha_remediacao(tmp_path, monkeypatch)
         "disciplina": "Constitucional", "resultado_revisao": "erro",
         "encaminhamento": "questao_objetiva", "data_registro": "2026-01-01",
     }]
+
+
+def test_init_le_csv_de_itens_uma_unica_vez(tmp_path, monkeypatch):
+    csv_itens = tmp_path / "itens.csv"
+    esteira = tmp_path / "esteira.xlsx"
+    escrever_itens(csv_itens, [item()])
+    leitor_original = motor._ler_csv_itens
+    chamadas = []
+
+    def leitor_monitorado(caminho):
+        chamadas.append(caminho)
+        return leitor_original(caminho)
+
+    monkeypatch.setattr(motor, "_ler_csv_itens", leitor_monitorado)
+    motor.cmd_init(SimpleNamespace(prova="2026-11-01", itens=str(csv_itens), saida=str(esteira)))
+
+    assert chamadas == [str(csv_itens)]
+
+
+@pytest.mark.parametrize("valor", ["texto", 1.5, 0, 5, True])
+def test_ler_ciclo_rejeita_valor_invalido(valor):
+    with pytest.raises(ValueError, match="Ciclo inválido na revisão 'STF-1'"):
+        motor.ler_ciclo({"id": "STF-1", "ciclo": valor}, 4)
 
 
 def test_add_rejeita_duplicado_repetido_no_mesmo_csv(tmp_path, monkeypatch):
