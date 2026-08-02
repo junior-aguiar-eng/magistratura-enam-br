@@ -8,7 +8,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 - Versão publicada no manifesto: `0.2.4`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
-- Suíte de testes: 71 testes aprovados.
+- Suíte de testes: 73 testes aprovados.
 - Qualidade estática: `ruff check .` aprovado.
 - Integridade: verificador interno de contrato do plugin e `uv lock --check` aprovados.
 - Integração contínua: `.github/workflows/validar.yml` executa a suíte canônica em `push` e pull request.
@@ -21,6 +21,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 3. A curadoria preserva a rastreabilidade de precedentes, a sanitização de fórmulas em planilhas e a validação de PDF e boletim.
 4. A esteira mantém as abas `Entrada`, `Revisao`, `Remediacao`, `Semana` e `Config`; o CSV de entrada é estrito e a remediação integra o ciclo de revisão.
 5. O verificador de integração é estritamente de leitura e não cria artefatos na árvore distribuível.
+6. Questões objetivas seguem a trava canônica FGV/ENAM: matriz de núcleo, fatos e alternativas; gabarito aplicado à regra determinante; enunciado funcionalmente denso; distratores com paridade; e invalidação do rascunho diante de ambiguidade ou assimetria.
 
 ## Validação obrigatória
 

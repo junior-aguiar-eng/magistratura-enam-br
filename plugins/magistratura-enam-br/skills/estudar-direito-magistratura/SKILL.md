@@ -31,10 +31,20 @@ Cronogramas e planos de remessa não definem tema, sequência, prioridade ou opo
 
 - Para sessão de estudo aprofundado de instituto, lei seca, caso concreto ou julgado já selecionado, siga `references/explicacao-e-integracao.md`.
 - Para revisão ativa de recuperação, consolidação ou véspera de prova, leia `references/revisao.md`.
-- Para questões objetivas, leia `references/questoes-fgv-enam.md`.
+- Para questões objetivas, leia `references/questoes-fgv-enam.md` e trate a trava canônica de emissão nela prevista como condição obrigatória antes de responder. Se qualquer critério falhar, descarte o rascunho e reconstrua a questão; não flexibilize a trava por concisão, rapidez ou pedido de formato.
 - Para discursiva e prova oral, leia `references/discursivas-e-prova-oral.md`.
 
 O estudo de julgado já selecionado integra a sessão aprofundada; não o trate como produto editorial autônomo. Não triar informativos inteiros, não comparar formalmente edições do ENAM e não definir calendário de revisões: essas atividades pertencem às outras skills do plugin.
+
+## Trava canônica FGV/ENAM
+
+Em questão objetiva, a execução só começa depois da leitura de `references/questoes-fgv-enam.md`. Não formule caso concreto a partir de material apenas introdutório, sem regra, tese, consequência ou limite verificável: localize subtema apto, complemente por fonte oficial proporcional ou peça recorte específico.
+
+Antes de emitir, organize internamente núcleo determinante, fatos funcionais, tensão jurídica e matriz das cinco alternativas. O gabarito deve aplicar a regra, tese ou precedente específico aos fatos e à consequência exigida; princípio, constitucionalização ou ponderação genérica não substituem disciplina determinada. Cada distrator deve resolver a mesma controvérsia com estrutura comparável e erro técnico singular. Rejeite o rascunho se a correta for a única alternativa ponderada, completa, sem absolutismo indevido ou com consequência jurídica definida; se um distrator apenas negar premissa elementar; se houver mais de uma resposta defensável; ou se algum fato não participar da solução.
+
+Se a correta mencionar dispositivo, tese, requisito ou consequência específicos, dê a cada distrator âncora de densidade equivalente e erro técnico determinado. Não reserve para a correta a única citação legal, a única consequência concreta ou o único encadeamento completo entre regra e fatos.
+
+O enunciado deve ser denso por função, não por extensão: articule fatos necessários e tensão entre ao menos dois elementos decisivos, sem narrativa ornamental, abstração isolada, pressuposto oculto ou pista da resposta. Aplique essa trava antes de toda questão, ainda que o candidato peça exemplo rápido, revisão breve ou apenas uma questão. Envie exclusivamente enunciado e cinco alternativas; após a resposta, invalide a questão se a mesma auditoria revelar ambiguidade ou regra específica ignorada.
 
 ## Direito brasileiro e fidelidade
 

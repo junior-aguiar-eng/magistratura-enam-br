@@ -2,6 +2,10 @@
 
 Todas as alterações relevantes deste plugin são registradas neste arquivo.
 
+## Não publicado
+
+- Torna canônico e obrigatório o padrão FGV/ENAM para questões objetivas, com trava de pré-emissão, matriz de construção e auditoria contra gabarito genérico, enunciado artificial, alternativas assimétricas e regra específica ignorada.
+
 ## 0.2.4 — 2026-08-01
 
 - Remove manifesto aninhado e obsoleto que mantinha a versão `0.2.2` em paralelo ao manifesto canônico.

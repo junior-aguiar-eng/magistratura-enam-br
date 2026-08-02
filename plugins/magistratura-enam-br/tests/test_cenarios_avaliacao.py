@@ -22,6 +22,12 @@ def test_cenarios_de_questoes_preservam_tentativa_ativa():
 
     assert "## Q1" in cenarios
     assert "## Q2" in cenarios
+    assert "## Q3" in cenarios
+    assert "## Q4" in cenarios
+    assert "## Q5" in cenarios
     assert "rubrica depois da resposta" in cenarios
     assert "cinco alternativas funcionalmente comparáveis" in cenarios
     assert "antes da tentativa" in cenarios
+    assert "regra–fato–consequência" in cenarios
+    assert "alternativas simétricas" in cenarios
+    assert "Insumo introdutório insuficiente" in cenarios
