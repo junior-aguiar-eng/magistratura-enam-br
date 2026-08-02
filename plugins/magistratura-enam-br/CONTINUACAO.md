@@ -6,7 +6,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 ## Estado confirmado em 2026-08-01
 
-- Versão publicada no manifesto: `0.2.3`.
+- Versão publicada no manifesto: `0.2.4`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
 - Suíte de testes: 71 testes aprovados.
 - Qualidade estática: `ruff check .` aprovado.

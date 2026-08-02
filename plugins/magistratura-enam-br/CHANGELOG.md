@@ -2,7 +2,7 @@
 
 Todas as alterações relevantes deste plugin são registradas neste arquivo.
 
-## Não publicado
+## 0.2.4 — 2026-08-01
 
 - Remove manifesto aninhado e obsoleto que mantinha a versão `0.2.2` em paralelo ao manifesto canônico.
 - Cria documentação de entrada (`README.md`) e consolida o roteiro de manutenção em `CONTINUACAO.md`.
