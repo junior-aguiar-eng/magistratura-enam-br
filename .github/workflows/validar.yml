@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    working-directory: plugins/magistratura-enam-br
+
 jobs:
   validar:
     runs-on: windows-latest
@@ -21,7 +25,7 @@ jobs:
       - name: Conferir lockfile
         run: uv lock --check
       - name: Executar testes
-        run: uv run pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
+        run: uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
       - name: Executar Ruff
         run: uvx ruff check .
       - name: Verificar integração

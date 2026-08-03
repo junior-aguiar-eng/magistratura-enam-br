@@ -2,11 +2,12 @@
 
 Todas as alterações relevantes deste plugin são registradas neste arquivo.
 
-## Não publicado
+## 0.3.0 — 2026-08-03
 
 - Torna canônico e obrigatório o padrão FGV/ENAM para questões objetivas, com trava de pré-emissão, matriz de construção e auditoria contra gabarito genérico, enunciado artificial, alternativas assimétricas e regra específica ignorada.
 - Estende a sanitização de fórmulas de planilha (já aplicada na curadoria de precedentes) aos scripts da esteira de jurisprudência: `atualizar_esteira.py` (abas Entrada/Revisao/Remediacao/Semana/Config) e `preparar_itens_esteira.py` (CSV de itens) agora neutralizam valores iniciados em `=`, `+`, `-` ou `@` antes de gravá-los, fechando um vetor de injeção de fórmula ao abrir os artefatos no Excel.
-- Documenta em `README.md` o contorno para `uv trampoline failed to canonicalize script path`, falha do `uv run pytest` observada em Windows quando o caminho de instalação contém espaço.
+- Padroniza a execução dos testes por `uv run python -m pytest`, evitando a falha do trampoline do `uv` em instalações Windows cujo caminho contém espaços.
+- Move o workflow de validação para a raiz do repositório e fixa o diretório de trabalho no plugin, para que o GitHub Actions o descubra e execute a suíte correta.
 
 ## 0.2.4 — 2026-08-01
 

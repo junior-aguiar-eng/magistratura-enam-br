@@ -29,16 +29,14 @@ Execute, a partir desta pasta:
 
 ```powershell
 uv lock --check
-uv run pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
+uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
 uvx ruff check .
 uv run python scripts/verificar_integracao.py
 ```
 
 O verificador interno é somente leitura: ele valida arquivos distribuíveis, contrato do manifesto e das skills, JSON, sintaxe Python, coerência de versão e o lockfile, sem criar artefatos no código-fonte.
 
-O workflow em `.github/workflows/validar.yml` executa essa mesma sequência em cada `push` e pull request.
-
-> **Windows:** se `uv run pytest ...` falhar com `uv trampoline failed to canonicalize script path` (comum quando o caminho de instalação contém espaço, ex.: `C:\Users\Nome Sobrenome\...`), execute `uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests` no lugar do primeiro comando. O restante da sequência não é afetado.
+O workflow de raiz `.github/workflows/validar.yml` executa essa mesma sequência, no diretório do plugin, em cada `push` e pull request.
 
 ## Estrutura relevante
 
