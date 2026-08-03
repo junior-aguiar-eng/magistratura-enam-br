@@ -23,3 +23,7 @@ codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 
 Para manter o material restrito a um grupo, utilize um repositório privado e conceda acesso apenas às pessoas autorizadas.
+
+## Licença
+
+Todos os direitos reservados a Boni Jr. Consulte [LICENSE](LICENSE) antes de copiar, redistribuir ou reutilizar qualquer conteúdo deste repositório.

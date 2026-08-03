@@ -38,6 +38,8 @@ O verificador interno é somente leitura: ele valida arquivos distribuíveis, co
 
 O workflow em `.github/workflows/validar.yml` executa essa mesma sequência em cada `push` e pull request.
 
+> **Windows:** se `uv run pytest ...` falhar com `uv trampoline failed to canonicalize script path` (comum quando o caminho de instalação contém espaço, ex.: `C:\Users\Nome Sobrenome\...`), execute `uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests` no lugar do primeiro comando. O restante da sequência não é afetado.
+
 ## Estrutura relevante
 
 - `.codex-plugin/plugin.json`: manifesto canônico do plugin.
