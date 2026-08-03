@@ -54,6 +54,8 @@ except ImportError:
     )
     sys.exit(1)
 
+from sanitizacao_planilha import sanitizar_excel
+
 # ----------------------------------------------------------------------------
 # Parâmetros do motor
 # ----------------------------------------------------------------------------
@@ -220,7 +222,7 @@ def escrever_aba(ws, cols, linhas):
         prio = str(item.get("prioridade", "")).lower()
         trib = str(item.get("tribunal", "")).upper()
         for ci, c in enumerate(cols, start=1):
-            cell = ws.cell(row=ri, column=ci, value=item.get(c, ""))
+            cell = ws.cell(row=ri, column=ci, value=sanitizar_excel(item.get(c, "")))
             cell.font = _cell_font()
             cell.border = BORDA
             cell.alignment = Alignment(vertical="center",
@@ -274,8 +276,8 @@ def escrever_config(ws, cfg):
     ws.cell(row=1, column=2, value="valor")
     _style_header_row(ws, 2)
     for ri, (k, v) in enumerate(cfg.items(), start=2):
-        ws.cell(row=ri, column=1, value=k).font = _cell_font(bold=True)
-        ws.cell(row=ri, column=2, value=v).font = _cell_font()
+        ws.cell(row=ri, column=1, value=sanitizar_excel(k)).font = _cell_font(bold=True)
+        ws.cell(row=ri, column=2, value=sanitizar_excel(v)).font = _cell_font()
     _ajustar_larguras(ws, COLS_CONFIG)
 
 

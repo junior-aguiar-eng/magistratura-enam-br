@@ -19,7 +19,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 1. Todas as `SKILL.md` leem e cumprem `AGENTS.md`.
 2. O comparador usa `id_execucao` e `id_item` como vínculos canônicos e valida JSON Schema antes das regras semânticas.
 3. A curadoria preserva a rastreabilidade de precedentes, a sanitização de fórmulas em planilhas e a validação de PDF e boletim.
-4. A esteira mantém as abas `Entrada`, `Revisao`, `Remediacao`, `Semana` e `Config`; o CSV de entrada é estrito e a remediação integra o ciclo de revisão.
+4. A esteira mantém as abas `Entrada`, `Revisao`, `Remediacao`, `Semana` e `Config`; o CSV de entrada é estrito, a remediação integra o ciclo de revisão, e todo valor gravado em planilha ou CSV passa por sanitização de fórmula antes da escrita.
 5. O verificador de integração é estritamente de leitura e não cria artefatos na árvore distribuível.
 6. Questões objetivas seguem a trava canônica FGV/ENAM: matriz de núcleo, fatos e alternativas; gabarito aplicado à regra determinante; enunciado funcionalmente denso; distratores com paridade; e invalidação do rascunho diante de ambiguidade ou assimetria.
 

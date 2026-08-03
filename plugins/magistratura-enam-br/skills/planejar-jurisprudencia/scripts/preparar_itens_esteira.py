@@ -8,6 +8,8 @@ import csv
 import json
 from pathlib import Path
 
+from sanitizacao_planilha import sanitizar_excel
+
 CABECALHO_ESPERADO = {
     "ID da decisão", "Processo", "Tema", "Tribunal", "Disciplina", "Estado jurisprudencial",
     "Grau de confiança", "Fontes essenciais",
@@ -117,7 +119,8 @@ def escrever_csv(itens: list[dict[str, str]], saida: Path) -> None:
         campos = ["id", "tema", "tribunal", "disciplina", "estado_jurisprudencial", "grau_confianca", "fontes_essenciais", "prioridade", "motivo_prioridade", "origem_erro"]
         escritor = csv.DictWriter(arquivo, fieldnames=campos)
         escritor.writeheader()
-        escritor.writerows(itens)
+        for item in itens:
+            escritor.writerow({campo: sanitizar_excel(valor) for campo, valor in item.items()})
 
 
 def main() -> None:

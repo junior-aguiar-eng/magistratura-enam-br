@@ -94,6 +94,19 @@ def test_ciclo_alta_promove_revisa_e_encaminha_remediacao(tmp_path, monkeypatch)
     }]
 
 
+def test_escrever_aba_sanitiza_valores_com_prefixo_de_formula(tmp_path, monkeypatch):
+    monkeypatch.setattr(motor, "hoje", lambda: HOJE)
+    csv_itens = tmp_path / "itens.csv"
+    esteira = tmp_path / "esteira.xlsx"
+    malicioso = item("STF-2", "padrao")
+    malicioso["tema"] = "=cmd|'/c calc'!A1"
+    escrever_itens(csv_itens, [malicioso])
+    motor.cmd_init(SimpleNamespace(prova="2026-11-01", itens=str(csv_itens), saida=str(esteira)))
+
+    entrada = carregar_linhas(esteira, "Entrada", motor.COLS_ENTRADA)
+    assert entrada[0]["tema"] == "'=cmd|'/c calc'!A1"
+
+
 def test_init_le_csv_de_itens_uma_unica_vez(tmp_path, monkeypatch):
     csv_itens = tmp_path / "itens.csv"
     esteira = tmp_path / "esteira.xlsx"
