@@ -601,7 +601,7 @@ def _montar_semana(entrada, revisao, cfg, consolidacao):
         # da prioridade alta que ainda está em revisão mas não coube acima.
         alta_restante = [it for it in revisao
                          if str(it.get("prioridade")).lower() == "alta"
-                         and it["id"] not in {l["id"] for l in linhas}]
+                         and it["id"] not in {linha["id"] for linha in linhas}]
         alta_restante.sort(key=_prio_rank)
         for it in alta_restante:
             if usado + MIN_REVISAO > orcamento:
