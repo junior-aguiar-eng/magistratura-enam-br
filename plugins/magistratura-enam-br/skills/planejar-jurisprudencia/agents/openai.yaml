@@ -1,4 +1,4 @@
-﻿interface:
+interface:
   display_name: "Planejar revisão de jurisprudência"
   short_description: "Organiza a revisão de julgados já selecionados."
   default_prompt: "Organize minha revisão dos julgados já selecionados."
