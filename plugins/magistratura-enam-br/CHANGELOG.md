@@ -2,6 +2,12 @@
 
 Todas as alterações relevantes deste plugin são registradas neste arquivo.
 
+## 0.3.1 — 2026-08-05
+
+- Fixa a versão do Ruff como dependência de desenvolvimento (`uv add --dev ruff`) e troca `uvx ruff check .` por `uv run ruff check .` no workflow, eliminando a resolução flutuante da versão mais recente do Ruff a cada execução do CI — comportamento que já havia se mostrado não determinístico entre execuções.
+- Corrige os apontamentos reais de lint expostos por essa fixação: variável ambígua `l` em `atualizar_esteira.py` e declarações múltiplas separadas por `;` em `test_schemas.py`.
+- Marca como executáveis (`chmod +x`) os scripts com shebang que não tinham essa permissão no Git, resolvendo os alertas `EXE001` reportados pelo Ruff a partir da versão 0.16.
+
 ## 0.3.0 — 2026-08-03
 
 - Torna canônico e obrigatório o padrão FGV/ENAM para questões objetivas, com trava de pré-emissão, matriz de construção e auditoria contra gabarito genérico, enunciado artificial, alternativas assimétricas e regra específica ignorada.

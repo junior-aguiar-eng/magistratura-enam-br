@@ -1,4 +1,4 @@
-﻿interface:
+interface:
   display_name: "Estudar Direito para Magistratura"
   short_description: "Explica, revisa e treina Direito brasileiro para Magistratura."
   default_prompt: "Explique este tema no nível da Magistratura."

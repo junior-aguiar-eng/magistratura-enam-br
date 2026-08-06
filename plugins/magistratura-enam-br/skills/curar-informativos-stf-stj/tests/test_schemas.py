@@ -33,13 +33,15 @@ def test_schema_boletim_valido():
 
 
 def test_schema_boletim_exige_nota_quando_controvertido():
-    d = boletim(); d["julgados_stf"][0]["estado_jurisprudencial"] = "controvertido"
+    d = boletim()
+    d["julgados_stf"][0]["estado_jurisprudencial"] = "controvertido"
     with pytest.raises(ValidationError):
         validar("boletim.schema.json", d)
 
 
 def test_schema_boletim_rejeita_data_invalida():
-    d = boletim(); d["data_geracao"] = "11/07/2026"
+    d = boletim()
+    d["data_geracao"] = "11/07/2026"
     with pytest.raises(ValidationError):
         validar("boletim.schema.json", d)
 
