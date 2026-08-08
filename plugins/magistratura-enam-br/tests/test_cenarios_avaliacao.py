@@ -1,13 +1,4 @@
-from pathlib import Path
-
-RAIZ = Path(__file__).resolve().parents[1]
-
-
-def texto(relativo: str) -> str:
-    return (RAIZ / relativo).read_text(encoding="utf-8")
-
-
-def test_cenarios_de_curadoria_preservam_limites_de_inferencia():
+def test_cenarios_de_curadoria_preservam_limites_de_inferencia(texto):
     cenarios = texto("skills/curar-informativos-stf-stj/references/cenarios-avaliacao.md")
 
     assert "## C1" in cenarios
@@ -17,7 +8,7 @@ def test_cenarios_de_curadoria_preservam_limites_de_inferencia():
     assert "superação apenas inferidos" in cenarios
 
 
-def test_cenarios_de_questoes_preservam_tentativa_ativa():
+def test_cenarios_de_questoes_preservam_tentativa_ativa(texto):
     cenarios = texto("skills/estudar-direito-magistratura/references/cenarios-avaliacao.md")
 
     assert "## Q1" in cenarios

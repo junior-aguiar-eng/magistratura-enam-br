@@ -1,13 +1,4 @@
-from pathlib import Path
-
-RAIZ = Path(__file__).resolve().parents[1]
-
-
-def texto(relativo: str) -> str:
-    return (RAIZ / relativo).read_text(encoding="utf-8")
-
-
-def test_comparador_entrega_tabela_no_chat_sem_artefato_padrao():
+def test_comparador_entrega_tabela_no_chat_sem_artefato_padrao(texto):
     skill = texto("skills/comparar-materiais-enam/SKILL.md")
     formato = texto("skills/comparar-materiais-enam/references/formato-entrega-comparativo.md")
 

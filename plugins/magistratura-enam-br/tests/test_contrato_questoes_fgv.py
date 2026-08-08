@@ -1,13 +1,4 @@
-from pathlib import Path
-
-RAIZ = Path(__file__).resolve().parents[1]
-
-
-def texto(relativo: str) -> str:
-    return (RAIZ / relativo).read_text(encoding="utf-8")
-
-
-def test_trava_fgv_e_obrigatoria_na_diretriz_e_na_skill():
+def test_trava_fgv_e_obrigatoria_na_diretriz_e_na_skill(texto):
     diretrizes = texto("AGENTS.md")
     skill = texto("skills/estudar-direito-magistratura/SKILL.md")
     referencia = texto("skills/estudar-direito-magistratura/references/questoes-fgv-enam.md")
@@ -22,7 +13,7 @@ def test_trava_fgv_e_obrigatoria_na_diretriz_e_na_skill():
     assert "descarte o rascunho e reconstrua-o" in referencia
 
 
-def test_trava_rejeita_gabarito_generico_e_racionalizacao_posterior():
+def test_trava_rejeita_gabarito_generico_e_racionalizacao_posterior(texto):
     referencia = texto("skills/estudar-direito-magistratura/references/questoes-fgv-enam.md")
 
     assert "não use princípio, ponderação ou constitucionalização genérica" in referencia
@@ -35,7 +26,7 @@ def test_trava_rejeita_gabarito_generico_e_racionalizacao_posterior():
     assert "cada distrator deve conter âncora normativa" in referencia
 
 
-def test_correcao_completa_e_obrigatoria_mesmo_apos_acerto():
+def test_correcao_completa_e_obrigatoria_mesmo_apos_acerto(texto):
     diretrizes = texto("AGENTS.md")
     skill = texto("skills/estudar-direito-magistratura/SKILL.md")
     referencia = texto("skills/estudar-direito-magistratura/references/questoes-fgv-enam.md")
@@ -48,7 +39,7 @@ def test_correcao_completa_e_obrigatoria_mesmo_apos_acerto():
     assert "## Q6 — Correção completa após acerto" in cenarios
 
 
-def test_correcao_usa_modelo_como_calibracao_sem_reproduzir_imprecisao():
+def test_correcao_usa_modelo_como_calibracao_sem_reproduzir_imprecisao(texto):
     diretrizes = texto("AGENTS.md")
     referencia = texto("skills/estudar-direito-magistratura/references/questoes-fgv-enam.md")
 

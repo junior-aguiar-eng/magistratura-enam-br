@@ -42,6 +42,7 @@ import csv
 import datetime as dt
 import json
 import sys
+from contextlib import contextmanager
 from pathlib import Path
 
 try:
@@ -92,6 +93,15 @@ MIN_PRIMEIRA = 25
 MIN_REVISAO = 10
 
 ABAS = ("Entrada", "Revisao", "Remediacao", "Semana", "Config")
+
+
+@contextmanager
+def fechar_workbook(wb):
+    """Garante a liberação do arquivo mesmo em erros ou retornos antecipados."""
+    try:
+        yield wb
+    finally:
+        wb.close()
 
 # ----------------------------------------------------------------------------
 # Estilos
@@ -307,38 +317,38 @@ def capacidade_semanal_min(cfg):
 def cmd_init(args):
     if args.prova and not parse_data(args.prova):
         raise ValueError("A data da prova deve usar AAAA-MM-DD.")
-    wb = Workbook()
-    wb.remove(wb.active)
-    for nome in ABAS:
-        wb.create_sheet(nome)
+    with fechar_workbook(Workbook()) as wb:
+        wb.remove(wb.active)
+        for nome in ABAS:
+            wb.create_sheet(nome)
 
-    escrever_aba(wb["Entrada"], COLS_ENTRADA, [])
-    escrever_aba(wb["Revisao"], COLS_REVISAO, [])
-    escrever_aba(wb["Remediacao"], COLS_REMEDIACAO, [])
-    escrever_aba(wb["Semana"], COLS_SEMANA, [])
+        escrever_aba(wb["Entrada"], COLS_ENTRADA, [])
+        escrever_aba(wb["Revisao"], COLS_REVISAO, [])
+        escrever_aba(wb["Remediacao"], COLS_REMEDIACAO, [])
+        escrever_aba(wb["Semana"], COLS_SEMANA, [])
 
-    cfg = {
-        "prova": args.prova or "",
-        "regime": "esteira",
-        "criado_em": fmt(hoje()),
-        "atualizado_em": fmt(hoje()),
-    }
-    for d in DIAS_SEMANA:
-        cfg[f"cap_{d}"] = CAP_PADRAO[d]
-    escrever_config(wb["Config"], cfg)
+        cfg = {
+            "prova": args.prova or "",
+            "regime": "esteira",
+            "criado_em": fmt(hoje()),
+            "atualizado_em": fmt(hoje()),
+        }
+        for d in DIAS_SEMANA:
+            cfg[f"cap_{d}"] = CAP_PADRAO[d]
+        escrever_config(wb["Config"], cfg)
 
-    novos = []
+        novos = []
 
-    # Se veio lista de julgados, carrega direto na Entrada
-    if args.itens:
-        novos = _ler_csv_itens(args.itens)
-        for it in novos:
-            it["data_entrada"] = fmt(hoje())
-            it["Feito?"] = ""
-        escrever_aba(wb["Entrada"], COLS_ENTRADA, novos)
+        # Se veio lista de julgados, carrega direto na Entrada
+        if args.itens:
+            novos = _ler_csv_itens(args.itens)
+            for it in novos:
+                it["data_entrada"] = fmt(hoje())
+                it["Feito?"] = ""
+            escrever_aba(wb["Entrada"], COLS_ENTRADA, novos)
 
-    Path(args.saida).parent.mkdir(parents=True, exist_ok=True)
-    wb.save(args.saida)
+        Path(args.saida).parent.mkdir(parents=True, exist_ok=True)
+        wb.save(args.saida)
     print(json.dumps({
         "status": "criado",
         "arquivo": args.saida,
@@ -395,37 +405,37 @@ def _ler_csv_itens(caminho):
 # ----------------------------------------------------------------------------
 
 def cmd_add(args):
-    wb = load_workbook(args.arquivo)
-    cfg = ler_config(wb["Config"])
-    if _em_consolidacao(cfg):
-        print(json.dumps({
-            "status": "bloqueado",
-            "motivo": "Regime de consolidação ativo — entrada de conteúdo novo está congelada.",
-            "acao": "Foque na aba Semana (varredura final). Novos julgados só após a prova.",
-        }, ensure_ascii=False, indent=2))
-        return
+    with fechar_workbook(load_workbook(args.arquivo)) as wb:
+        cfg = ler_config(wb["Config"])
+        if _em_consolidacao(cfg):
+            print(json.dumps({
+                "status": "bloqueado",
+                "motivo": "Regime de consolidação ativo — entrada de conteúdo novo está congelada.",
+                "acao": "Foque na aba Semana (varredura final). Novos julgados só após a prova.",
+            }, ensure_ascii=False, indent=2))
+            return
 
-    entrada = ler_aba(wb["Entrada"], COLS_ENTRADA)
-    existentes = {str(i["id"]).strip() for i in entrada}
-    # também não readicionar o que já está em revisão
-    for i in ler_aba(wb["Revisao"], COLS_REVISAO):
-        existentes.add(str(i["id"]).strip())
+        entrada = ler_aba(wb["Entrada"], COLS_ENTRADA)
+        existentes = {str(i["id"]).strip() for i in entrada}
+        # também não readicionar o que já está em revisão
+        for i in ler_aba(wb["Revisao"], COLS_REVISAO):
+            existentes.add(str(i["id"]).strip())
 
-    novos = _ler_csv_itens(args.itens)
-    add = 0
-    for it in novos:
-        if it["id"] in existentes:
-            continue
-        it["data_entrada"] = fmt(hoje())
-        it["Feito?"] = ""
-        entrada.append(it)
-        existentes.add(it["id"])
-        add += 1
+        novos = _ler_csv_itens(args.itens)
+        add = 0
+        for it in novos:
+            if it["id"] in existentes:
+                continue
+            it["data_entrada"] = fmt(hoje())
+            it["Feito?"] = ""
+            entrada.append(it)
+            existentes.add(it["id"])
+            add += 1
 
-    escrever_aba(wb["Entrada"], COLS_ENTRADA, entrada)
-    cfg["atualizado_em"] = fmt(hoje())
-    escrever_config(wb["Config"], cfg)
-    wb.save(args.arquivo)
+        escrever_aba(wb["Entrada"], COLS_ENTRADA, entrada)
+        cfg["atualizado_em"] = fmt(hoje())
+        escrever_config(wb["Config"], cfg)
+        wb.save(args.arquivo)
     print(json.dumps({
         "status": "adicionado",
         "novos": add,
@@ -455,7 +465,11 @@ def _em_consolidacao(cfg):
 
 
 def cmd_atualizar(args):
-    wb = load_workbook(args.arquivo)
+    with fechar_workbook(load_workbook(args.arquivo)) as wb:
+        _atualizar_workbook(wb, args.arquivo)
+
+
+def _atualizar_workbook(wb, arquivo):
     if "Remediacao" not in wb.sheetnames:
         wb.create_sheet("Remediacao")
         escrever_aba(wb["Remediacao"], COLS_REMEDIACAO, [])
@@ -541,7 +555,7 @@ def cmd_atualizar(args):
 
     cfg["atualizado_em"] = fmt(hoje_d)
     escrever_config(wb["Config"], cfg)
-    wb.save(args.arquivo)
+    wb.save(arquivo)
 
     saida = {
         "status": "atualizado",
@@ -708,24 +722,24 @@ def _diagnostico(entrada, revisao, cap_total, orcamento, usado, revs, cfg, conso
 # ----------------------------------------------------------------------------
 
 def cmd_status(args):
-    wb = load_workbook(args.arquivo)
-    cfg = ler_config(wb["Config"])
-    entrada = ler_aba(wb["Entrada"], COLS_ENTRADA)
-    revisao = ler_aba(wb["Revisao"], COLS_REVISAO)
-    hoje_d = hoje()
-    atrasadas = 0
-    for it in revisao:
-        v = parse_data(it.get("proxima_revisao"))
-        if v and v < hoje_d:
-            atrasadas += 1
-    print(json.dumps({
-        "prova": cfg.get("prova") or "não definida",
-        "regime": "consolidacao" if _em_consolidacao(cfg) else "esteira",
-        "fila_entrada": len(entrada),
-        "fila_revisao": len(revisao),
-        "revisoes_atrasadas": atrasadas,
-        "atualizado_em": cfg.get("atualizado_em"),
-    }, ensure_ascii=False, indent=2))
+    with fechar_workbook(load_workbook(args.arquivo)) as wb:
+        cfg = ler_config(wb["Config"])
+        entrada = ler_aba(wb["Entrada"], COLS_ENTRADA)
+        revisao = ler_aba(wb["Revisao"], COLS_REVISAO)
+        hoje_d = hoje()
+        atrasadas = 0
+        for it in revisao:
+            v = parse_data(it.get("proxima_revisao"))
+            if v and v < hoje_d:
+                atrasadas += 1
+        print(json.dumps({
+            "prova": cfg.get("prova") or "não definida",
+            "regime": "consolidacao" if _em_consolidacao(cfg) else "esteira",
+            "fila_entrada": len(entrada),
+            "fila_revisao": len(revisao),
+            "revisoes_atrasadas": atrasadas,
+            "atualizado_em": cfg.get("atualizado_em"),
+        }, ensure_ascii=False, indent=2))
 
 
 # ----------------------------------------------------------------------------

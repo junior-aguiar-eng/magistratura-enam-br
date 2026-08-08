@@ -7,6 +7,8 @@ Todas as alterações relevantes deste plugin são registradas neste arquivo.
 - Torna obrigatória a correção completa de questões objetivas mesmo após acerto, com resultado direto, fundamento determinante, aplicação às pistas do enunciado, exame individual dos distratores e distinção final útil para prova.
 - Passa a tratar prova, caderno e correção-modelo aprovados pelo candidato como corpus de calibração do comportamento da skill, sem copiar redação nem conservar imprecisões jurídicas ou alegações empíricas sem fonte.
 - Adiciona cenário e testes de contrato específicos para impedir correções telegráficas, omissão dos distratores e confusão entre Constituição jurídico-positiva e norma fundamental hipotética.
+- Garante o fechamento dos workbooks da esteira em fluxos normais, erros e retornos antecipados, reduzindo o risco de bloqueio de planilhas no Windows.
+- Centraliza em `conftest.py` a leitura de arquivos usada pelos testes de contrato e amplia os casos de sanitização contra fórmulas ocultas por whitespace.
 
 ## 0.3.1 — 2026-08-05
 

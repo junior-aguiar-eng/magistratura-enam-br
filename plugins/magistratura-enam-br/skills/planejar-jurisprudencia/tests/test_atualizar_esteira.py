@@ -10,6 +10,21 @@ from openpyxl import load_workbook
 HOJE = date(2026, 1, 1)
 
 
+def test_fechamento_do_workbook_tambem_ocorre_em_erro():
+    class WorkbookFalso:
+        fechado = False
+
+        def close(self):
+            self.fechado = True
+
+    wb = WorkbookFalso()
+
+    with pytest.raises(RuntimeError, match="falha simulada"), motor.fechar_workbook(wb):
+        raise RuntimeError("falha simulada")
+
+    assert wb.fechado is True
+
+
 def test_ajuda_do_motor_indica_ambiente_uv():
     codigo = Path(motor.__file__).read_text(encoding="utf-8")
     assert "uv run python skills/planejar-jurisprudencia/scripts/atualizar_esteira.py" in codigo
