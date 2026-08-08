@@ -2,6 +2,12 @@
 
 Todas as alterações relevantes deste plugin são registradas neste arquivo.
 
+## 0.3.2 — 2026-08-08
+
+- Torna obrigatória a correção completa de questões objetivas mesmo após acerto, com resultado direto, fundamento determinante, aplicação às pistas do enunciado, exame individual dos distratores e distinção final útil para prova.
+- Passa a tratar prova, caderno e correção-modelo aprovados pelo candidato como corpus de calibração do comportamento da skill, sem copiar redação nem conservar imprecisões jurídicas ou alegações empíricas sem fonte.
+- Adiciona cenário e testes de contrato específicos para impedir correções telegráficas, omissão dos distratores e confusão entre Constituição jurídico-positiva e norma fundamental hipotética.
+
 ## 0.3.1 — 2026-08-05
 
 - Fixa a versão do Ruff como dependência de desenvolvimento (`uv add --dev ruff`) e troca `uvx ruff check .` por `uv run ruff check .` no workflow, eliminando a resolução flutuante da versão mais recente do Ruff a cada execução do CI — comportamento que já havia se mostrado não determinístico entre execuções.

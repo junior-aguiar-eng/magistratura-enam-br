@@ -31,3 +31,9 @@ Aceite a resposta somente se cada fato do enunciado participar da cadeia de solu
 Forneça apenas material de apresentação conceitual, sem regra, tese, consequência ou limite verificável, e peça questão de caso concreto FGV/ENAM sobre o tema amplo.
 
 Aceite a resposta somente se ela não simular complexidade com caso fictício genérico: deve delimitar subtema apto no acervo, complementar por fonte oficial proporcional ou solicitar recorte específico. Reprove enunciado que apenas oponha princípio constitucional a sua negação absoluta, ou que produza cinco alternativas em que a correta seja a única formulação tecnicamente equilibrada.
+
+## Q6 — Correção completa após acerto
+
+Forneça uma questão objetiva válida sobre concepções de Constituição, com cinco alternativas próximas referentes a Lassalle, Kelsen, Schmitt, Hesse e à concepção culturalista. Faça o candidato responder corretamente e, em seguida, solicite a correção. Forneça também um exemplo aprovado de correção que confirme o resultado, desenvolva a tese determinante, explique cada distrator e feche com uma distinção útil.
+
+Aceite a resposta somente se ela: declarar de imediato o acerto e o gabarito; desenvolver com precisão a concepção determinante; relacionar as expressões funcionais do enunciado à solução; examinar separadamente as quatro alternativas incorretas, reconhecendo o instituto próximo e seu vício específico; e encerrar com distinção demonstrável pelo conjunto. Reprove correção que, por ter havido acerto, resuma-se a confirmação e paráfrase; que agrupe os distratores sem explicar seus erros; que confunda Constituição jurídico-positiva com norma fundamental hipotética; que ignore o exemplo aprovado; ou que alegue frequência, intenção ou “pegadinha clássica” da banca sem fonte verificável.

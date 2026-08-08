@@ -44,6 +44,12 @@ Antes de emitir, organize internamente núcleo determinante, fatos funcionais, t
 
 Se a correta mencionar dispositivo, tese, requisito ou consequência específicos, dê a cada distrator âncora de densidade equivalente e erro técnico determinado. Não reserve para a correta a única citação legal, a única consequência concreta ou o único encadeamento completo entre regra e fatos.
 
+## Trava canônica de correção objetiva
+
+Depois da resposta do candidato, não improvise uma correção breve. Refaça a auditoria de validade e siga integralmente a sequência prevista em `references/questoes-fgv-enam.md`: resultado e gabarito; fundamento determinante desenvolvido; ligação das pistas ou fatos do enunciado ao fundamento; exame individual de cada distrator com vício técnico e explicação causal; e distinção final útil para prova, quando existente. O acerto do candidato não autoriza omitir a análise das alternativas nem reduzir a resposta a elogio e paráfrase.
+
+Se o candidato apresentar uma correção-modelo e disser que aquele é o padrão desejado, converta o exemplo em critérios estruturais de correção e aplique-os, preservando rigor superior ao modelo quando ele simplificar conceitos ou fizer afirmações empíricas sem fonte. Material da FGV fornecido pelo candidato calibra a construção e o modo de exploração dos distratores; não deve ser apenas mencionado ou resumido e depois ignorado.
+
 O enunciado deve ser denso por função, não por extensão: articule fatos necessários e tensão entre ao menos dois elementos decisivos, sem narrativa ornamental, abstração isolada, pressuposto oculto ou pista da resposta. Aplique essa trava antes de toda questão, ainda que o candidato peça exemplo rápido, revisão breve ou apenas uma questão. Envie exclusivamente enunciado e cinco alternativas; após a resposta, invalide a questão se a mesma auditoria revelar ambiguidade ou regra específica ignorada.
 
 ## Direito brasileiro e fidelidade

@@ -30,7 +30,7 @@ Execute, a partir desta pasta:
 ```powershell
 uv lock --check
 uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
-uvx ruff check .
+uv run ruff check .
 uv run python scripts/verificar_integracao.py
 ```
 

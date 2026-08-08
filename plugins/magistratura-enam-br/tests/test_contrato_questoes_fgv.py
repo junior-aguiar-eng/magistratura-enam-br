@@ -33,3 +33,26 @@ def test_trava_rejeita_gabarito_generico_e_racionalizacao_posterior():
     assert "### Matriz obrigatória de construção" in referencia
     assert "Não use como distrator a simples negativa" in referencia
     assert "cada distrator deve conter âncora normativa" in referencia
+
+
+def test_correcao_completa_e_obrigatoria_mesmo_apos_acerto():
+    diretrizes = texto("AGENTS.md")
+    skill = texto("skills/estudar-direito-magistratura/SKILL.md")
+    referencia = texto("skills/estudar-direito-magistratura/references/questoes-fgv-enam.md")
+    cenarios = texto("skills/estudar-direito-magistratura/references/cenarios-avaliacao.md")
+
+    assert "aplique uma sequência canônica, ainda que o candidato tenha acertado" in diretrizes
+    assert "## Trava canônica de correção objetiva" in skill
+    assert "O acerto do candidato não autoriza omitir a análise das alternativas" in skill
+    assert "a correção completa é obrigatória tanto no acerto quanto no erro" in referencia
+    assert "## Q6 — Correção completa após acerto" in cenarios
+
+
+def test_correcao_usa_modelo_como_calibracao_sem_reproduzir_imprecisao():
+    diretrizes = texto("AGENTS.md")
+    referencia = texto("skills/estudar-direito-magistratura/references/questoes-fgv-enam.md")
+
+    assert "referência de calibração do modo de perguntar e corrigir" in diretrizes
+    assert "não o trate como mera preferência efêmera de estilo" in diretrizes
+    assert "use-os como corpus de calibração" in referencia
+    assert "Não invente “pegadinha da banca”" in referencia
