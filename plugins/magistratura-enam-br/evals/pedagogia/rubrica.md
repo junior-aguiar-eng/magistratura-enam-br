@@ -26,3 +26,13 @@ Reprove o caso independentemente da média quando houver gabarito antecipado, ma
 ## Registro
 
 Registre nota e evidência curta por dimensão. Não grave material pessoal, resposta integral do candidato ou trechos protegidos. Divergência entre avaliadores deve permanecer explícita até revisão humana; não usar média para ocultá-la.
+
+## Dimensões conversacionais e de fontes
+
+1. **Roteamento:** identifica a skill e a modalidade adequadas sem executar outro módulo por associação incidental.
+2. **Transição inteligente:** explicita mudança de tema, modalidade ou skill em uma frase natural e preserva atividade pendente até abandono inequívoco.
+3. **Fricção:** solicita somente o dado discriminante indispensável; ambientação não pode assumir forma de formulário ou menu obrigatório.
+4. **Política de fontes:** respeita a escolha entre acervo exclusivo, acervo com atualização oficial e pesquisa completa; fonte editorial não substitui Planalto, STF, STJ ou outra fonte oficial competente.
+5. **Apresentação:** links e referências servem à rastreabilidade, mas não transformam a resposta em portfólio de notícias.
+
+Para cada dimensão aplicável, registre nota 0, 1 ou 2, justificativa curta e a repetição em que ocorreu eventual variância.

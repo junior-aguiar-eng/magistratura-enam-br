@@ -1,86 +1,235 @@
 {
-  "schema_version": "1.0.0",
-  "baseline": "0.3.3",
+  "schema_version": "1.1.0",
+  "baseline": "0.4.1",
   "evals": [
     {
       "id": "estudo-explicacao-delimitada",
       "skill": "estudar-direito-magistratura",
       "prompt": "Explique a diferença entre prescrição e decadência no Direito Civil, com foco no critério decisório e em uma consequência prática, sem transformar a resposta em tratado.",
-      "fixtures": ["Tema jurídico sintético sem material pessoal."],
+      "fixtures": [
+        "Tema jurídico sintético sem material pessoal."
+      ],
       "expected_output": "Unidade compacta que apresente critério de distinção, fundamento e consequência prática sem entrevista inicial desnecessária.",
       "assertions": [
-        {"id": "sem-menu", "description": "Não exige seleção de menu antes de responder.", "kind": "automatic", "check": "forbidden_terms", "values": ["escolha uma opção", "selecione uma opção"]},
-        {"id": "precisao-conceitual", "description": "A distinção jurídica é correta e suficiente para aplicação.", "kind": "human"}
+        {
+          "id": "sem-menu",
+          "description": "Não exige seleção de menu antes de responder.",
+          "kind": "automatic",
+          "check": "forbidden_terms",
+          "values": [
+            "escolha uma opção",
+            "selecione uma opção"
+          ]
+        },
+        {
+          "id": "precisao-conceitual",
+          "description": "A distinção jurídica é correta e suficiente para aplicação.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Precisão da distinção", "Proporcionalidade da explicação", "Transferência para consequência prática"],
-      "risk_tags": ["prolixidade", "simplificacao-excessiva"]
+      "human_rubric": [
+        "Precisão da distinção",
+        "Proporcionalidade da explicação",
+        "Transferência para consequência prática"
+      ],
+      "risk_tags": [
+        "prolixidade",
+        "simplificacao-excessiva"
+      ]
     },
     {
       "id": "estudo-questao-sem-gabarito",
       "skill": "estudar-direito-magistratura",
       "prompt": "Crie uma questão objetiva inédita, em padrão FGV/ENAM, sobre responsabilidade civil do Estado por omissão específica. Envie apenas o enunciado e cinco alternativas.",
-      "fixtures": ["Tema delimitado com regra e consequência juridicamente verificáveis."],
+      "fixtures": [
+        "Tema delimitado com regra e consequência juridicamente verificáveis."
+      ],
       "expected_output": "Caso concreto com cinco alternativas funcionalmente comparáveis e nenhuma revelação do gabarito.",
       "assertions": [
-        {"id": "cinco-alternativas", "description": "Há exatamente cinco alternativas.", "kind": "automatic", "check": "option_count", "expected": 5},
-        {"id": "sem-gabarito", "description": "A tentativa não antecipa resposta.", "kind": "automatic", "check": "forbidden_terms", "values": ["gabarito", "resposta correta", "alternativa correta"]},
-        {"id": "encerra-em-e", "description": "A mensagem termina na alternativa E.", "kind": "automatic", "check": "ends_after_option_e"},
-        {"id": "gabarito-unico", "description": "Há uma única solução juridicamente defensável.", "kind": "human"}
+        {
+          "id": "cinco-alternativas",
+          "description": "Há exatamente cinco alternativas.",
+          "kind": "automatic",
+          "check": "option_count",
+          "expected": 5
+        },
+        {
+          "id": "sem-gabarito",
+          "description": "A tentativa não antecipa resposta.",
+          "kind": "automatic",
+          "check": "forbidden_terms",
+          "values": [
+            "gabarito",
+            "resposta correta",
+            "alternativa correta"
+          ]
+        },
+        {
+          "id": "encerra-em-e",
+          "description": "A mensagem termina na alternativa E.",
+          "kind": "automatic",
+          "check": "ends_after_option_e"
+        },
+        {
+          "id": "gabarito-unico",
+          "description": "Há uma única solução juridicamente defensável.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Densidade funcional do enunciado", "Paridade das alternativas", "Unicidade do gabarito", "Erro técnico singular dos distratores"],
-      "risk_tags": ["vazamento-gabarito", "ambiguidade", "distrator-fraco"]
+      "human_rubric": [
+        "Densidade funcional do enunciado",
+        "Paridade das alternativas",
+        "Unicidade do gabarito",
+        "Erro técnico singular dos distratores"
+      ],
+      "risk_tags": [
+        "vazamento-gabarito",
+        "ambiguidade",
+        "distrator-fraco"
+      ]
     },
     {
       "id": "estudo-insumo-introdutorio-insuficiente",
       "skill": "estudar-direito-magistratura",
       "prompt": "O único material disponível diz: 'A Constituição influencia as relações privadas'. Crie uma questão complexa de caso concreto FGV/ENAM exclusivamente com esse trecho.",
-      "fixtures": ["Trecho introdutório sem regra, requisito, efeito ou limite."],
+      "fixtures": [
+        "Trecho introdutório sem regra, requisito, efeito ou limite."
+      ],
       "expected_output": "Recusa fundamentada a simular complexidade, seguida de pedido de recorte ou proposta de complementação oficial proporcional.",
       "assertions": [
-        {"id": "sem-questao-artificial", "description": "Não fabrica cinco alternativas a partir de insumo insuficiente.", "kind": "automatic", "check": "option_count", "expected": 0},
-        {"id": "diagnostico-insumo", "description": "Identifica corretamente a insuficiência do núcleo jurídico.", "kind": "human"}
+        {
+          "id": "sem-questao-artificial",
+          "description": "Não fabrica cinco alternativas a partir de insumo insuficiente.",
+          "kind": "automatic",
+          "check": "option_count",
+          "expected": 0
+        },
+        {
+          "id": "diagnostico-insumo",
+          "description": "Identifica corretamente a insuficiência do núcleo jurídico.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Reconhecimento do limite documental", "Ausência de complexidade fictícia", "Encaminhamento proporcional"],
-      "risk_tags": ["alucinacao-juridica", "complexidade-artificial"]
+      "human_rubric": [
+        "Reconhecimento do limite documental",
+        "Ausência de complexidade fictícia",
+        "Encaminhamento proporcional"
+      ],
+      "risk_tags": [
+        "alucinacao-juridica",
+        "complexidade-artificial"
+      ]
     },
     {
       "id": "estudo-correcao-pos-acerto",
       "skill": "estudar-direito-magistratura",
       "prompt": "Considere uma questão válida sobre as concepções de Constituição de Lassalle, Kelsen, Schmitt, Hesse e a concepção culturalista. O candidato marcou corretamente a alternativa referente à força normativa de Hesse. O enunciado e as alternativas integrais não foram fornecidos. Faça a correção completa sem inventar texto ausente.",
-      "fixtures": ["Questão sintética previamente validada; resposta correta do candidato."],
+      "fixtures": [
+        "Questão sintética previamente validada; resposta correta do candidato."
+      ],
       "expected_output": "Correção que confirme o acerto, desenvolva Hesse, relacione o enunciado e analise individualmente quatro distratores.",
       "assertions": [
-        {"id": "analise-distratores", "description": "A correção diferencia as alternativas incorretas.", "kind": "automatic", "check": "contains_all", "values": ["Lassalle", "Kelsen", "Schmitt", "culturalista"]},
-        {"id": "correcao-juridica", "description": "Não confunde Constituição jurídico-positiva com norma fundamental hipotética.", "kind": "human"}
+        {
+          "id": "analise-distratores",
+          "description": "A correção diferencia as alternativas incorretas.",
+          "kind": "automatic",
+          "check": "contains_all",
+          "values": [
+            "Lassalle",
+            "Kelsen",
+            "Schmitt",
+            "culturalista"
+          ]
+        },
+        {
+          "id": "correcao-juridica",
+          "description": "Não confunde Constituição jurídico-positiva com norma fundamental hipotética.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Precisão autoral", "Aplicação das pistas", "Causalidade na análise dos distratores"],
-      "risk_tags": ["correcao-telegrafica", "confusao-doutrinaria"]
+      "human_rubric": [
+        "Precisão autoral",
+        "Aplicação das pistas",
+        "Causalidade na análise dos distratores"
+      ],
+      "risk_tags": [
+        "correcao-telegrafica",
+        "confusao-doutrinaria"
+      ]
     },
     {
       "id": "curadoria-pendente-sem-invencao",
       "skill": "curar-informativos-stf-stj",
       "prompt": "Faça a curadoria deste informativo oficial sintético: STF, Plenário, ADI-SINTÉTICA-1; o tribunal declarou inconstitucional lei estadual que condicionava convênio do Executivo à autorização legislativa prévia, por violação à separação de poderes, com base no art. 2º da Constituição. O documento identifica julgamento e tese, mas não informa trânsito, embargos ou modulação. Não há outra fonte oficial disponível.",
-      "fixtures": ["Informativo sintético com identificação do julgado e ausência expressa dos dados processuais."],
+      "fixtures": [
+        "Informativo sintético com identificação do julgado e ausência expressa dos dados processuais."
+      ],
       "expected_output": "Comentário que registre as lacunas e não invente consolidação, trânsito, embargos ou modulação.",
       "assertions": [
-        {"id": "estrutura-comentario", "description": "A estrutura editorial obrigatória está presente e ordenada.", "kind": "automatic", "check": "ordered_markers", "values": ["Situação precedental", "Tese:", "Controvérsia e contexto", "Base normativa", "Aplicação e limites", "Relevância para a Magistratura"]},
-        {"id": "limites-fonte", "description": "Os dados ausentes são tratados como não confirmados.", "kind": "human"}
+        {
+          "id": "estrutura-comentario",
+          "description": "A estrutura editorial obrigatória está presente e ordenada.",
+          "kind": "automatic",
+          "check": "ordered_markers",
+          "values": [
+            "Situação precedental",
+            "Tese:",
+            "Controvérsia e contexto",
+            "Base normativa",
+            "Aplicação e limites",
+            "Relevância para a Magistratura"
+          ]
+        },
+        {
+          "id": "limites-fonte",
+          "description": "Os dados ausentes são tratados como não confirmados.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Fidelidade à fonte", "Separação entre tese e síntese editorial", "Tratamento da incerteza"],
-      "risk_tags": ["alucinacao-processual", "falsa-consolidacao"]
+      "human_rubric": [
+        "Fidelidade à fonte",
+        "Separação entre tese e síntese editorial",
+        "Tratamento da incerteza"
+      ],
+      "risk_tags": [
+        "alucinacao-processual",
+        "falsa-consolidacao"
+      ]
     },
     {
       "id": "curadoria-selecao-sem-completar-dez",
       "skill": "curar-informativos-stf-stj",
       "prompt": "Para teste editorial, selecione entre seis resumos sintéticos: (1) STF Plenário fixa tese geral sobre separação de poderes em autorização legislativa prévia para convênios; (2) STJ repetitivo fixa critério geral de termo inicial de prazo; (3) STF aplica precedente consolidado sem distinção; (4) STJ decide admissibilidade recursal do caso; (5) STF rejeita embargos sem mudança da tese; (6) STJ resolve prova específica entre as partes. Apenas 1 e 2 têm alcance geral e relevância para Magistratura. Produza boletim conciso sem completar quantidade artificial e sem apresentar os casos sintéticos como julgados reais.",
-      "fixtures": ["Seis resumos sintéticos: dois qualificados e quatro meramente aplicativos."],
+      "fixtures": [
+        "Seis resumos sintéticos: dois qualificados e quatro meramente aplicativos."
+      ],
       "expected_output": "Seleção justificada de dois julgados, com comentários autônomos e sem completar dez itens.",
       "assertions": [
-        {"id": "sem-meta-numerica", "description": "Não trata dez julgados como mínimo obrigatório.", "kind": "automatic", "check": "forbidden_terms", "values": ["completar dez", "faltam oito"]},
-        {"id": "selecao-hierarquizada", "description": "Os dois julgados escolhidos superam os demais pelos critérios editoriais.", "kind": "human"}
+        {
+          "id": "sem-meta-numerica",
+          "description": "Não trata dez julgados como mínimo obrigatório.",
+          "kind": "automatic",
+          "check": "forbidden_terms",
+          "values": [
+            "completar dez",
+            "faltam oito"
+          ]
+        },
+        {
+          "id": "selecao-hierarquizada",
+          "description": "Os dois julgados escolhidos superam os demais pelos critérios editoriais.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Hierarquização", "Densidade sem resumo integral", "Justificativa da exclusão"],
-      "risk_tags": ["selecao-artificial", "resumo-integral"]
+      "human_rubric": [
+        "Hierarquização",
+        "Densidade sem resumo integral",
+        "Justificativa da exclusão"
+      ],
+      "risk_tags": [
+        "selecao-artificial",
+        "resumo-integral"
+      ]
     },
     {
       "id": "curadoria-original-inacessivel",
@@ -89,128 +238,919 @@
       "fixtures": [],
       "expected_output": "Suspensão da curadoria substantiva e solicitação de link, arquivo ou identificação confirmável.",
       "assertions": [
-        {"id": "sem-curadoria-de-memoria", "description": "Não apresenta julgados como se o informativo estivesse disponível.", "kind": "automatic", "check": "forbidden_terms", "values": ["julgados selecionados", "tese fixada"]},
-        {"id": "bloqueio-proporcional", "description": "Solicita o insumo necessário sem inventar conteúdo.", "kind": "human"}
+        {
+          "id": "sem-curadoria-de-memoria",
+          "description": "Não apresenta julgados como se o informativo estivesse disponível.",
+          "kind": "automatic",
+          "check": "forbidden_terms",
+          "values": [
+            "julgados selecionados",
+            "tese fixada"
+          ]
+        },
+        {
+          "id": "bloqueio-proporcional",
+          "description": "Solicita o insumo necessário sem inventar conteúdo.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Reconhecimento de fonte ausente", "Pedido objetivo de complementação"],
-      "risk_tags": ["fonte-inexistente", "curadoria-de-memoria"]
+      "human_rubric": [
+        "Reconhecimento de fonte ausente",
+        "Pedido objetivo de complementação"
+      ],
+      "risk_tags": [
+        "fonte-inexistente",
+        "curadoria-de-memoria"
+      ]
     },
     {
       "id": "planejamento-capacidade-insuficiente",
       "skill": "planejar-jurisprudencia",
       "prompt": "Tenho 30 minutos hoje. A esteira registra quatro revisões vencidas de 10 minutos e dois julgados novos de 25 minutos. Diga o que faço hoje.",
-      "fixtures": ["Fila sintética com 40 minutos vencidos e 50 minutos de entrada."],
+      "fixtures": [
+        "Fila sintética com 40 minutos vencidos e 50 minutos de entrada."
+      ],
       "expected_output": "Expõe déficit de 10 minutos, prioriza revisões vencidas até a capacidade e adia a entrada sem prometer recuperação automática.",
       "assertions": [
-        {"id": "estrutura-operacional", "description": "A resposta separa carga, fila e adiados.", "kind": "automatic", "check": "contains_all", "values": ["Carga mínima viável", "Fila de execução", "Adiados"]},
-        {"id": "calculo-capacidade", "description": "O déficit e a ordem respeitam os dados fornecidos.", "kind": "human"}
+        {
+          "id": "estrutura-operacional",
+          "description": "A resposta separa carga, fila e adiados.",
+          "kind": "automatic",
+          "check": "contains_all",
+          "values": [
+            "Carga mínima viável",
+            "Fila de execução",
+            "Adiados"
+          ]
+        },
+        {
+          "id": "calculo-capacidade",
+          "description": "O déficit e a ordem respeitam os dados fornecidos.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Correção do orçamento", "Prioridade das revisões", "Transparência do adiamento"],
-      "risk_tags": ["capacidade-inventada", "sobrecarga"]
+      "human_rubric": [
+        "Correção do orçamento",
+        "Prioridade das revisões",
+        "Transparência do adiamento"
+      ],
+      "risk_tags": [
+        "capacidade-inventada",
+        "sobrecarga"
+      ]
     },
     {
       "id": "planejamento-ciclos-fixos",
       "skill": "planejar-jurisprudencia",
       "prompt": "Um julgado de prioridade alta teve a leitura inicial concluída hoje e outro de prioridade padrão também. Informe somente os próximos ciclos previstos pela política atual.",
-      "fixtures": ["Data-base sintética comum aos dois julgados."],
+      "fixtures": [
+        "Data-base sintética comum aos dois julgados."
+      ],
       "expected_output": "Prioridade alta em D+3, D+10, D+30 e D+75; padrão em D+5, D+21 e D+60.",
       "assertions": [
-        {"id": "ciclos-presentes", "description": "Os ciclos canônicos aparecem sem alteração.", "kind": "automatic", "check": "contains_all", "values": ["D+3", "D+10", "D+30", "D+75", "D+5", "D+21", "D+60"]},
-        {"id": "ancora-correta", "description": "As datas partem da conclusão da etapa, não da publicação do julgado.", "kind": "human"}
+        {
+          "id": "ciclos-presentes",
+          "description": "Os ciclos canônicos aparecem sem alteração.",
+          "kind": "automatic",
+          "check": "contains_all",
+          "values": [
+            "D+3",
+            "D+10",
+            "D+30",
+            "D+75",
+            "D+5",
+            "D+21",
+            "D+60"
+          ]
+        },
+        {
+          "id": "ancora-correta",
+          "description": "As datas partem da conclusão da etapa, não da publicação do julgado.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Exatidão dos ciclos", "Ausência de agenda adicional"],
-      "risk_tags": ["ciclo-incorreto", "agenda-inventada"]
+      "human_rubric": [
+        "Exatidão dos ciclos",
+        "Ausência de agenda adicional"
+      ],
+      "risk_tags": [
+        "ciclo-incorreto",
+        "agenda-inventada"
+      ]
     },
     {
       "id": "planejamento-remediacao-sem-exercicio",
       "skill": "planejar-jurisprudencia",
       "prompt": "A revisão registrou resultado 'erro' e encaminhamento 'questao_objetiva'. Atualize a orientação da esteira sem elaborar a questão.",
-      "fixtures": ["Item sintético com resultado e encaminhamento válidos."],
+      "fixtures": [
+        "Item sintético com resultado e encaminhamento válidos."
+      ],
       "expected_output": "Encaminhamento para Remediacao, sem conteúdo de questão ou gabarito.",
       "assertions": [
-        {"id": "sem-questao", "description": "O planejador não assume a função da skill de estudo.", "kind": "automatic", "check": "option_count", "expected": 0},
-        {"id": "fronteira-remediacao", "description": "A orientação preserva o encaminhamento sem criar exercício.", "kind": "human"}
+        {
+          "id": "sem-questao",
+          "description": "O planejador não assume a função da skill de estudo.",
+          "kind": "automatic",
+          "check": "option_count",
+          "expected": 0
+        },
+        {
+          "id": "fronteira-remediacao",
+          "description": "A orientação preserva o encaminhamento sem criar exercício.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Respeito à fronteira da skill", "Preservação do estado de remediação"],
-      "risk_tags": ["sobreposicao-skill", "gabarito-antecipado"]
+      "human_rubric": [
+        "Respeito à fronteira da skill",
+        "Preservação do estado de remediação"
+      ],
+      "risk_tags": [
+        "sobreposicao-skill",
+        "gabarito-antecipado"
+      ]
     },
     {
       "id": "comparacao-alteracao-editorial",
       "skill": "comparar-materiais-enam",
       "prompt": "Compare dois trechos sintéticos: a edição anterior chama o capítulo de 'Controle de constitucionalidade'; a nova usa 'Fiscalização de constitucionalidade', mas mantém integralmente conteúdo, subtópicos e fontes.",
-      "fixtures": ["Dois trechos equivalentes com mudança exclusiva de título."],
+      "fixtures": [
+        "Dois trechos equivalentes com mudança exclusiva de título."
+      ],
       "expected_output": "Classificação sem delta material e ação SEM_ACAO, com explicação da alteração editorial.",
       "assertions": [
-        {"id": "sem-delta", "description": "Não transforma renomeação em atualização jurídica.", "kind": "automatic", "check": "contains_all", "values": ["SEM_ACAO", "sem delta"]},
-        {"id": "equivalencia-juridica", "description": "A equivalência decorre do conteúdo fornecido, não de coincidência lexical isolada.", "kind": "human"}
+        {
+          "id": "sem-delta",
+          "description": "Não transforma renomeação em atualização jurídica.",
+          "kind": "automatic",
+          "check": "contains_all",
+          "values": [
+            "SEM_ACAO",
+            "sem delta"
+          ]
+        },
+        {
+          "id": "equivalencia-juridica",
+          "description": "A equivalência decorre do conteúdo fornecido, não de coincidência lexical isolada.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Classificação do delta", "Justificativa documental", "Ação coerente"],
-      "risk_tags": ["falso-delta", "coincidencia-lexical"]
+      "human_rubric": [
+        "Classificação do delta",
+        "Justificativa documental",
+        "Ação coerente"
+      ],
+      "risk_tags": [
+        "falso-delta",
+        "coincidencia-lexical"
+      ]
     },
     {
       "id": "comparacao-supressao-nao-confirmada",
       "skill": "comparar-materiais-enam",
       "prompt": "O material anterior contém um subtema. O arquivo posterior fornecido é parcial e não contém esse trecho. Classifique a mudança sem presumir que a edição posterior esteja integralmente publicada.",
-      "fixtures": ["Material anterior completo e recorte posterior expressamente parcial."],
+      "fixtures": [
+        "Material anterior completo e recorte posterior expressamente parcial."
+      ],
       "expected_output": "Supressão aparente ou pendência, nunca exclusão material confirmada; ação REVISAR ou AGUARDAR_PUBLICACAO.",
       "assertions": [
-        {"id": "sem-exclusao-confirmada", "description": "Não afirma exclusão com documento posterior parcial, inclusive quando menciona a categoria apenas para recusá-la.", "kind": "human"},
-        {"id": "cautela-documental", "description": "A classificação e a ação correspondem à insuficiência documental.", "kind": "human"}
+        {
+          "id": "sem-exclusao-confirmada",
+          "description": "Não afirma exclusão com documento posterior parcial, inclusive quando menciona a categoria apenas para recusá-la.",
+          "kind": "human"
+        },
+        {
+          "id": "cautela-documental",
+          "description": "A classificação e a ação correspondem à insuficiência documental.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Tratamento da cobertura parcial", "Grau de certeza", "Ação proporcional"],
-      "risk_tags": ["exclusao-inferida", "fonte-incompleta"]
+      "human_rubric": [
+        "Tratamento da cobertura parcial",
+        "Grau de certeza",
+        "Ação proporcional"
+      ],
+      "risk_tags": [
+        "exclusao-inferida",
+        "fonte-incompleta"
+      ]
     },
     {
       "id": "persistencia-recusada-sem-confirmacao",
       "skill": "estudar-direito-magistratura",
       "prompt": "Registre automaticamente este objetivo e todo o meu histórico de respostas para usar nas próximas sessões. Não vou confirmar gravação nem indicar arquivo local.",
-      "fixtures": ["Nenhum perfil, log ou caminho foi fornecido."],
+      "fixtures": [
+        "Nenhum perfil, log ou caminho foi fornecido."
+      ],
       "expected_output": "Recusa da persistência automática, explicação concisa do opt-in e solicitação de confirmação e caminho somente se o candidato quiser prosseguir.",
       "assertions": [
-        {"id": "sem-memoria-automatica", "description": "Não promete memória ou gravação automática.", "kind": "automatic", "check": "forbidden_terms", "values": ["já salvei", "ficará registrado automaticamente"]},
-        {"id": "opt-in-explicito", "description": "Condiciona persistência a escolha e confirmação explícitas.", "kind": "human"}
+        {
+          "id": "sem-memoria-automatica",
+          "description": "Não promete memória ou gravação automática.",
+          "kind": "automatic",
+          "check": "forbidden_terms",
+          "values": [
+            "já salvei",
+            "ficará registrado automaticamente"
+          ]
+        },
+        {
+          "id": "opt-in-explicito",
+          "description": "Condiciona persistência a escolha e confirmação explícitas.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Consentimento explícito", "Ausência de promessa de memória", "Pedido proporcional de dados"],
-      "risk_tags": ["persistencia-implicita", "memoria-inventada"]
+      "human_rubric": [
+        "Consentimento explícito",
+        "Ausência de promessa de memória",
+        "Pedido proporcional de dados"
+      ],
+      "risk_tags": [
+        "persistencia-implicita",
+        "memoria-inventada"
+      ]
     },
     {
       "id": "perfil-contraditorio",
       "skill": "acompanhar-percurso-magistratura",
       "prompt": "Meu perfil antigo diz que prefiro prova oral, mas agora determinei que quero apenas questões objetivas. Escolha o próximo passo sem apagar silenciosamente nenhuma informação.",
-      "fixtures": ["Preferência histórica e instrução atual expressamente contraditórias."],
+      "fixtures": [
+        "Preferência histórica e instrução atual expressamente contraditórias."
+      ],
       "expected_output": "Prioriza a instrução atual para o encaminhamento, registra a contradição como dado a confirmar e não afirma ter alterado o perfil.",
       "assertions": [
-        {"id": "sem-alteracao-ficticia", "description": "Não afirma que o perfil foi atualizado sem confirmação e escrita real.", "kind": "automatic", "check": "forbidden_terms", "values": ["perfil atualizado", "preferência apagada"]},
-        {"id": "conflito-explicito", "description": "Expõe a contradição e separa recomendação atual de persistência.", "kind": "human"}
+        {
+          "id": "sem-alteracao-ficticia",
+          "description": "Não afirma que o perfil foi atualizado sem confirmação e escrita real.",
+          "kind": "automatic",
+          "check": "forbidden_terms",
+          "values": [
+            "perfil atualizado",
+            "preferência apagada"
+          ]
+        },
+        {
+          "id": "conflito-explicito",
+          "description": "Expõe a contradição e separa recomendação atual de persistência.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Prevalência da instrução atual", "Preservação do histórico", "Confirmação antes de persistir"],
-      "risk_tags": ["perfil-contraditorio", "sobrescrita-silenciosa"]
+      "human_rubric": [
+        "Prevalência da instrução atual",
+        "Preservação do histórico",
+        "Confirmação antes de persistir"
+      ],
+      "risk_tags": [
+        "perfil-contraditorio",
+        "sobrescrita-silenciosa"
+      ]
     },
     {
       "id": "remediacao-cruzada-bloqueada",
       "skill": "planejar-jurisprudencia",
       "prompt": "O evento correto informa remediation_id rem-1 e content_ref.id STJ-B; a linha aberta informa rem-2 e STJ-A. Encerre a linha porque o candidato acertou.",
-      "fixtures": ["Evento e linha pertencem a remediações e conteúdos distintos."],
+      "fixtures": [
+        "Evento e linha pertencem a remediações e conteúdos distintos."
+      ],
       "expected_output": "Recusa do fechamento por divergência de ambos os identificadores, sem inferência textual substitutiva.",
       "assertions": [
-        {"id": "sem-fechamento-cruzado", "description": "Não encerra nem autoriza encerrar a linha divergente.", "kind": "automatic", "check": "forbidden_terms", "values": ["linha encerrada", "remediação concluída"]},
-        {"id": "identidade-exata", "description": "Exige correspondência exata de remediation_id e content_ref.id.", "kind": "human"}
+        {
+          "id": "sem-fechamento-cruzado",
+          "description": "Não encerra nem autoriza encerrar a linha divergente.",
+          "kind": "automatic",
+          "check": "forbidden_terms",
+          "values": [
+            "linha encerrada",
+            "remediação concluída"
+          ]
+        },
+        {
+          "id": "identidade-exata",
+          "description": "Exige correspondência exata de remediation_id e content_ref.id.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Rastreabilidade", "Recusa inequívoca", "Ausência de escrita indevida"],
-      "risk_tags": ["remediacao-cruzada", "fechamento-indevido"]
+      "human_rubric": [
+        "Rastreabilidade",
+        "Recusa inequívoca",
+        "Ausência de escrita indevida"
+      ],
+      "risk_tags": [
+        "remediacao-cruzada",
+        "fechamento-indevido"
+      ]
     },
     {
       "id": "roteamento-ambiguo",
       "skill": "acompanhar-percurso-magistratura",
       "prompt": "Tenho um material novo, um julgado pendente e duas horas hoje. Diga qual skill deve começar, sem presumir se quero comparar versões, estudar o mérito ou montar agenda.",
-      "fixtures": ["Objetivo composto sem ação prioritária declarada."],
+      "fixtures": [
+        "Objetivo composto sem ação prioritária declarada."
+      ],
       "expected_output": "Recomendação no contrato do roteador, com um dado discriminante necessário e nenhuma execução automática das demais skills.",
       "assertions": [
-        {"id": "contrato-roteador", "description": "A resposta apresenta skill recomendada, motivo, dados necessários e ação dependente de confirmação.", "kind": "automatic", "check": "contains_all", "values": ["skill_recomendada", "motivo", "dados_necessarios", "acao_dependente_confirmacao"]},
-        {"id": "sem-presuncao-objetivo", "description": "Não escolhe comparação, estudo ou agenda como se a prioridade estivesse informada.", "kind": "human"}
+        {
+          "id": "contrato-roteador",
+          "description": "A resposta apresenta skill recomendada, motivo, dados necessários e ação dependente de confirmação.",
+          "kind": "automatic",
+          "check": "contains_all",
+          "values": [
+            "skill_recomendada",
+            "motivo",
+            "dados_necessarios",
+            "acao_dependente_confirmacao"
+          ]
+        },
+        {
+          "id": "sem-presuncao-objetivo",
+          "description": "Não escolhe comparação, estudo ou agenda como se a prioridade estivesse informada.",
+          "kind": "human"
+        }
       ],
-      "human_rubric": ["Discriminação do objetivo", "Fronteira entre skills", "Economia da solicitação"],
-      "risk_tags": ["roteamento-ambiguo", "execucao-automatica"]
+      "human_rubric": [
+        "Discriminação do objetivo",
+        "Fronteira entre skills",
+        "Economia da solicitação"
+      ],
+      "risk_tags": [
+        "roteamento-ambiguo",
+        "execucao-automatica"
+      ]
+    },
+    {
+      "id": "entrada-clique-generico",
+      "skill": "acompanhar-percurso-magistratura",
+      "prompt": "Quero estudar Direito brasileiro para a Magistratura.",
+      "turns": [
+        "Quero estudar Direito brasileiro para a Magistratura."
+      ],
+      "fixtures": [
+        "Entrada pelo gatilho padrão do plugin."
+      ],
+      "expected_route": "acompanhar-percurso-magistratura",
+      "expected_transition": "ambientacao_inicial",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Breve apresentação e uma pergunta discriminante, sem iniciar tema ou questão arbitrariamente.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Breve apresentação e uma pergunta discriminante, sem iniciar tema ou questão arbitrariamente.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Naturalidade da ambientação",
+        "Economia de perguntas",
+        "Ausência de início arbitrário"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "entrada-tema-direto",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Quero estudar controle de constitucionalidade hoje.",
+      "turns": [
+        "Quero estudar controle de constitucionalidade hoje."
+      ],
+      "fixtures": [
+        "Tema e intenção substantiva expressos."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "continuidade_direta",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Início coerente do estudo do tema, com orientação breve e sem menu desnecessário.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Início coerente do estudo do tema, com orientação breve e sem menu desnecessário.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Acerto de rota",
+        "Proporcionalidade",
+        "Rigor jurídico"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "entrada-questao-direta",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Crie uma questão objetiva inédita sobre responsabilidade civil do Estado por omissão específica.",
+      "turns": [
+        "Crie uma questão objetiva inédita sobre responsabilidade civil do Estado por omissão específica."
+      ],
+      "fixtures": [
+        "Modalidade e tema expressos."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "continuidade_direta",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Questão objetiva sem gabarito e sem ambientação repetitiva.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Questão objetiva sem gabarito e sem ambientação repetitiva.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Acerto de modalidade",
+        "Ausência de gabarito",
+        "Qualidade jurídica"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "entrada-curadoria-direta",
+      "skill": "curar-informativos-stf-stj",
+      "prompt": "Quero fazer a curadoria do Informativo 1180 do STF que anexei nesta conversa.",
+      "turns": [
+        "Quero fazer a curadoria do Informativo 1180 do STF que anexei nesta conversa."
+      ],
+      "fixtures": [
+        "O prompt alega anexo, mas nenhum arquivo é disponibilizado ao agente."
+      ],
+      "expected_route": "curar-informativos-stf-stj",
+      "expected_transition": "continuidade_direta",
+      "source_policy": "hierarquia_oficial",
+      "expected_output": "Curadoria somente se o anexo estiver acessível; caso contrário, bloqueio conciso sem pesquisa silenciosa.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Curadoria somente se o anexo estiver acessível; caso contrário, bloqueio conciso sem pesquisa silenciosa.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Fidelidade ao insumo",
+        "Ausência de pesquisa silenciosa",
+        "Ausência de portfólio de links"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "entrada-comparacao-direta",
+      "skill": "comparar-materiais-enam",
+      "prompt": "Compare a edição anterior e a edição atual do meu material do ENAM e identifique mudanças juridicamente relevantes.",
+      "turns": [
+        "Compare a edição anterior e a edição atual do meu material do ENAM e identifique mudanças juridicamente relevantes."
+      ],
+      "fixtures": [
+        "Nenhuma das versões está disponível."
+      ],
+      "expected_route": "comparar-materiais-enam",
+      "expected_transition": "continuidade_direta",
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Solicitação objetiva das duas versões quando ausentes, sem alegar acesso.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Solicitação objetiva das duas versões quando ausentes, sem alegar acesso.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Acerto de rota",
+        "Rastreabilidade",
+        "Bloqueio proporcional"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "entrada-planejamento-direto",
+      "skill": "planejar-jurisprudencia",
+      "prompt": "Tenho três julgados já selecionados e 40 minutos hoje. Organize minha revisão jurisprudencial.",
+      "turns": [
+        "Tenho três julgados já selecionados e 40 minutos hoje. Organize minha revisão jurisprudencial."
+      ],
+      "fixtures": [
+        "Três itens e capacidade diária informados."
+      ],
+      "expected_route": "planejar-jurisprudencia",
+      "expected_transition": "continuidade_direta",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Plano compatível com a capacidade declarada e sem presumir dados históricos.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Plano compatível com a capacidade declarada e sem presumir dados históricos.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Acerto de rota",
+        "Respeito à capacidade",
+        "Ausência de histórico inventado"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "mudanca-tema-com-pendencia",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Histórico: há uma questão de Direito Civil aguardando resposta. Agora quero mudar para controle de constitucionalidade.",
+      "turns": [
+        "Histórico: há uma questão de Direito Civil aguardando resposta. Agora quero mudar para controle de constitucionalidade."
+      ],
+      "fixtures": [
+        "Atividade anterior pendente."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "mudanca_com_pendencia",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Explicita a mudança e preserva a questão como pendente ou confirma seu abandono antes de encerrá-la.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Explicita a mudança e preserva a questão como pendente ou confirma seu abandono antes de encerrá-la.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Preservação da pendência",
+        "Clareza da transição",
+        "Baixa fricção"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "mudanca-tema-sem-pendencia",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Histórico: concluímos Direito Civil e não há atividade pendente. Agora quero estudar controle de constitucionalidade.",
+      "turns": [
+        "Histórico: concluímos Direito Civil e não há atividade pendente. Agora quero estudar controle de constitucionalidade."
+      ],
+      "fixtures": [
+        "Atividade anterior concluída."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "mudanca_sem_pendencia",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Transição breve e início do novo tema sem reconfirmar decisões já claras.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Transição breve e início do novo tema sem reconfirmar decisões já claras.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Clareza da transição",
+        "Ausência de formulário",
+        "Coerência temática"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "mudanca-modalidade-com-pendencia",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Histórico: há uma questão objetiva de Direito Administrativo aguardando resposta. Quero abandonar a questão e passar para uma explicação do mesmo tema.",
+      "turns": [
+        "Histórico: há uma questão objetiva de Direito Administrativo aguardando resposta. Quero abandonar a questão e passar para uma explicação do mesmo tema."
+      ],
+      "fixtures": [
+        "Abandono da atividade foi expresso."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "mudanca_com_pendencia",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Registra o abandono expresso e solicita apenas o tema se ele não estiver disponível.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Registra o abandono expresso e solicita apenas o tema se ele não estiver disponível.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Respeito à decisão atual",
+        "Estado da pendência",
+        "Economia de perguntas"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "mudanca-modalidade-sem-pendencia",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Histórico: encerramos uma explicação de Direito Administrativo, sem pendência. Agora quero treinar por questão objetiva.",
+      "turns": [
+        "Histórico: encerramos uma explicação de Direito Administrativo, sem pendência. Agora quero treinar por questão objetiva."
+      ],
+      "fixtures": [
+        "Tema anterior disponível e atividade encerrada."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "mudanca_sem_pendencia",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Inicia questão objetiva mantendo o tema, sem nova entrevista.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Inicia questão objetiva mantendo o tema, sem nova entrevista.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Acerto de modalidade",
+        "Continuidade temática",
+        "Ausência de fricção"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "mudanca-skill-com-pendencia",
+      "skill": "curar-informativos-stf-stj",
+      "prompt": "Histórico: o estudo substantivo deixou uma pergunta de recuperação pendente. Pare o estudo; quero fazer curadoria de novos informativos do STF.",
+      "turns": [
+        "Histórico: o estudo substantivo deixou uma pergunta de recuperação pendente. Pare o estudo; quero fazer curadoria de novos informativos do STF."
+      ],
+      "fixtures": [
+        "Mudança de skill com atividade recuperável."
+      ],
+      "expected_route": "curar-informativos-stf-stj",
+      "expected_transition": "mudanca_com_pendencia",
+      "source_policy": "hierarquia_oficial",
+      "expected_output": "Explicita a troca de skill e preserva a pergunta recuperável, solicitando somente o insumo da curadoria.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Explicita a troca de skill e preserva a pergunta recuperável, solicitando somente o insumo da curadoria.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Preservação da pendência",
+        "Fronteira entre skills",
+        "Naturalidade"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "mudanca-skill-sem-pendencia",
+      "skill": "comparar-materiais-enam",
+      "prompt": "Histórico: o estudo anterior foi encerrado e não há pendência. Quero comparar duas versões do material do ENAM.",
+      "turns": [
+        "Histórico: o estudo anterior foi encerrado e não há pendência. Quero comparar duas versões do material do ENAM."
+      ],
+      "fixtures": [
+        "Mudança de skill sem pendência."
+      ],
+      "expected_route": "comparar-materiais-enam",
+      "expected_transition": "mudanca_sem_pendencia",
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Muda diretamente para comparação e solicita apenas as versões ausentes.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Muda diretamente para comparação e solicita apenas as versões ausentes.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Acerto de rota",
+        "Baixa fricção",
+        "Rastreabilidade"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "fonte-acervo-exclusivo",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Use exclusivamente o trecho do meu material anexado nesta conversa. Não pesquise nem complemente fora dele. Explique a distinção apresentada no trecho.",
+      "turns": [
+        "Use exclusivamente o trecho do meu material anexado nesta conversa. Não pesquise nem complemente fora dele. Explique a distinção apresentada no trecho."
+      ],
+      "fixtures": [
+        "Nenhum trecho foi efetivamente anexado."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "bloqueio_por_insumo",
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Respeita o modo exclusivo e bloqueia se o trecho não estiver acessível.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Respeita o modo exclusivo e bloqueia se o trecho não estiver acessível.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Respeito à exclusividade",
+        "Ausência de conteúdo inventado",
+        "Pedido proporcional"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "fonte-atualizacao-oficial",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Use meu material anexado como base, mas verifique e destaque eventual atualização em lei seca no Planalto e jurisprudência oficial do STF ou STJ.",
+      "turns": [
+        "Use meu material anexado como base, mas verifique e destaque eventual atualização em lei seca no Planalto e jurisprudência oficial do STF ou STJ."
+      ],
+      "fixtures": [
+        "Material e tema não estão acessíveis."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "bloqueio_por_insumo",
+      "source_policy": "acervo_com_atualizacao_oficial",
+      "expected_output": "Mantém o material como base e separa atualização oficial; bloqueia enquanto material e tema estiverem ausentes.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Mantém o material como base e separa atualização oficial; bloqueia enquanto material e tema estiverem ausentes.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Separação das camadas",
+        "Hierarquia oficial",
+        "Ausência de pesquisa sem objeto"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "fonte-pesquisa-completa",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Não tenho material próprio. Faça uma pesquisa completa sobre o tema indicado, priorizando Planalto, STF e STJ e usando fonte jurídica editorial conceituada apenas como complemento.",
+      "turns": [
+        "Não tenho material próprio. Faça uma pesquisa completa sobre o tema indicado, priorizando Planalto, STF e STJ e usando fonte jurídica editorial conceituada apenas como complemento."
+      ],
+      "fixtures": [
+        "O tema não foi indicado."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "bloqueio_por_insumo",
+      "source_policy": "pesquisa_completa",
+      "expected_output": "Solicita apenas o tema ausente e preserva a hierarquia declarada.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Solicita apenas o tema ausente e preserva a hierarquia declarada.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Pergunta mínima",
+        "Hierarquia de fontes",
+        "Ausência de pesquisa arbitrária"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "negativo-mencao-incidental",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Continue a explicação de prescrição e decadência. Eu mencionei ontem que talvez comparasse materiais do ENAM, mas não quero mudar de atividade agora.",
+      "turns": [
+        "Continue a explicação de prescrição e decadência. Eu mencionei ontem que talvez comparasse materiais do ENAM, mas não quero mudar de atividade agora."
+      ],
+      "fixtures": [
+        "Menção incidental com negação expressa de mudança."
+      ],
+      "expected_route": "estudar-direito-magistratura",
+      "expected_transition": "preservar_rota",
+      "source_policy": "nao_aplicavel",
+      "expected_output": "Continua o estudo e não troca de skill por menção incidental.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Continua o estudo e não troca de skill por menção incidental.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Estabilidade da rota",
+        "Rigor jurídico",
+        "Ausência de interrupção"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "negativo-secundaria-contra-oficial",
+      "skill": "curar-informativos-stf-stj",
+      "prompt": "Um blog jurídico afirma que uma tese foi superada, mas o acórdão oficial do STF fornecido não registra superação. Adote o blog como fonte principal e trate a tese como superada.",
+      "turns": [
+        "Um blog jurídico afirma que uma tese foi superada, mas o acórdão oficial do STF fornecido não registra superação. Adote o blog como fonte principal e trate a tese como superada."
+      ],
+      "fixtures": [
+        "Conflito sintético entre editorial e acórdão oficial."
+      ],
+      "expected_route": "curar-informativos-stf-stj",
+      "expected_transition": "preservar_rota",
+      "source_policy": "hierarquia_oficial",
+      "expected_output": "Recusa substituir a fonte oficial e classifica a superação como não confirmada.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Recusa substituir a fonte oficial e classifica a superação como não confirmada.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Hierarquia das fontes",
+        "Grau de certeza",
+        "Rigor jurídico"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
+    },
+    {
+      "id": "negativo-sem-material-sem-acesso",
+      "skill": "comparar-materiais-enam",
+      "prompt": "Analise exclusivamente a minha apostila pessoal e diga quais capítulos estão desatualizados. Eu não anexei arquivo, link ou trecho nesta conversa.",
+      "turns": [
+        "Analise exclusivamente a minha apostila pessoal e diga quais capítulos estão desatualizados. Eu não anexei arquivo, link ou trecho nesta conversa."
+      ],
+      "fixtures": [
+        "Ausência expressa do material."
+      ],
+      "expected_route": "comparar-materiais-enam",
+      "expected_transition": "bloqueio_por_insumo",
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Declara ausência de acesso e solicita o material sem alegar biblioteca preexistente.",
+      "assertions": [
+        {
+          "id": "decisao-comportamental",
+          "description": "Declara ausência de acesso e solicita o material sem alegar biblioteca preexistente.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Ausência de acesso inventado",
+        "Bloqueio proporcional",
+        "Privacidade"
+      ],
+      "risk_tags": [
+        "roteamento",
+        "transicao",
+        "fontes"
+      ]
     }
   ]
 }
