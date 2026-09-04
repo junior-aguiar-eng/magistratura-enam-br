@@ -10,7 +10,7 @@
 ## Versão estável
 
 ```powershell
-codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.4.0
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.4.1
 codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 

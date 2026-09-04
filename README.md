@@ -1,29 +1,123 @@
-# Magistratura e ENAM Brasil
+<p align="center">
+  <img src="plugins/magistratura-enam-br/assets/magistratura-enam-br.png" width="156" alt="Monograma NJ do Estudo Jurídico Avançado">
+</p>
 
-Marketplace local e compartilhável do plugin **Magistratura e ENAM Brasil**. A versão instalável é a declarada em `plugins/magistratura-enam-br/.codex-plugin/plugin.json`.
+<h1 align="center">Estudo Jurídico Avançado</h1>
 
-## Instalação por ZIP no Windows
+<p align="center">
+  Ambiente privado de aprendizagem jurídica para Magistratura e ENAM, integrado ao Codex.
+</p>
 
-1. Descompacte esta pasta em um local permanente.
-2. Abra o PowerShell dentro da pasta descompactada.
-3. Execute `./INSTALAR.ps1`.
-4. Abra uma nova tarefa no Codex.
+<p align="center">
+  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.4.1" src="https://img.shields.io/badge/vers%C3%A3o-0.4.1-006B4F"></a>
+  <a href="plugins/magistratura-enam-br/pyproject.toml"><img alt="Python 3.14" src="https://img.shields.io/badge/Python-3.14-1F6F54"></a>
+  <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml"><img alt="Validação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml/badge.svg"></a>
+  <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml"><img alt="Documentação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="Licença proprietária" src="https://img.shields.io/badge/licen%C3%A7a-propriet%C3%A1ria-B08A3E"></a>
+</p>
 
-Para também preparar, com `uv`, o ambiente isolado usado pelos scripts de PDF e planilha, execute `./INSTALAR.ps1 -InstalarDependencias`. Essa opção requer `uv` disponível no `PATH` e não instala pacotes globalmente.
+<p align="center">
+  <a href="#instalação-no-windows">Instalação</a> ·
+  <a href="docs/site/index.md">Documentação completa</a> ·
+  <a href="docs/site/arquitetura-pedagogica.md">Arquitetura pedagógica</a> ·
+  <a href="plugins/magistratura-enam-br/CHANGELOG.md">Changelog</a>
+</p>
 
-O instalador registra somente esta marketplace local e instala o plugin. Não envia arquivos, dados de estudo ou credenciais.
+---
 
-## Uso em GitHub
+## Visão geral
 
-Publique o conteúdo desta pasta como a raiz de um repositório Git. Depois, cada usuário poderá executar:
+O **Estudo Jurídico Avançado** reúne cinco skills especializadas para estudo, curadoria, comparação de materiais, revisão de jurisprudência e acompanhamento pedagógico. O identificador técnico permanece `magistratura-enam-br` para preservar compatibilidade com instalações e marketplaces existentes.
+
+O plugin prioriza rigor jurídico, prática deliberada, feedback explicativo, recuperação espaçada e rastreabilidade. Não presume memória automática, não cria perfil sem autorização e não interpreta ausência de dados como desempenho insuficiente.
+
+## Capacidades
+
+| Skill | Finalidade | Limite principal |
+|---|---|---|
+| `estudar-direito-magistratura` | Explicações, questões e correções de alto nível | Não substitui curadoria integral de informativos |
+| `curar-informativos-stf-stj` | Seleção e comentário de julgados do STF e STJ | Exige documento ou identificação oficial suficiente |
+| `comparar-materiais-enam` | Identificação de alterações jurídicas e editoriais | Não inventa versões, páginas ou supressões |
+| `planejar-jurisprudencia` | Esteira de julgados e revisão espaçada | Preserva a política fixa sem adaptação silenciosa |
+| `acompanhar-percurso-magistratura` | Roteamento e consolidação do percurso | Não executa automaticamente a skill indicada |
+
+## Instalação no Windows
+
+O plugin não é um aplicativo `.exe`. A instalação registra este repositório como marketplace local no perfil do Codex e coloca a versão selecionada no cache do usuário Windows.
+
+### Por ZIP
+
+1. Baixe e descompacte o repositório em uma pasta permanente.
+2. Abra o PowerShell nessa pasta.
+3. Execute:
 
 ```powershell
-codex plugin marketplace add proprietario/repositorio --ref main
+.\INSTALAR.ps1
+```
+
+Para preparar também as dependências opcionais dos scripts de PDF e planilha:
+
+```powershell
+.\INSTALAR.ps1 -InstalarDependencias
+```
+
+Depois da instalação, abra uma nova tarefa no Codex. O instalador não envia arquivos, credenciais ou dados de estudo.
+
+### Pelo marketplace Git
+
+```powershell
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.4.1
 codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 
-Para manter o material restrito a um grupo, utilize um repositório privado e conceda acesso apenas às pessoas autorizadas.
+Como o repositório é privado, esse método exige autenticação no GitHub e permissão de leitura. A instalação é local por computador e não é sincronizada automaticamente.
 
-## Licença
+## Arquitetura do repositório
 
-Todos os direitos reservados a Boni Jr. Consulte [LICENSE](LICENSE) antes de copiar, redistribuir ou reutilizar qualquer conteúdo deste repositório.
+```text
+.
+├── .agents/plugins/marketplace.json       # catálogo reconhecido pelo Codex
+├── .github/workflows/                     # validação do plugin e da documentação
+├── docs/
+│   ├── README.md                          # índice documental do repositório
+│   ├── site/                              # conteúdo do site privado
+│   └── superpowers/                       # especificações e planos internos
+├── plugins/magistratura-enam-br/
+│   ├── .codex-plugin/plugin.json          # manifesto canônico
+│   ├── skills/                            # cinco skills distribuídas
+│   ├── references/                        # contratos e governança pedagógica
+│   ├── scripts/                           # utilitários locais
+│   ├── tests/                             # contratos automatizados
+│   └── evals/                             # avaliações comportamentais
+├── INSTALAR.ps1                           # instalação local no Windows
+└── mkdocs.yml                             # Zensical e fallback Material
+```
+
+## Documentação
+
+- [Apresentação e navegação](docs/site/index.md)
+- [Primeiros passos](docs/site/primeiros-passos.md)
+- [Arquitetura pedagógica](docs/site/arquitetura-pedagogica.md)
+- [Catálogo das skills](docs/site/skills/index.md)
+- [Privacidade e persistência](docs/site/privacidade-e-persistencia.md)
+- [Desenvolvimento](docs/site/desenvolvimento.md)
+
+O site é construído prioritariamente com Zensical e validado também com Material for MkDocs. A publicação está desabilitada; os builds permanecem privados e locais.
+
+## Desenvolvimento e qualidade
+
+O ambiente usa Python 3.14 e `uv`. As dependências de documentação ficam no grupo `docs`, sem ampliar as dependências de execução do plugin.
+
+```powershell
+uv sync --project plugins/magistratura-enam-br --all-groups
+uv run --project plugins/magistratura-enam-br python -m pytest
+uv run --project plugins/magistratura-enam-br ruff check plugins/magistratura-enam-br
+```
+
+Os contratos automatizados não substituem a avaliação comportamental das skills nem a revisão humana dos gates pedagógicos.
+
+## Privacidade e licença
+
+Perfil, eventos e relatórios locais só podem ser persistidos mediante pedido expresso, destino definido e confirmação correspondente. Materiais do candidato e registros de aprendizagem não integram o site documental.
+
+Copyright © 2026 Boni Jr. Todos os direitos reservados. Consulte a [licença](LICENSE) antes de copiar, redistribuir ou criar trabalhos derivados.

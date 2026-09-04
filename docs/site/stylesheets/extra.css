@@ -16,6 +16,30 @@
   background: linear-gradient(110deg, #003f30 0%, #006b4f 58%, #0b775b 100%);
 }
 
+.md-header__title,
+.md-header__button,
+.md-header .md-search__icon,
+.md-header .md-search__input,
+.md-header .md-search__input::placeholder,
+.md-header .md-source {
+  color: #fffdf5;
+}
+
+.md-header .md-search__form {
+  background-color: rgba(0, 45, 34, 0.34);
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.md-nav__link--active {
+  color: #006b4f;
+  font-weight: 700;
+}
+
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
