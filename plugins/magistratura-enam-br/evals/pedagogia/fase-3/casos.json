@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "baseline": "0.3.3",
+  "cases": [
+    {
+      "id": "q7-completo-sem-opt-in",
+      "mode": "complete",
+      "prompt": "Considere a questão já apresentada: Segundo Ferdinand Lassalle, a essência da Constituição corresponde: A) à soma dos fatores reais de poder que regem a sociedade, sendo a folha escrita eficaz quando compatível com eles; B) à decisão política fundamental do titular do poder constituinte, segundo Carl Schmitt; C) ao escalão jurídico-positivo superior, distinto da norma fundamental hipotética, segundo Hans Kelsen; D) à força normativa resultante da vontade de Constituição, segundo Konrad Hesse; E) à síntese cultural integradora de elementos históricos, sociais e jurídicos. O candidato respondeu: A. Faça a correção.",
+      "requires_full": true
+    },
+    {
+      "id": "q8-adaptativo-elegivel",
+      "mode": "adaptive",
+      "prompt": "Considere a questão já apresentada: Segundo Ferdinand Lassalle, a essência da Constituição corresponde: A) à soma dos fatores reais de poder que regem a sociedade, sendo a folha escrita eficaz quando compatível com eles; B) à decisão política fundamental do titular do poder constituinte, segundo Carl Schmitt; C) ao escalão jurídico-positivo superior, distinto da norma fundamental hipotética, segundo Hans Kelsen; D) à força normativa resultante da vontade de Constituição, segundo Konrad Hesse; E) à síntese cultural integradora de elementos históricos, sociais e jurídicos. Ative expressamente o feedback adaptativo. Minha resposta é A, com alta confiança, porque Lassalle identifica a Constituição real com os fatores reais de poder; a Constituição escrita é mera folha de papel quando os contraria. Corrija.",
+      "requires_full": false
+    },
+    {
+      "id": "q9-opt-in-sem-fundamento",
+      "mode": "adaptive_ineligible",
+      "prompt": "Considere a questão já apresentada: Segundo Ferdinand Lassalle, a essência da Constituição corresponde: A) à soma dos fatores reais de poder que regem a sociedade, sendo a folha escrita eficaz quando compatível com eles; B) à decisão política fundamental do titular do poder constituinte, segundo Carl Schmitt; C) ao escalão jurídico-positivo superior, distinto da norma fundamental hipotética, segundo Hans Kelsen; D) à força normativa resultante da vontade de Constituição, segundo Konrad Hesse; E) à síntese cultural integradora de elementos históricos, sociais e jurídicos. Quero feedback adaptativo. Respondo A. Corrija.",
+      "requires_full": true
+    },
+    {
+      "id": "q10-invalida-prioritaria",
+      "mode": "invalid",
+      "prompt": "Considere a questão já apresentada: Segundo Ferdinand Lassalle, a essência da Constituição corresponde: A) à soma dos fatores reais de poder que regem a sociedade; B) ao conjunto dos fatores reais de poder efetivos na sociedade; C) à decisão política fundamental, segundo Carl Schmitt; D) ao escalão jurídico-positivo superior, segundo Hans Kelsen; E) à força normativa da Constituição, segundo Konrad Hesse. Quero feedback adaptativo. Respondo A, com alta confiança, porque Lassalle trata dos fatores reais de poder. Corrija.",
+      "requires_full": false
+    }
+  ]
+}

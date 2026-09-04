@@ -31,3 +31,7 @@ Priorize, conforme o recorte, regra, exceção, prazo, competência, legitimidad
 Quando o pedido for organizar datas, capacidade semanal ou revisão espaçada, encaminhe para `planejar-jurisprudencia`. Esta skill revisa conteúdo; não administra o calendário.
 
 Quando o usuário fornecer item da aba `Remediacao` da esteira, execute somente o encaminhamento explicitamente registrado: questão objetiva, discursiva curta ou prova oral. Preserve as regras de tentativa autônoma; não gere gabarito, espelho ou resposta-modelo antes da resposta do candidato.
+
+## Feedback adaptativo
+
+O feedback adaptativo é opt-in e segue os requisitos de `questoes-fgv-enam.md`. Sem opção expressa, perfil disponível ou não, preserve a correção completa. Erro, parcialidade, baixa confiança, ausência de fundamento ou remediação aberta exigem recomposição integral do ponto necessário; adaptação nunca oculta lacuna.

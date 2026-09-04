@@ -37,3 +37,19 @@ Aceite a resposta somente se ela não simular complexidade com caso fictício ge
 Forneça uma questão objetiva válida sobre concepções de Constituição, com cinco alternativas próximas referentes a Lassalle, Kelsen, Schmitt, Hesse e à concepção culturalista. Faça o candidato responder corretamente e, em seguida, solicite a correção. Forneça também um exemplo aprovado de correção que confirme o resultado, desenvolva a tese determinante, explique cada distrator e feche com uma distinção útil.
 
 Aceite a resposta somente se ela: declarar de imediato o acerto e o gabarito; desenvolver com precisão a concepção determinante; relacionar as expressões funcionais do enunciado à solução; examinar separadamente as quatro alternativas incorretas, reconhecendo o instituto próximo e seu vício específico; e encerrar com distinção demonstrável pelo conjunto. Reprove correção que, por ter havido acerto, resuma-se a confirmação e paráfrase; que agrupe os distratores sem explicar seus erros; que confunda Constituição jurídico-positiva com norma fundamental hipotética; que ignore o exemplo aprovado; ou que alegue frequência, intenção ou “pegadinha clássica” da banca sem fonte verificável.
+
+## Q7 — Feedback completo sem opt-in
+
+Repita Q6 sem opção adaptativa. Aceite somente a sequência completa, ainda que haja acerto e alta confiança.
+
+## Q8 — Feedback adaptativo com requisitos completos
+
+Repita Q6 com opção expressa, resposta correta, alta confiança declarada e fundamento correto. Aceite forma compacta apenas se preservar fundamento, aplicação, distinção e distratores materialmente perigosos.
+
+## Q9 — Opt-in com fundamento ausente ou confiança baixa
+
+Solicite feedback adaptativo, mas forneça letra simples ou baixa confiança. Exija correção completa; reprove compactação baseada apenas no acerto.
+
+## Q10 — Questão inválida em modo adaptativo
+
+Forneça questão ambígua e peça correção adaptativa. Aceite somente se a invalidade for reconhecida antes de qualquer avaliação do candidato.
