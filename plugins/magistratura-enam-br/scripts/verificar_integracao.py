@@ -18,7 +18,11 @@ ARQUIVOS_ESSENCIAIS = (
     ".python-version",
     "uv.lock",
     "requirements.txt",
+    "references/contrato-pedagogico.md",
     "references/protocolo-uso-do-acervo.md",
+    "modelos/pedagogia/learning-event.schema.json",
+    "modelos/pedagogia/candidate-profile.schema.json",
+    "modelos/pedagogia/review-recommendation.schema.json",
     "skills/curar-informativos-stf-stj/SKILL.md",
     "skills/curar-informativos-stf-stj/references/cenarios-avaliacao.md",
     "skills/curar-informativos-stf-stj/modelos/precedentes.schema.json",
@@ -48,6 +52,12 @@ DIRETORIOS_GERADOS = frozenset({
     "dist",
 })
 
+SCHEMAS_PEDAGOGICOS = (
+    "modelos/pedagogia/candidate-profile.schema.json",
+    "modelos/pedagogia/learning-event.schema.json",
+    "modelos/pedagogia/review-recommendation.schema.json",
+)
+
 
 def arquivos_fonte(raiz: Path, padrao: str):
     """Percorre somente arquivos distribuíveis, sem caches ou ambientes locais."""
@@ -55,6 +65,22 @@ def arquivos_fonte(raiz: Path, padrao: str):
         relativo = caminho.relative_to(raiz)
         if not any(parte in DIRETORIOS_GERADOS for parte in relativo.parts):
             yield caminho
+
+
+def validar_schemas_pedagogicos(raiz: Path, erros: list[str]) -> None:
+    """Exige os contratos pedagógicos versionados e JSON sintaticamente válido."""
+    for relativo in SCHEMAS_PEDAGOGICOS:
+        caminho = raiz / relativo
+        if not caminho.is_file():
+            erros.append(f"Schema pedagógico ausente: {relativo}.")
+            continue
+        try:
+            schema = json.loads(caminho.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError):
+            erros.append(f"Schema pedagógico inválido em {relativo}.")
+            continue
+        if not isinstance(schema, dict):
+            erros.append(f"Schema pedagógico inválido em {relativo}.")
 
 
 def validar_ambiente_uv(raiz: Path, erros: list[str]) -> None:
@@ -199,6 +225,7 @@ def main() -> None:
             erros.append(f"Arquivo essencial ausente: {relativo}")
 
     validar_ambiente_uv(raiz, erros)
+    validar_schemas_pedagogicos(raiz, erros)
 
     manifesto = raiz / ".codex-plugin" / "plugin.json"
     dados_manifesto: object = None

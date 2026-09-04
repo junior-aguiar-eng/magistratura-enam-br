@@ -20,6 +20,8 @@ Alterações substanciais nas skills de curadoria ou de questões devem ser aval
 
 Toda `SKILL.md` deste plugin deve determinar expressamente a leitura e o cumprimento deste `AGENTS.md` antes da interpretação do pedido ou da escolha do modo de atuação. Essa vinculação torna estas diretrizes operacionais na execução da skill, e não apenas na sua manutenção.
 
+Atividades, resultados, erros, evidências de domínio e roteamento entre skills obedecem ao contrato versionado em `references/contrato-pedagogico.md`. O contrato não autoriza persistência por si só, e nenhum erro ou domínio pode ser inferido sem tentativa observável do candidato. As skills preservam seus formatos próprios enquanto compartilham apenas esse vocabulário estrutural.
+
 Em uma mesma sessão contínua, a leitura inicial destas diretrizes e a classificação do acervo permanecem válidas. Não repita carregamentos integrais a cada resposta do candidato; reavalie apenas se houver novo material, mudança de modalidade, pedido de atualização ou dúvida real sobre a fonte.
 
 O verificador de integração deve ser determinístico e estritamente de leitura: deriva a versão do manifesto, valida somente a árvore distribuível e nunca cria bytecode, cache ou outro artefato na fonte canônica.

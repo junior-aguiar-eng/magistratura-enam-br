@@ -2,6 +2,31 @@ from types import SimpleNamespace
 
 import verificar_integracao as verificador
 
+SCHEMAS_PEDAGOGICOS = {
+    "modelos/pedagogia/learning-event.schema.json",
+    "modelos/pedagogia/candidate-profile.schema.json",
+    "modelos/pedagogia/review-recommendation.schema.json",
+}
+
+
+def test_schemas_pedagogicos_sao_artefatos_essenciais():
+    assert SCHEMAS_PEDAGOGICOS <= set(verificador.ARQUIVOS_ESSENCIAIS)
+
+
+def test_validador_rejeita_schema_pedagogico_ausente_ou_invalido(tmp_path):
+    modelos = tmp_path / "modelos" / "pedagogia"
+    modelos.mkdir(parents=True)
+    (modelos / "learning-event.schema.json").write_text("{}", encoding="utf-8")
+    (modelos / "candidate-profile.schema.json").write_text("{", encoding="utf-8")
+    erros = []
+
+    verificador.validar_schemas_pedagogicos(tmp_path, erros)
+
+    assert erros == [
+        "Schema pedagógico inválido em modelos/pedagogia/candidate-profile.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/review-recommendation.schema.json.",
+    ]
+
 
 def preparar_ambiente(tmp_path):
     (tmp_path / "pyproject.toml").write_text(

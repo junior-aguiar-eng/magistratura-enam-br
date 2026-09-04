@@ -44,6 +44,8 @@ O workflow de raiz `.github/workflows/validar.yml` executa essa mesma sequência
 - `AGENTS.md`: diretrizes obrigatórias para manutenção e execução das skills.
 - `CHANGELOG.md`: histórico de alterações publicáveis.
 - `CONTINUACAO.md`: estado técnico e roteiro de manutenção.
+- `modelos/pedagogia/`: schemas versionados de evento, perfil reconstruível e recomendação de revisão; nesta fase, não há persistência automática.
+- `references/contrato-pedagogico.md`: taxonomia comum e limites de inferência entre as quatro skills.
 - `skills/`: instruções, referências, modelos, scripts e testes de cada skill.
 
 Consulte o [changelog](CHANGELOG.md) antes de atualizar ou publicar o plugin.
