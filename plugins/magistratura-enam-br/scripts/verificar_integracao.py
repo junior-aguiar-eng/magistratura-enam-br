@@ -146,6 +146,16 @@ def validar_contrato_plugin(raiz: Path, manifesto: object, erros: list[str]) -> 
     versao = manifesto.get("version")
     if not isinstance(versao, str) or SEMVER.fullmatch(versao) is None:
         erros.append("Manifesto deve conter versão SemVer válida.")
+    pyproject = raiz / "pyproject.toml"
+    if isinstance(versao, str) and pyproject.is_file():
+        try:
+            versao_projeto = tomllib.loads(pyproject.read_text(encoding="utf-8")).get("project", {}).get("version")
+            if isinstance(versao_projeto, str) and versao_projeto != versao:
+                erros.append(
+                    f"Versão divergente: plugin.json declara {versao} e pyproject.toml declara {versao_projeto}."
+                )
+        except (OSError, UnicodeError, tomllib.TOMLDecodeError):
+            pass
     if Path(str(manifesto.get("skills", ""))).as_posix().rstrip("/") != "skills":
         erros.append("Manifesto deve declarar skills como ./skills/.")
     autor = manifesto.get("author")
@@ -158,10 +168,11 @@ def validar_contrato_plugin(raiz: Path, manifesto: object, erros: list[str]) -> 
         for campo in ("displayName", "shortDescription", "longDescription", "developerName", "category", "defaultPrompt"):
             if not isinstance(interface.get(campo), str) or not interface[campo].strip():
                 erros.append(f"Manifesto interface sem {campo} não vazio.")
-        if not isinstance(interface.get("capabilities"), list) or not all(
-            isinstance(item, str) and item.strip() for item in interface["capabilities"]
+        capacidades = interface.get("capabilities")
+        if not isinstance(capacidades, list) or not capacidades or not all(
+            isinstance(item, str) and item.strip() for item in capacidades
         ):
-            erros.append("Manifesto interface.capabilities deve ser uma lista de strings.")
+            erros.append("Manifesto interface.capabilities deve conter ao menos uma capacidade.")
         for campo in ("composerIcon", "logo", "logoDark"):
             validar_caminho_do_plugin(raiz, interface.get(campo), f"interface.{campo}", erros)
 

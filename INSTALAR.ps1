@@ -31,12 +31,17 @@ if ($configurados -notmatch $padrao) {
 if ($LASTEXITCODE -ne 0) { throw 'Não foi possível instalar o plugin.' }
 
 if ($InstalarDependencias) {
-    $requisitos = Join-Path $raiz 'plugins\magistratura-enam-br\requirements.txt'
-    $py = Get-Command py -ErrorAction SilentlyContinue
-    if (-not $py) { $py = Get-Command python -ErrorAction SilentlyContinue }
-    if (-not $py) { throw 'Python não foi encontrado para instalar as dependências opcionais dos scripts.' }
-    & $py.Source -m pip install --user -r $requisitos
-    if ($LASTEXITCODE -ne 0) { throw 'A instalação das dependências Python não foi concluída.' }
+    $uv = Get-Command uv -ErrorAction SilentlyContinue
+    if (-not $uv) { throw 'uv não foi encontrado para preparar as dependências opcionais dos scripts.' }
+    $raizPlugin = Join-Path $raiz 'plugins\magistratura-enam-br'
+    Push-Location -LiteralPath $raizPlugin
+    try {
+        & $uv.Source sync --no-dev
+        if ($LASTEXITCODE -ne 0) { throw 'A preparação das dependências Python não foi concluída.' }
+    }
+    finally {
+        Pop-Location
+    }
 }
 
 Write-Host "Plugin $plugin instalado. Abra uma nova tarefa no Codex para usar as skills."

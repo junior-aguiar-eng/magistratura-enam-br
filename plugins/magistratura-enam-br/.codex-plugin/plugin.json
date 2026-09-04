@@ -12,7 +12,12 @@
     "longDescription": "Apoia a curadoria de informativos, o estudo de Direito brasileiro, a compara\u00e7\u00e3o de materiais do ENAM e a revis\u00e3o de jurisprud\u00eancia.",
     "developerName": "Boni Jr",
     "category": "Education",
-    "capabilities": [],
+    "capabilities": [
+      "Estudo jurídico",
+      "Curadoria jurisprudencial",
+      "Comparação de materiais",
+      "Revisão espaçada"
+    ],
     "defaultPrompt": "Quero estudar Direito brasileiro para a Magistratura.",
     "brandColor": "#0A3D62",
     "composerIcon": "./assets/magistratura-enam-br.png",

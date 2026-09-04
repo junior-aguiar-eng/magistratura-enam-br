@@ -4,6 +4,8 @@ Todas as alterações relevantes deste plugin são registradas neste arquivo.
 
 ## 0.3.2 — 2026-08-08
 
+- Sincroniza a versão `0.3.2` entre manifesto, `pyproject.toml` e `uv.lock`, declara as capacidades efetivas do plugin e torna essas invariantes obrigatórias no verificador de integração.
+- Substitui a instalação global com `pip --user` por `uv sync --no-dev` no ambiente isolado do plugin.
 - Torna obrigatória a correção completa de questões objetivas mesmo após acerto, com resultado direto, fundamento determinante, aplicação às pistas do enunciado, exame individual dos distratores e distinção final útil para prova.
 - Passa a tratar prova, caderno e correção-modelo aprovados pelo candidato como corpus de calibração do comportamento da skill, sem copiar redação nem conservar imprecisões jurídicas ou alegações empíricas sem fonte.
 - Adiciona cenário e testes de contrato específicos para impedir correções telegráficas, omissão dos distratores e confusão entre Constituição jurídico-positiva e norma fundamental hipotética.

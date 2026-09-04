@@ -4,11 +4,11 @@
 
 Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junior-aguiar-eng/magistratura-enam-br`. O manifesto válido é `.codex-plugin/plugin.json`; não mantenha cópias aninhadas ou versões paralelas. Leia `AGENTS.md` antes de qualquer alteração.
 
-## Estado confirmado em 2026-08-08
+## Estado confirmado em 2026-09-04
 
-- Versão declarada no manifesto: `0.3.2`.
+- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.3.2`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
-- Suíte de testes: 88 testes aprovados.
+- Suíte de testes: 90 testes aprovados.
 - Qualidade estática: `ruff check .` aprovado.
 - Integridade: verificador interno de contrato do plugin e `uv lock --check` aprovados.
 - Integração contínua: o workflow de raiz `.github/workflows/validar.yml` executa a suíte canônica, no diretório do plugin, em `push` e pull request.
@@ -23,6 +23,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 5. O verificador de integração é estritamente de leitura e não cria artefatos na árvore distribuível.
 6. Questões objetivas seguem a trava canônica FGV/ENAM: matriz de núcleo, fatos e alternativas; gabarito aplicado à regra determinante; enunciado funcionalmente denso; distratores com paridade; e invalidação do rascunho diante de ambiguidade ou assimetria.
 7. A correção objetiva é completa mesmo após acerto: resultado direto, fundamento desenvolvido, aplicação ao enunciado, análise individual dos distratores e chave de prova; exemplos aprovados e cadernos da FGV funcionam como corpus de calibração, sem substituir o rigor jurídico.
+8. Manifesto, `pyproject.toml` e `uv.lock` mantêm a mesma versão; `interface.capabilities` declara ao menos uma capacidade efetivamente implementada.
 
 ## Validação obrigatória
 

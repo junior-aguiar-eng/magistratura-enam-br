@@ -64,7 +64,7 @@ def test_validador_de_contrato_rejeita_skill_sem_descricao(tmp_path):
             "longDescription": "Teste",
             "developerName": "Boni Jr",
             "category": "Education",
-            "capabilities": [],
+            "capabilities": ["Estudo jurídico"],
             "defaultPrompt": "Teste",
             "composerIcon": "./assets/icone.png",
             "logo": "./assets/logo.png",
@@ -77,4 +77,78 @@ def test_validador_de_contrato_rejeita_skill_sem_descricao(tmp_path):
 
     assert erros == [
         f"{tmp_path / 'skills' / 'exemplo' / 'SKILL.md'}: frontmatter sem description não vazio."
+    ]
+
+
+def test_validador_de_contrato_rejeita_capacidades_vazias(tmp_path):
+    (tmp_path / "skills" / "exemplo").mkdir(parents=True)
+    (tmp_path / "assets").mkdir()
+    for nome in ("icone.png", "logo.png", "logo-dark.png"):
+        (tmp_path / "assets" / nome).write_bytes(b"imagem")
+    (tmp_path / "skills" / "exemplo" / "SKILL.md").write_text(
+        "---\nname: exemplo\ndescription: Skill de teste\n---\n", encoding="utf-8"
+    )
+    manifesto = {
+        "name": "magistratura-enam-br",
+        "version": "0.3.2",
+        "description": "Plugin de teste",
+        "skills": "./skills/",
+        "author": {"name": "Boni Jr"},
+        "interface": {
+            "displayName": "Teste",
+            "shortDescription": "Teste",
+            "longDescription": "Teste",
+            "developerName": "Boni Jr",
+            "category": "Education",
+            "capabilities": [],
+            "defaultPrompt": "Teste",
+            "composerIcon": "./assets/icone.png",
+            "logo": "./assets/logo.png",
+            "logoDark": "./assets/logo-dark.png",
+        },
+    }
+    erros = []
+
+    verificador.validar_contrato_plugin(tmp_path, manifesto, erros)
+
+    assert erros == ["Manifesto interface.capabilities deve conter ao menos uma capacidade."]
+
+
+def test_validador_de_contrato_rejeita_versao_divergente_do_pyproject(tmp_path):
+    (tmp_path / "skills" / "exemplo").mkdir(parents=True)
+    (tmp_path / "assets").mkdir()
+    for nome in ("icone.png", "logo.png", "logo-dark.png"):
+        (tmp_path / "assets" / nome).write_bytes(b"imagem")
+    (tmp_path / "skills" / "exemplo" / "SKILL.md").write_text(
+        "---\nname: exemplo\ndescription: Skill de teste\n---\n", encoding="utf-8"
+    )
+    (tmp_path / "pyproject.toml").write_text(
+        "[project]\nname = 'magistratura-enam-br'\nversion = '0.3.1'\n",
+        encoding="utf-8",
+    )
+    manifesto = {
+        "name": "magistratura-enam-br",
+        "version": "0.3.2",
+        "description": "Plugin de teste",
+        "skills": "./skills/",
+        "author": {"name": "Boni Jr"},
+        "interface": {
+            "displayName": "Teste",
+            "shortDescription": "Teste",
+            "longDescription": "Teste",
+            "developerName": "Boni Jr",
+            "category": "Education",
+            "capabilities": ["Estudo jurídico"],
+            "defaultPrompt": "Teste",
+            "composerIcon": "./assets/icone.png",
+            "logo": "./assets/logo.png",
+            "logoDark": "./assets/logo-dark.png",
+        },
+    }
+    erros = []
+
+    verificador.validar_contrato_plugin(tmp_path, manifesto, erros)
+
+    assert erros == [
+        "Versão divergente: plugin.json declara 0.3.2 e pyproject.toml declara 0.3.1."
     ]

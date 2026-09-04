@@ -9,7 +9,7 @@ Marketplace local e compartilhável do plugin **Magistratura e ENAM Brasil**. A 
 3. Execute `./INSTALAR.ps1`.
 4. Abra uma nova tarefa no Codex.
 
-Para também instalar as dependências usadas pelos scripts de PDF e planilha, execute `./INSTALAR.ps1 -InstalarDependencias`.
+Para também preparar, com `uv`, o ambiente isolado usado pelos scripts de PDF e planilha, execute `./INSTALAR.ps1 -InstalarDependencias`. Essa opção requer `uv` disponível no `PATH` e não instala pacotes globalmente.
 
 O instalador registra somente esta marketplace local e instala o plugin. Não envia arquivos, dados de estudo ou credenciais.
 
