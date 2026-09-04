@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+"""Projeção reconstruível do perfil pedagógico."""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import tempfile
+from collections.abc import Iterable
+from pathlib import Path
+
+from eventos_aprendizagem import ler_eventos, validar_evento
+from jsonschema import Draft202012Validator, FormatChecker
+
+ROOT = Path(__file__).resolve().parents[1]
+SCHEMA = ROOT / "modelos/pedagogia/candidate-profile.schema.json"
+EVIDENCIAS = ("evocacao_regra", "discriminacao_institutos", "aplicacao_fatos_novos", "fundamentacao_normativa_jurisprudencial", "expressao_objetiva_discursiva_oral", "retencao_revisao_posterior")
+
+
+def _chave(evento: dict) -> str:
+    return f"{evento['content_ref']['content_id']}--{evento['activity']['modality'].replace('_', '-')}"
+
+
+def reconstruir_perfil(eventos: Iterable[dict]) -> dict:
+    ordenados = sorted(eventos, key=lambda e: (e.get("occurred_at", ""), e.get("event_id", "")))
+    ids, competencias, remediacoes = set(), {}, {}
+    for evento in ordenados:
+        erros = validar_evento(evento)
+        if erros:
+            raise ValueError(f"Evento inválido: {'; '.join(erros)}")
+        event_id = evento["event_id"]
+        if event_id in ids:
+            raise ValueError(f"event_id duplicado: {event_id}")
+        ids.add(event_id)
+        if not evento["activity"]["attempt_observed"]:
+            continue
+        chave = _chave(evento)
+        item = competencias.setdefault(chave, {"competency_id": chave, "evidence": {e: "nao_observado" for e in EVIDENCIAS}, "observations": []})
+        desempenho = evento["performance"]
+        item["observations"].append({"event_id": event_id, "occurred_at": evento["occurred_at"], "result": desempenho["result"], "error_types": desempenho["error_types"], "domain_evidence": desempenho["domain_evidence"], "confidence": desempenho["confidence"]})
+        nivel = "demonstrado" if desempenho["result"] == "correto" else "em_desenvolvimento"
+        for evidencia in desempenho["domain_evidence"]:
+            item["evidence"][evidencia] = nivel
+        if desempenho["result"] in {"parcial", "incorreto"} and desempenho["error_types"]:
+            remediacoes[chave] = {"remediation_id": event_id.replace("evt_", "rem_", 1), "competency_id": chave, "error_types": desempenho["error_types"], "opened_by_event_id": event_id}
+        elif desempenho["result"] == "correto":
+            remediacoes.pop(chave, None)
+    return {"schema_version": "1.0.0", "updated_at": ordenados[-1]["occurred_at"] if ordenados else "1970-01-01T00:00:00Z", "objectives": [], "preferences": {"feedback_mode": "completo"}, "competencies": [competencias[k] for k in sorted(competencias)], "open_remediations": [remediacoes[k] for k in sorted(remediacoes)]}
+
+
+def salvar_perfil_atomico(caminho: Path, perfil: dict) -> None:
+    caminho = Path(caminho)
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    erros = list(Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(perfil))
+    if erros:
+        raise ValueError(f"Perfil inválido: {erros[0].message}")
+    if not caminho.parent.is_dir():
+        raise FileNotFoundError(f"Diretório do perfil não existe: {caminho.parent}")
+    fd, temporario = tempfile.mkstemp(prefix=f".{caminho.name}.", suffix=".tmp", dir=caminho.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as arquivo:
+            json.dump(perfil, arquivo, ensure_ascii=False, indent=2)
+            arquivo.write("\n")
+            arquivo.flush()
+            os.fsync(arquivo.fileno())
+        os.replace(temporario, caminho)
+    except BaseException:
+        Path(temporario).unlink(missing_ok=True)
+        raise
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser()
+    sub = parser.add_subparsers(dest="comando", required=True)
+    rebuild = sub.add_parser("rebuild")
+    rebuild.add_argument("--log", type=Path, required=True)
+    rebuild.add_argument("--perfil", type=Path, required=True)
+    export = sub.add_parser("export")
+    export.add_argument("--log", type=Path, required=True)
+    export.add_argument("--perfil", type=Path, required=True)
+    export.add_argument("--saida", type=Path, required=True)
+    args = parser.parse_args(argv)
+    eventos = ler_eventos(args.log)
+    if args.comando == "rebuild":
+        salvar_perfil_atomico(args.perfil, reconstruir_perfil(eventos))
+        return 0
+    pacote = {"events": eventos, "profile": json.loads(args.perfil.read_text(encoding="utf-8"))}
+    if not args.saida.parent.is_dir():
+        raise FileNotFoundError(f"Diretório de saída não existe: {args.saida.parent}")
+    args.saida.write_text(json.dumps(pacote, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

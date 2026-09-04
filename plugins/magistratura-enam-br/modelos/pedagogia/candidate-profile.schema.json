@@ -27,7 +27,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["competency_id", "evidence"],
+        "required": ["competency_id", "evidence", "observations"],
         "properties": {
           "competency_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,127}$"},
           "evidence": {
@@ -41,6 +41,22 @@
               "fundamentacao_normativa_jurisprudencial": {"$ref": "#/$defs/evidence_level"},
               "expressao_objetiva_discursiva_oral": {"$ref": "#/$defs/evidence_level"},
               "retencao_revisao_posterior": {"$ref": "#/$defs/evidence_level"}
+            }
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["event_id", "occurred_at", "result", "error_types", "domain_evidence", "confidence"],
+              "properties": {
+                "event_id": {"type": "string", "pattern": "^evt_[0-9a-z-]{20,64}$"},
+                "occurred_at": {"type": "string", "format": "date-time"},
+                "result": {"enum": ["correto", "parcial", "incorreto", "questao_invalida"]},
+                "error_types": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+                "domain_evidence": {"type": "array", "uniqueItems": true, "items": {"enum": ["evocacao_regra", "discriminacao_institutos", "aplicacao_fatos_novos", "fundamentacao_normativa_jurisprudencial", "expressao_objetiva_discursiva_oral", "retencao_revisao_posterior"]}},
+                "confidence": {"enum": [null, "baixa", "media", "alta"]}
+              }
             }
           }
         }
