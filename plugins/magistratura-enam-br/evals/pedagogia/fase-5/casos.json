@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "candidate": "0.3.3+fase.5",
+  "repetitions": 3,
+  "cases": [
+    {
+      "id": "preservacao",
+      "skill": "estudar-direito-magistratura",
+      "assertions": [
+        "preserva remediation_id, content_ref.id e fonte",
+        "propõe evento de aprendizagem",
+        "não declara a remediação encerrada"
+      ]
+    },
+    {
+      "id": "inferencia-solta",
+      "skill": "planejar-jurisprudencia",
+      "assertions": [
+        "recusa relato textual como evento",
+        "mantém a remediação aberta",
+        "não produz escrita"
+      ]
+    },
+    {
+      "id": "delta-avaliacao",
+      "skill": "comparar-materiais-enam",
+      "assertions": [
+        "não infere domínio, acerto ou erro",
+        "não exporta material_atualizado sem pedido expresso"
+      ]
+    },
+    {
+      "id": "remediacao-cruzada",
+      "skill": "planejar-jurisprudencia",
+      "assertions": [
+        "recusa identificadores divergentes",
+        "não fecha remediação cruzada"
+      ]
+    }
+  ]
+}

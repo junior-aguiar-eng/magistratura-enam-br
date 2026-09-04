@@ -30,3 +30,7 @@ Prioridade alta exige precedente qualificado ou erro documentado do candidato. A
 Verticalizados e análises estratégicas podem apenas ajudar o candidato a descrever julgados que ele já selecionou; não criam item, prioridade, prazo ou ciclo de revisão. Cronogramas e planos de remessa de curso não são entrada da esteira e não autorizam inferir disponibilidade de material. Somente escolha expressa do candidato e os critérios canônicos desta skill definem o planejamento.
 
 Não consulte `../../references/diretrizes-estudo-juridico-brasileiro.md` para classificar prioridade, pois esta skill organiza tempo de estudo e não redefine o conteúdo jurídico dos julgados. Se o pedido depender de atualização do mérito, encaminhe para curadoria ou estudo antes de alterar a esteira.
+## Fechamento confirmado de remediação
+
+Quando houver evento de conclusão produzido pela skill de estudo, leia `references/importacao-remediacao.md`. O fechamento exige evento válido, correspondência exata de `remediation_id` e `content_ref.id`, além de confirmação explícita; não use inferência textual para alterar a planilha.
+

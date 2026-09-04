@@ -862,5 +862,78 @@ def concluir_remediacao_por_evento(remediacoes, evento, *, confirmado=False):
     return True
 
 
+def importar_evento_remediacao(arquivo, evento, *, confirmado=False):
+    """Valida um evento e persiste seu fechamento inequívoco na aba Remediacao."""
+    from jsonschema import Draft202012Validator, FormatChecker
+
+    if confirmado is not True:
+        return False
+
+    schema_path = (
+        Path(__file__).resolve().parents[3]
+        / "modelos"
+        / "pedagogia"
+        / "learning-event.schema.json"
+    )
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    validator = Draft202012Validator(schema, format_checker=FormatChecker())
+    if list(validator.iter_errors(evento)):
+        return False
+
+    caminho = Path(arquivo)
+    if not caminho.is_file():
+        raise FileNotFoundError(f"planilha não encontrada: {caminho}")
+
+    wb = load_workbook(caminho, data_only=False)
+    try:
+        if "Remediacao" not in wb.sheetnames:
+            return False
+        ws = wb["Remediacao"]
+        cabecalhos = [celula.value for celula in ws[1]]
+        identificacao_nova = {"remediation_id", "content_ref_id"}.issubset(
+            cabecalhos
+        )
+        identificacao_legada = "id" in cabecalhos
+        if "Feito?" not in cabecalhos or not (
+            identificacao_nova or identificacao_legada
+        ):
+            return False
+        if "resultado_remediacao" not in cabecalhos:
+            cabecalhos.append("resultado_remediacao")
+            ws.cell(1, len(cabecalhos), "resultado_remediacao")
+
+        remediacoes = []
+        for numero_linha, valores in enumerate(
+            ws.iter_rows(min_row=2, values_only=True), start=2
+        ):
+            item = dict(zip(cabecalhos, valores, strict=False))
+            item["_numero_linha"] = numero_linha
+            remediacoes.append(item)
+
+        if not concluir_remediacao_por_evento(
+            remediacoes, evento, confirmado=True
+        ):
+            return False
+
+        concluida = next(
+            item
+            for item in remediacoes
+            if item.get("resultado_remediacao") == "remediacao_concluida"
+            and (item.get("remediation_id") or item.get("id"))
+            == evento["remediation_id"]
+        )
+        colunas = {nome: indice for indice, nome in enumerate(cabecalhos, start=1)}
+        ws.cell(concluida["_numero_linha"], colunas["Feito?"], "sim")
+        ws.cell(
+            concluida["_numero_linha"],
+            colunas["resultado_remediacao"],
+            "remediacao_concluida",
+        )
+        wb.save(caminho)
+        return True
+    finally:
+        wb.close()
+
+
 if __name__ == "__main__":
     main()

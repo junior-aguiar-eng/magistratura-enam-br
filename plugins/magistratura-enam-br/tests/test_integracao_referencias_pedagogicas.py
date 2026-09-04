@@ -108,3 +108,19 @@ def test_delta_documental_nao_produz_avaliacao_do_candidato():
         }
     )
     assert not ({"candidate_error", "mastery", "performance"} & content_ref.keys())
+
+
+def test_verificador_ignora_diretorios_temporarios_do_pytest(tmp_path):
+    path = ROOT / "scripts" / "verificar_integracao.py"
+    spec = importlib.util.spec_from_file_location("verificar_integracao_fase5", path)
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(module)
+    (tmp_path / "valido.json").write_text("{}", encoding="utf-8")
+    temporario = tmp_path / ".pytest-fase5" / "fixture.json"
+    temporario.parent.mkdir()
+    temporario.write_text("{invalido", encoding="utf-8")
+
+    encontrados = list(module.arquivos_fonte(tmp_path, "*.json"))
+
+    assert encontrados == [tmp_path / "valido.json"]

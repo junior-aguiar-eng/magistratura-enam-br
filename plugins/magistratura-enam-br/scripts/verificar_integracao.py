@@ -68,7 +68,10 @@ def arquivos_fonte(raiz: Path, padrao: str):
     """Percorre somente arquivos distribuíveis, sem caches ou ambientes locais."""
     for caminho in raiz.rglob(padrao):
         relativo = caminho.relative_to(raiz)
-        if not any(parte in DIRETORIOS_GERADOS for parte in relativo.parts):
+        if not any(
+            parte in DIRETORIOS_GERADOS or parte.startswith(".pytest-")
+            for parte in relativo.parts
+        ):
             yield caminho
 
 

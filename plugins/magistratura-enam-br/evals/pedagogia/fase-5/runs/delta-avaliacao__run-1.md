@@ -1,0 +1,3 @@
+O delta confirmado prova apenas uma **atualização documental/jurisprudencial**. Não prova domínio nem erro do candidato. Sem tentativa observável, o resultado permanece `nao_avaliado`; o comparador nunca registra domínio, confiança ou erro.
+
+Nenhum evento pode ser exportado sem pedido expresso. O evento cabível seria `material_atualizado`, vinculado ao `content_ref` do delta, sem atribuir desempenho, prioridade, data ou intervalo. Nenhum arquivo foi alterado.

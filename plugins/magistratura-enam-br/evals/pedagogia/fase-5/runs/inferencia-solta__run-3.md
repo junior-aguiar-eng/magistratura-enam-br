@@ -1,0 +1,1 @@
+Não é possível fechar `rem-1`. O relato textual de acerto não substitui o evento estruturado `1.1.0`. O fechamento exige tentativa objetiva observada, resultado `correto`, `reason_codes` com `remediacao_concluida`, correspondência exata de `remediation_id` e `content_ref.id`, além de confirmação explícita. A planilha permanece inalterada.

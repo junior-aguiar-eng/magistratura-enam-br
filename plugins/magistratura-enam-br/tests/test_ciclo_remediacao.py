@@ -1,4 +1,6 @@
 import importlib.util
+import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -72,3 +74,114 @@ def test_ciclo_fecha_somente_com_evento_correto_confirmado_do_mesmo_conteudo():
     assert planner.concluir_remediacao_por_evento(remediacoes, _evento(), confirmado=True)
     assert remediacoes[0]["Feito?"] == "sim"
     assert remediacoes[0]["resultado_remediacao"] == "remediacao_concluida"
+
+
+def _criar_planilha_remediacao(planner, caminho):
+    wb = planner.Workbook()
+    ws = wb.active
+    ws.title = "Remediacao"
+    ws.append(
+        [
+            "remediation_id",
+            "content_ref_id",
+            "resultado_revisao",
+            "encaminhamento",
+            "Feito?",
+            "resultado_remediacao",
+        ]
+    )
+    ws.append(
+        [
+            "rem-1",
+            "STJ-REsp-123",
+            "erro",
+            "questao_objetiva",
+            "",
+            "",
+        ]
+    )
+    wb.save(caminho)
+    wb.close()
+
+
+def test_importacao_confirmada_persiste_fechamento_na_planilha(tmp_path):
+    planner = _planner()
+    arquivo = tmp_path / "esteira.xlsx"
+    _criar_planilha_remediacao(planner, arquivo)
+
+    assert planner.importar_evento_remediacao(
+        arquivo, _evento(), confirmado=True
+    )
+
+    wb = planner.load_workbook(arquivo, data_only=False)
+    ws = wb["Remediacao"]
+    assert ws.cell(2, 5).value == "sim"
+    assert ws.cell(2, 6).value == "remediacao_concluida"
+    wb.close()
+
+
+def test_cli_exige_confirmacao_e_importa_evento_valido(tmp_path):
+    planner = _planner()
+    arquivo = tmp_path / "esteira.xlsx"
+    evento = tmp_path / "evento.json"
+    _criar_planilha_remediacao(planner, arquivo)
+    evento.write_text(json.dumps(_evento(), ensure_ascii=False), encoding="utf-8")
+    script = (
+        ROOT
+        / "skills"
+        / "planejar-jurisprudencia"
+        / "scripts"
+        / "importar_evento_remediacao.py"
+    )
+
+    sem_confirmacao = subprocess.run(
+        [sys.executable, str(script), "--arquivo", str(arquivo), "--evento", str(evento)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert sem_confirmacao.returncode != 0
+
+    confirmado = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "--arquivo",
+            str(arquivo),
+            "--evento",
+            str(evento),
+            "--confirmar",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert confirmado.returncode == 0, confirmado.stderr
+
+    wb = planner.load_workbook(arquivo, data_only=False)
+    assert wb["Remediacao"].cell(2, 5).value == "sim"
+    wb.close()
+
+
+def test_importacao_migra_aba_legada_sem_inferencia_textual(tmp_path):
+    planner = _planner()
+    arquivo = tmp_path / "esteira-legada.xlsx"
+    wb = planner.Workbook()
+    ws = wb.active
+    ws.title = "Remediacao"
+    ws.append(["id", "resultado_revisao", "encaminhamento", "Feito?"])
+    ws.append(["STJ-REsp-123", "erro", "questao_objetiva", ""])
+    wb.save(arquivo)
+    wb.close()
+    evento = _evento(remediation_id="STJ-REsp-123")
+
+    assert planner.importar_evento_remediacao(
+        arquivo, evento, confirmado=True
+    )
+
+    wb = planner.load_workbook(arquivo, data_only=False)
+    ws = wb["Remediacao"]
+    assert ws.cell(2, 4).value == "sim"
+    assert ws.cell(1, 5).value == "resultado_remediacao"
+    assert ws.cell(2, 5).value == "remediacao_concluida"
+    wb.close()
