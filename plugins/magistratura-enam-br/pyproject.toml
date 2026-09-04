@@ -1,6 +1,6 @@
 [project]
 name = "magistratura-enam-br"
-version = "0.4.0"
+version = "0.4.1"
 description = "Ferramentas locais de apoio ao estudo para Magistratura e ENAM."
 requires-python = ">=3.14,<3.15"
 dependencies = [
@@ -15,4 +15,11 @@ dev = [
     "pytest>=8.0",
     "PyYAML>=6.0",
     "ruff>=0.16.1",
+]
+docs = [
+    "mkdocs-awesome-nav>=3.3.0",
+    "mkdocs-glightbox>=0.5.2",
+    "mkdocs-material>=9.7.5,<10",
+    "mkdocstrings[python]>=1.0.6",
+    "zensical>=0.0.58,<0.1",
 ]

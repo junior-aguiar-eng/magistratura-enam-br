@@ -2,6 +2,7 @@ interface:
   display_name: "Acompanhar percurso da Magistratura"
   short_description: "Roteia o próximo passo entre as skills jurídicas"
   default_prompt: "Use $acompanhar-percurso-magistratura para indicar a próxima skill e os dados necessários."
+  icon_small: "assets/icone-magistratura.png"
+  icon_large: "assets/icone-magistratura.png"
 policy:
   allow_implicit_invocation: true
-
