@@ -6,7 +6,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 ## Estado confirmado em 2026-09-04
 
-- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.3.2`.
+- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.3.3`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
 - Suíte de testes: 90 testes aprovados.
 - Qualidade estática: `ruff check .` aprovado.
@@ -24,6 +24,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 6. Questões objetivas seguem a trava canônica FGV/ENAM: matriz de núcleo, fatos e alternativas; gabarito aplicado à regra determinante; enunciado funcionalmente denso; distratores com paridade; e invalidação do rascunho diante de ambiguidade ou assimetria.
 7. A correção objetiva é completa mesmo após acerto: resultado direto, fundamento desenvolvido, aplicação ao enunciado, análise individual dos distratores e chave de prova; exemplos aprovados e cadernos da FGV funcionam como corpus de calibração, sem substituir o rigor jurídico.
 8. Manifesto, `pyproject.toml` e `uv.lock` mantêm a mesma versão; `interface.capabilities` declara ao menos uma capacidade efetivamente implementada.
+9. O processamento de PDFs exige `pypdf>=6.16.1`; versões anteriores permanecem vedadas por vulnerabilidades de negação de serviço em entradas adversariais.
 
 ## Validação obrigatória
 

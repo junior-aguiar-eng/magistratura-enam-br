@@ -2,6 +2,10 @@
 
 Todas as alterações relevantes deste plugin são registradas neste arquivo.
 
+## 0.3.3 — 2026-09-04
+
+- Eleva o requisito mínimo de `pypdf` para `6.16.1` e resolve o ambiente com `6.17.0`, corrigindo seis alertas moderados do Dependabot relacionados ao processamento de PDFs malformados ou adversariais.
+
 ## 0.3.2 — 2026-08-08
 
 - Sincroniza a versão `0.3.2` entre manifesto, `pyproject.toml` e `uv.lock`, declara as capacidades efetivas do plugin e torna essas invariantes obrigatórias no verificador de integração.
