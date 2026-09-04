@@ -196,7 +196,8 @@ COLS_ENTRADA = ["id", "tema", "tribunal", "disciplina", "estado_jurisprudencial"
                 "data_entrada", "Feito?"]
 COLS_REVISAO = ["id", "tema", "tribunal", "disciplina", "estado_jurisprudencial",
                 "grau_confianca", "fontes_essenciais", "prioridade", "motivo_prioridade", "origem_erro",
-                "ciclo", "total_ciclos", "proxima_revisao", "resultado_revisao", "encaminhamento", "Feito?"]
+                "ciclo", "total_ciclos", "proxima_revisao", "resultado_revisao", "encaminhamento", "Feito?",
+                "politica_revisao", "confianca", "transferencia", "intervalo_sugerido", "motivo_sugestao"]
 COLS_REMEDIACAO = ["id", "tema", "tribunal", "disciplina", "resultado_revisao", "encaminhamento", "data_registro", "Feito?"]
 COLS_SEMANA = ["ordem", "tipo", "id", "tema", "tribunal", "disciplina",
                "estado_jurisprudencial", "grau_confianca", "fontes_essenciais",
@@ -263,6 +264,8 @@ def _ajustar_larguras(ws, cols):
         "estado_jurisprudencial": 26, "grau_confianca": 18, "fontes_essenciais": 48,
         "prioridade": 12, "motivo_prioridade": 28, "origem_erro": 12, "data_entrada": 14,
         "ciclo": 8, "total_ciclos": 12, "proxima_revisao": 16,
+        "politica_revisao": 18, "confianca": 12, "transferencia": 14,
+        "intervalo_sugerido": 18, "motivo_sugestao": 30,
         "proxima_data": 16, "vencimento": 14, "min_est": 9,
         "ordem": 8, "tipo": 12, "Feito?": 9, "chave": 24, "valor": 30,
     }
@@ -476,6 +479,9 @@ def _atualizar_workbook(wb, arquivo):
     cfg = ler_config(wb["Config"])
     entrada = ler_aba(wb["Entrada"], COLS_ENTRADA)
     revisao = ler_aba(wb["Revisao"], COLS_REVISAO)
+    for item_revisao in revisao:
+        if not item_revisao.get("politica_revisao"):
+            item_revisao["politica_revisao"] = "fixa"
     remediacao = ler_aba(wb["Remediacao"], COLS_REMEDIACAO)
 
     hoje_d = hoje()
@@ -506,6 +512,11 @@ def _atualizar_workbook(wb, arquivo):
                 "resultado_revisao": "",
                 "encaminhamento": "",
                 "Feito?": "",
+                "politica_revisao": "fixa",
+                "confianca": "",
+                "transferencia": "",
+                "intervalo_sugerido": "",
+                "motivo_sugestao": "",
             })
             promovidos += 1
         else:

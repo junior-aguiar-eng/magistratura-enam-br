@@ -10,6 +10,8 @@ Há duas filas: **Entrada**, para a primeira leitura, e **Revisão**, para julga
 
 Para prioridade alta, os ciclos são D+3, D+10, D+30 e D+75. Para prioridade padrão, D+5, D+21 e D+60. As datas são contadas a partir da conclusão da etapa anterior, e não da publicação do acórdão. A planilha reserva 20% da capacidade semanal como margem de recuperação; os valores padrão são apenas estimativas e devem ser ajustados à disponibilidade real do candidato.
 
+A política adaptativa descrita em `politica-adaptativa-v1.md` é opcional e permanece em modo sombra. Planilhas antigas são migradas no primeiro `atualizar`: as cinco novas colunas são acrescentadas ao final, `politica_revisao` recebe `fixa` e os demais campos ficam vazios. A data `proxima_revisao` não é alterada pela sugestão.
+
 O motor considera cerca de 25 minutos para leitura inicial e 10 minutos para revisão. Esses valores são parâmetros de orçamento, não métricas de desempenho. Se as revisões consumirem toda a capacidade útil, a entrada deve aguardar; se a fila não puder ser drenada antes da prova, a resposta adequada é reduzir ou repriorizar o acervo, e não mascarar a limitação.
 
 ## Regimes e operação

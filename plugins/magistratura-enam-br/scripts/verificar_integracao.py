@@ -33,6 +33,8 @@ ARQUIVOS_ESSENCIAIS = (
     "skills/estudar-direito-magistratura/SKILL.md",
     "skills/estudar-direito-magistratura/references/cenarios-avaliacao.md",
     "skills/planejar-jurisprudencia/SKILL.md",
+    "skills/planejar-jurisprudencia/references/politica-adaptativa-v1.md",
+    "skills/planejar-jurisprudencia/scripts/recomendar_revisao.py",
     "skills/planejar-jurisprudencia/scripts/atualizar_esteira.py",
     "skills/planejar-jurisprudencia/scripts/preparar_itens_esteira.py",
     "skills/comparar-materiais-enam/SKILL.md",

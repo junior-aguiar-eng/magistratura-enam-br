@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import atualizar_esteira as motor
 import pytest
-from openpyxl import load_workbook
+from openpyxl import Workbook, load_workbook
 
 HOJE = date(2026, 1, 1)
 
@@ -205,3 +205,64 @@ def test_csv_rejeita_coluna_obrigatoria_ausente(tmp_path):
 
     with pytest.raises(ValueError, match="CSV de itens sem colunas obrigatórias: tribunal"):
         motor._ler_csv_itens(csv_itens)
+
+
+def test_atualizar_migra_planilha_antiga_sem_perder_dados(tmp_path, monkeypatch):
+    monkeypatch.setattr(motor, "hoje", lambda: HOJE)
+    esteira = tmp_path / "antiga.xlsx"
+    motor.cmd_init(SimpleNamespace(prova="2026-11-01", itens=None, saida=str(esteira)))
+    antigas = motor.COLS_REVISAO[:-5]
+    linha = {
+        "id": "STF-LEGADO",
+        "tema": "Dado preservado",
+        "tribunal": "STF",
+        "disciplina": "Constitucional",
+        "prioridade": "padrao",
+        "ciclo": 1,
+        "total_ciclos": 3,
+        "proxima_revisao": "2026-01-05",
+        "Feito?": "",
+    }
+    wb = load_workbook(esteira)
+    try:
+        motor.escrever_aba(wb["Revisao"], antigas, [linha])
+        wb.save(esteira)
+    finally:
+        wb.close()
+
+    motor.cmd_atualizar(SimpleNamespace(arquivo=str(esteira)))
+    wb = load_workbook(esteira)
+    try:
+        headers = [cell.value for cell in wb["Revisao"][1]]
+        migrada = motor.ler_aba(wb["Revisao"], motor.COLS_REVISAO)[0]
+    finally:
+        wb.close()
+    assert headers[: len(antigas)] == antigas
+    assert headers[-5:] == ["politica_revisao", "confianca", "transferencia", "intervalo_sugerido", "motivo_sugestao"]
+    assert migrada["id"] == "STF-LEGADO"
+    assert migrada["tema"] == "Dado preservado"
+    assert migrada["politica_revisao"] == "fixa"
+    assert all(migrada[campo] in (None, "") for campo in headers[-4:])
+
+
+def test_status_permanece_somente_leitura(tmp_path, monkeypatch):
+    monkeypatch.setattr(motor, "hoje", lambda: HOJE)
+    esteira = tmp_path / "esteira.xlsx"
+    motor.cmd_init(SimpleNamespace(prova="2026-11-01", itens=None, saida=str(esteira)))
+    antes = esteira.read_bytes()
+
+    motor.cmd_status(SimpleNamespace(arquivo=str(esteira)))
+
+    assert esteira.read_bytes() == antes
+
+
+def test_nova_coluna_tambem_sanitiza_formula(tmp_path):
+    wb = Workbook()
+    try:
+        ws = wb.active
+        motor.escrever_aba(ws, motor.COLS_REVISAO, [{"id": "STF-1", "motivo_sugestao": "=cmd"}])
+        linha = motor.ler_aba(ws, motor.COLS_REVISAO)[0]
+    finally:
+        wb.close()
+
+    assert linha["motivo_sugestao"] == "'=cmd"

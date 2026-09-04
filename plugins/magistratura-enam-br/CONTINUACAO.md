@@ -8,7 +8,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 - Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.3.3`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
-- Suíte de testes: 90 testes aprovados.
+- Suíte de testes: 141 testes aprovados após as fases pedagógicas 0 a 4.
 - Qualidade estática: `ruff check .` aprovado.
 - Integridade: verificador interno de contrato do plugin e `uv lock --check` aprovados.
 - Integração contínua: o workflow de raiz `.github/workflows/validar.yml` executa a suíte canônica, no diretório do plugin, em `push` e pull request.
@@ -25,6 +25,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 7. A correção objetiva é completa mesmo após acerto: resultado direto, fundamento desenvolvido, aplicação ao enunciado, análise individual dos distratores e chave de prova; exemplos aprovados e cadernos da FGV funcionam como corpus de calibração, sem substituir o rigor jurídico.
 8. Manifesto, `pyproject.toml` e `uv.lock` mantêm a mesma versão; `interface.capabilities` declara ao menos uma capacidade efetivamente implementada.
 9. O processamento de PDFs exige `pypdf>=6.16.1`; versões anteriores permanecem vedadas por vulnerabilidades de negação de serviço em entradas adversariais.
+10. A política adaptativa de jurisprudência permanece em modo sombra: registra intervalo e motivo sugeridos, mas `proxima_revisao` continua governada pelo ciclo fixo. Planilhas antigas recebem cinco colunas ao final sem perda dos dados existentes.
 
 ## Validação obrigatória
 

@@ -16,12 +16,9 @@
       "uniqueItems": true,
       "items": {"enum": ["fixed_policy_preserved", "incorrect", "partial", "low_confidence", "missing_justification", "high_confidence_no_transfer", "high_confidence_with_transfer", "repeated_error"]}
     },
-    "shadow_mode": {"type": "boolean"}
-  },
-  "allOf": [
-    {
-      "if": {"properties": {"policy": {"const": "fixed_v1"}}},
-      "then": {"properties": {"suggested_interval_days": {"const": 7}, "shadow_mode": {"const": true}}}
-    }
-  ]
+    "shadow_mode": {"type": "boolean"},
+    "fixed_review_at": {"type": "string", "format": "date"},
+    "suggested_review_at": {"type": "string", "format": "date"},
+    "effective_review_at": {"type": "string", "format": "date"}
+  }
 }
