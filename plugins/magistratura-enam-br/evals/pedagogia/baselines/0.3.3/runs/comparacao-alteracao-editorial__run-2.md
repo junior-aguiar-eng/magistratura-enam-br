@@ -1,0 +1,3 @@
+| Unidade | Edição anterior | Nova edição | Classificação | Leitura decisória | Ação recomendada | Certeza |
+|---|---|---|---|---|---|---|
+| Título do capítulo | “Controle de constitucionalidade” | “Fiscalização de constitucionalidade” | **SEM DELTA material — alteração terminológica/editorial** | Mudou apenas a denominação. A manutenção integral do conteúdo, dos subtópicos e das fontes afasta atualização jurídica, supressão ou ampliação temática. | **SEM AÇÃO**; apenas reconhecer as expressões como equivalentes no contexto comparado. | **Alta**, limitada aos trechos sintéticos informados. |

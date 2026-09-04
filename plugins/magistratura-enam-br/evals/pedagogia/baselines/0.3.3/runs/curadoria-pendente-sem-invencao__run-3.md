@@ -1,0 +1,1 @@
+Anexe o informativo oficial sintético ou forneça seu link oficial. Sem acesso ao documento, não é possível confirmar sua identidade, lê-lo integralmente e realizar a curadoria. Quanto a trânsito em julgado, embargos e modulação, registrarei como “não confirmado em fonte oficial disponível” quando o próprio informativo não trouxer esses dados.

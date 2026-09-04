@@ -1,0 +1,1 @@
+Envie o arquivo ou o link oficial do informativo, ou indique o tribunal e o respectivo número. Sem acesso ao documento original, não é possível confirmar sua identidade, lê-lo integralmente e selecionar com segurança os dois julgados relevantes.

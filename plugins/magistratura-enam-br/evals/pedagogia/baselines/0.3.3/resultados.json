@@ -1,0 +1,772 @@
+{
+  "baseline": "0.3.3",
+  "generated_at": "2026-09-04T16:46:31.9945560Z",
+  "runner": {
+    "codex_cli": "0.148.0",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "isolation": "ephemeral, ignore-user-config, read-only"
+  },
+  "cases": 12,
+  "repetitions_per_case": 3,
+  "executions": 36,
+  "human_review_status": "pending",
+  "runs": [
+    {
+      "case_id": "comparacao-alteracao-editorial",
+      "run": 1,
+      "output_file": "runs/comparacao-alteracao-editorial__run-1.md",
+      "evaluation": {
+        "case_id": "comparacao-alteracao-editorial",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-delta",
+            "description": "Não transforma renomeação em atualização jurídica.",
+            "passed": true,
+            "evidence": "todos os marcadores presentes"
+          }
+        ],
+        "human_review_required": [
+          "equivalencia-juridica"
+        ]
+      }
+    },
+    {
+      "case_id": "comparacao-alteracao-editorial",
+      "run": 2,
+      "output_file": "runs/comparacao-alteracao-editorial__run-2.md",
+      "evaluation": {
+        "case_id": "comparacao-alteracao-editorial",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "sem-delta",
+            "description": "Não transforma renomeação em atualização jurídica.",
+            "passed": false,
+            "evidence": "ausentes: SEM_ACAO"
+          }
+        ],
+        "human_review_required": [
+          "equivalencia-juridica"
+        ]
+      }
+    },
+    {
+      "case_id": "comparacao-alteracao-editorial",
+      "run": 3,
+      "output_file": "runs/comparacao-alteracao-editorial__run-3.md",
+      "evaluation": {
+        "case_id": "comparacao-alteracao-editorial",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-delta",
+            "description": "Não transforma renomeação em atualização jurídica.",
+            "passed": true,
+            "evidence": "todos os marcadores presentes"
+          }
+        ],
+        "human_review_required": [
+          "equivalencia-juridica"
+        ]
+      }
+    },
+    {
+      "case_id": "comparacao-supressao-nao-confirmada",
+      "run": 1,
+      "output_file": "runs/comparacao-supressao-nao-confirmada__run-1.md",
+      "evaluation": {
+        "case_id": "comparacao-supressao-nao-confirmada",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-exclusao-confirmada",
+            "description": "Não afirma exclusão com documento posterior parcial.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "cautela-documental"
+        ]
+      }
+    },
+    {
+      "case_id": "comparacao-supressao-nao-confirmada",
+      "run": 2,
+      "output_file": "runs/comparacao-supressao-nao-confirmada__run-2.md",
+      "evaluation": {
+        "case_id": "comparacao-supressao-nao-confirmada",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-exclusao-confirmada",
+            "description": "Não afirma exclusão com documento posterior parcial.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "cautela-documental"
+        ]
+      }
+    },
+    {
+      "case_id": "comparacao-supressao-nao-confirmada",
+      "run": 3,
+      "output_file": "runs/comparacao-supressao-nao-confirmada__run-3.md",
+      "evaluation": {
+        "case_id": "comparacao-supressao-nao-confirmada",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-exclusao-confirmada",
+            "description": "Não afirma exclusão com documento posterior parcial.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "cautela-documental"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-original-inacessivel",
+      "run": 1,
+      "output_file": "runs/curadoria-original-inacessivel__run-1.md",
+      "evaluation": {
+        "case_id": "curadoria-original-inacessivel",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-curadoria-de-memoria",
+            "description": "Não apresenta julgados como se o informativo estivesse disponível.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "bloqueio-proporcional"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-original-inacessivel",
+      "run": 2,
+      "output_file": "runs/curadoria-original-inacessivel__run-2.md",
+      "evaluation": {
+        "case_id": "curadoria-original-inacessivel",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-curadoria-de-memoria",
+            "description": "Não apresenta julgados como se o informativo estivesse disponível.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "bloqueio-proporcional"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-original-inacessivel",
+      "run": 3,
+      "output_file": "runs/curadoria-original-inacessivel__run-3.md",
+      "evaluation": {
+        "case_id": "curadoria-original-inacessivel",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-curadoria-de-memoria",
+            "description": "Não apresenta julgados como se o informativo estivesse disponível.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "bloqueio-proporcional"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-pendente-sem-invencao",
+      "run": 1,
+      "output_file": "runs/curadoria-pendente-sem-invencao__run-1.md",
+      "evaluation": {
+        "case_id": "curadoria-pendente-sem-invencao",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "estrutura-comentario",
+            "description": "A estrutura editorial obrigatória está presente e ordenada.",
+            "passed": false,
+            "evidence": "posições: [-1, -1, -1, -1, -1, -1]"
+          }
+        ],
+        "human_review_required": [
+          "limites-fonte"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-pendente-sem-invencao",
+      "run": 2,
+      "output_file": "runs/curadoria-pendente-sem-invencao__run-2.md",
+      "evaluation": {
+        "case_id": "curadoria-pendente-sem-invencao",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "estrutura-comentario",
+            "description": "A estrutura editorial obrigatória está presente e ordenada.",
+            "passed": false,
+            "evidence": "posições: [-1, -1, -1, -1, -1, -1]"
+          }
+        ],
+        "human_review_required": [
+          "limites-fonte"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-pendente-sem-invencao",
+      "run": 3,
+      "output_file": "runs/curadoria-pendente-sem-invencao__run-3.md",
+      "evaluation": {
+        "case_id": "curadoria-pendente-sem-invencao",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "estrutura-comentario",
+            "description": "A estrutura editorial obrigatória está presente e ordenada.",
+            "passed": false,
+            "evidence": "posições: [-1, -1, -1, -1, -1, -1]"
+          }
+        ],
+        "human_review_required": [
+          "limites-fonte"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-selecao-sem-completar-dez",
+      "run": 1,
+      "output_file": "runs/curadoria-selecao-sem-completar-dez__run-1.md",
+      "evaluation": {
+        "case_id": "curadoria-selecao-sem-completar-dez",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-meta-numerica",
+            "description": "Não trata dez julgados como mínimo obrigatório.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "selecao-hierarquizada"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-selecao-sem-completar-dez",
+      "run": 2,
+      "output_file": "runs/curadoria-selecao-sem-completar-dez__run-2.md",
+      "evaluation": {
+        "case_id": "curadoria-selecao-sem-completar-dez",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-meta-numerica",
+            "description": "Não trata dez julgados como mínimo obrigatório.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "selecao-hierarquizada"
+        ]
+      }
+    },
+    {
+      "case_id": "curadoria-selecao-sem-completar-dez",
+      "run": 3,
+      "output_file": "runs/curadoria-selecao-sem-completar-dez__run-3.md",
+      "evaluation": {
+        "case_id": "curadoria-selecao-sem-completar-dez",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-meta-numerica",
+            "description": "Não trata dez julgados como mínimo obrigatório.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "selecao-hierarquizada"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-correcao-pos-acerto",
+      "run": 1,
+      "output_file": "runs/estudo-correcao-pos-acerto__run-1.md",
+      "evaluation": {
+        "case_id": "estudo-correcao-pos-acerto",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "analise-distratores",
+            "description": "A correção diferencia as alternativas incorretas.",
+            "passed": false,
+            "evidence": "ausentes: Lassalle, Kelsen, Schmitt, culturalista"
+          }
+        ],
+        "human_review_required": [
+          "correcao-juridica"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-correcao-pos-acerto",
+      "run": 2,
+      "output_file": "runs/estudo-correcao-pos-acerto__run-2.md",
+      "evaluation": {
+        "case_id": "estudo-correcao-pos-acerto",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "analise-distratores",
+            "description": "A correção diferencia as alternativas incorretas.",
+            "passed": false,
+            "evidence": "ausentes: Lassalle, Kelsen, Schmitt, culturalista"
+          }
+        ],
+        "human_review_required": [
+          "correcao-juridica"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-correcao-pos-acerto",
+      "run": 3,
+      "output_file": "runs/estudo-correcao-pos-acerto__run-3.md",
+      "evaluation": {
+        "case_id": "estudo-correcao-pos-acerto",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "analise-distratores",
+            "description": "A correção diferencia as alternativas incorretas.",
+            "passed": true,
+            "evidence": "todos os marcadores presentes"
+          }
+        ],
+        "human_review_required": [
+          "correcao-juridica"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-explicacao-delimitada",
+      "run": 1,
+      "output_file": "runs/estudo-explicacao-delimitada__run-1.md",
+      "evaluation": {
+        "case_id": "estudo-explicacao-delimitada",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-menu",
+            "description": "Não exige seleção de menu antes de responder.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "precisao-conceitual"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-explicacao-delimitada",
+      "run": 2,
+      "output_file": "runs/estudo-explicacao-delimitada__run-2.md",
+      "evaluation": {
+        "case_id": "estudo-explicacao-delimitada",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-menu",
+            "description": "Não exige seleção de menu antes de responder.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "precisao-conceitual"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-explicacao-delimitada",
+      "run": 3,
+      "output_file": "runs/estudo-explicacao-delimitada__run-3.md",
+      "evaluation": {
+        "case_id": "estudo-explicacao-delimitada",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-menu",
+            "description": "Não exige seleção de menu antes de responder.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          }
+        ],
+        "human_review_required": [
+          "precisao-conceitual"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-insumo-introdutorio-insuficiente",
+      "run": 1,
+      "output_file": "runs/estudo-insumo-introdutorio-insuficiente__run-1.md",
+      "evaluation": {
+        "case_id": "estudo-insumo-introdutorio-insuficiente",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-questao-artificial",
+            "description": "Não fabrica cinco alternativas a partir de insumo insuficiente.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 0; esperado: 0"
+          }
+        ],
+        "human_review_required": [
+          "diagnostico-insumo"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-insumo-introdutorio-insuficiente",
+      "run": 2,
+      "output_file": "runs/estudo-insumo-introdutorio-insuficiente__run-2.md",
+      "evaluation": {
+        "case_id": "estudo-insumo-introdutorio-insuficiente",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-questao-artificial",
+            "description": "Não fabrica cinco alternativas a partir de insumo insuficiente.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 0; esperado: 0"
+          }
+        ],
+        "human_review_required": [
+          "diagnostico-insumo"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-insumo-introdutorio-insuficiente",
+      "run": 3,
+      "output_file": "runs/estudo-insumo-introdutorio-insuficiente__run-3.md",
+      "evaluation": {
+        "case_id": "estudo-insumo-introdutorio-insuficiente",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-questao-artificial",
+            "description": "Não fabrica cinco alternativas a partir de insumo insuficiente.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 0; esperado: 0"
+          }
+        ],
+        "human_review_required": [
+          "diagnostico-insumo"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-questao-sem-gabarito",
+      "run": 1,
+      "output_file": "runs/estudo-questao-sem-gabarito__run-1.md",
+      "evaluation": {
+        "case_id": "estudo-questao-sem-gabarito",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "cinco-alternativas",
+            "description": "Há exatamente cinco alternativas.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 5; esperado: 5"
+          },
+          {
+            "id": "sem-gabarito",
+            "description": "A tentativa não antecipa resposta.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          },
+          {
+            "id": "encerra-em-e",
+            "description": "A mensagem termina na alternativa E.",
+            "passed": true,
+            "evidence": "última linha é a alternativa E"
+          }
+        ],
+        "human_review_required": [
+          "gabarito-unico"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-questao-sem-gabarito",
+      "run": 2,
+      "output_file": "runs/estudo-questao-sem-gabarito__run-2.md",
+      "evaluation": {
+        "case_id": "estudo-questao-sem-gabarito",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "cinco-alternativas",
+            "description": "Há exatamente cinco alternativas.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 5; esperado: 5"
+          },
+          {
+            "id": "sem-gabarito",
+            "description": "A tentativa não antecipa resposta.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          },
+          {
+            "id": "encerra-em-e",
+            "description": "A mensagem termina na alternativa E.",
+            "passed": true,
+            "evidence": "última linha é a alternativa E"
+          }
+        ],
+        "human_review_required": [
+          "gabarito-unico"
+        ]
+      }
+    },
+    {
+      "case_id": "estudo-questao-sem-gabarito",
+      "run": 3,
+      "output_file": "runs/estudo-questao-sem-gabarito__run-3.md",
+      "evaluation": {
+        "case_id": "estudo-questao-sem-gabarito",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "cinco-alternativas",
+            "description": "Há exatamente cinco alternativas.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 5; esperado: 5"
+          },
+          {
+            "id": "sem-gabarito",
+            "description": "A tentativa não antecipa resposta.",
+            "passed": true,
+            "evidence": "nenhum termo proibido"
+          },
+          {
+            "id": "encerra-em-e",
+            "description": "A mensagem termina na alternativa E.",
+            "passed": true,
+            "evidence": "última linha é a alternativa E"
+          }
+        ],
+        "human_review_required": [
+          "gabarito-unico"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-capacidade-insuficiente",
+      "run": 1,
+      "output_file": "runs/planejamento-capacidade-insuficiente__run-1.md",
+      "evaluation": {
+        "case_id": "planejamento-capacidade-insuficiente",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "estrutura-operacional",
+            "description": "A resposta separa carga, fila e adiados.",
+            "passed": false,
+            "evidence": "ausentes: Carga mínima viável, Fila de execução, Adiados"
+          }
+        ],
+        "human_review_required": [
+          "calculo-capacidade"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-capacidade-insuficiente",
+      "run": 2,
+      "output_file": "runs/planejamento-capacidade-insuficiente__run-2.md",
+      "evaluation": {
+        "case_id": "planejamento-capacidade-insuficiente",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "estrutura-operacional",
+            "description": "A resposta separa carga, fila e adiados.",
+            "passed": false,
+            "evidence": "ausentes: Carga mínima viável, Fila de execução, Adiados"
+          }
+        ],
+        "human_review_required": [
+          "calculo-capacidade"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-capacidade-insuficiente",
+      "run": 3,
+      "output_file": "runs/planejamento-capacidade-insuficiente__run-3.md",
+      "evaluation": {
+        "case_id": "planejamento-capacidade-insuficiente",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "estrutura-operacional",
+            "description": "A resposta separa carga, fila e adiados.",
+            "passed": false,
+            "evidence": "ausentes: Carga mínima viável, Fila de execução, Adiados"
+          }
+        ],
+        "human_review_required": [
+          "calculo-capacidade"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-ciclos-fixos",
+      "run": 1,
+      "output_file": "runs/planejamento-ciclos-fixos__run-1.md",
+      "evaluation": {
+        "case_id": "planejamento-ciclos-fixos",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "ciclos-presentes",
+            "description": "Os ciclos canônicos aparecem sem alteração.",
+            "passed": false,
+            "evidence": "ausentes: D+3, D+10, D+30, D+75, D+5, D+60"
+          }
+        ],
+        "human_review_required": [
+          "ancora-correta"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-ciclos-fixos",
+      "run": 2,
+      "output_file": "runs/planejamento-ciclos-fixos__run-2.md",
+      "evaluation": {
+        "case_id": "planejamento-ciclos-fixos",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "ciclos-presentes",
+            "description": "Os ciclos canônicos aparecem sem alteração.",
+            "passed": false,
+            "evidence": "ausentes: D+3, D+10, D+30, D+75, D+5, D+21, D+60"
+          }
+        ],
+        "human_review_required": [
+          "ancora-correta"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-ciclos-fixos",
+      "run": 3,
+      "output_file": "runs/planejamento-ciclos-fixos__run-3.md",
+      "evaluation": {
+        "case_id": "planejamento-ciclos-fixos",
+        "status": "reprovado",
+        "assertions": [
+          {
+            "id": "ciclos-presentes",
+            "description": "Os ciclos canônicos aparecem sem alteração.",
+            "passed": false,
+            "evidence": "ausentes: D+10, D+75, D+5, D+21"
+          }
+        ],
+        "human_review_required": [
+          "ancora-correta"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-remediacao-sem-exercicio",
+      "run": 1,
+      "output_file": "runs/planejamento-remediacao-sem-exercicio__run-1.md",
+      "evaluation": {
+        "case_id": "planejamento-remediacao-sem-exercicio",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-questao",
+            "description": "O planejador não assume a função da skill de estudo.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 0; esperado: 0"
+          }
+        ],
+        "human_review_required": [
+          "fronteira-remediacao"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-remediacao-sem-exercicio",
+      "run": 2,
+      "output_file": "runs/planejamento-remediacao-sem-exercicio__run-2.md",
+      "evaluation": {
+        "case_id": "planejamento-remediacao-sem-exercicio",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-questao",
+            "description": "O planejador não assume a função da skill de estudo.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 0; esperado: 0"
+          }
+        ],
+        "human_review_required": [
+          "fronteira-remediacao"
+        ]
+      }
+    },
+    {
+      "case_id": "planejamento-remediacao-sem-exercicio",
+      "run": 3,
+      "output_file": "runs/planejamento-remediacao-sem-exercicio__run-3.md",
+      "evaluation": {
+        "case_id": "planejamento-remediacao-sem-exercicio",
+        "status": "revisao_humana_pendente",
+        "assertions": [
+          {
+            "id": "sem-questao",
+            "description": "O planejador não assume a função da skill de estudo.",
+            "passed": true,
+            "evidence": "alternativas encontradas: 0; esperado: 0"
+          }
+        ],
+        "human_review_required": [
+          "fronteira-remediacao"
+        ]
+      }
+    }
+  ]
+}

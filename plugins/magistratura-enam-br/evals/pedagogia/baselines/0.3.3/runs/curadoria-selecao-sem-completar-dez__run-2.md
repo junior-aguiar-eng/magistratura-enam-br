@@ -1,0 +1,1 @@
+Envie o arquivo ou o link oficial do informativo — ou indique o tribunal e o número — para que eu confirme o documento, faça a leitura integral e selecione apenas os dois julgados efetivamente relevantes.

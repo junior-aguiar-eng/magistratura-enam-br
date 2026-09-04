@@ -1,0 +1,3 @@
+| Unidade comparada | Material anterior | Material posterior | Classificação | Leitura decisória | Ação recomendada | Certeza documental |
+|---|---|---|---|---|---|---|
+| Subtema indicado | Subtema presente | Arquivo parcial, sem o trecho correspondente | **PENDENTE DE PUBLICAÇÃO** | A ausência no fragmento posterior não comprova supressão, pois não há cobertura integral da nova edição nem elementos para afastar deslocamento editorial. | **AGUARDAR_PUBLICACAO** | Alta quanto à impossibilidade de concluir; indeterminada quanto à permanência, deslocamento ou exclusão do subtema |

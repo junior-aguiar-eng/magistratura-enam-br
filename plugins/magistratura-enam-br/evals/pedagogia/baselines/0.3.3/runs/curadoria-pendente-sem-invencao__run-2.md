@@ -1,0 +1,1 @@
+Envie o arquivo ou o link oficial do informativo. Sem acesso ao documento original, não é possível confirmar sua identidade, realizar a leitura integral nem iniciar a curadoria substantiva.

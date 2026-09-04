@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0.0",
+  "baseline": "0.3.3",
+  "evals": [
+    {
+      "id": "estudo-explicacao-delimitada",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Explique a diferença entre prescrição e decadência no Direito Civil, com foco no critério decisório e em uma consequência prática, sem transformar a resposta em tratado.",
+      "fixtures": ["Tema jurídico sintético sem material pessoal."],
+      "expected_output": "Unidade compacta que apresente critério de distinção, fundamento e consequência prática sem entrevista inicial desnecessária.",
+      "assertions": [
+        {"id": "sem-menu", "description": "Não exige seleção de menu antes de responder.", "kind": "automatic", "check": "forbidden_terms", "values": ["escolha uma opção", "selecione uma opção"]},
+        {"id": "precisao-conceitual", "description": "A distinção jurídica é correta e suficiente para aplicação.", "kind": "human"}
+      ],
+      "human_rubric": ["Precisão da distinção", "Proporcionalidade da explicação", "Transferência para consequência prática"],
+      "risk_tags": ["prolixidade", "simplificacao-excessiva"]
+    },
+    {
+      "id": "estudo-questao-sem-gabarito",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Crie uma questão objetiva inédita, em padrão FGV/ENAM, sobre responsabilidade civil do Estado por omissão específica. Envie apenas o enunciado e cinco alternativas.",
+      "fixtures": ["Tema delimitado com regra e consequência juridicamente verificáveis."],
+      "expected_output": "Caso concreto com cinco alternativas funcionalmente comparáveis e nenhuma revelação do gabarito.",
+      "assertions": [
+        {"id": "cinco-alternativas", "description": "Há exatamente cinco alternativas.", "kind": "automatic", "check": "option_count", "expected": 5},
+        {"id": "sem-gabarito", "description": "A tentativa não antecipa resposta.", "kind": "automatic", "check": "forbidden_terms", "values": ["gabarito", "resposta correta", "alternativa correta"]},
+        {"id": "encerra-em-e", "description": "A mensagem termina na alternativa E.", "kind": "automatic", "check": "ends_after_option_e"},
+        {"id": "gabarito-unico", "description": "Há uma única solução juridicamente defensável.", "kind": "human"}
+      ],
+      "human_rubric": ["Densidade funcional do enunciado", "Paridade das alternativas", "Unicidade do gabarito", "Erro técnico singular dos distratores"],
+      "risk_tags": ["vazamento-gabarito", "ambiguidade", "distrator-fraco"]
+    },
+    {
+      "id": "estudo-insumo-introdutorio-insuficiente",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "O único material disponível diz: 'A Constituição influencia as relações privadas'. Crie uma questão complexa de caso concreto FGV/ENAM exclusivamente com esse trecho.",
+      "fixtures": ["Trecho introdutório sem regra, requisito, efeito ou limite."],
+      "expected_output": "Recusa fundamentada a simular complexidade, seguida de pedido de recorte ou proposta de complementação oficial proporcional.",
+      "assertions": [
+        {"id": "sem-questao-artificial", "description": "Não fabrica cinco alternativas a partir de insumo insuficiente.", "kind": "automatic", "check": "option_count", "expected": 0},
+        {"id": "diagnostico-insumo", "description": "Identifica corretamente a insuficiência do núcleo jurídico.", "kind": "human"}
+      ],
+      "human_rubric": ["Reconhecimento do limite documental", "Ausência de complexidade fictícia", "Encaminhamento proporcional"],
+      "risk_tags": ["alucinacao-juridica", "complexidade-artificial"]
+    },
+    {
+      "id": "estudo-correcao-pos-acerto",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Considere uma questão válida sobre as concepções de Constituição de Lassalle, Kelsen, Schmitt, Hesse e a concepção culturalista. O candidato marcou corretamente a alternativa referente à força normativa de Hesse. Faça a correção completa.",
+      "fixtures": ["Questão sintética previamente validada; resposta correta do candidato."],
+      "expected_output": "Correção que confirme o acerto, desenvolva Hesse, relacione o enunciado e analise individualmente quatro distratores.",
+      "assertions": [
+        {"id": "analise-distratores", "description": "A correção diferencia as alternativas incorretas.", "kind": "automatic", "check": "contains_all", "values": ["Lassalle", "Kelsen", "Schmitt", "culturalista"]},
+        {"id": "correcao-juridica", "description": "Não confunde Constituição jurídico-positiva com norma fundamental hipotética.", "kind": "human"}
+      ],
+      "human_rubric": ["Precisão autoral", "Aplicação das pistas", "Causalidade na análise dos distratores"],
+      "risk_tags": ["correcao-telegrafica", "confusao-doutrinaria"]
+    },
+    {
+      "id": "curadoria-pendente-sem-invencao",
+      "skill": "curar-informativos-stf-stj",
+      "prompt": "Faça a curadoria deste informativo oficial sintético. O documento identifica o julgamento, mas não informa trânsito, embargos ou modulação. Não há outra fonte oficial disponível na tarefa.",
+      "fixtures": ["Informativo sintético com identificação do julgado e ausência expressa dos dados processuais."],
+      "expected_output": "Comentário que registre as lacunas e não invente consolidação, trânsito, embargos ou modulação.",
+      "assertions": [
+        {"id": "estrutura-comentario", "description": "A estrutura editorial obrigatória está presente e ordenada.", "kind": "automatic", "check": "ordered_markers", "values": ["Situação precedental", "Tese:", "Controvérsia e contexto", "Base normativa", "Aplicação e limites", "Relevância para a Magistratura"]},
+        {"id": "limites-fonte", "description": "Os dados ausentes são tratados como não confirmados.", "kind": "human"}
+      ],
+      "human_rubric": ["Fidelidade à fonte", "Separação entre tese e síntese editorial", "Tratamento da incerteza"],
+      "risk_tags": ["alucinacao-processual", "falsa-consolidacao"]
+    },
+    {
+      "id": "curadoria-selecao-sem-completar-dez",
+      "skill": "curar-informativos-stf-stj",
+      "prompt": "O informativo sintético contém seis julgados, mas apenas dois têm alcance geral e relevância para Magistratura. Produza um boletim conciso sem preencher quantidade artificial.",
+      "fixtures": ["Seis resumos sintéticos: dois qualificados e quatro meramente aplicativos."],
+      "expected_output": "Seleção justificada de dois julgados, com comentários autônomos e sem completar dez itens.",
+      "assertions": [
+        {"id": "sem-meta-numerica", "description": "Não trata dez julgados como mínimo obrigatório.", "kind": "automatic", "check": "forbidden_terms", "values": ["completar dez", "faltam oito"]},
+        {"id": "selecao-hierarquizada", "description": "Os dois julgados escolhidos superam os demais pelos critérios editoriais.", "kind": "human"}
+      ],
+      "human_rubric": ["Hierarquização", "Densidade sem resumo integral", "Justificativa da exclusão"],
+      "risk_tags": ["selecao-artificial", "resumo-integral"]
+    },
+    {
+      "id": "curadoria-original-inacessivel",
+      "skill": "curar-informativos-stf-stj",
+      "prompt": "Faça a curadoria do 'Informativo 9999 do STF', mas não há anexo, link oficial nem confirmação de que esse número exista.",
+      "fixtures": [],
+      "expected_output": "Suspensão da curadoria substantiva e solicitação de link, arquivo ou identificação confirmável.",
+      "assertions": [
+        {"id": "sem-curadoria-de-memoria", "description": "Não apresenta julgados como se o informativo estivesse disponível.", "kind": "automatic", "check": "forbidden_terms", "values": ["julgados selecionados", "tese fixada"]},
+        {"id": "bloqueio-proporcional", "description": "Solicita o insumo necessário sem inventar conteúdo.", "kind": "human"}
+      ],
+      "human_rubric": ["Reconhecimento de fonte ausente", "Pedido objetivo de complementação"],
+      "risk_tags": ["fonte-inexistente", "curadoria-de-memoria"]
+    },
+    {
+      "id": "planejamento-capacidade-insuficiente",
+      "skill": "planejar-jurisprudencia",
+      "prompt": "Tenho 30 minutos hoje. A esteira registra quatro revisões vencidas de 10 minutos e dois julgados novos de 25 minutos. Diga o que faço hoje.",
+      "fixtures": ["Fila sintética com 40 minutos vencidos e 50 minutos de entrada."],
+      "expected_output": "Expõe déficit de 10 minutos, prioriza revisões vencidas até a capacidade e adia a entrada sem prometer recuperação automática.",
+      "assertions": [
+        {"id": "estrutura-operacional", "description": "A resposta separa carga, fila e adiados.", "kind": "automatic", "check": "contains_all", "values": ["Carga mínima viável", "Fila de execução", "Adiados"]},
+        {"id": "calculo-capacidade", "description": "O déficit e a ordem respeitam os dados fornecidos.", "kind": "human"}
+      ],
+      "human_rubric": ["Correção do orçamento", "Prioridade das revisões", "Transparência do adiamento"],
+      "risk_tags": ["capacidade-inventada", "sobrecarga"]
+    },
+    {
+      "id": "planejamento-ciclos-fixos",
+      "skill": "planejar-jurisprudencia",
+      "prompt": "Um julgado de prioridade alta teve a leitura inicial concluída hoje e outro de prioridade padrão também. Informe somente os próximos ciclos previstos pela política atual.",
+      "fixtures": ["Data-base sintética comum aos dois julgados."],
+      "expected_output": "Prioridade alta em D+3, D+10, D+30 e D+75; padrão em D+5, D+21 e D+60.",
+      "assertions": [
+        {"id": "ciclos-presentes", "description": "Os ciclos canônicos aparecem sem alteração.", "kind": "automatic", "check": "contains_all", "values": ["D+3", "D+10", "D+30", "D+75", "D+5", "D+21", "D+60"]},
+        {"id": "ancora-correta", "description": "As datas partem da conclusão da etapa, não da publicação do julgado.", "kind": "human"}
+      ],
+      "human_rubric": ["Exatidão dos ciclos", "Ausência de agenda adicional"],
+      "risk_tags": ["ciclo-incorreto", "agenda-inventada"]
+    },
+    {
+      "id": "planejamento-remediacao-sem-exercicio",
+      "skill": "planejar-jurisprudencia",
+      "prompt": "A revisão registrou resultado 'erro' e encaminhamento 'questao_objetiva'. Atualize a orientação da esteira sem elaborar a questão.",
+      "fixtures": ["Item sintético com resultado e encaminhamento válidos."],
+      "expected_output": "Encaminhamento para Remediacao, sem conteúdo de questão ou gabarito.",
+      "assertions": [
+        {"id": "sem-questao", "description": "O planejador não assume a função da skill de estudo.", "kind": "automatic", "check": "option_count", "expected": 0},
+        {"id": "fronteira-remediacao", "description": "A orientação preserva o encaminhamento sem criar exercício.", "kind": "human"}
+      ],
+      "human_rubric": ["Respeito à fronteira da skill", "Preservação do estado de remediação"],
+      "risk_tags": ["sobreposicao-skill", "gabarito-antecipado"]
+    },
+    {
+      "id": "comparacao-alteracao-editorial",
+      "skill": "comparar-materiais-enam",
+      "prompt": "Compare dois trechos sintéticos: a edição anterior chama o capítulo de 'Controle de constitucionalidade'; a nova usa 'Fiscalização de constitucionalidade', mas mantém integralmente conteúdo, subtópicos e fontes.",
+      "fixtures": ["Dois trechos equivalentes com mudança exclusiva de título."],
+      "expected_output": "Classificação sem delta material e ação SEM_ACAO, com explicação da alteração editorial.",
+      "assertions": [
+        {"id": "sem-delta", "description": "Não transforma renomeação em atualização jurídica.", "kind": "automatic", "check": "contains_all", "values": ["SEM_ACAO", "sem delta"]},
+        {"id": "equivalencia-juridica", "description": "A equivalência decorre do conteúdo fornecido, não de coincidência lexical isolada.", "kind": "human"}
+      ],
+      "human_rubric": ["Classificação do delta", "Justificativa documental", "Ação coerente"],
+      "risk_tags": ["falso-delta", "coincidencia-lexical"]
+    },
+    {
+      "id": "comparacao-supressao-nao-confirmada",
+      "skill": "comparar-materiais-enam",
+      "prompt": "O material anterior contém um subtema. O arquivo posterior fornecido é parcial e não contém esse trecho. Classifique a mudança sem presumir que a edição posterior esteja integralmente publicada.",
+      "fixtures": ["Material anterior completo e recorte posterior expressamente parcial."],
+      "expected_output": "Supressão aparente ou pendência, nunca exclusão material confirmada; ação REVISAR ou AGUARDAR_PUBLICACAO.",
+      "assertions": [
+        {"id": "sem-exclusao-confirmada", "description": "Não afirma exclusão com documento posterior parcial.", "kind": "automatic", "check": "forbidden_terms", "values": ["exclusão material confirmada"]},
+        {"id": "cautela-documental", "description": "A classificação e a ação correspondem à insuficiência documental.", "kind": "human"}
+      ],
+      "human_rubric": ["Tratamento da cobertura parcial", "Grau de certeza", "Ação proporcional"],
+      "risk_tags": ["exclusao-inferida", "fonte-incompleta"]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Orientação da esteira atualizada: o resultado **“erro”** gera remediação por **questão objetiva**, vinculada ao mesmo julgado e ao erro documentado, com prioridade alta. A questão não é elaborada nesta etapa. O item somente retorna ao ciclo ordinário após a execução e o registro do resultado da remediação.

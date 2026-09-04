@@ -1,0 +1,3 @@
+O trecho é apenas introdutório: não identifica regra, tese, consequência jurídica ou limite verificável. Portanto, não oferece base suficiente para uma questão complexa FGV/ENAM exclusivamente fundada nele, sem que se inventem premissas ou se produza ambiguidade.
+
+Delimite um subtema — por exemplo, eficácia dos direitos fundamentais nas relações privadas, autonomia privada versus igualdade, função social do contrato ou constitucionalização do Direito Civil — ou forneça material mais específico.
