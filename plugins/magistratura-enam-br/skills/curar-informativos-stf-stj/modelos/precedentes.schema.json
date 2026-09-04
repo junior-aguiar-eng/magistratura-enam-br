@@ -1,6 +1,22 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "precedentes.schema.json",
+  "$defs": {
+    "content_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "disciplina", "tema", "subtema", "source_refs", "source_state"],
+      "properties": {
+        "kind": {"const": "precedente"},
+        "id": {"type": "string", "minLength": 1},
+        "disciplina": {"type": "string", "minLength": 1},
+        "tema": {"type": "string", "minLength": 1},
+        "subtema": {"type": "string", "minLength": 1},
+        "source_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "source_state": {"type": "string", "minLength": 1}
+      }
+    }
+  },
   "title": "Registros de precedentes",
   "type": "array",
   "items": {
@@ -20,7 +36,8 @@
       "data_julgamento": {"type": "string", "format": "date"},
       "data_informativo": {"type": "string", "format": "date"},
       "tese_resumida": {"type": "string"},
-      "fontes_essenciais": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      "fontes_essenciais": {"type": "array", "items": {"type": "string", "minLength": 1}},
+      "content_ref": {"$ref": "#/$defs/content_ref"}
     },
     "allOf": [
       {

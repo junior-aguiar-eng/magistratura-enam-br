@@ -10,6 +10,20 @@
     "itens": {"type": "array", "items": {"$ref": "#/$defs/item"}}
   },
   "$defs": {
+    "content_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "disciplina", "tema", "subtema", "source_refs", "source_state"],
+      "properties": {
+        "kind": {"const": "delta_documental"},
+        "id": {"type": "string", "minLength": 1},
+        "disciplina": {"type": "string", "minLength": 1},
+        "tema": {"type": "string", "minLength": 1},
+        "subtema": {"type": "string", "minLength": 1},
+        "source_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "source_state": {"enum": ["documental_confirmado", "documental_pendente"]}
+      }
+    },
     "referencia": {
       "type": "object",
       "additionalProperties": false,
@@ -45,7 +59,8 @@
           }
         },
         "evidencias": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/referencia"}},
-        "observacao": {"type": "string"}
+        "observacao": {"type": "string"},
+        "content_ref": {"$ref": "#/$defs/content_ref"}
       },
       "allOf": [
         {

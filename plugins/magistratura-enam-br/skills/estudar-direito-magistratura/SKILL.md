@@ -67,3 +67,9 @@ Registre erros recorrentes ou progresso apenas quando houver mecanismo de persis
 ## Avaliação de manutenção
 
 Ao alterar substancialmente a elaboração ou a correção de questões objetivas, execute o cenário pertinente de `references/cenarios-avaliacao.md` em sessão nova. Aplique a rubrica somente após a resposta e não revele seus critérios antes da tentativa do candidato.
+## Ciclo explícito de remediação
+
+Quando uma revisão de julgado registrar erro e encaminhamento para `questao_objetiva`, produza apenas uma proposta de evento de aprendizagem com o mesmo `content_ref` e `remediation_id`. Após resposta correta, use `result: correto` e `reason_codes: [remediacao_concluida]`, mas não declare a remediação encerrada nem altere a esteira.
+
+A skill de planejamento somente poderá concluir a remediação ao importar esse evento válido com confirmação explícita do usuário. Resposta parcial, evento inválido, conteúdo divergente ou inferência textual livre mantêm a remediação aberta.
+

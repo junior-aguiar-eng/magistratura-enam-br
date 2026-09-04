@@ -6,7 +6,7 @@
   "additionalProperties": false,
   "required": ["schema_version", "event_id", "occurred_at", "skill", "content_ref", "activity", "performance", "routing"],
   "properties": {
-    "schema_version": {"const": "1.0.0"},
+    "schema_version": {"enum": ["1.0.0", "1.1.0"]},
     "event_id": {"type": "string", "pattern": "^evt_[0-9a-z-]{20,64}$"},
     "occurred_at": {"type": "string", "format": "date-time"},
     "skill": {
@@ -17,6 +17,7 @@
         "planejar-jurisprudencia"
       ]
     },
+    "remediation_id": {"type": "string", "minLength": 1},
     "content_ref": {"$ref": "#/$defs/content_ref"},
     "activity": {"$ref": "#/$defs/activity"},
     "performance": {"$ref": "#/$defs/performance"},
@@ -24,16 +25,34 @@
   },
   "$defs": {
     "content_ref": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["content_id", "source_type"],
-      "properties": {
-        "content_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,127}$"},
-        "source_type": {
-          "enum": ["material_candidato", "mapa_curricular", "analise_estrategica", "fonte_oficial", "complemento_geral", "material_publicado"]
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "id", "disciplina", "tema", "subtema", "source_refs", "source_state"],
+          "properties": {
+            "kind": {"enum": ["precedente", "delta_documental", "material_estudo", "questao"]},
+            "id": {"type": "string", "minLength": 1},
+            "disciplina": {"type": "string", "minLength": 1},
+            "tema": {"type": "string", "minLength": 1},
+            "subtema": {"type": "string", "minLength": 1},
+            "source_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+            "source_state": {"type": "string", "minLength": 1}
+          }
         },
-        "locator": {"type": "string", "minLength": 1, "maxLength": 240}
-      }
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["content_id", "source_type"],
+          "properties": {
+            "content_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,127}$"},
+            "source_type": {
+              "enum": ["material_candidato", "mapa_curricular", "analise_estrategica", "fonte_oficial", "complemento_geral", "material_publicado"]
+            },
+            "locator": {"type": "string", "minLength": 1, "maxLength": 240}
+          }
+        }
+      ]
     },
     "activity": {
       "type": "object",

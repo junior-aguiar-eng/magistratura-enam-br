@@ -22,6 +22,7 @@ Compare materiais delimitados pelo usuário para identificar mudanças jurídica
 3. Use edital e retificações oficiais como referência prioritária; depois, os materiais originais identificados.
 4. Compare por capítulo, tema e subtema, mantendo evidência de documento, página e localização para cada conclusão. Para cada unidade, registre o que havia antes, o que há agora, a densidade relativa, eventual supressão ou deslocamento e a consequência concreta para o estudo.
 5. Leia `references/formato-entrega-comparativo.md` uma vez antes de apresentar o resultado e entregue a tabela no chat. Para cada delta material, acrescente leitura decisória concisa: o que mudou, por que importa no material de estudo, ação recomendada e grau de certeza documental. Use os modelos em `modelos/` e execute `scripts/auditar_rastreabilidade.py` somente se o usuário pedir auditoria de rastreabilidade, JSON, artefatos estruturados ou arquivo; não crie nem cite arquivos de saída por padrão.
+6. Exporte um evento `material_atualizado` somente mediante pedido expresso. Vincule `INCLUIR`, `SUBSTITUIR` ou `REVISAR` ao `content_ref` do delta, sem converter a comparação documental em erro, acerto ou domínio do candidato. Não atribua data, intervalo ou prioridade. Encaminhe explicação à skill de estudo e eventual planejamento somente quando o delta tratar de julgado já presente na esteira.
 
 ## Limites
 

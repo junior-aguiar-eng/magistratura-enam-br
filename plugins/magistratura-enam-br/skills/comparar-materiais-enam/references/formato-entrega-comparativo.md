@@ -33,3 +33,7 @@ Depois da tabela, faça uma avaliação técnica densa, organizada e proporciona
 6. **Limitações e pendências:** registre pendências documentais que impeçam conclusão sobre supressão, deslocamento, completude ou relevância.
 
 Não repita a tabela em prosa, não entregue uma sinopse do ponto, não anuncie contagem de páginas como conclusão substantiva e não gere Markdown, PDF, JSON ou links de artefatos salvo pedido expresso. Datas, intervalos e capacidade de estudo pertencem à skill de planejamento de jurisprudência.
+
+## 3. Transporte pedagógico condicional
+
+Somente mediante pedido expresso, a comparação pode exportar um evento `material_atualizado` com o `content_ref` do delta e a ação `INCLUIR`, `SUBSTITUIR` ou `REVISAR`. Preserve identificador, disciplina, tema, subtema, referências e estado das fontes. Não atribua data, intervalo ou prioridade e não registre erro, acerto ou domínio do candidato. Encaminhe o conteúdo para explicação e planejamento apenas se o delta corresponder a julgado já presente na esteira; nos demais casos, limite-se à atualização documental.

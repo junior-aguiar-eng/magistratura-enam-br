@@ -787,5 +787,80 @@ def main():
         raise SystemExit(f"ERRO: {exc}") from exc
 
 
+def concluir_remediacao_por_evento(remediacoes, evento, *, confirmado=False):
+    """Fecha uma remediação apenas por evento explícito, confirmado e vinculável."""
+    if confirmado is not True or not isinstance(evento, dict):
+        return False
+
+    campos = {
+        "schema_version",
+        "event_id",
+        "occurred_at",
+        "skill",
+        "remediation_id",
+        "content_ref",
+        "activity",
+        "performance",
+        "routing",
+    }
+    if not campos.issubset(evento):
+        return False
+    if evento["schema_version"] != "1.1.0":
+        return False
+    if evento["skill"] != "estudar-direito-magistratura":
+        return False
+    if not str(evento["event_id"]).startswith("evt_") or not evento["occurred_at"]:
+        return False
+    remediation_id = evento["remediation_id"]
+    content_ref = evento["content_ref"]
+    activity = evento["activity"]
+    performance = evento["performance"]
+    routing = evento["routing"]
+    campos_ref = {
+        "kind",
+        "id",
+        "disciplina",
+        "tema",
+        "subtema",
+        "source_refs",
+        "source_state",
+    }
+    if (
+        not remediation_id
+        or not isinstance(content_ref, dict)
+        or not campos_ref.issubset(content_ref)
+        or not content_ref["id"]
+    ):
+        return False
+    if (
+        not isinstance(activity, dict)
+        or activity.get("modality") != "questao_objetiva"
+        or activity.get("attempt_observed") is not True
+    ):
+        return False
+    if not isinstance(performance, dict) or performance.get("result") != "correto":
+        return False
+    if (
+        not isinstance(routing, dict)
+        or routing.get("target_skill") != "planejar-jurisprudencia"
+        or "remediacao_concluida" not in routing.get("reason_codes", [])
+    ):
+        return False
+
+    correspondentes = [
+        item
+        for item in remediacoes
+        if (item.get("remediation_id") or item.get("id")) == remediation_id
+        and (item.get("content_ref_id") or item.get("id")) == content_ref["id"]
+        and str(item.get("Feito?", "")).strip().lower() not in {"sim", "x", "feito"}
+    ]
+    if len(correspondentes) != 1:
+        return False
+
+    correspondentes[0]["Feito?"] = "sim"
+    correspondentes[0]["resultado_remediacao"] = "remediacao_concluida"
+    return True
+
+
 if __name__ == "__main__":
     main()
