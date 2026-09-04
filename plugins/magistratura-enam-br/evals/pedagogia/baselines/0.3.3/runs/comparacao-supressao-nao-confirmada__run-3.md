@@ -1,0 +1,3 @@
+| Subtema | Material anterior | Material posterior | Classificação | Leitura decisória | Ação recomendada | Certeza |
+|---|---|---|---|---|---|---|
+| Subtema indicado | Presente, conforme localização identificável no material anterior | Não localizado no trecho parcial fornecido | **PENDENTE DE PUBLICAÇÃO** | A ausência no arquivo parcial não demonstra supressão, deslocamento editorial nem mudança jurídica. Sem cobertura integral da edição posterior, inexiste base documental para concluir exclusão. | **AGUARDAR_PUBLICACAO** | Alta quanto à impossibilidade de classificar o delta; indeterminada quanto ao conteúdo da edição completa |

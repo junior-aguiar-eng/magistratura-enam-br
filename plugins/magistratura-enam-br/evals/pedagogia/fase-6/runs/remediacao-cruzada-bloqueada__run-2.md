@@ -1,0 +1,1 @@
+Não é possível encerrar a linha. Embora o resultado seja **correto**, o evento (`rem-1`, `STJ-B`) não corresponde exatamente à linha aberta (`rem-2`, `STJ-A`). A linha permanece aberta, sem alteração.

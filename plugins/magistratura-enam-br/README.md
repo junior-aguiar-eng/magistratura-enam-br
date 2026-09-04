@@ -44,6 +44,22 @@ O workflow de raiz `.github/workflows/validar.yml` executa essa mesma sequência
 - `AGENTS.md`: diretrizes obrigatórias para manutenção e execução das skills.
 - `CHANGELOG.md`: histórico de alterações publicáveis.
 - `CONTINUACAO.md`: estado técnico e roteiro de manutenção.
+- `modelos/pedagogia/`: schemas versionados de evento, perfil reconstruível e recomendação de revisão; nesta fase, não há persistência automática.
+- `references/contrato-pedagogico.md`: taxonomia comum e limites de inferência entre as quatro skills.
+- `references/persistencia-pedagogica-local.md`: comandos explícitos, reconstrução, exportação e exclusão dos dados locais.
+- `scripts/eventos_aprendizagem.py` e `scripts/perfil_candidato.py`: log append-only e perfil reconstruível, sem rede ou caminho oculto.
 - `skills/`: instruções, referências, modelos, scripts e testes de cada skill.
 
 Consulte o [changelog](CHANGELOG.md) antes de atualizar ou publicar o plugin.
+## Ambiente pedagógico integrado 0.4
+
+A instalação funciona sem perfil e sem histórico: as cinco skills podem ser usadas diretamente, e a ausência de dados prévios é tratada como ausência de evidência. Persistência é opcional, local e acionada somente por pedido expresso, confirmação e caminho indicado pelo candidato.
+
+O acompanhamento unificado recomenda a skill adequada, mas não executa escrita nem promete memória automática. Relatórios locais são gerados apenas mediante formato explícito:
+
+```powershell
+uv run python scripts/relatorio_aprendizagem.py --entrada eventos.jsonl --inicio 2026-09-01 --fim 2026-09-30 --formato markdown
+```
+
+Planilhas antigas continuam usando a política fixa como padrão. A política adaptativa permanece em modo sombra e não substitui datas sem opt-in. O fechamento de remediação exige evento validado e confirmação explícita.
+

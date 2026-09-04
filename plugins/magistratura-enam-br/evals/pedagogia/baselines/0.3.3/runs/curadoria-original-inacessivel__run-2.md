@@ -1,0 +1,1 @@
+Não foi possível confirmar a existência nem acessar o original do “Informativo 9999 do STF”. Envie o arquivo ou o link oficial; até essa confirmação, a curadoria substantiva fica suspensa.

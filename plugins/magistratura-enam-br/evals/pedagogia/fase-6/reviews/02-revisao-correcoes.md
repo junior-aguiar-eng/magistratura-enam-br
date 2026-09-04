@@ -1,0 +1,10 @@
+Revisão automatizada, não humana. Foram examinadas as 12 saídas, as três skills correspondentes e [evals.json](C:/Users/Boni%20Jr/Documents/Codex/2026-09-04/analise-esse-reposit-rio-https-github/magistratura-enam-br/.worktrees/fase-0-pedagogia/plugins/magistratura-enam-br/evals/pedagogia/evals.json).
+
+| Caso | Resultado | Fundamentação |
+|---|---|---|
+| `planejamento-capacidade-insuficiente` | **BLOQUEAR** | O bloqueio material foi sanado nas três saídas: a folga é tratada como semanal e não reduz os 30 minutos diários; déficit, prioridade e adiamentos estão corretos. Contudo, todas falham na asserção automática `estrutura-operacional`: usam **“Fila de hoje”**, enquanto `evals.json` exige literalmente **“Fila de execução”**. |
+| `planejamento-remediacao-sem-exercicio` | **APROVAR** | As três saídas preservam o valor canônico `erro`, sem substituí-lo por `incorreto`; mantêm `questao_objetiva`, encaminham à `Remediacao` e não elaboram exercício nem gabarito. |
+| `persistencia-recusada-sem-confirmacao` | **BLOQUEAR** | O contexto contaminante persiste no run 1: “não inferirei desempenho, erros, confiança ou domínio sem tentativa observável” é matéria estranha à recusa de persistência. Além disso, as três saídas não apresentam o opt-in condicional completo previsto no resultado esperado — confirmação explícita e indicação de caminho apenas se o candidato decidir prosseguir. |
+| `perfil-contraditorio` | **APROVAR** | As três saídas recomendam `estudar-direito-magistratura`, skill existente e admitida pelo contrato do roteador. A instrução atual prevalece, a preferência histórica não é silenciosamente apagada e nenhuma atualização fictícia é afirmada. |
+
+**Resultado global: BLOQUEAR**, porque 2 dos 4 casos ainda apresentam desconformidades. Nenhum arquivo foi alterado; não houve consulta a memórias nem pesquisa na web.

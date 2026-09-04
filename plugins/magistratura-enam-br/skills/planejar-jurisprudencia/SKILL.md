@@ -20,7 +20,8 @@ Quando uma nova sessão trouxer e-books, verticalizados, análises estratégicas
 3. Use `scripts/atualizar_esteira.py` para criar, alimentar, atualizar ou consultar a planilha de esteira.
 4. Quando a fonte for a planilha de precedentes da skill de curadoria, use `scripts/preparar_itens_esteira.py` para gerar o CSV de entrada. Preserve estado jurisprudencial, grau de confiança e fontes essenciais como metadados de consulta; não os use para inferir prioridade alta ou vínculo com erro.
 5. Consulte `references/fluxo-da-esteira.md` antes da primeira explicação de regras de prioridade, ciclos, regimes ou capacidade para aquela esteira; reaproveite-o enquanto essas regras e o objetivo permanecerem os mesmos.
-6. Para “o que faço hoje?”, atrasos ou carga imediata, use o modo operacional descrito em `references/fluxo-da-esteira.md`: informe carga mínima viável, fila em ordem de execução, itens adiados e custo concreto do adiamento. Não transforme essa resposta em calendário amplo.
+6. Quando o candidato optar por recomendação adaptativa, leia `references/politica-adaptativa-v1.md` e use `scripts/recomendar_revisao.py`. Preserve a data fixa enquanto o modo sombra estiver ativo.
+7. Para “o que faço hoje?”, atrasos ou carga imediata, use o modo operacional descrito em `references/fluxo-da-esteira.md`: informe carga mínima viável, fila em ordem de execução, itens adiados e custo concreto do adiamento. Não transforme essa resposta em calendário amplo.
 
 ## Limites
 
@@ -29,3 +30,7 @@ Prioridade alta exige precedente qualificado ou erro documentado do candidato. A
 Verticalizados e análises estratégicas podem apenas ajudar o candidato a descrever julgados que ele já selecionou; não criam item, prioridade, prazo ou ciclo de revisão. Cronogramas e planos de remessa de curso não são entrada da esteira e não autorizam inferir disponibilidade de material. Somente escolha expressa do candidato e os critérios canônicos desta skill definem o planejamento.
 
 Não consulte `../../references/diretrizes-estudo-juridico-brasileiro.md` para classificar prioridade, pois esta skill organiza tempo de estudo e não redefine o conteúdo jurídico dos julgados. Se o pedido depender de atualização do mérito, encaminhe para curadoria ou estudo antes de alterar a esteira.
+## Fechamento confirmado de remediação
+
+Quando houver evento de conclusão produzido pela skill de estudo, leia `references/importacao-remediacao.md`. O fechamento exige evento válido, correspondência exata de `remediation_id` e `content_ref.id`, além de confirmação explícita; não use inferência textual para alterar a planilha.
+

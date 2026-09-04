@@ -47,3 +47,17 @@ def test_correcao_usa_modelo_como_calibracao_sem_reproduzir_imprecisao(texto):
     assert "não o trate como mera preferência efêmera de estilo" in diretrizes
     assert "use-os como corpus de calibração" in referencia
     assert "Não invente “pegadinha da banca”" in referencia
+
+
+def test_feedback_adaptativo_e_opt_in_e_preserva_correcao_completa(texto):
+    referencia = texto("skills/estudar-direito-magistratura/references/questoes-fgv-enam.md")
+    revisao = texto("skills/estudar-direito-magistratura/references/revisao.md")
+
+    assert "## Feedback adaptativo opt-in" in referencia
+    assert "opção expressa" in referencia
+    for trava in ("erro", "resposta parcial", "baixa confiança", "fundamentação ausente", "auditoria"):
+        assert trava in referencia
+    assert "alta confiança" in referencia and "fundamento juridicamente correto" in referencia
+    assert "questão inválida" in referencia
+    assert "feedback adaptativo" in revisao
+    assert "não acrescente autor, obra ou filiação doutrinária" in referencia

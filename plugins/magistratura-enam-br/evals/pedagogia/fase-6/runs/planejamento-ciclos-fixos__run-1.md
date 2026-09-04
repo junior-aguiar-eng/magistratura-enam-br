@@ -1,0 +1,2 @@
+- Prioridade alta: **D+3 em 07/09/2026**; depois **D+10, D+30 e D+75**, contados da conclusão da etapa anterior.
+- Prioridade padrão: **D+5 em 09/09/2026**; depois **D+21 e D+60**, contados da conclusão da etapa anterior.

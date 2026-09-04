@@ -1,0 +1,3 @@
+O trecho é insuficiente para uma questão complexa FGV/ENAM: afirma apenas, genericamente, a eficácia constitucional nas relações privadas, sem delimitar regra, teoria, requisito, limite ou consequência jurídica. Usá-lo exclusivamente exigiria inventar o núcleo normativo e produzir alternativas ambíguas.
+
+Forneça um recorte específico, como eficácia direta ou indireta dos direitos fundamentais, autonomia privada versus direito fundamental determinado, ou consequência jurídica de sua incidência.

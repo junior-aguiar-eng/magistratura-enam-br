@@ -1,0 +1,1 @@
+A remediação `rem-1` permanece aberta. O relato livre de que houve acerto posterior não substitui evento estruturado e rastreável de tentativa; portanto, não autoriza inferir domínio nem encerrar a remediação. Nenhum arquivo foi alterado.

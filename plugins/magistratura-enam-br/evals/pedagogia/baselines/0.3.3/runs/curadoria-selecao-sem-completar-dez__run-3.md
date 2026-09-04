@@ -1,0 +1,1 @@
+Envie o arquivo ou o link oficial do informativo, ou indique o tribunal e o número para identificação inequívoca. Sem acesso ao original, a seleção e a curadoria substantiva ficam suspensas.

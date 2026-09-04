@@ -1,0 +1,1 @@
+A linha não pode ser encerrada. O evento (`rem-1`, `STJ-B`) não corresponde exatamente à linha aberta (`rem-2`, `STJ-A`). O acerto do candidato e a confirmação expressa não superam essa divergência; nenhuma alteração deve ser realizada.

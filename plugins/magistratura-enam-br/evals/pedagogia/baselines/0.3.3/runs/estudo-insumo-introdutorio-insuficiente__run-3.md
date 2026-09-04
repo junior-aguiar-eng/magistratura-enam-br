@@ -1,0 +1,3 @@
+O trecho é apenas introdutório: não identifica regra, tese, consequência ou limite jurídico que permita construir questão complexa com resposta única e distratores tecnicamente controláveis. Usá-lo exclusivamente produziria ambiguidade, especialmente entre eficácia horizontal dos direitos fundamentais, autonomia privada, deveres de proteção e constitucionalização do Direito Privado.
+
+Indique um recorte específico — por exemplo, eficácia direta ou indireta dos direitos fundamentais nas relações privadas — ou autorize complemento por fontes normativas e jurisprudenciais.

@@ -1,0 +1,1 @@
+APROVAR — revisão automatizada das seis runs: todos os requisitos foram atendidos.

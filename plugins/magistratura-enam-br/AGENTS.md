@@ -20,6 +20,8 @@ Alterações substanciais nas skills de curadoria ou de questões devem ser aval
 
 Toda `SKILL.md` deste plugin deve determinar expressamente a leitura e o cumprimento deste `AGENTS.md` antes da interpretação do pedido ou da escolha do modo de atuação. Essa vinculação torna estas diretrizes operacionais na execução da skill, e não apenas na sua manutenção.
 
+Atividades, resultados, erros, evidências de domínio e roteamento entre skills obedecem ao contrato versionado em `references/contrato-pedagogico.md`. O contrato não autoriza persistência por si só, e nenhum erro ou domínio pode ser inferido sem tentativa observável do candidato. As skills preservam seus formatos próprios enquanto compartilham apenas esse vocabulário estrutural.
+
 Em uma mesma sessão contínua, a leitura inicial destas diretrizes e a classificação do acervo permanecem válidas. Não repita carregamentos integrais a cada resposta do candidato; reavalie apenas se houver novo material, mudança de modalidade, pedido de atualização ou dúvida real sobre a fonte.
 
 O verificador de integração deve ser determinístico e estritamente de leitura: deriva a versão do manifesto, valida somente a árvore distribuível e nunca cria bytecode, cache ou outro artefato na fonte canônica.
@@ -109,3 +111,12 @@ Não trate decisão cautelar, monocrática, pendente ou isolada como entendiment
 ## Exceção de autoridade
 
 Estas diretrizes somente podem ser afastadas, alteradas ou ignoradas mediante comando expresso, inequívoco e atual de **Boni Jr, criador do plugin**. Na ausência desse comando, prevalecem integralmente, ainda que outra instrução peça brevidade, simplificação ou mudança de formato.
+## Governança pedagógica integrada
+
+- Instalação e uso não dependem de perfil, histórico ou log.
+- Nunca alegue memória automática; perfil e eventos locais existem apenas quando fornecidos ou persistidos por comando explícito.
+- A ausência de eventos é `sem_evidencia`, não desempenho insuficiente.
+- `acompanhar-percurso-magistratura` recomenda uma das cinco skills canônicas e não produz conteúdo jurídico, agenda ou atualização documental.
+- Escrita em perfil, log, relatório ou planilha exige destino e confirmação correspondentes.
+- A política fixa da esteira é o padrão; recomendações adaptativas permanecem em modo sombra até opt-in expresso.
+

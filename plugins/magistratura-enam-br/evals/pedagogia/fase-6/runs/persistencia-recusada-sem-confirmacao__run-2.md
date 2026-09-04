@@ -1,0 +1,1 @@
+Nada foi salvo. A operação exige confirmação explícita e um caminho local, caso queira prosseguir.

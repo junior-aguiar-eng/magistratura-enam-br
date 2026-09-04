@@ -1,0 +1,1 @@
+Envie ou anexe o informativo oficial sintético. Sem acesso ao documento, não é possível confirmar sua identidade, lê-lo integralmente nem realizar a curadoria. A ausência de informações sobre trânsito em julgado, embargos e modulação será registrada expressamente como “não confirmada em fonte oficial disponível”.

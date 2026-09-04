@@ -1,0 +1,1 @@
+Registre o item como **erro documentado** e encaminhe-o para **remediação por questão objetiva**, adquirindo prioridade alta na fila. Mantenha o julgado no ciclo de revisão até que a questão seja respondida e corrigida; somente após desempenho satisfatório ele retorna ao fluxo ordinário. Nenhuma questão é elaborada nesta etapa.

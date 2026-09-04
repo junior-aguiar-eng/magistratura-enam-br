@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "baseline": "0.3.3",
+  "candidate": "0.4.0-rc.1",
+  "model": "gpt-5.6-sol",
+  "cases": 16,
+  "repetitions": 3,
+  "runs": 48,
+  "automatic_assertion_failures": 0,
+  "independent_automated_review": "approved_after_corrections",
+  "human_review": "approved_2026-09-04",
+  "release_status": "approved"
+}

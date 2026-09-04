@@ -1,0 +1,3 @@
+| Capítulo anterior | Capítulo atual | Correspondência | Delta material | Leitura decisória | Ação recomendada | Certeza documental |
+|---|---|---|---|---|---|---|
+| Controle de constitucionalidade | Fiscalização de constitucionalidade | Mesmo capítulo, com alteração terminológica do título | **SEM DELTA**: conteúdo, subtópicos e fontes foram integralmente mantidos | A mudança é exclusivamente editorial e não evidencia atualização jurídica, supressão ou acréscimo de matéria | **SEM_ACAO** | Alta, limitada aos trechos informados |

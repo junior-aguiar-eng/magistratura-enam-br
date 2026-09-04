@@ -1,0 +1,5 @@
+| Capítulo / tema | Material anterior | Material novo | Delta e densidade | Supressão / deslocamento | Importância | Ação de estudo |
+|---|---|---|---|---|---|---|
+| Subtema informado | Contém expressamente o subtema. | O arquivo posterior parcial não contém o trecho. | **PENDENTE DE PUBLICAÇÃO**: a ausência no fragmento disponível não demonstra alteração material. Densidade comparativa indeterminável. | Exclusão e deslocamento não confirmados; não há cobertura integral da edição posterior. | **Pendente**, pois não é possível saber se houve retirada, deslocamento ou publicação ainda incompleta. | **AGUARDAR_PUBLICACAO**; preservar provisoriamente o conteúdo anterior. **Certeza: pendente**. |
+
+Não cabe classificar como exclusão material confirmada nem como simples supressão editorial. A ausência somente poderá ser reclassificada após acesso à unidade posterior integralmente publicada e verificação de eventual deslocamento ou condensação.

@@ -1,0 +1,3 @@
+O trecho é insuficiente para construir questão complexa FGV/ENAM: afirma apenas a incidência constitucional nas relações privadas, sem definir tese, regime jurídico, pressupostos, limites ou consequência determinada. Qualquer caso concreto exigiria acrescentar conteúdo não contido no material, como eficácia direta ou indireta dos direitos fundamentais, autonomia privada, dever estatal de proteção ou precedente específico.
+
+Indique um desses subtemas ou autorize complemento por fontes oficiais; não é possível elaborar validamente a questão “exclusivamente” com o trecho fornecido.

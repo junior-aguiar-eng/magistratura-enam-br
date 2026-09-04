@@ -1,0 +1,3 @@
+O trecho é insuficiente para uma questão complexa de caso concreto FGV/ENAM juridicamente válida. Ele apenas afirma genericamente a influência constitucional nas relações privadas, sem definir regra, modalidade de eficácia, limite, requisito ou consequência jurídica. Qualquer caso e gabarito exigiriam acrescentar conteúdo não fornecido, contrariando a exigência de uso exclusivo do trecho.
+
+É necessário ao menos delimitar uma tese, como eficácia direta ou indireta dos direitos fundamentais nas relações privadas, deveres de proteção ou autonomia privada diante de direito fundamental.

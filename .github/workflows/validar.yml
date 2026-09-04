@@ -26,6 +26,8 @@ jobs:
         run: uv lock --check
       - name: Executar testes
         run: uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
+      - name: Validar contratos pedagógicos integrados
+        run: uv run python -m pytest tests/test_roteamento_percurso.py tests/test_relatorio_aprendizagem.py tests/test_governanca_persistencia.py
       - name: Executar Ruff
         run: uv run ruff check .
       - name: Verificar integração

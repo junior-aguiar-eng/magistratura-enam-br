@@ -18,7 +18,18 @@ ARQUIVOS_ESSENCIAIS = (
     ".python-version",
     "uv.lock",
     "requirements.txt",
+    "references/contrato-pedagogico.md",
+    "references/persistencia-pedagogica-local.md",
     "references/protocolo-uso-do-acervo.md",
+    "modelos/pedagogia/learning-event.schema.json",
+    "modelos/pedagogia/candidate-profile.schema.json",
+    "modelos/pedagogia/review-recommendation.schema.json",
+    "scripts/eventos_aprendizagem.py",
+    "scripts/perfil_candidato.py",
+    "scripts/relatorio_aprendizagem.py",
+    "skills/acompanhar-percurso-magistratura/SKILL.md",
+    "skills/acompanhar-percurso-magistratura/agents/openai.yaml",
+    "skills/acompanhar-percurso-magistratura/references/roteamento.md",
     "skills/curar-informativos-stf-stj/SKILL.md",
     "skills/curar-informativos-stf-stj/references/cenarios-avaliacao.md",
     "skills/curar-informativos-stf-stj/modelos/precedentes.schema.json",
@@ -26,6 +37,8 @@ ARQUIVOS_ESSENCIAIS = (
     "skills/estudar-direito-magistratura/SKILL.md",
     "skills/estudar-direito-magistratura/references/cenarios-avaliacao.md",
     "skills/planejar-jurisprudencia/SKILL.md",
+    "skills/planejar-jurisprudencia/references/politica-adaptativa-v1.md",
+    "skills/planejar-jurisprudencia/scripts/recomendar_revisao.py",
     "skills/planejar-jurisprudencia/scripts/atualizar_esteira.py",
     "skills/planejar-jurisprudencia/scripts/preparar_itens_esteira.py",
     "skills/comparar-materiais-enam/SKILL.md",
@@ -48,13 +61,38 @@ DIRETORIOS_GERADOS = frozenset({
     "dist",
 })
 
+SCHEMAS_PEDAGOGICOS = (
+    "modelos/pedagogia/candidate-profile.schema.json",
+    "modelos/pedagogia/learning-event.schema.json",
+    "modelos/pedagogia/review-recommendation.schema.json",
+)
+
 
 def arquivos_fonte(raiz: Path, padrao: str):
     """Percorre somente arquivos distribuíveis, sem caches ou ambientes locais."""
     for caminho in raiz.rglob(padrao):
         relativo = caminho.relative_to(raiz)
-        if not any(parte in DIRETORIOS_GERADOS for parte in relativo.parts):
+        if not any(
+            parte in DIRETORIOS_GERADOS or parte.startswith(".pytest-")
+            for parte in relativo.parts
+        ):
             yield caminho
+
+
+def validar_schemas_pedagogicos(raiz: Path, erros: list[str]) -> None:
+    """Exige os contratos pedagógicos versionados e JSON sintaticamente válido."""
+    for relativo in SCHEMAS_PEDAGOGICOS:
+        caminho = raiz / relativo
+        if not caminho.is_file():
+            erros.append(f"Schema pedagógico ausente: {relativo}.")
+            continue
+        try:
+            schema = json.loads(caminho.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError):
+            erros.append(f"Schema pedagógico inválido em {relativo}.")
+            continue
+        if not isinstance(schema, dict):
+            erros.append(f"Schema pedagógico inválido em {relativo}.")
 
 
 def validar_ambiente_uv(raiz: Path, erros: list[str]) -> None:
@@ -199,6 +237,7 @@ def main() -> None:
             erros.append(f"Arquivo essencial ausente: {relativo}")
 
     validar_ambiente_uv(raiz, erros)
+    validar_schemas_pedagogicos(raiz, erros)
 
     manifesto = raiz / ".codex-plugin" / "plugin.json"
     dados_manifesto: object = None

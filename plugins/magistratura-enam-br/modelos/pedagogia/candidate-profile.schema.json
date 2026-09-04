@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/junior-aguiar-eng/magistratura-enam-br/schemas/pedagogia/candidate-profile-v1.json",
+  "title": "Candidate profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "updated_at", "objectives", "preferences", "competencies", "open_remediations"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "objectives": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 160}},
+    "preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["feedback_mode"],
+      "properties": {
+        "feedback_mode": {"enum": ["completo", "adaptativo"]},
+        "preferred_modalities": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"enum": ["explicacao", "recuperacao", "consolidacao", "vespera", "questao_objetiva", "discursiva_curta", "prova_oral", "leitura_julgado", "revisao_julgado"]}
+        }
+      }
+    },
+    "competencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["competency_id", "evidence", "observations"],
+        "properties": {
+          "competency_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,127}$"},
+          "evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["evocacao_regra", "discriminacao_institutos", "aplicacao_fatos_novos", "fundamentacao_normativa_jurisprudencial", "expressao_objetiva_discursiva_oral", "retencao_revisao_posterior"],
+            "properties": {
+              "evocacao_regra": {"$ref": "#/$defs/evidence_level"},
+              "discriminacao_institutos": {"$ref": "#/$defs/evidence_level"},
+              "aplicacao_fatos_novos": {"$ref": "#/$defs/evidence_level"},
+              "fundamentacao_normativa_jurisprudencial": {"$ref": "#/$defs/evidence_level"},
+              "expressao_objetiva_discursiva_oral": {"$ref": "#/$defs/evidence_level"},
+              "retencao_revisao_posterior": {"$ref": "#/$defs/evidence_level"}
+            }
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["event_id", "occurred_at", "result", "error_types", "domain_evidence", "confidence"],
+              "properties": {
+                "event_id": {"type": "string", "pattern": "^evt_[0-9a-z-]{20,64}$"},
+                "occurred_at": {"type": "string", "format": "date-time"},
+                "result": {"enum": ["correto", "parcial", "incorreto", "questao_invalida"]},
+                "error_types": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+                "domain_evidence": {"type": "array", "uniqueItems": true, "items": {"enum": ["evocacao_regra", "discriminacao_institutos", "aplicacao_fatos_novos", "fundamentacao_normativa_jurisprudencial", "expressao_objetiva_discursiva_oral", "retencao_revisao_posterior"]}},
+                "confidence": {"enum": [null, "baixa", "media", "alta"]}
+              }
+            }
+          }
+        }
+      }
+    },
+    "open_remediations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["remediation_id", "competency_id", "error_types", "opened_by_event_id"],
+        "properties": {
+          "remediation_id": {"type": "string", "pattern": "^rem_[0-9a-z-]{12,64}$"},
+          "competency_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,127}$"},
+          "error_types": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+          "opened_by_event_id": {"type": "string", "pattern": "^evt_[0-9a-z-]{20,64}$"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "evidence_level": {"enum": ["nao_observado", "em_desenvolvimento", "demonstrado"]}
+  }
+}

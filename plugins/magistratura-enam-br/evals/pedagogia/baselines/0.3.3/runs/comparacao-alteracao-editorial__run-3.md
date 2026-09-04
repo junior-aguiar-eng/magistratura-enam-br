@@ -1,0 +1,3 @@
+| Unidade | Edição anterior | Nova edição | Classificação | Consequência para o estudo | Ação recomendada | Certeza documental |
+|---|---|---|---|---|---|---|
+| Capítulo correspondente | “Controle de constitucionalidade” | “Fiscalização de constitucionalidade” | **SEM DELTA** — alteração exclusivamente terminológica/editorial, pois conteúdo, subtópicos e fontes foram integralmente preservados | Nenhuma atualização jurídica ou complementação material é necessária | **SEM_ACAO** | Alta, nos limites dos trechos informados |

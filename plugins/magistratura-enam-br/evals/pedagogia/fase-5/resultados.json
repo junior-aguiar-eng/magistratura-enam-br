@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "candidate": "0.3.3+fase.5",
+  "model": "gpt-5.6-sol",
+  "runs": 12,
+  "passed": 12,
+  "failed": 0,
+  "results": [
+    {"case": "preservacao", "run": 1, "status": "passed"},
+    {"case": "preservacao", "run": 2, "status": "passed"},
+    {"case": "preservacao", "run": 3, "status": "passed"},
+    {"case": "inferencia-solta", "run": 1, "status": "passed"},
+    {"case": "inferencia-solta", "run": 2, "status": "passed"},
+    {"case": "inferencia-solta", "run": 3, "status": "passed"},
+    {"case": "delta-avaliacao", "run": 1, "status": "passed"},
+    {"case": "delta-avaliacao", "run": 2, "status": "passed"},
+    {"case": "delta-avaliacao", "run": 3, "status": "passed"},
+    {"case": "remediacao-cruzada", "run": 1, "status": "passed"},
+    {"case": "remediacao-cruzada", "run": 2, "status": "passed"},
+    {"case": "remediacao-cruzada", "run": 3, "status": "passed"}
+  ],
+  "gate": {
+    "ids_and_sources_preserved": true,
+    "no_loose_text_closure": true,
+    "documentary_delta_is_not_candidate_assessment": true
+  }
+}

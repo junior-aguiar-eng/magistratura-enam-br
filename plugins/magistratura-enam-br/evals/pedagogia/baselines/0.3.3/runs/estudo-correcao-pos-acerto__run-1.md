@@ -1,0 +1,1 @@
+Para realizar a correção completa — especialmente o exame individual dos quatro distratores e de seus vícios técnicos — preciso do enunciado e das cinco alternativas. A informação de que a alternativa correta corresponde à força normativa da Constituição, de Konrad Hesse, não permite reconstruir com segurança o conteúdo das demais opções. Cole a questão integral.

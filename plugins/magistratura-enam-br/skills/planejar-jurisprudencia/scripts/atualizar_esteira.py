@@ -196,7 +196,8 @@ COLS_ENTRADA = ["id", "tema", "tribunal", "disciplina", "estado_jurisprudencial"
                 "data_entrada", "Feito?"]
 COLS_REVISAO = ["id", "tema", "tribunal", "disciplina", "estado_jurisprudencial",
                 "grau_confianca", "fontes_essenciais", "prioridade", "motivo_prioridade", "origem_erro",
-                "ciclo", "total_ciclos", "proxima_revisao", "resultado_revisao", "encaminhamento", "Feito?"]
+                "ciclo", "total_ciclos", "proxima_revisao", "resultado_revisao", "encaminhamento", "Feito?",
+                "politica_revisao", "confianca", "transferencia", "intervalo_sugerido", "motivo_sugestao"]
 COLS_REMEDIACAO = ["id", "tema", "tribunal", "disciplina", "resultado_revisao", "encaminhamento", "data_registro", "Feito?"]
 COLS_SEMANA = ["ordem", "tipo", "id", "tema", "tribunal", "disciplina",
                "estado_jurisprudencial", "grau_confianca", "fontes_essenciais",
@@ -263,6 +264,8 @@ def _ajustar_larguras(ws, cols):
         "estado_jurisprudencial": 26, "grau_confianca": 18, "fontes_essenciais": 48,
         "prioridade": 12, "motivo_prioridade": 28, "origem_erro": 12, "data_entrada": 14,
         "ciclo": 8, "total_ciclos": 12, "proxima_revisao": 16,
+        "politica_revisao": 18, "confianca": 12, "transferencia": 14,
+        "intervalo_sugerido": 18, "motivo_sugestao": 30,
         "proxima_data": 16, "vencimento": 14, "min_est": 9,
         "ordem": 8, "tipo": 12, "Feito?": 9, "chave": 24, "valor": 30,
     }
@@ -476,6 +479,9 @@ def _atualizar_workbook(wb, arquivo):
     cfg = ler_config(wb["Config"])
     entrada = ler_aba(wb["Entrada"], COLS_ENTRADA)
     revisao = ler_aba(wb["Revisao"], COLS_REVISAO)
+    for item_revisao in revisao:
+        if not item_revisao.get("politica_revisao"):
+            item_revisao["politica_revisao"] = "fixa"
     remediacao = ler_aba(wb["Remediacao"], COLS_REMEDIACAO)
 
     hoje_d = hoje()
@@ -506,6 +512,11 @@ def _atualizar_workbook(wb, arquivo):
                 "resultado_revisao": "",
                 "encaminhamento": "",
                 "Feito?": "",
+                "politica_revisao": "fixa",
+                "confianca": "",
+                "transferencia": "",
+                "intervalo_sugerido": "",
+                "motivo_sugestao": "",
             })
             promovidos += 1
         else:
@@ -774,6 +785,154 @@ def main():
         args.func(args)
     except ValueError as exc:
         raise SystemExit(f"ERRO: {exc}") from exc
+
+
+def concluir_remediacao_por_evento(remediacoes, evento, *, confirmado=False):
+    """Fecha uma remediação apenas por evento explícito, confirmado e vinculável."""
+    if confirmado is not True or not isinstance(evento, dict):
+        return False
+
+    campos = {
+        "schema_version",
+        "event_id",
+        "occurred_at",
+        "skill",
+        "remediation_id",
+        "content_ref",
+        "activity",
+        "performance",
+        "routing",
+    }
+    if not campos.issubset(evento):
+        return False
+    if evento["schema_version"] != "1.1.0":
+        return False
+    if evento["skill"] != "estudar-direito-magistratura":
+        return False
+    if not str(evento["event_id"]).startswith("evt_") or not evento["occurred_at"]:
+        return False
+    remediation_id = evento["remediation_id"]
+    content_ref = evento["content_ref"]
+    activity = evento["activity"]
+    performance = evento["performance"]
+    routing = evento["routing"]
+    campos_ref = {
+        "kind",
+        "id",
+        "disciplina",
+        "tema",
+        "subtema",
+        "source_refs",
+        "source_state",
+    }
+    if (
+        not remediation_id
+        or not isinstance(content_ref, dict)
+        or not campos_ref.issubset(content_ref)
+        or not content_ref["id"]
+    ):
+        return False
+    if (
+        not isinstance(activity, dict)
+        or activity.get("modality") != "questao_objetiva"
+        or activity.get("attempt_observed") is not True
+    ):
+        return False
+    if not isinstance(performance, dict) or performance.get("result") != "correto":
+        return False
+    if (
+        not isinstance(routing, dict)
+        or routing.get("target_skill") != "planejar-jurisprudencia"
+        or "remediacao_concluida" not in routing.get("reason_codes", [])
+    ):
+        return False
+
+    correspondentes = [
+        item
+        for item in remediacoes
+        if (item.get("remediation_id") or item.get("id")) == remediation_id
+        and (item.get("content_ref_id") or item.get("id")) == content_ref["id"]
+        and str(item.get("Feito?", "")).strip().lower() not in {"sim", "x", "feito"}
+    ]
+    if len(correspondentes) != 1:
+        return False
+
+    correspondentes[0]["Feito?"] = "sim"
+    correspondentes[0]["resultado_remediacao"] = "remediacao_concluida"
+    return True
+
+
+def importar_evento_remediacao(arquivo, evento, *, confirmado=False):
+    """Valida um evento e persiste seu fechamento inequívoco na aba Remediacao."""
+    from jsonschema import Draft202012Validator, FormatChecker
+
+    if confirmado is not True:
+        return False
+
+    schema_path = (
+        Path(__file__).resolve().parents[3]
+        / "modelos"
+        / "pedagogia"
+        / "learning-event.schema.json"
+    )
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    validator = Draft202012Validator(schema, format_checker=FormatChecker())
+    if list(validator.iter_errors(evento)):
+        return False
+
+    caminho = Path(arquivo)
+    if not caminho.is_file():
+        raise FileNotFoundError(f"planilha não encontrada: {caminho}")
+
+    wb = load_workbook(caminho, data_only=False)
+    try:
+        if "Remediacao" not in wb.sheetnames:
+            return False
+        ws = wb["Remediacao"]
+        cabecalhos = [celula.value for celula in ws[1]]
+        identificacao_nova = {"remediation_id", "content_ref_id"}.issubset(
+            cabecalhos
+        )
+        identificacao_legada = "id" in cabecalhos
+        if "Feito?" not in cabecalhos or not (
+            identificacao_nova or identificacao_legada
+        ):
+            return False
+        if "resultado_remediacao" not in cabecalhos:
+            cabecalhos.append("resultado_remediacao")
+            ws.cell(1, len(cabecalhos), "resultado_remediacao")
+
+        remediacoes = []
+        for numero_linha, valores in enumerate(
+            ws.iter_rows(min_row=2, values_only=True), start=2
+        ):
+            item = dict(zip(cabecalhos, valores, strict=False))
+            item["_numero_linha"] = numero_linha
+            remediacoes.append(item)
+
+        if not concluir_remediacao_por_evento(
+            remediacoes, evento, confirmado=True
+        ):
+            return False
+
+        concluida = next(
+            item
+            for item in remediacoes
+            if item.get("resultado_remediacao") == "remediacao_concluida"
+            and (item.get("remediation_id") or item.get("id"))
+            == evento["remediation_id"]
+        )
+        colunas = {nome: indice for indice, nome in enumerate(cabecalhos, start=1)}
+        ws.cell(concluida["_numero_linha"], colunas["Feito?"], "sim")
+        ws.cell(
+            concluida["_numero_linha"],
+            colunas["resultado_remediacao"],
+            "remediacao_concluida",
+        )
+        wb.save(caminho)
+        return True
+    finally:
+        wb.close()
 
 
 if __name__ == "__main__":
