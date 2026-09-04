@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.4.0] - 2026-09-04
+
+### Adicionado
+
+- Acompanhamento unificado com roteamento entre cinco skills.
+- Relatório local de tentativas, precisão, reincidência, retenção e confiança.
+- Transporte rastreável de referências e fechamento confirmado de remediação.
+- Avaliação pedagógica final com 48 execuções da versão candidata.
+
+### Alterado
+
+- Política fixa preservada como padrão, com adaptação somente em modo sombra e opt-in.
+- Persistência documentada como local, opcional e sem memória automática.
+- Casos pedagógicos subespecificados receberam fixtures sintéticas explícitas.
+
 Todas as alterações relevantes deste plugin são registradas neste arquivo.
 
 ## 0.3.3 — 2026-09-04
@@ -47,3 +62,4 @@ Todas as alterações relevantes deste plugin são registradas neste arquivo.
 ## 0.2.2 — 2026-07-27
 
 - Publica a identidade visual do plugin e aperfeiçoa os contratos de curadoria, comparação e planejamento.
+

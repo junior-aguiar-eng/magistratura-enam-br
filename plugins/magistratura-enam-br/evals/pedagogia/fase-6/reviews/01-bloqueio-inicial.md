@@ -1,0 +1,28 @@
+Natureza: parecer automatizado por modelo, não revisão humana. Foram examinadas as 48 saídas candidatas e as 36 do baseline 0.3.3. Nenhum arquivo foi alterado nem houve consulta a memória persistente.
+
+| Caso | Nota | Comparação e fundamento |
+|---|---:|---|
+| estudo-explicacao-delimitada | 2 | Preciso e mais conciso que o baseline; flashcards no run 3 são dispensáveis, mas não prejudicam materialmente. |
+| estudo-questao-sem-gabarito | 1 | Sem vazamento textual e com solução juridicamente única; porém, nos três runs, B é a única alternativa ponderada, enquanto as demais usam negativas absolutas, criando indício indireto do gabarito. Fraqueza já presente no baseline. |
+| estudo-insumo-introdutorio-insuficiente | 2 | Recusa correta à complexidade artificial; encaminhamento proporcional e estável. |
+| estudo-correcao-pos-acerto | 1 | Forte avanço sobre o baseline: doutrina correta e distratores individualizados. Runs 1 e 3, contudo, atribuem ao enunciado expressões que não foram fornecidas; a extensão aumentou quase dez vezes. |
+| curadoria-pendente-sem-invencao | N/A | O corpus não contém o julgamento identificado nem conteúdo suficiente para montar a unidade editorial. Candidata e baseline bloqueiam corretamente; o caso não mede a estrutura que pretende medir. |
+| curadoria-selecao-sem-completar-dez | N/A | Os seis resumos não foram efetivamente fornecidos. A suspensão evita invenção, mas impossibilita avaliar hierarquização. |
+| curadoria-original-inacessivel | 2 | Sem curadoria de memória. O run 3 confirma corretamente que a edição mais recente era 1226/2026, conforme o [portal do STF](https://portal.stf.jus.br/textos/vertexto.asp?servico=informativostf). |
+| planejamento-capacidade-insuficiente | 0 | Regressão material: run 1 calcula corretamente déficit de 10 minutos; runs 2 e 3 aplicam indevidamente a margem semanal de 20% à disponibilidade diária, executam apenas duas revisões e produzem déficits de 16/20 minutos. |
+| planejamento-ciclos-fixos | 2 | Corrige integralmente a forte variância do baseline e apresenta os ciclos canônicos com a âncora adequada. |
+| planejamento-remediacao-sem-exercicio | 1 | Preserva a fronteira e não cria exercício; porém, runs 1 e 2 substituem o valor válido `erro` por `incorreto`, rompendo o contrato específico da planilha. O baseline preservava `erro` em 3/3. |
+| comparacao-alteracao-editorial | 2 | Classificação e ação corretas; cerca de 2,2 vezes mais extenso que o baseline, com ganho pedagógico pequeno. |
+| comparacao-supressao-nao-confirmada | 1 | Juridicamente correto em 3/3, sem inferir exclusão. Entretanto, todos repetem literalmente “exclusão material confirmada” em frase negativa, fazendo o verificador ingênuo reprovar os três runs. |
+| persistencia-recusada-sem-confirmacao | 1 | Não houve persistência sem opt-in nem promessa de memória. Falta explicar o caminho de confirmação futura; runs 2 e 3 importam restrições não constantes do caso (“você proibiu alterações”, “vedou memória”), evidenciando provável contaminação de contexto, não prova de memória persistente. |
+| perfil-contraditorio | 0 | Em 3/3 recomenda `elaborar-questoes-objetivas`, skill inexistente; o destino canônico é `estudar-direito-magistratura`. Run 3 ainda declara desnecessários os dados mínimos. |
+| remediacao-cruzada-bloqueada | 2 | Passa em 3/3: exige correspondência exata dos dois identificadores, mantém a linha aberta e não simula escrita. |
+| roteamento-ambiguo | 2 | Passa em 3/3: autorroteamento canônico, um único dado discriminante e nenhuma execução automática. |
+
+A precisão jurídica substantiva é, em geral, boa. A distinção entre prescrição e decadência corresponde aos arts. 189 e 207 do [Código Civil](https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm). As questões sobre morte e suicídio de pessoa presa estão alinhadas ao [Tema 592/STF](https://portal.stf.jus.br/jurisprudenciaRepercussao/verAndamentoProcesso.asp?classeProcesso=RE&incidente=4645403&numeroProcesso=841526&numeroTema=592) e à aplicação posterior em caso de risco de suicídio conhecido pelo Estado ([RE 1.400.820](https://portal.stf.jus.br/noticias/verNoticiaDetalhe.asp?idConteudo=518818)).
+
+A reaplicação literal das verificações estruturais resulta em 39/48 saídas condicionadamente aprovadas e 9 reprovações: três em curadoria pendente, três em capacidade e três em supressão não confirmada. O baseline registrava 24/36 e 12 reprovações. A melhora numérica oculta regressões substantivas: orçamento diário incorreto em 2/3, alteração indevida do vocabulário da esteira e roteamento para skill inexistente. Há ainda variância relevante nesses casos e no tratamento da persistência.
+
+Limitações: quatro casos novos não possuem baseline; dois casos de curadoria são insuficientemente instrumentados; o caso de correção não fornece o enunciado e as alternativas integrais; as saídas armazenadas não preservam rastros de ferramentas, de modo que contaminação de contexto não pode ser equiparada conclusivamente a uso de memória.
+
+**Recomendação: BLOQUEAR a versão candidata.** Impedimentos centrais: regressão de capacidade em 2/3, roteamento inválido em 3/3, inconsistência `erro`/`incorreto`, contaminação contextual no teste de persistência e três reprovações artificiais no comparador. O vazamento textual de gabarito, a persistência sem opt-in e a remediação cruzada não ocorreram; permanece, contudo, sinalização indireta recorrente da alternativa correta.

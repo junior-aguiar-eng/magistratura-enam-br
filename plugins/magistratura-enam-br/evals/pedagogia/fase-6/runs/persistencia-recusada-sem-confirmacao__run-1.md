@@ -1,0 +1,1 @@
+Nada foi salvo. A operação exige confirmação explícita de gravação e indicação de um caminho local.

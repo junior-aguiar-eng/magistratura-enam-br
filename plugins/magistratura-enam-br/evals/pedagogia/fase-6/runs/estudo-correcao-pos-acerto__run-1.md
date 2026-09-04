@@ -1,0 +1,19 @@
+Sua resposta está correta. O gabarito corresponde à concepção de Constituição de Konrad Hesse.
+
+Hesse, em *A força normativa da Constituição*, rejeita tanto a redução da Constituição a simples reflexo das relações reais de poder quanto a ideia de que o texto constitucional, isoladamente, possa dominar a realidade. A Constituição possui pretensão de eficácia e força normativa própria: busca ordenar e conformar a vida política e social. Essa eficácia, porém, depende de alguma conexão com as condições históricas, sociais e políticas e da chamada “vontade de Constituição”, isto é, da disposição dos agentes públicos e da sociedade para concretizar e preservar a ordem constitucional.
+
+A relação entre Constituição e realidade é, portanto, de condicionamento recíproco. A realidade influencia as possibilidades de concretização constitucional, mas não determina integralmente o sentido e a eficácia da Constituição. É justamente nesse ponto que Hesse se contrapõe à conclusão determinista associada a Lassalle.
+
+Como o enunciado integral não foi fornecido, não é possível indicar quais palavras ou fatos específicos funcionavam como pistas. A informação disponível permite apenas afirmar que a referência à força normativa, à pretensão de eficácia, à conformação da realidade ou à vontade de Constituição conduz corretamente a Hesse.
+
+Quanto às demais concepções que integravam a questão:
+
+- **Ferdinand Lassalle — concepção sociológica:** a Constituição real corresponde à soma dos fatores reais de poder vigentes na sociedade. Se a Constituição escrita não estiver de acordo com esses fatores, tende a converter-se em mera “folha de papel”. O erro estaria em atribuir a Lassalle uma força normativa autônoma capaz de conformar a realidade independentemente das relações efetivas de poder.
+
+- **Hans Kelsen — concepção jurídica:** a Constituição é compreendida juridicamente como norma superior do direito positivo, fundamento de validade das normas inferiores. Em sentido lógico-jurídico, chega-se à norma fundamental hipotética, pressuposto de validade da ordem; em sentido jurídico-positivo, à Constituição positiva que ocupa o nível superior do ordenamento. Não se deve confundir a Constituição jurídico-positiva com a própria norma fundamental hipotética. O foco de Kelsen é a estrutura normativa e hierárquica do ordenamento, não a “vontade de Constituição” de Hesse.
+
+- **Carl Schmitt — concepção política:** Constituição, em sentido próprio, é a decisão política fundamental do titular do poder constituinte sobre a forma e o modo de existência da unidade política. Schmitt distingue essa Constituição das meras leis constitucionais, que podem constar formalmente do texto sem expressar decisões políticas fundamentais. O erro seria equiparar sua concepção decisória à tese hessiana da eficácia normativa.
+
+- **Concepção culturalista:** compreende a Constituição como produto da cultura e como realidade complexa, integrando dimensões normativas, sociais, políticas, históricas e valorativas. Ela procura superar explicações unilaterais exclusivamente sociológicas, jurídicas ou políticas. Embora reconheça a dimensão normativa, não se identifica especificamente com a tese de Hesse sobre a força normativa da Constituição.
+
+A distinção decisiva é esta: **Lassalle enfatiza os fatores reais de poder; Kelsen, a norma jurídica superior; Schmitt, a decisão política fundamental; Hesse, a força normativa e a pretensão de eficácia da Constituição; o culturalismo, a integração plural das dimensões constitucionais.** Não é possível examinar vícios adicionais nem atribuí-los a letras determinadas sem inventar o conteúdo das alternativas ausentes.

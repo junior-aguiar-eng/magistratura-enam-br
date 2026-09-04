@@ -1,0 +1,7 @@
+Comparação entre os trechos sintéticos das edições anterior e nova, limitada ao capítulo indicado.
+
+| Capítulo / tema | Material anterior | Material novo | Delta e densidade | Supressão / deslocamento | Importância | Ação de estudo |
+|---|---|---|---|---|---|---|
+| Controle/Fiscalização de constitucionalidade | Título: **Controle de constitucionalidade**; conteúdo, subtópicos e fontes integralmente presentes. | Título: **Fiscalização de constitucionalidade**; conteúdo, subtópicos e fontes integralmente preservados. | **SEM DELTA material.** Alteração exclusivamente terminológica/editorial, sem mudança jurídica ou de densidade. Correspondência temática confirmada. | Não identificado. | **Baixa:** a mudança não afeta o núcleo jurídico nem exige atualização do conteúdo estudado. | **SEM_ACAO:** manter o estudo anterior; apenas reconhecer a nova nomenclatura para localização editorial. **Certeza: alta.** |
+
+**Leitura global:** a nova edição apenas renomeia o capítulo. “Fiscalização de constitucionalidade” não representa, neste recorte, inclusão, exclusão, correção ou atualização jurídica, porque conteúdo, estrutura interna e fontes permaneceram idênticos. A conclusão funda-se exclusivamente nos dois trechos sintéticos fornecidos.

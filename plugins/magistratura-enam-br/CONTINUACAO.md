@@ -38,3 +38,11 @@ uv run python scripts/verificar_integracao.py
 ```
 
 Não crie ambiente virtual manualmente, não use `pip install` nos scripts internos e não versione `.venv`, caches, bytecode ou saídas temporárias.
+## Fase 6 — candidata 0.4.0
+
+Implementados: skill de acompanhamento, relatório local, contratos de roteamento, fechamento rastreável de remediação, avaliação final com 48 execuções e documentação de migração. Gates automatizados e revisões independentes automatizadas aprovados após correções.
+
+Revisão humana de `evals/pedagogia/relatorio-final.md` e das amostras em `evals/pedagogia/fase-6/runs/` aprovada pelo responsável pelo repositório em 4 de setembro de 2026.
+
+Instalação limpa isolada aprovada para a candidata `0.4.0`: quinta skill e relatório presentes, sem criação implícita de perfil ou log. Gates técnicos finais: 161 testes, Ruff, lock, integração e validador do plugin aprovados.
+

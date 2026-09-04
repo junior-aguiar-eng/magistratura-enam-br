@@ -58,3 +58,7 @@ Ao alterar substancialmente a seleção ou o comentário de julgados, execute o 
 ## Limites
 
 Não transforme o boletim em lista de memorização, não atribua frequência de cobrança à FGV sem base objetiva e não trate decisão isolada, cautelar ou pendente como entendimento consolidado.
+## Estrutura canônica do comentário
+
+Para cada julgado selecionado, use na ordem e literalmente os marcadores `Situação precedental`, `Tese:`, `Controvérsia e contexto`, `Base normativa`, `Aplicação e limites` e `Relevância para a Magistratura`. Não dissolva esses marcadores em parágrafos sem título, ainda que o conteúdo apareça na mesma ordem. Quando uma informação estiver ausente, mantenha o marcador e registre objetivamente a lacuna, sem completar por inferência.
+

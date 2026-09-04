@@ -13,18 +13,19 @@ def carregar_json(caminho: Path):
     return json.loads(caminho.read_text(encoding="utf-8"))
 
 
-def test_catalogo_pedagogico_tem_doze_casos_distribuidos_por_skill():
+def test_catalogo_pedagogico_tem_dezesseis_casos_distribuidos_por_skill():
     assert CATALOGO.is_file(), "catálogo pedagógico ausente"
     casos = carregar_json(CATALOGO)["evals"]
 
-    assert len(casos) == 12
+    assert len(casos) == 16
     assert Counter(caso["skill"] for caso in casos) == {
-        "estudar-direito-magistratura": 4,
+        "estudar-direito-magistratura": 5,
         "curar-informativos-stf-stj": 3,
-        "planejar-jurisprudencia": 3,
+        "planejar-jurisprudencia": 4,
         "comparar-materiais-enam": 2,
+        "acompanhar-percurso-magistratura": 2,
     }
-    assert len({caso["id"] for caso in casos}) == 12
+    assert len({caso["id"] for caso in casos}) == 16
 
 
 def test_catalogo_e_casos_invalidos_sao_avaliados_pelo_schema():
@@ -50,4 +51,3 @@ def test_todo_caso_tem_resultado_esperado_rubrica_humana_e_risco():
         assert caso["human_rubric"]
         assert caso["risk_tags"]
         assert any(item["kind"] == "human" for item in caso["assertions"])
-

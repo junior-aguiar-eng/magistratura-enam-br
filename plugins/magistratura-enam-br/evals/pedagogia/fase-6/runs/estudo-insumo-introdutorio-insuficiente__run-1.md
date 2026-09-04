@@ -1,0 +1,3 @@
+Não é possível elaborar validamente uma questão complexa FGV/ENAM exclusivamente desse trecho. Ele enuncia apenas uma ideia geral — a influência constitucional nas relações privadas —, sem delimitar regra, modalidade de eficácia, pressupostos, limites ou consequência jurídica que assegurem gabarito único e distratores tecnicamente controláveis.
+
+É necessário ao menos um recorte específico, como eficácia direta ou indireta dos direitos fundamentais nas relações privadas, autonomia privada versus direito fundamental determinado, ou dever estatal de proteção. Sem isso, o caso seria artificial e comportaria múltiplas respostas defensáveis.

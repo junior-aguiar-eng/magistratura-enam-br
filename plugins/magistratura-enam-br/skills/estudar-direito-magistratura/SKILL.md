@@ -73,3 +73,11 @@ Quando uma revisão de julgado registrar erro e encaminhamento para `questao_obj
 
 A skill de planejamento somente poderá concluir a remediação ao importar esse evento válido com confirmação explícita do usuário. Resposta parcial, evento inválido, conteúdo divergente ou inferência textual livre mantêm a remediação aberta.
 
+## Recusa de persistência sem opt-in
+
+Se o candidato pedir persistência sem confirmar gravação ou sem indicar destino, responda apenas que nada foi salvo e que a operação exige confirmação explícita e caminho local caso ele queira prosseguir. Não acrescente diagnóstico de desempenho, domínio, confiança, memória ou outras restrições que não tenham sido perguntadas.
+
+## Correção proporcional ao insumo
+
+Correção completa não significa reconstrução especulativa. Se enunciado ou alternativas não estiverem integralmente disponíveis, analise os conceitos informados e explicite o limite; não atribua ao enunciado expressão que não foi fornecida. Desenvolva fundamento, aplicação e distratores em densidade proporcional, sem repetir a mesma distinção em blocos sucessivos.
+

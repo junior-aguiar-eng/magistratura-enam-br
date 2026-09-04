@@ -185,3 +185,21 @@ def test_importacao_migra_aba_legada_sem_inferencia_textual(tmp_path):
     assert ws.cell(1, 5).value == "resultado_remediacao"
     assert ws.cell(2, 5).value == "remediacao_concluida"
     wb.close()
+
+
+def test_contrato_operacional_preserva_capacidade_diaria_e_vocabulario():
+    skill = (
+        ROOT / "skills" / "planejar-jurisprudencia" / "SKILL.md"
+    ).read_text(encoding="utf-8")
+    fluxo = (
+        ROOT
+        / "skills"
+        / "planejar-jurisprudencia"
+        / "references"
+        / "fluxo-da-esteira.md"
+    ).read_text(encoding="utf-8")
+    texto = skill + fluxo
+
+    assert "não reduza a capacidade diária" in texto.lower()
+    assert "preserve literalmente `erro`" in texto.lower()
+    assert "fila de execução" in texto.lower()
