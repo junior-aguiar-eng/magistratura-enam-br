@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.1] - 2026-09-04
+
+### Adicionado
+
+- Identidade visual autoral com monograma `NJ` e paleta verde institucional.
+- Site documental privado, com navegação, busca e build reproduzível por Zensical e Material for MkDocs.
+- Workflow de validação da documentação sem publicação no GitHub Pages.
+
+### Alterado
+
+- Nome de apresentação para `Estudo Jurídico Avançado`, preservando o identificador técnico `magistratura-enam-br`.
+- Dependências documentais isoladas do ambiente de execução do plugin.
+
 ## [0.4.0] - 2026-09-04
 
 ### Adicionado

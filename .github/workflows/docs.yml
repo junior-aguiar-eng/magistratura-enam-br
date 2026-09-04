@@ -1,0 +1,46 @@
+name: Documentação privada
+
+on:
+  pull_request:
+    paths:
+      - "docs/site/**"
+      - "mkdocs.yml"
+      - "plugins/magistratura-enam-br/pyproject.toml"
+      - "plugins/magistratura-enam-br/uv.lock"
+      - ".github/workflows/docs.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/site/**"
+      - "mkdocs.yml"
+      - "plugins/magistratura-enam-br/pyproject.toml"
+      - "plugins/magistratura-enam-br/uv.lock"
+      - ".github/workflows/docs.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: plugins/magistratura-enam-br
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --group docs
+      - name: Build principal com Zensical
+        run: uv run zensical build --clean --config-file ../../mkdocs.yml
+      - name: Build de compatibilidade com Material for MkDocs
+        run: uv run mkdocs build --strict --config-file ../../mkdocs.yml --site-dir ../../site-material
+      - uses: actions/upload-artifact@v4
+        with:
+          name: documentacao-privada
+          path: site
+          if-no-files-found: error

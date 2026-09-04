@@ -1,25 +1,26 @@
 {
   "name": "magistratura-enam-br",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Curadoria, estudo e revisão de Direito brasileiro para Magistratura e ENAM.",
   "author": {
     "name": "Boni Jr"
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "Estudos Jurídicos de Alto Nível",
+    "displayName": "Estudo Jurídico Avançado",
     "shortDescription": "Curadoria e estudo jurídico brasileiro para Magistratura.",
-    "longDescription": "Apoia a curadoria de informativos, o estudo de Direito brasileiro, a comparação de materiais do ENAM e a revisão de jurisprudência.",
+    "longDescription": "Ambiente privado para estudo jurídico avançado, curadoria de informativos, comparação de materiais do ENAM, revisão de jurisprudência e acompanhamento pedagógico.",
     "developerName": "Boni Jr",
     "category": "Education",
     "capabilities": [
       "Estudo jurídico",
       "Curadoria jurisprudencial",
       "Comparação de materiais",
-      "Revisão espaçada"
+      "Revisão espaçada",
+      "Acompanhamento pedagógico"
     ],
     "defaultPrompt": "Quero estudar Direito brasileiro para a Magistratura.",
-    "brandColor": "#0A3D62",
+    "brandColor": "#006B4F",
     "composerIcon": "./assets/magistratura-enam-br.png",
     "logo": "./assets/magistratura-enam-br.png",
     "logoDark": "./assets/magistratura-enam-br.png"

@@ -5,3 +5,7 @@ __pycache__/
 
 # Local pytest basetemp directories
 .pytest-*
+
+# Local documentation builds
+/site/
+/site-material/
