@@ -79,7 +79,7 @@ Depois da instalação, abra uma nova tarefa no Codex. O instalador não envia a
 ### Pelo marketplace Git
 
 ```powershell
-codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.5.0
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.6.0
 codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 
