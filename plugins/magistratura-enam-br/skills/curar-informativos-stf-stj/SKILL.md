@@ -5,6 +5,16 @@ description: Realize curadoria jurisprudencial de informativos do STF e do STJ p
 
 # Curadoria de informativos STF/STJ
 
+## Política de fontes na curadoria
+
+Leia `../../references/politica-fontes-juridicas.md` e `../../references/protocolo-uso-do-acervo.md`. A curadoria exige o informativo oficial do STF ou STJ como fonte determinante; notícia, resumo ou comentário não o substituem.
+
+- Em `acervo_exclusivo`, cure somente o documento oficial já fornecido. Não procure o informativo nem complemente externamente; se a identidade ou atualização não puder ser confirmada no próprio acervo, declare a limitação.
+- Em `acervo_com_validacao_oficial`, valide no portal do tribunal somente identidade, íntegra e estado materialmente relevante.
+- Em `pesquisa_juridica_completa`, localize e leia primeiro o informativo e os documentos oficiais aplicáveis; Dizer o Direito, JOTA e Thomson Reuters / Revista dos Tribunais podem apenas apoiar contexto e localização, identificados como fontes editoriais secundárias.
+
+Notícia de julgamento sem acórdão oficial disponível deve permanecer como julgamento noticiado, não como tese confirmada. Só mude o modo se o pedido ampliar ou restringir efetivamente as fontes. Quando houver consulta externa, use `Base consultada` compacta e integrada, sem catálogo de links.
+
 ## Objetivo
 
 Selecionar, dentre os julgados de um informativo, aqueles que efetivamente merecem estudo aprofundado para a Magistratura. O resultado deve ser um boletim jurídico conciso e denso, não um resumo integral do informativo nem um capítulo de manual.

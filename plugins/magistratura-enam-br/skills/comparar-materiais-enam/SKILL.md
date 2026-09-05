@@ -5,6 +5,14 @@ description: Compare materiais publicados do ENAM por capítulo, tema e subtema 
 
 # Comparação de materiais do ENAM
 
+## Política de fontes na comparação
+
+Leia `../../references/politica-fontes-juridicas.md` e `../../references/protocolo-uso-do-acervo.md`. Se o escopo for comparar exclusivamente os documentos fornecidos, aplique `acervo_exclusivo`: não introduza pesquisa externa, não complete lacunas e não use conhecimento externo para classificar delta. Aponte o que os documentos permitem ou não concluir.
+
+Em `acervo_com_validacao_oficial`, valide externamente apenas alteração legislativa ou jurisprudencial material que dependa de confirmação atual. Em `pesquisa_juridica_completa`, consulte primeiro a fonte oficial competente antes de atribuir causa jurídica a uma diferença; fonte editorial cadastrada é apenas apoio secundário. Só transite entre políticas quando o candidato alterar efetivamente o universo de fontes.
+
+Quando houver consulta externa relevante, apresente as fontes decisivas em `Base consultada`, sem manchetes, cards, URLs brutas no corpo ou lista de resultados. Identifique expressamente qualquer fonte secundária por sua natureza editorial.
+
 ## Diretriz obrigatória do plugin
 
 Na abertura de nova comparação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade do mesmo par documental e escopo, reaproveite essa leitura e releia apenas se houver nova versão, mudança de escopo ou dúvida real de fonte.

@@ -274,11 +274,11 @@ Permitir estudo exclusivo pelo acervo, acervo com validacao oficial ou pesquisa 
 - Modify: `plugins/magistratura-enam-br/AGENTS.md`
 - Test: `plugins/magistratura-enam-br/tests/test_governanca_fontes.py`
 
-- [ ] Fazer `acervo_exclusivo` bloquear busca e complemento externo.
-- [ ] Fazer `acervo_com_validacao_oficial` pesquisar apenas quando atualidade ou precisao puderem mudar materialmente.
-- [ ] Fazer `pesquisa_juridica_completa` consultar primeiro a fonte primaria aplicavel.
-- [ ] Declarar limitacao quando o modo exclusivo nao permitir certificar atualidade.
-- [ ] Tratar preferencia inferida como estado efemero, nunca como perfil persistente.
+- [x] Fazer `acervo_exclusivo` bloquear busca e complemento externo.
+- [x] Fazer `acervo_com_validacao_oficial` pesquisar apenas quando atualidade ou precisao puderem mudar materialmente.
+- [x] Fazer `pesquisa_juridica_completa` consultar primeiro a fonte primaria aplicavel.
+- [x] Declarar limitacao quando o modo exclusivo nao permitir certificar atualidade.
+- [x] Tratar preferencia inferida como estado efemero, nunca como perfil persistente.
 
 ### Task 4.2: integrar fontes nas skills juridicas
 
@@ -290,19 +290,19 @@ Permitir estudo exclusivo pelo acervo, acervo com validacao oficial ou pesquisa 
 - Modify: `plugins/magistratura-enam-br/skills/planejar-jurisprudencia/SKILL.md`
 - Test: `plugins/magistratura-enam-br/tests/test_fontes_por_skill.py`
 
-- [ ] Estudo: usar acervo como base e separar complemento ou atualizacao.
-- [ ] Curadoria: exigir informativo oficial e usar secundarias apenas como apoio.
-- [ ] Comparacao: nao introduzir pesquisa externa se o escopo for comparar exclusivamente os documentos fornecidos.
-- [ ] Planejamento: nao pesquisar novo julgado quando a tarefa for apenas organizar itens ja selecionados.
-- [ ] Fazer transicao de politica apenas quando o pedido alterar efetivamente o escopo de fontes.
+- [x] Estudo: usar acervo como base e separar complemento ou atualizacao.
+- [x] Curadoria: exigir informativo oficial e usar secundarias apenas como apoio.
+- [x] Comparacao: nao introduzir pesquisa externa se o escopo for comparar exclusivamente os documentos fornecidos.
+- [x] Planejamento: nao pesquisar novo julgado quando a tarefa for apenas organizar itens ja selecionados.
+- [x] Fazer transicao de politica apenas quando o pedido alterar efetivamente o escopo de fontes.
 
 ### Task 4.3: controlar apresentacao e rastreabilidade
 
-- [ ] Integrar fontes ao texto juridico, sem manchetes, cards ou lista de resultados.
-- [ ] Usar secao final compacta `Base consultada` somente quando houver consulta externa relevante.
-- [ ] Identificar fonte secundaria por natureza editorial.
-- [ ] Evitar URLs brutas no corpo, sem tentar suprimir citacoes automaticas da plataforma.
-- [ ] Testar divergencia entre apostila e lei vigente, resumo editorial e tese oficial, e noticia de julgamento sem acordao confirmado.
+- [x] Integrar fontes ao texto juridico, sem manchetes, cards ou lista de resultados.
+- [x] Usar secao final compacta `Base consultada` somente quando houver consulta externa relevante.
+- [x] Identificar fonte secundaria por natureza editorial.
+- [x] Evitar URLs brutas no corpo, sem tentar suprimir citacoes automaticas da plataforma.
+- [x] Testar divergencia entre apostila e lei vigente, resumo editorial e tese oficial, e noticia de julgamento sem acordao confirmado.
 
 ### Gate da fase 4
 

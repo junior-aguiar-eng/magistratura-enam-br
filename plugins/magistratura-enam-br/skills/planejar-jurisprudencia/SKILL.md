@@ -5,6 +5,14 @@ description: Organize a leitura e a revisão espaçada de julgados brasileiros j
 
 # Planejamento de jurisprudência
 
+## Política de fontes no planejamento
+
+Leia `../../references/politica-fontes-juridicas.md` e `../../references/protocolo-uso-do-acervo.md` quando o pedido envolver fontes. Para organizar julgados já selecionados, não pesquise novo julgado, mérito, atualização ou substituto: trate a lista e seus metadados como `acervo_exclusivo` para esse escopo operacional.
+
+Se o candidato pedir validação ou pesquisa do mérito, isso altera efetivamente o escopo: anuncie a transição e devolva a autoridade ao orquestrador para estudo ou curadoria, preservando a esteira. Não converta mera organização em `acervo_com_validacao_oficial` ou `pesquisa_juridica_completa`. Preferência inferida vale apenas na conversa atual e não deve ser persistida.
+
+Se uma consulta externa relevante ocorrer após retorno da skill competente, registre somente as fontes decisivas em `Base consultada`, sem clipping, e identifique a natureza editorial das fontes secundárias.
+
 ## Objetivo
 
 Organize julgados já curados em uma rotina sustentável de leitura inicial e revisão espaçada, sempre subordinada à capacidade real do candidato e ao prazo até a prova. Esta skill administra o tempo de estudo; não seleciona precedentes e não altera sua análise jurídica.

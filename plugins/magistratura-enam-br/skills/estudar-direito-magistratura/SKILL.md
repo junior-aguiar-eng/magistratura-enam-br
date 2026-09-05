@@ -5,6 +5,16 @@ description: Conduza estudo e revisão de alto nível de Direito brasileiro para
 
 # Estudo jurídico para Magistratura
 
+## Política de fontes no estudo
+
+Leia `../../references/politica-fontes-juridicas.md` e `../../references/protocolo-uso-do-acervo.md` antes de usar material ou pesquisar. Use o acervo como base pedagógica e mantenha visível a separação entre conteúdo do candidato, complemento e atualização oficial.
+
+- Em `acervo_exclusivo`, não faça busca nem complemento externo. Se a atualidade for determinante, declare a impossibilidade de certificá-la nesse modo e trabalhe apenas com o material disponível.
+- Em `acervo_com_validacao_oficial`, consulte exclusivamente a fonte primária necessária para conferir ponto que possa mudar materialmente a resposta.
+- Em `pesquisa_juridica_completa`, consulte primeiro Planalto, STF, STJ ou a fonte oficial competente; use fonte editorial cadastrada apenas como apoio.
+
+Só altere a política quando o candidato mudar efetivamente o escopo das fontes. Havendo pesquisa externa relevante, integre os resultados ao desenvolvimento e finalize com `Base consultada` compacta, sem clipping, manchetes ou URLs brutas no corpo.
+
 ## Diretriz obrigatória do plugin
 
 Na abertura de nova sessão de estudo, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade da mesma sessão, reaproveite a leitura já feita e releia apenas diante de alteração material do pedido, do acervo ou do modo de atuação.
