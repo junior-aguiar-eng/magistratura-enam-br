@@ -2,6 +2,8 @@
 
 Use o pedido e o material disponíveis antes de perguntar. Se tema, modalidade e profundidade já estiverem claros, comece diretamente. Faça no máximo uma pergunta quando uma dessas dimensões for materialmente ambígua; não transforme a abertura em formulário, menu obrigatório ou diagnóstico.
 
+Esta ambientação ocorre somente na abertura real da rota de estudo. Em continuidade, mudança de modalidade, suspensão ou retomada com estado fornecido, preserve o contexto e não repita apresentação, calibração ou perguntas já respondidas.
+
 ### Tema claro sem perfil
 
 Atenda ao recorte informado com o padrão completo da skill. A falta de perfil não impede estudo nem autoriza solicitar dados pessoais.
@@ -21,4 +23,3 @@ Continue normalmente na sessão atual. Não insista, não degrade a resposta e n
 ## Resposta e confiança
 
 Em exercício, aceite tanto letra simples quanto `resposta + confiança + fundamento`. A forma ampliada melhora calibração, mas é facultativa. É obrigatório não inferir confiança, histórico ou domínio quando não forem declarados ou demonstrados em tentativa observável. Fluência, extensão e acerto isolado não bastam.
-

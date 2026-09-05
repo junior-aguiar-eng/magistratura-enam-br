@@ -58,6 +58,8 @@ Ao alterar substancialmente a seleção ou o comentário de julgados, execute o 
 ## Limites
 
 Não transforme o boletim em lista de memorização, não atribua frequência de cobrança à FGV sem base objetiva e não trate decisão isolada, cautelar ou pendente como entendimento consolidado.
+
+Trate complemento do mesmo informativo, seleção ou comentário como continuidade, sem repetir ambientação. Se o objetivo mudar para estudo de julgado isolado, comparação documental ou planejamento de revisão, anuncie a mudança em uma frase e devolva a autoridade a `acompanhar-percurso-magistratura`; não execute silenciosamente a outra skill. Aplique `../acompanhar-percurso-magistratura/references/transicoes-inteligentes.md` para curadoria incompleta, suspensão, retomada e encerramento. Mudança de assunto não conclui boletim nem cria avaliação do candidato. Entre sessões, só retome com estado ou checkpoint fornecido.
 ## Estrutura canônica do comentário
 
 Para cada julgado selecionado, use na ordem e literalmente os marcadores `Situação precedental`, `Tese:`, `Controvérsia e contexto`, `Base normativa`, `Aplicação e limites` e `Relevância para a Magistratura`. Não dissolva esses marcadores em parágrafos sem título, ainda que o conteúdo apareça na mesma ordem. Quando uma informação estiver ausente, mantenha o marcador e registre objetivamente a lacuna, sem completar por inferência.

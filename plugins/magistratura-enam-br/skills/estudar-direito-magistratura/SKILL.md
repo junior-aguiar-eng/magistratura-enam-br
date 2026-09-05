@@ -64,6 +64,10 @@ Leia `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de formul
 
 Registre erros recorrentes ou progresso apenas quando houver mecanismo de persistência disponível e conteúdo material a preservar. Não simule memória persistente, não elimine histórico sem autorização e não permita que um registro substitua o estudo do material.
 
+Reconheça resposta, aprofundamento e mudança de modalidade dentro do mesmo tema como continuidade desta skill. Preserve o tema quando o candidato alternar entre explicação, revisão, questão, discursiva ou prova oral; não repita ambientação quando rota, tema e política de fontes já estiverem claros.
+
+Se o pedido passar a curadoria de informativo, comparação documental ou planejamento de revisão, anuncie a mudança em uma frase e devolva a autoridade a `acompanhar-percurso-magistratura`; não execute silenciosamente a outra skill. Aplique `../acompanhar-percurso-magistratura/references/transicoes-inteligentes.md` para questão ou discursiva pendente, suspensão, retomada e encerramento. Mudança de assunto não registra tentativa, erro ou abandono. Entre sessões, só retome com estado ou checkpoint fornecido.
+
 ## Avaliação de manutenção
 
 Ao alterar substancialmente a elaboração ou a correção de questões objetivas, execute o cenário pertinente de `references/cenarios-avaliacao.md` em sessão nova. Aplique a rubrica somente após a resposta e não revele seus critérios antes da tentativa do candidato.

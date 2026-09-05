@@ -218,11 +218,11 @@ Manter coerencia quando o candidato muda conteudo, metodo ou modulo, sem bloquea
 - Create: `plugins/magistratura-enam-br/skills/acompanhar-percurso-magistratura/references/transicoes-inteligentes.md`
 - Create: `plugins/magistratura-enam-br/tests/test_transicoes_rota.py`
 
-- [ ] Especificar `CONTINUAR`, `MUDAR_TEMA`, `MUDAR_MODALIDADE`, `MUDAR_SKILL`, `SUSPENDER`, `RETOMAR` e `ENCERRAR`.
-- [ ] Comunicar transicao inequivoca em uma frase e prosseguir na mesma resposta.
-- [ ] Solicitar confirmacao somente quando uma pendencia seria abandonada ou uma acao persistente seria executada.
-- [ ] Preservar tema quando houver apenas mudanca de modalidade.
-- [ ] Preservar pendencia suspensa somente na conversa ou em checkpoint explicitamente fornecido.
+- [x] Especificar `CONTINUAR`, `MUDAR_TEMA`, `MUDAR_MODALIDADE`, `MUDAR_SKILL`, `SUSPENDER`, `RETOMAR` e `ENCERRAR`.
+- [x] Comunicar transicao inequivoca em uma frase e prosseguir na mesma resposta.
+- [x] Solicitar confirmacao somente quando uma pendencia seria abandonada ou uma acao persistente seria executada.
+- [x] Preservar tema quando houver apenas mudanca de modalidade.
+- [x] Preservar pendencia suspensa somente na conversa ou em checkpoint explicitamente fornecido.
 
 ### Task 3.2: integrar as cinco skills
 
@@ -236,18 +236,18 @@ Manter coerencia quando o candidato muda conteudo, metodo ou modulo, sem bloquea
 - Modify: `plugins/magistratura-enam-br/skills/acompanhar-percurso-magistratura/SKILL.md`
 - Test: `plugins/magistratura-enam-br/tests/test_integracao_fluxos_skills.py`
 
-- [ ] Fazer cada skill reconhecer continuidade dentro do proprio dominio.
-- [ ] Fazer cada skill devolver mudanca de autoridade ao orquestrador sem executar a outra skill silenciosamente.
-- [ ] Manter a resposta do turno util: anunciar e encaminhar, sem reiniciar entrevista.
-- [ ] Proibir repeticao da ambientacao quando rota, tema e politica ja estiverem claros.
-- [ ] Proibir alegacao de retomada entre sessoes sem estado fornecido.
+- [x] Fazer cada skill reconhecer continuidade dentro do proprio dominio.
+- [x] Fazer cada skill devolver mudanca de autoridade ao orquestrador sem executar a outra skill silenciosamente.
+- [x] Manter a resposta do turno util: anunciar e encaminhar, sem reiniciar entrevista.
+- [x] Proibir repeticao da ambientacao quando rota, tema e politica ja estiverem claros.
+- [x] Proibir alegacao de retomada entre sessoes sem estado fornecido.
 
 ### Task 3.3: proteger atividades pendentes
 
-- [ ] Testar questao aguard, discursiva em elaboracao, curadoria incompleta, comparacao sem segundo documento e remediacao aberta.
-- [ ] Distinguir suspender, encerrar e substituir.
-- [ ] Nao registrar tentativa, erro ou abandono apenas porque o candidato mudou de assunto.
-- [ ] Manter persistencia submetida ao contrato de confirmacao existente.
+- [x] Testar questao aguard, discursiva em elaboracao, curadoria incompleta, comparacao sem segundo documento e remediacao aberta.
+- [x] Distinguir suspender, encerrar e substituir.
+- [x] Nao registrar tentativa, erro ou abandono apenas porque o candidato mudou de assunto.
+- [x] Manter persistencia submetida ao contrato de confirmacao existente.
 
 ### Gate da fase 3
 

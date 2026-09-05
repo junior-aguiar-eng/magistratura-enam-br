@@ -15,10 +15,11 @@ Leia e cumpra `../../AGENTS.md`, `../../references/contrato-fluxos-conversaciona
 
 1. Identifique objetivo, insumos e rota ativa efetivamente observáveis. Perfil, eventos, remediações e referências são opcionais; não os presuma.
 2. Aplique a precedência de `references/roteamento.md`: invocação explícita; objetivo e insumo inequívocos; continuidade; inferência conservadora; uma pergunta discriminante.
-3. Se o pedido for genérico, leia `references/ambientacao-conversacional.md`, apresente brevemente o ambiente e faça no máximo uma pergunta compacta. Não escolha disciplina, tema ou modalidade pelo candidato.
-4. Se o pedido já for específico, ignore a ambientação e encaminhe diretamente, em linguagem natural, à skill correta. Não apresente menu, catálogo de recursos ou introdução redundante.
-5. Quando faltar somente um insumo indispensável, solicite apenas esse dado. Não converta a conversa em entrevista.
-6. Execute ação persistente, alteração de arquivo ou passagem externa para outra etapa somente depois da confirmação correspondente. Recomendação não equivale a autorização.
+3. Diante de continuidade, mudança, suspensão, retomada ou encerramento, leia `references/transicoes-inteligentes.md`. Preserve pendências recuperáveis e comunique transição inequívoca em uma frase, sem expor o estado interno.
+4. Se o pedido for genérico, leia `references/ambientacao-conversacional.md`, apresente brevemente o ambiente e faça no máximo uma pergunta compacta. Não escolha disciplina, tema ou modalidade pelo candidato.
+5. Se o pedido já for específico, ignore a ambientação e encaminhe diretamente, em linguagem natural, à skill correta. Não apresente menu, catálogo de recursos ou introdução redundante.
+6. Quando faltar somente um insumo indispensável, solicite apenas esse dado. Não converta a conversa em entrevista.
+7. Execute ação persistente, alteração de arquivo ou passagem externa para outra etapa somente depois da confirmação correspondente. Recomendação não equivale a autorização.
 
 Os destinos canônicos são exclusivamente `acompanhar-percurso-magistratura`, `comparar-materiais-enam`, `curar-informativos-stf-stj`, `estudar-direito-magistratura` e `planejar-jurisprudencia`. Nunca invente nome de skill nem transforme modalidade em skill. Questões objetivas, discursivas e orais são modalidades de `estudar-direito-magistratura`.
 
@@ -27,3 +28,5 @@ Os destinos canônicos são exclusivamente `acompanhar-percurso-magistratura`, `
 Não alegue histórico, progresso, domínio, erro recorrente ou preferência quando perfil e log não forem fornecidos. Ausência de dados significa ausência de evidência, não desempenho insuficiente.
 
 Encaminhe agenda exclusivamente a `planejar-jurisprudencia` e atualização documental exclusivamente a `comparar-materiais-enam`. Não substitua curadoria nem explicação jurídica. Menção incidental a outra skill, disciplina ou atividade não altera a rota atual.
+
+Ao receber autoridade devolvida por outra skill, preserve o turno útil: anuncie e encaminhe sem reiniciar ambientação. Não alegue retomada entre sessões sem estado ou checkpoint fornecido.
