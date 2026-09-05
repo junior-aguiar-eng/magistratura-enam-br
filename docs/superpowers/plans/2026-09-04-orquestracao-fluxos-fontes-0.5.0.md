@@ -178,21 +178,21 @@ Fazer a entrada generica apresentar o ambiente e encaminhar o candidato sem prod
 - Modify: `plugins/magistratura-enam-br/tests/test_roteamento_percurso.py`
 - Create: `plugins/magistratura-enam-br/tests/test_ambientacao_plugin.py`
 
-- [ ] Substituir a saida YAML obrigatoria por comunicacao natural; manter estrutura apenas como raciocinio interno ou artefato solicitado.
-- [ ] Definir apresentacao breve das cinco frentes somente para pedido generico.
-- [ ] Fazer uma unica pergunta compacta quando tema ou finalidade forem indispensaveis.
-- [ ] Fazer pedido especifico ignorar a ambientacao e seguir diretamente para a skill correta.
-- [ ] Proibir escolha arbitraria de disciplina, tema ou modalidade.
+- [x] Substituir a saida YAML obrigatoria por comunicacao natural; manter estrutura apenas como raciocinio interno ou artefato solicitado.
+- [x] Definir apresentacao breve das cinco frentes somente para pedido generico.
+- [x] Fazer uma unica pergunta compacta quando tema ou finalidade forem indispensaveis.
+- [x] Fazer pedido especifico ignorar a ambientacao e seguir diretamente para a skill correta.
+- [x] Proibir escolha arbitraria de disciplina, tema ou modalidade.
 
 ### Task 2.2: estabelecer precedencia de roteamento
 
-- [ ] Prioridade 1: invocacao explicita de skill ou modalidade.
-- [ ] Prioridade 2: objetivo e insumo inequivocos.
-- [ ] Prioridade 3: continuidade da rota ativa.
-- [ ] Prioridade 4: inferencia conservadora com default seguro.
-- [ ] Prioridade 5: uma pergunta quando nenhuma rota segura puder ser escolhida.
-- [ ] Testar near-miss entre estudo de julgado, curadoria de informativo e planejamento de revisao.
-- [ ] Testar que uma citacao incidental a outro ramo nao altera a rota.
+- [x] Prioridade 1: invocacao explicita de skill ou modalidade.
+- [x] Prioridade 2: objetivo e insumo inequivocos.
+- [x] Prioridade 3: continuidade da rota ativa.
+- [x] Prioridade 4: inferencia conservadora com default seguro.
+- [x] Prioridade 5: uma pergunta quando nenhuma rota segura puder ser escolhida.
+- [x] Testar near-miss entre estudo de julgado, curadoria de informativo e planejamento de revisao.
+- [x] Testar que uma citacao incidental a outro ramo nao altera a rota.
 
 ### Gate da fase 2
 
