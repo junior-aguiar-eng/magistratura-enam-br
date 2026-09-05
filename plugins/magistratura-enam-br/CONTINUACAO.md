@@ -4,7 +4,7 @@
 
 Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junior-aguiar-eng/magistratura-enam-br`. O manifesto válido é `.codex-plugin/plugin.json`; não mantenha cópias aninhadas ou versões paralelas. Leia `AGENTS.md` antes de qualquer alteração.
 
-## Estado confirmado em 2026-09-04
+## Estado confirmado em 2026-09-05
 
 - Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.6.0`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
@@ -21,6 +21,13 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 - Integridade: verificador interno de contrato do plugin e `uv lock --check` aprovados.
 - Integração contínua: o workflow de raiz `.github/workflows/validar.yml` executa a suíte canônica, no diretório do plugin, em `push` e pull request.
 - Árvore versionada: limpa após a auditoria; ambientes e caches locais permanecem ignorados pelo Git.
+
+## Questões interativas — candidata não publicada
+
+- Servidor MCP, widget, persistência local e indexação recursiva implementados sem alterar a versão `0.6.0`.
+- Codex usa o servidor empacotado por `stdio`; ChatGPT usa conexão privada previamente registrada, sem credenciais versionadas.
+- O modelo gera a questão; a skill governa o conteúdo jurídico; o MCP executa persistência, isolamento do gabarito, renderização e correção.
+- Inicialização automática do túnel é opt-in, limitada a `HKCU` e removível sem apagar biblioteca ou histórico.
 
 ## Contratos que exigem preservação
 
@@ -57,4 +64,3 @@ Implementados: skill de acompanhamento, relatório local, contratos de roteament
 Revisão humana de `evals/pedagogia/relatorio-final.md` e das amostras em `evals/pedagogia/fase-6/runs/` aprovada pelo responsável pelo repositório em 4 de setembro de 2026.
 
 Instalação limpa isolada aprovada para a candidata `0.4.0`: quinta skill e relatório presentes, sem criação implícita de perfil ou log. Gates técnicos finais: 161 testes, Ruff, lock, integração e validador do plugin aprovados.
-

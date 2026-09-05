@@ -5,6 +5,7 @@ import sys
 import time
 from pathlib import Path
 
+import anyio
 import pytest
 from mcp import StdioServerParameters
 from mcp.client import Client
@@ -116,7 +117,7 @@ async def test_transporte_http_local_aceita_cliente_mcp_real(tmp_path):
     with socket.socket() as probe:
         probe.bind(("127.0.0.1", 0))
         port = probe.getsockname()[1]
-    process = subprocess.Popen(
+    process = await anyio.open_process(
         [
             sys.executable,
             "-m",
@@ -137,10 +138,11 @@ async def test_transporte_http_local_aceita_cliente_mcp_real(tmp_path):
             with socket.socket() as probe:
                 if probe.connect_ex(("127.0.0.1", port)) == 0:
                     break
-            time.sleep(0.05)
+            await anyio.sleep(0.05)
         async with Client(f"http://127.0.0.1:{port}/mcp") as client:
             tools = await client.list_tools()
         assert "criar_sessao_questao" in {tool.name for tool in tools.tools}
     finally:
         process.terminate()
-        process.wait(timeout=5)
+        with anyio.fail_after(5):
+            await process.wait()

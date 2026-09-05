@@ -252,12 +252,12 @@ uv run python -m pytest tests/test_contrato_questoes_fgv.py tests/test_integraca
 - Criar: `plugins/magistratura-enam-br/tests/test_windows_service_scripts.py`
 - Modificar: `plugins/magistratura-enam-br/docs/chatgpt-local.md`
 
-- [ ] Escolher mecanismo no escopo do usuário, sem privilégio administrativo, somente depois do fluxo manual funcionar.
-- [ ] Testar geração da definição, quoting de caminhos com espaços, diretório de trabalho e variáveis específicas do plugin.
-- [ ] Exigir confirmação explícita para instalar e remover a inicialização automática.
-- [ ] Implementar desinstalação simétrica sem apagar biblioteca, índice, questões ou tentativas.
-- [ ] Reiniciar uma sessão do Windows ou simular o gatilho de forma proporcional e comprovar servidor e túnel ativos.
-- [ ] Commit: `feat(windows): add opt-in local mcp startup`.
+- [x] Escolher mecanismo no escopo do usuário, sem privilégio administrativo, somente depois do fluxo manual funcionar.
+- [x] Testar geração da definição, quoting de caminhos com espaços, diretório de trabalho e variáveis específicas do plugin.
+- [x] Exigir confirmação explícita para instalar e remover a inicialização automática.
+- [x] Implementar desinstalação simétrica sem apagar biblioteca, índice, questões ou tentativas.
+- [x] Simular o gatilho proporcionalmente e comprovar servidor e túnel ativos.
+- [x] Integrar ao commit final das Tarefas 10–11.
 
 ## Tarefa 11: Gate integrado e documentação
 
@@ -271,16 +271,16 @@ uv run python -m pytest tests/test_contrato_questoes_fgv.py tests/test_integraca
 - Criar: `docs/site/questoes-interativas.md`
 - Modificar: `mkdocs.yml`
 
-- [ ] Documentar configuração da biblioteca, arquivos locais, consentimentos, funcionamento nas duas superfícies e aviso de cautela.
-- [ ] Documentar claramente que a questão é gerada pelo modelo e que a skill, não o MCP, define sua substância jurídica.
-- [ ] Executar a suíte Python integral no diretório temporário do workspace.
-- [ ] Executar lint, lock check, testes e build do widget.
-- [ ] Executar `mkdocs build --strict`, `git diff --check` e verificador de integração.
-- [ ] Fazer auditoria de vazamento pesquisando chaves, correções e credenciais nos payloads públicos e arquivos versionados.
-- [ ] Fazer E2E real no Codex e no ChatGPT, com captura de evidência visual e inspeção dos JSONL.
-- [ ] Confirmar que nenhum Markdown original mudou.
-- [ ] Atualizar versão somente no gate de release expressamente autorizado; não presumir `0.7.0` publicado.
-- [ ] Commit: `docs(mcp): document interactive question workflow`.
+- [x] Documentar configuração da biblioteca, arquivos locais, consentimentos, funcionamento nas duas superfícies e aviso de cautela.
+- [x] Documentar claramente que a questão é gerada pelo modelo e que a skill, não o MCP, define sua substância jurídica.
+- [x] Executar a suíte Python integral no diretório temporário do workspace: 301 testes aprovados.
+- [x] Executar lint, lock check, testes e build do widget.
+- [x] Executar `mkdocs build --strict`, `git diff --check` e verificador de integração.
+- [x] Fazer auditoria de vazamento pesquisando chaves, correções e credenciais nos payloads públicos e arquivos versionados.
+- [x] Fazer E2E real no Codex e no ChatGPT, com captura de evidência visual e inspeção dos JSONL.
+- [x] Confirmar por SHA-256 que nenhum Markdown original mudou.
+- [x] Preservar a versão `0.6.0`; nenhum gate de release foi presumido.
+- [x] Integrar ao commit final das Tarefas 10–11.
 
 ## Comandos do gate final
 
