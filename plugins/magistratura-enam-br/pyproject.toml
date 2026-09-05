@@ -4,6 +4,7 @@ version = "0.6.0"
 description = "Ferramentas locais de apoio ao estudo para Magistratura e ENAM."
 requires-python = ">=3.14,<3.15"
 dependencies = [
+    "filelock>=3.20,<4",
     "jsonschema>=4.0",
     "mcp>=2,<3",
     "openpyxl>=3.1",
