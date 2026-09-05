@@ -14,3 +14,4 @@ A política é opt-in e opera inicialmente em modo sombra. `proxima_revisao` con
 
 Resultado, confiança e evidências devem estar expressamente registrados. Ausência desses dados não autoriza recomendação. O cálculo não inclui atividade alheia à jurisprudência nem cria cronograma geral.
 
+O grau de assistência altera a leitura do resultado: acerto com condução completa não demonstra autonomia. Transferência independente para hipótese nova e retenção em revisão posterior sustentam ampliação mais forte do intervalo sugerido. A política não cristaliza fraqueza histórica; evidência posterior, mais autônoma e pertinente ao mesmo conteúdo deve atualizar a recomendação. Enquanto o modo sombra vigorar, esses fatores explicam `motivo_sugestao` e não alteram o ciclo fixo.

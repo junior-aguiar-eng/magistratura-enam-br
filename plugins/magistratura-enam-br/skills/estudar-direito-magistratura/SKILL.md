@@ -55,7 +55,7 @@ Cronogramas e planos de remessa não definem tema, sequência, prioridade ou opo
 - Para construção, resolução ou correção de caso jurídico complexo, leia também `references/casos-complexos.md`.
 - Para revisão ativa de recuperação, consolidação ou véspera de prova, leia `references/revisao.md`.
 - Para questões objetivas, leia `references/questoes-fgv-enam.md` e trate a trava canônica de emissão nela prevista como condição obrigatória antes de responder. Se qualquer critério falhar, descarte o rascunho e reconstrua a questão; não flexibilize a trava por concisão, rapidez ou pedido de formato.
-- Para discursiva e prova oral, leia `references/discursivas-e-prova-oral.md`.
+- Para discursiva, leia `references/discursivas.md`; para prova oral, leia `references/prova-oral.md`.
 
 Quando houver ganho real de retenção, aplique o contrato de `references/flashcards-de-alto-rendimento.md`; cartões são opcionais, limitados e não geram evidência antes de tentativa posterior.
 

@@ -2,7 +2,7 @@
 
 ## Estrutura
 
-Em cada julgado, use a sequência obrigatória abaixo. Mantenha o texto fluido e conciso, mas não suprima nenhum bloco.
+Em cada julgado, preserve tese, contexto, fundamento determinante, alcance, limites, distinções e situação processual por meio das funções da sequência abaixo. A apresentação é proporcional à complexidade e ao conteúdo disponível: campos materialmente inaplicáveis podem ser registrados de modo compacto, sem produzir parágrafo burocrático, mas informação relevante não pode ser suprimida.
 
 **Cabeçalho técnico.** Abra com a classe processual, o número, a unidade federativa quando houver e um título que traduza a controvérsia decidida. Na linha de identificação, informe órgão julgador, relator, data e natureza qualificada do precedente, se existentes. O cabeçalho deve permitir que o leitor reconheça imediatamente qual é o julgado e do que ele trata; não o substitua por um título genérico de disciplina.
 
@@ -29,3 +29,5 @@ Use linguagem técnica e precisa: “a controvérsia consistia em”, “a Corte
 ## Controles de precisão
 
 Distinga expressamente o conteúdo decidido da análise editorial. Não trate obiter dicta como fundamento determinante, nem julgamento monocrático, cautelar ou ainda pendente como orientação consolidada. Não atribua efeitos prospectivos sem modulação ou base normativa. Se houver divergência relevante, indique seu objeto e a razão de sua importância, sem converter o comentário em resumo de votos.
+
+Separe três planos: conteúdo expresso da decisão, síntese do curador e inferência sobre aplicabilidade ou utilidade. Toda inferência deve ser apresentada como análise, com o suporte que a autoriza; nunca complete silêncio do julgado como se fosse fundamento determinante.

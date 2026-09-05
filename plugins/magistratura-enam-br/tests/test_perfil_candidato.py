@@ -1,8 +1,10 @@
 import json
+from copy import deepcopy
 
 import perfil_candidato as perfil
 import pytest
 from test_eventos_aprendizagem import criar_evento
+from test_schemas_pedagogicos import criar_evento_v2
 
 
 def evento(event_id, ocorrido, modalidade="questao_objetiva", resultado="parcial"):
@@ -63,3 +65,32 @@ def test_salvar_atomico_permite_apagar_e_reconstruir_sem_delta(tmp_path):
 
     assert json.loads(caminho.read_text(encoding="utf-8")) == esperado
 
+
+def test_perfil_v2_separa_preferencias_explicitas_de_inferencias():
+    configuracao = {
+        "schema_version": "1.0.0",
+        "objectives": ["Magistratura estadual"],
+        "preferences": {"feedback_mode": "adaptativo", "preferred_modalities": ["questao_objetiva"]},
+    }
+    reconstruido = perfil.reconstruir_perfil([], configuracao)
+    assert reconstruido["schema_version"] == "2.0.0"
+    assert reconstruido["declared"] == configuracao
+    assert reconstruido["competencies"] == []
+
+
+def test_perfil_sem_configuracao_nao_inventa_preferencia():
+    reconstruido = perfil.reconstruir_perfil([])
+    assert reconstruido["declared"] == {"schema_version": "1.0.0", "objectives": [], "preferences": {}}
+
+
+def test_acerto_assistido_nao_demonstra_transferencia_autonoma():
+    item = criar_evento_v2()
+    item["activity"]["assistance_level"] = "conducao_completa"
+    competencia = perfil.reconstruir_perfil([item])["competencies"][0]
+    assert competencia["evidence"]["aplicacao_fatos_novos"] == "em_desenvolvimento"
+
+
+def test_chave_de_competencia_aceita_content_ref_novo_e_legado():
+    legado = evento("evt_01a06d61-62eb-71f1-b7c0-5e19a67c47dc", "2026-09-03T12:00:00Z")
+    novo = deepcopy(criar_evento_v2())
+    assert len(perfil.reconstruir_perfil([legado, novo])["competencies"]) == 2

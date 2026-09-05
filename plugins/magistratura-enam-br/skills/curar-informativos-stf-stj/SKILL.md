@@ -21,6 +21,8 @@ Selecionar, dentre os julgados de um informativo, aqueles que efetivamente merec
 
 Na abertura de nova curadoria, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade do mesmo informativo ou boletim, reaproveite essa leitura e releia apenas se houver novo documento, mudança de escopo ou dúvida real de fonte.
 
+Aplique `references/comentario-jurisprudencial.md` com densidade proporcional ao julgado. Preserve tese, contexto, fundamento determinante, alcance, limites, distinções e situação processual quando relevantes, separando decisão, síntese editorial e inferência.
+
 Na abertura de nova curadoria com material do candidato, leia `../../references/protocolo-uso-do-acervo.md` antes de obter, selecionar ou comentar o informativo. Mantenha a classificação documental no contexto do boletim; não a repita a cada interação sem novo acervo.
 
 ## Método

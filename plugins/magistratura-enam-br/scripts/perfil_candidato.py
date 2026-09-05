@@ -14,14 +14,38 @@ from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "modelos/pedagogia/candidate-profile.schema.json"
+SETTINGS_SCHEMA = ROOT / "modelos/pedagogia/profile-settings.schema.json"
 EVIDENCIAS = ("evocacao_regra", "discriminacao_institutos", "aplicacao_fatos_novos", "fundamentacao_normativa_jurisprudencial", "expressao_objetiva_discursiva_oral", "retencao_revisao_posterior")
 
 
+def _identificador_conteudo(evento: dict) -> str:
+    referencia = evento["content_ref"]
+    return referencia.get("id") or referencia["content_id"]
+
+
 def _chave(evento: dict) -> str:
-    return f"{evento['content_ref']['content_id']}--{evento['activity']['modality'].replace('_', '-')}"
+    return f"{_identificador_conteudo(evento)}--{evento['activity']['modality'].replace('_', '-')}"
 
 
-def reconstruir_perfil(eventos: Iterable[dict]) -> dict:
+def _nivel_evidencia(evento: dict) -> str:
+    assistencia = evento["activity"].get("assistance_level", "nao_registrada")
+    if evento["performance"]["result"] != "correto":
+        return "em_desenvolvimento"
+    if assistencia in {"nao_registrada", "nenhuma", "pista"}:
+        return "demonstrado"
+    return "em_desenvolvimento"
+
+
+def _configuracao_validada(configuracao: dict | None) -> dict:
+    declarada = configuracao or {"schema_version": "1.0.0", "objectives": [], "preferences": {}}
+    schema = json.loads(SETTINGS_SCHEMA.read_text(encoding="utf-8"))
+    erros = list(Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(declarada))
+    if erros:
+        raise ValueError(f"Configuração inválida: {erros[0].message}")
+    return declarada
+
+
+def reconstruir_perfil(eventos: Iterable[dict], configuracao: dict | None = None) -> dict:
     ordenados = sorted(eventos, key=lambda e: (e.get("occurred_at", ""), e.get("event_id", "")))
     ids, competencias, remediacoes = set(), {}, {}
     for evento in ordenados:
@@ -37,15 +61,15 @@ def reconstruir_perfil(eventos: Iterable[dict]) -> dict:
         chave = _chave(evento)
         item = competencias.setdefault(chave, {"competency_id": chave, "evidence": {e: "nao_observado" for e in EVIDENCIAS}, "observations": []})
         desempenho = evento["performance"]
-        item["observations"].append({"event_id": event_id, "occurred_at": evento["occurred_at"], "result": desempenho["result"], "error_types": desempenho["error_types"], "domain_evidence": desempenho["domain_evidence"], "confidence": desempenho["confidence"]})
-        nivel = "demonstrado" if desempenho["result"] == "correto" else "em_desenvolvimento"
+        item["observations"].append({"event_id": event_id, "occurred_at": evento["occurred_at"], "result": desempenho["result"], "error_types": desempenho["error_types"], "domain_evidence": desempenho["domain_evidence"], "confidence": desempenho["confidence"], "assistance_level": evento["activity"].get("assistance_level", "nao_registrada")})
+        nivel = _nivel_evidencia(evento)
         for evidencia in desempenho["domain_evidence"]:
             item["evidence"][evidencia] = nivel
         if desempenho["result"] in {"parcial", "incorreto"} and desempenho["error_types"]:
             remediacoes[chave] = {"remediation_id": event_id.replace("evt_", "rem_", 1), "competency_id": chave, "error_types": desempenho["error_types"], "opened_by_event_id": event_id}
-        elif desempenho["result"] == "correto":
+        elif desempenho["result"] == "correto" and nivel == "demonstrado":
             remediacoes.pop(chave, None)
-    return {"schema_version": "1.0.0", "updated_at": ordenados[-1]["occurred_at"] if ordenados else "1970-01-01T00:00:00Z", "objectives": [], "preferences": {"feedback_mode": "completo"}, "competencies": [competencias[k] for k in sorted(competencias)], "open_remediations": [remediacoes[k] for k in sorted(remediacoes)]}
+    return {"schema_version": "2.0.0", "updated_at": ordenados[-1]["occurred_at"] if ordenados else "1970-01-01T00:00:00Z", "declared": _configuracao_validada(configuracao), "competencies": [competencias[k] for k in sorted(competencias)], "open_remediations": [remediacoes[k] for k in sorted(remediacoes)]}
 
 
 def salvar_perfil_atomico(caminho: Path, perfil: dict) -> None:

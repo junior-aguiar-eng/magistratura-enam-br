@@ -19,6 +19,8 @@ Organize julgados já curados em uma rotina sustentável de leitura inicial e re
 
 Na abertura de nova sessão de planejamento, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade da mesma esteira e do mesmo objetivo de planejamento, reaproveite essa leitura e releia apenas se houver nova fonte, mudança de regime ou novo pedido que altere materialmente o planejamento.
 
+Ao explicar sugestão adaptativa, diferencie resultado assistido, transferência independente e retenção posterior conforme `references/politica-adaptativa-v1.md`. Não cristalize evidência histórica como fraqueza permanente e não altere o ciclo fixo enquanto a política estiver em modo sombra.
+
 Quando uma nova sessão trouxer e-books, verticalizados, análises estratégicas ou cronogramas de curso, leia `../../references/protocolo-uso-do-acervo.md` antes de incorporá-los ao contexto. Preserve a classificação para a continuidade da mesma esteira e reavalie-a somente com novo material.
 
 ## Fluxo

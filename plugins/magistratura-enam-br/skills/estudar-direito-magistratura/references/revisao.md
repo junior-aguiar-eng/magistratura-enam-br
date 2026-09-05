@@ -35,3 +35,7 @@ Quando o usuário fornecer item da aba `Remediacao` da esteira, execute somente 
 ## Feedback adaptativo
 
 O feedback adaptativo é opt-in e segue os requisitos de `questoes-fgv-enam.md`. Sem opção expressa, perfil disponível ou não, preserve a correção completa. Erro, parcialidade, baixa confiança, ausência de fundamento ou remediação aberta exigem recomposição integral do ponto necessário; adaptação nunca oculta lacuna.
+
+## Estados de evidência
+
+Não trate recomposição ou acerto **com assistência** como domínio autônomo. **Transferência independente** exige aplicação da estrutura decisória em hipótese nova, sem condução que entregue a solução. **Retenção posterior** exige recuperação em revisão posterior identificável. Somente transferência independente e retenção posterior sustentam evidência forte de domínio; as demais respostas orientam a remediação sem cristalizar incapacidade.

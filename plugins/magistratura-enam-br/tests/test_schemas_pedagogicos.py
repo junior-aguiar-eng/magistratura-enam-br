@@ -44,6 +44,62 @@ def test_learning_event_aceita_fixture_valida(evento_valido):
     Draft202012Validator(carregar_schema("learning-event.schema.json")).validate(evento_valido)
 
 
+def criar_evento_v2() -> dict:
+    return {
+        "schema_version": "2.0.0",
+        "event_id": "evt_21a06d61-62eb-71f1-b7c0-5e19a67c47dc",
+        "occurred_at": "2026-09-05T12:00:00Z",
+        "skill": "estudar-direito-magistratura",
+        "content_ref": {
+            "kind": "questao",
+            "id": "civil-prescricao-001",
+            "disciplina": "Direito Civil",
+            "tema": "Prescrição e decadência",
+            "subtema": "Termo inicial",
+            "source_refs": ["CC-art-189"],
+            "source_state": "verificada",
+            "source_version": "2026-09-05",
+        },
+        "activity": {
+            "activity_id": "atividade-civil-prescricao-001",
+            "modality": "questao_objetiva",
+            "attempt_observed": True,
+            "assistance_level": "nenhuma",
+        },
+        "performance": {
+            "result": "correto",
+            "error_types": [],
+            "domain_evidence": ["aplicacao_fatos_novos"],
+            "confidence": None,
+        },
+        "routing": {"target_skill": None, "reason_codes": []},
+    }
+
+
+def test_learning_event_v2_exige_identidade_versao_e_assistencia():
+    schema = carregar_schema("learning-event.schema.json")
+    evento = criar_evento_v2()
+    Draft202012Validator(schema).validate(evento)
+    for container, field in (
+        ("content_ref", "source_version"),
+        ("activity", "activity_id"),
+        ("activity", "assistance_level"),
+    ):
+        invalido = json.loads(json.dumps(evento))
+        del invalido[container][field]
+        with pytest.raises(ValidationError):
+            Draft202012Validator(schema).validate(invalido)
+
+
+def test_profile_settings_rejeita_dado_pessoal():
+    schema = carregar_schema("profile-settings.schema.json")
+    configuracao = {"schema_version": "1.0.0", "objectives": [], "preferences": {}}
+    Draft202012Validator(schema).validate(configuracao)
+    configuracao["email"] = "candidato@example.com"
+    with pytest.raises(ValidationError):
+        Draft202012Validator(schema).validate(configuracao)
+
+
 @pytest.mark.parametrize(
     ("caminho", "valor"),
     [
@@ -103,4 +159,3 @@ def test_review_recommendation_aceita_fixture_valida():
     }
 
     Draft202012Validator(schema).validate(recomendacao)
-

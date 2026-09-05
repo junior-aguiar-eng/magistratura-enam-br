@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/junior-aguiar-eng/magistratura-enam-br/schemas/pedagogia/profile-settings-v1.json",
+  "title": "Profile settings v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "objectives", "preferences"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "objectives": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 160}
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "feedback_mode": {"enum": ["completo", "adaptativo"]},
+        "preferred_modalities": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["explicacao", "recuperacao", "consolidacao", "vespera", "questao_objetiva", "discursiva_curta", "prova_oral", "leitura_julgado", "revisao_julgado"]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,13 @@
 # Questões objetivas FGV/ENAM
 
+## Contexto de aplicação
+
+- **Treino:** focaliza uma estrutura jurídica e admite intervenção pedagógica depois da tentativa.
+- **Simulado:** preserva condições de prova e entrega correção completa somente depois da resposta.
+- **Remediação:** transfere a estrutura do erro para hipótese independente; não parafraseia o item anterior.
+
+Nos três contextos, mantenha caso consistente, cinco alternativas plausíveis, chave única, paralelismo e auditoria. A diferença de contexto não flexibiliza a validade da questão.
+
 ## Insumo e núcleo jurídico
 
 Use exclusivamente o material jurídico delimitado pelo usuário ou o tema expressamente indicado. O material pode envolver lei, jurisprudência, doutrina ou a integração entre essas fontes. A fonte define a base de correção; não define uma categoria ou reduz a exigência da questão.

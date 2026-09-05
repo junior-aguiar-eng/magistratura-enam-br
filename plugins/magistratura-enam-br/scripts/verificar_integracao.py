@@ -27,6 +27,7 @@ ARQUIVOS_ESSENCIAIS = (
     "references/protocolo-uso-do-acervo.md",
     "modelos/pedagogia/learning-event.schema.json",
     "modelos/pedagogia/candidate-profile.schema.json",
+    "modelos/pedagogia/profile-settings.schema.json",
     "modelos/pedagogia/review-recommendation.schema.json",
     "modelos/pedagogia/session-route.schema.json",
     "modelos/pedagogia/transition.schema.json",
@@ -71,6 +72,7 @@ DIRETORIOS_GERADOS = frozenset({
 
 SCHEMAS_PEDAGOGICOS = (
     "modelos/pedagogia/candidate-profile.schema.json",
+    "modelos/pedagogia/profile-settings.schema.json",
     "modelos/pedagogia/learning-event.schema.json",
     "modelos/pedagogia/review-recommendation.schema.json",
     "modelos/pedagogia/session-route.schema.json",

@@ -17,6 +17,8 @@ Quando houver consulta externa relevante, apresente as fontes decisivas em `Base
 
 Na abertura de nova comparação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade do mesmo par documental e escopo, reaproveite essa leitura e releia apenas se houver nova versão, mudança de escopo ou dúvida real de fonte.
 
+A entrega deve distinguir ausência aparente, mudança editorial e alteração jurídica antes de recomendar a ação de estudo. Preserve os originais e permita retorno da conclusão à localização documental que a sustenta.
+
 Na abertura de nova comparação com documentos do candidato, leia `../../references/protocolo-uso-do-acervo.md` antes de classificá-los. Mantenha a classificação no contexto da comparação; não a refaça a cada mensagem sem novo documento.
 
 ## Objetivo

@@ -5,6 +5,7 @@ import verificar_integracao as verificador
 SCHEMAS_PEDAGOGICOS = {
     "modelos/pedagogia/learning-event.schema.json",
     "modelos/pedagogia/candidate-profile.schema.json",
+    "modelos/pedagogia/profile-settings.schema.json",
     "modelos/pedagogia/review-recommendation.schema.json",
     "modelos/pedagogia/session-route.schema.json",
     "modelos/pedagogia/transition.schema.json",
@@ -28,6 +29,7 @@ def test_validador_rejeita_schema_pedagogico_ausente_ou_invalido(tmp_path):
 
     assert erros == [
         "Schema pedagógico inválido em modelos/pedagogia/candidate-profile.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/profile-settings.schema.json.",
         "Schema pedagógico ausente: modelos/pedagogia/review-recommendation.schema.json.",
         "Schema pedagógico ausente: modelos/pedagogia/session-route.schema.json.",
         "Schema pedagógico ausente: modelos/pedagogia/transition.schema.json.",
