@@ -10,7 +10,6 @@ from .config import LibraryConfig
 from .resources import UI_MIME_TYPE, UI_URI, load_question_widget
 from .tools import StudyService
 
-
 Option = Literal["A", "B", "C", "D", "E"]
 
 

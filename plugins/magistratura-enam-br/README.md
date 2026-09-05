@@ -13,6 +13,12 @@ Plugin profissional para bacharéis em Direito voltado ao estudo de alta complex
 
 Cada skill lê `AGENTS.md` antes de atuar. As diretrizes preservam rigor jurídico, uso proporcional de fontes oficiais, estudo ativo e fronteiras claras entre curadoria, estudo, comparação e planejamento.
 
+## Questões interativas locais
+
+O plugin inclui um servidor MCP local e um widget moderno para questões objetivas. O modelo continua criando cada questão dinamicamente; a skill `estudar-direito-magistratura` define substância jurídica, dificuldade, cinco alternativas, gabarito único e correção integral. O MCP indexa Markdown autorizado, mantém o gabarito fora do navegador, renderiza a atividade e grava questões e tentativas na biblioteca local.
+
+O Codex inicia o servidor empacotado por `stdio`. O ChatGPT usa o mesmo servidor por conexão privada do Secure MCP Tunnel. Consulte [docs/chatgpt-local.md](docs/chatgpt-local.md) para configuração, inicialização automática opcional e limites de segurança.
+
 ## Ambiente de desenvolvimento
 
 O projeto usa `uv` e Python 3.14. Instale as dependências de desenvolvimento com:
@@ -44,7 +50,9 @@ O workflow de raiz `.github/workflows/validar.yml` executa essa mesma sequência
 - `AGENTS.md`: diretrizes obrigatórias para manutenção e execução das skills.
 - `CHANGELOG.md`: histórico de alterações publicáveis.
 - `CONTINUACAO.md`: estado técnico e roteiro de manutenção.
-- `modelos/pedagogia/`: schemas versionados de evento, perfil reconstruível e recomendação de revisão; nesta fase, não há persistência automática.
+- `mcp_server/`: indexação recursiva de Markdown, sessões privadas, histórico e transporte MCP.
+- `web/`: código e artefato compilado do widget de questões.
+- `modelos/pedagogia/`: schemas versionados de evento, perfil reconstruível e recomendação de revisão.
 - `references/contrato-pedagogico.md`: taxonomia comum e limites de inferência entre as cinco skills.
 - `references/persistencia-pedagogica-local.md`: comandos explícitos, reconstrução, exportação e exclusão dos dados locais.
 - `scripts/eventos_aprendizagem.py` e `scripts/perfil_candidato.py`: log append-only e perfil reconstruível, sem rede ou caminho oculto.
@@ -64,4 +72,3 @@ uv run python scripts/relatorio_aprendizagem.py --entrada eventos.jsonl --inicio
 ```
 
 Planilhas antigas continuam usando a política fixa como padrão. A política adaptativa permanece em modo sombra e não substitui datas sem opt-in. O fechamento de remediação exige evento validado e confirmação explícita.
-

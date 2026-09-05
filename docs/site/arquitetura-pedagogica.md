@@ -16,6 +16,8 @@ O estudo dogmático é organizado por problemas, categorias e relações. A norm
 
 Casos complexos, objetiva, discursiva, oral e revisão têm contratos próprios. Essa especialização preserva a fluidez da conversa: a estrutura governa a qualidade internamente, sem impor formulário ao candidato.
 
+Nas questões objetivas interativas, o modelo produz o caso e as alternativas sob o contrato da skill. O MCP não decide o Direito aplicável: ele recebe a questão validada, preserva o gabarito no servidor, apresenta o widget e registra a tentativa. Essa separação evita transformar o mecanismo de interface em regra pedagógica ou fonte jurídica.
+
 ## Fluxo integrado
 
 ```text

@@ -2,10 +2,10 @@ import copy
 
 import pytest
 from mcp.client import Client
+from test_mcp_question_sessions import sessao
 
 from mcp_server.config import LibraryConfig
 from mcp_server.server import build_server
-from test_mcp_question_sessions import sessao
 
 
 def test_referencia_mcp_preserva_substancia_na_skill(texto):

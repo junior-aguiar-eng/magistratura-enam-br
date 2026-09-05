@@ -1,5 +1,18 @@
 # Changelog
 
+## [Não publicado]
+
+### Adicionado
+
+- Servidor MCP local com indexação recursiva de Markdown, busca, sessões de questão, correção e histórico em JSONL.
+- Widget interativo com gabarito validado no servidor e aviso explícito quando as fontes atuais não puderem ser confirmadas.
+- Empacotamento para Codex por `stdio`, conexão privada com o ChatGPT e inicialização opcional no Windows em escopo do usuário.
+
+### Segurança e privacidade
+
+- Gabarito e fundamentos privados não são enviados ao navegador antes da tentativa.
+- Credenciais, perfil do túnel e identidade operacional permanecem fora do repositório; a biblioteca autorizada continua local.
+
 ## [0.6.0] - 2026-09-05
 
 - Despersonifica defaults e mantém especialização para bacharéis, Magistratura e ENAM.
@@ -105,4 +118,3 @@ Todas as alterações relevantes deste plugin são registradas neste arquivo.
 ## 0.2.2 — 2026-07-27
 
 - Publica a identidade visual do plugin e aperfeiçoa os contratos de curadoria, comparação e planejamento.
-

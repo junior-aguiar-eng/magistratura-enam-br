@@ -15,3 +15,9 @@ Crie o túnel em [Platform tunnel settings](https://platform.openai.com/settings
 Inicialize e valide o perfil conforme a [documentação oficial do Secure MCP Tunnel](https://developers.openai.com/api/docs/guides/secure-mcp-tunnels). No ChatGPT, habilite o modo desenvolvedor, crie o app privado usando a conexão Tunnel e copie o identificador técnico `plugin_asdk_app...` da URL. Esse identificador não é credencial; pode constar em `.app.json`, enquanto todo segredo continua local.
 
 Depois de alterar ferramentas ou metadados, atualize o app no ChatGPT e teste em conversa nova. Com o túnel desligado, o ChatGPT deve falhar sem revelar caminhos ou dados; o fluxo local do Codex continua disponível por `stdio`.
+
+## Inicialização automática no Windows
+
+Depois de validar manualmente o fluxo, execute `scripts/install_local_service.ps1` informando os caminhos do `tunnel-client` e do perfil, além de `-Confirm`. O instalador usa somente a chave `Run` de `HKCU`, sem privilégio administrativo, grava apenas caminhos operacionais em `%LOCALAPPDATA%` e exige que `CONTROL_PLANE_API_KEY` já esteja definida no ambiente do usuário. A chave não é copiada para arquivo ou registro.
+
+O script inicia imediatamente o mesmo runner que será acionado no próximo logon. Para remover a inicialização, execute `scripts/uninstall_local_service.ps1 -Confirm`. A remoção apaga apenas a entrada de inicialização e seus arquivos auxiliares; biblioteca, índice, questões, tentativas e configuração da biblioteca permanecem intactos.
