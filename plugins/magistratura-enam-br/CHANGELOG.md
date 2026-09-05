@@ -1,6 +1,6 @@
 # Changelog
 
-## [Não publicado]
+## [0.7.0] - 2026-09-05
 
 ### Adicionado
 

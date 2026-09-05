@@ -279,7 +279,7 @@ uv run python -m pytest tests/test_contrato_questoes_fgv.py tests/test_integraca
 - [x] Fazer auditoria de vazamento pesquisando chaves, correções e credenciais nos payloads públicos e arquivos versionados.
 - [x] Fazer E2E real no Codex e no ChatGPT, com captura de evidência visual e inspeção dos JSONL.
 - [x] Confirmar por SHA-256 que nenhum Markdown original mudou.
-- [x] Preservar a versão `0.6.0`; nenhum gate de release foi presumido.
+- [x] Preservar a versão `0.6.0` durante a implementação; elevar para `0.7.0` somente após autorização expressa de conclusão.
 - [x] Integrar ao commit final das Tarefas 10–11.
 
 ## Comandos do gate final
