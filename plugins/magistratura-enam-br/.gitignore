@@ -5,3 +5,4 @@
 .test-tmp/
 __pycache__/
 *.py[cod]
+*.tunnel-profile.json

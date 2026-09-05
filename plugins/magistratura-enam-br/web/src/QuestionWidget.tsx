@@ -39,7 +39,10 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
 
   return <main className="shell">
     <div className="accent" />
-    <header><span className="badge">Estudo Jurídico</span><span className="meta">{question.subject} · {question.topic}</span></header>
+    <header>
+      <span className="badge">Estudo Jurídico</span>
+      <span className="meta"><span className="subject">{question.subject}</span><span aria-hidden="true"> · </span><span className="topic">{question.topic}</span></span>
+    </header>
     {question.source_status === "caution" && <aside role="alert" className="caution"><strong>Cuidado:</strong> {question.caution_notice}</aside>}
     <h1>{question.prompt}</h1>
     <fieldset disabled={answered || status === "sending"}><legend className="sr-only">Alternativas</legend>

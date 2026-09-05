@@ -16,6 +16,20 @@ def carregar_manifesto():
     return json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
 
 
+def test_manifesto_empacota_servidor_mcp_portatil():
+    manifesto = carregar_manifesto()
+    config = json.loads((ROOT / ".mcp.json").read_text(encoding="utf-8"))
+
+    assert manifesto["mcpServers"] == "./.mcp.json"
+    server = config["estudo-juridico-avancado"]
+    assert server["command"] == "uv"
+    serialized = json.dumps(server, ensure_ascii=False)
+    assert "${PLUGIN_ROOT}" in serialized
+    assert "${PLUGIN_DATA}" in serialized
+    assert str(ROOT) not in serialized
+    assert server["args"][-1] == "stdio"
+
+
 def valor_yaml(caminho, chave):
     prefixo = f"  {chave}:"
     linha = next(item for item in caminho.read_text(encoding="utf-8").splitlines() if item.startswith(prefixo))

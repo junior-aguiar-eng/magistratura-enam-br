@@ -30,6 +30,8 @@ Links podem ser fornecidos quando úteis à rastreabilidade, mas a resposta deve
 
 ## Hierarquia
 
+Para geração de questões com complementação externa, siga a ordem operacional: Planalto → STF/STJ → acervo local → fonte jurídica subsidiária. A posição operacional do acervo não reduz sua função pedagógica nem altera a prevalência da fonte oficial sobre o estado atual do Direito.
+
 1. Planalto para texto legal federal consolidado e atos nele publicados.
 2. STF e STJ para jurisprudência, informativos e situação processual de sua competência.
 3. Dizer o Direito, JOTA e Thomson Reuters / Revista dos Tribunais somente nas finalidades editoriais declaradas no registro.
