@@ -5,6 +5,7 @@ description = "Ferramentas locais de apoio ao estudo para Magistratura e ENAM."
 requires-python = ">=3.14,<3.15"
 dependencies = [
     "jsonschema>=4.0",
+    "mcp>=2,<3",
     "openpyxl>=3.1",
     "pypdf>=6.16.1",
     "reportlab>=4.0",

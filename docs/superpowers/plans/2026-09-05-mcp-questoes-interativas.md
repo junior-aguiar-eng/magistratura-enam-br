@@ -35,13 +35,13 @@
 - Criar: `plugins/magistratura-enam-br/mcp_server/schemas/question-attempt.schema.json`
 - Criar: `plugins/magistratura-enam-br/tests/test_mcp_schemas.py`
 
-- [ ] Registrar o estado inicial com `git status --short --branch`, `git rev-parse HEAD` e a suíte vigente.
-- [ ] Escrever testes que carreguem os quatro schemas e validem exemplos mínimos.
-- [ ] Exigir exatamente cinco alternativas `A`–`E`, chave única, correção completa, referências versionadas e `source_status` entre `verified`, `partial` e `caution`.
-- [ ] Separar no schema as projeções privada, pública e corrigida; a pública não deve admitir a chave.
-- [ ] Confirmar os testes vermelhos antes de criar os schemas.
-- [ ] Adicionar somente as dependências MCP necessárias com `uv add`; atualizar o lock.
-- [ ] Executar:
+- [x] Registrar o estado inicial com `git status --short --branch`, `git rev-parse HEAD` e a suíte vigente.
+- [x] Escrever testes que carreguem os quatro schemas e validem exemplos mínimos.
+- [x] Exigir exatamente cinco alternativas `A`–`E`, chave única, correção completa, referências versionadas e `source_status` entre `verified`, `partial` e `caution`.
+- [x] Separar no schema as projeções privada, pública e corrigida; a pública não deve admitir a chave.
+- [x] Confirmar os testes vermelhos antes de criar os schemas.
+- [x] Adicionar somente as dependências MCP necessárias com `uv add`; atualizar o lock.
+- [x] Executar:
 
 ```powershell
 Set-Location plugins/magistratura-enam-br
@@ -49,7 +49,7 @@ uv run python -m pytest tests/test_mcp_schemas.py -v --basetemp .test-tmp/mcp-ta
 uv lock --check
 ```
 
-- [ ] Commit: `feat(mcp): define interactive question contracts`.
+- [ ] Commit conjunto das Tarefas 1–3, conforme gate definido pelo usuário.
 
 ## Tarefa 2: Raiz autorizada e contenção segura
 
@@ -60,18 +60,18 @@ uv lock --check
 - Criar: `plugins/magistratura-enam-br/tests/test_mcp_paths.py`
 - Criar: `plugins/magistratura-enam-br/tests/test_mcp_config.py`
 
-- [ ] Testar configuração ausente, raiz inexistente, caminho relativo, arquivo no lugar de diretório e consentimento não confirmado.
-- [ ] Testar contenção de arquivo regular dentro da raiz e rejeição de `..`, caminho absoluto externo, UNC externo, symlink/junction e ponto de nova análise que escape da raiz.
-- [ ] Testar que escritas só podem atingir `<raiz>/.estudo-juridico/`.
-- [ ] Implementar `LibraryConfig` versionada, com raiz absoluta, exclusões e limites, sem criar diretórios implicitamente durante leitura.
-- [ ] Implementar helpers de resolução canônica e contenção com semântica correta no Windows.
-- [ ] Executar:
+- [x] Testar configuração ausente, raiz inexistente, caminho relativo, arquivo no lugar de diretório e consentimento não confirmado.
+- [x] Testar contenção de arquivo regular dentro da raiz e rejeição de `..`, caminho absoluto externo, UNC externo, symlink/junction e ponto de nova análise que escape da raiz.
+- [x] Testar que escritas só podem atingir `<raiz>/.estudo-juridico/`.
+- [x] Implementar `LibraryConfig` versionada, com raiz absoluta, exclusões e limites, sem criar diretórios implicitamente durante leitura.
+- [x] Implementar helpers de resolução canônica e contenção com semântica correta no Windows.
+- [x] Executar:
 
 ```powershell
 uv run python -m pytest tests/test_mcp_paths.py tests/test_mcp_config.py -v --basetemp .test-tmp/mcp-task-2
 ```
 
-- [ ] Commit: `feat(mcp): authorize one local markdown library`.
+- [ ] Commit conjunto das Tarefas 1–3, conforme gate definido pelo usuário.
 
 ## Tarefa 3: Indexador Markdown recursivo
 
@@ -82,19 +82,19 @@ uv run python -m pytest tests/test_mcp_paths.py tests/test_mcp_config.py -v --ba
 - Criar: `plugins/magistratura-enam-br/tests/test_mcp_indexer.py`
 - Criar: `plugins/magistratura-enam-br/tests/test_mcp_retrieval.py`
 
-- [ ] Criar fixtures temporárias com Markdown na raiz e em subpastas, headings, Unicode, arquivo grande, ocultos e exclusões.
-- [ ] Testar que `.git`, `.estudo-juridico`, `node_modules`, ocultos e caminhos inseguros são ignorados.
-- [ ] Testar manifesto incremental por hash e remoção de entrada quando o original desaparece.
-- [ ] Implementar segmentação por headings e parágrafos, preservando caminho relativo e posição.
-- [ ] Implementar busca lexical determinística, filtros e limites de retorno.
-- [ ] Garantir que indexação e busca nunca alteram os Markdown.
-- [ ] Executar:
+- [x] Criar fixtures temporárias com Markdown na raiz e em subpastas, headings, Unicode, arquivo grande, ocultos e exclusões.
+- [x] Testar que `.git`, `.estudo-juridico`, `node_modules`, ocultos e caminhos inseguros são ignorados.
+- [x] Testar manifesto incremental por hash e remoção de entrada quando o original desaparece.
+- [x] Implementar segmentação por headings e parágrafos, preservando caminho relativo e posição.
+- [x] Implementar busca lexical determinística, filtros e limites de retorno.
+- [x] Garantir que indexação e busca nunca alteram os Markdown.
+- [x] Executar:
 
 ```powershell
 uv run python -m pytest tests/test_mcp_indexer.py tests/test_mcp_retrieval.py tests/test_contrato_acervo_markdown.py -v --basetemp .test-tmp/mcp-task-3
 ```
 
-- [ ] Commit: `feat(mcp): index local markdown recursively`.
+- [ ] Commit conjunto das Tarefas 1–3, conforme gate definido pelo usuário.
 
 ## Tarefa 4: Persistência append-only e máquina de estados
 
@@ -314,4 +314,3 @@ Este plano não autoriza automaticamente:
 - abertura de PR;
 - merge;
 - tag, release ou publicação pública.
-
