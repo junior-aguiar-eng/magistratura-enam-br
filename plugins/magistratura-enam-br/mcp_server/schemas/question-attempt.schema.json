@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/junior-aguiar-eng/magistratura-enam-br/schemas/mcp/question-attempt-v1.json",
+  "title": "Tentativa de questão objetiva v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "attempt_id", "session_id", "question_hash", "answered_at", "selected_option", "correct_option", "result", "source_refs"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "attempt_id": {"type": "string", "pattern": "^qat_[0-9a-f]{16,64}$"},
+    "session_id": {"type": "string", "pattern": "^qsn_[0-9a-f]{16,64}$"},
+    "question_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "answered_at": {"type": "string", "format": "date-time"},
+    "selected_option": {"enum": ["A", "B", "C", "D", "E"]},
+    "correct_option": {"enum": ["A", "B", "C", "D", "E"]},
+    "result": {"enum": ["correct", "incorrect", "invalidated"]},
+    "source_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^src_[0-9A-Za-z_-]{3,120}$"}
+    }
+  }
+}

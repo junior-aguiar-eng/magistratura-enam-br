@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/junior-aguiar-eng/magistratura-enam-br/schemas/mcp/question-session-v1.json",
+  "title": "Sessão de questão objetiva v1",
+  "type": "object",
+  "required": ["schema_version", "projection", "session_id", "state", "created_at", "subject", "topic", "mode", "prompt", "alternatives", "sources", "source_status"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "projection": {"enum": ["private", "public", "corrected"]},
+    "session_id": {"type": "string", "pattern": "^qsn_[0-9a-f]{16,64}$"},
+    "state": {"enum": ["draft", "ready", "answered", "invalidated"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "subject": {"type": "string", "minLength": 1, "maxLength": 200},
+    "topic": {"type": "string", "minLength": 1, "maxLength": 300},
+    "mode": {"enum": ["training", "simulation", "remediation"]},
+    "prompt": {"type": "string", "minLength": 1},
+    "alternatives": {"$ref": "#/$defs/alternatives"},
+    "sources": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source"}
+    },
+    "source_status": {"enum": ["verified", "partial", "caution"]},
+    "caution_notice": {"type": "string", "minLength": 1},
+    "correct_option": {"enum": ["A", "B", "C", "D", "E"]},
+    "correction": {"$ref": "#/$defs/correction"}
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "projection": {"const": "private"},
+        "state": {"enum": ["draft", "ready", "invalidated"]}
+      },
+      "required": ["correct_option", "correction"]
+    },
+    {
+      "properties": {
+        "projection": {"const": "public"},
+        "state": {"const": "ready"}
+      }
+    },
+    {
+      "properties": {
+        "projection": {"const": "corrected"},
+        "state": {"const": "answered"}
+      },
+      "required": ["correct_option", "correction"]
+    }
+  ],
+  "allOf": [
+    {
+      "if": {"properties": {"source_status": {"const": "caution"}}, "required": ["source_status"]},
+      "then": {"required": ["caution_notice"]}
+    },
+    {
+      "if": {"properties": {"projection": {"const": "public"}}, "required": ["projection"]},
+      "then": {"not": {"anyOf": [{"required": ["correct_option"]}, {"required": ["correction"]}]}}
+    }
+  ],
+  "unevaluatedProperties": false,
+  "$defs": {
+    "alternative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text"],
+      "properties": {
+        "id": {"enum": ["A", "B", "C", "D", "E"]},
+        "text": {"type": "string", "minLength": 1}
+      }
+    },
+    "alternatives": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "prefixItems": [
+        {"allOf": [{"$ref": "#/$defs/alternative"}, {"properties": {"id": {"const": "A"}}}]},
+        {"allOf": [{"$ref": "#/$defs/alternative"}, {"properties": {"id": {"const": "B"}}}]},
+        {"allOf": [{"$ref": "#/$defs/alternative"}, {"properties": {"id": {"const": "C"}}}]},
+        {"allOf": [{"$ref": "#/$defs/alternative"}, {"properties": {"id": {"const": "D"}}}]},
+        {"allOf": [{"$ref": "#/$defs/alternative"}, {"properties": {"id": {"const": "E"}}}]}
+      ],
+      "items": false
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "kind", "title", "accessed_at", "role"],
+      "properties": {
+        "source_id": {"type": "string", "pattern": "^src_[0-9A-Za-z_-]{3,120}$"},
+        "kind": {"enum": ["local_markdown", "planalto", "stf", "stj", "legal_site"]},
+        "title": {"type": "string", "minLength": 1, "maxLength": 500},
+        "relative_path": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "accessed_at": {"type": "string", "format": "date-time"},
+        "role": {"enum": ["regra", "precedente", "contexto", "complemento"]},
+        "excerpt": {"type": "string", "minLength": 1, "maxLength": 4000}
+      },
+      "oneOf": [
+        {"properties": {"kind": {"const": "local_markdown"}}, "required": ["relative_path"]},
+        {"properties": {"kind": {"enum": ["planalto", "stf", "stj", "legal_site"]}}, "required": ["url"]}
+      ]
+    },
+    "correction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["correct_rationale", "distractor_analysis", "exceptions", "traps"],
+      "properties": {
+        "correct_rationale": {"type": "string", "minLength": 1},
+        "distractor_analysis": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["option", "analysis"],
+            "properties": {
+              "option": {"enum": ["A", "B", "C", "D", "E"]},
+              "analysis": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "exceptions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "traps": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}
+
