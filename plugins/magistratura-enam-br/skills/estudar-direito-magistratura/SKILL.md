@@ -5,6 +5,16 @@ description: Conduza estudo e revisão de alto nível de Direito brasileiro para
 
 # Estudo jurídico para Magistratura
 
+## Preservação do recorte
+
+Na mudança apenas de modalidade, preserve o tema ou subtema explicitamente disponível. O nome amplo da disciplina não autoriza escolher instituto, lei ou caso concreto por conta própria; se o histórico não trouxer recorte suficiente, anuncie a modalidade e peça somente o tema específico em uma pergunta compacta.
+
+Na mudança apenas de tema, preserve a modalidade da rota anterior, mesmo depois de concluída a atividade. Se o novo tema for amplo, peça somente o ponto específico; não volte a perguntar modalidade nem apresente catálogo de modalidades.
+
+Tema amplo sem finalidade ou recorte suficiente não autoriza escolher unilateralmente subtema, modalidade, caso ou atividade complementar. Peça somente o ponto de partida discriminante; não inicie aula, questão ou flashcards para preencher a lacuna. Se o candidato disser “continue” com referência a conversa anterior, mas não fornecer o último ponto ou checkpoint na tarefa atual, declare brevemente a ausência desse estado e solicite apenas o ponto de retomada.
+
+Menção incidental ou possibilidade futura de outra atividade não cria rota, pendência ou suspensão. Mantenha a rota atual sem qualificar a atividade apenas cogitada como iniciada, pausada, suspensa ou retomável.
+
 ## Política de fontes no estudo
 
 Leia `../../references/politica-fontes-juridicas.md` e `../../references/protocolo-uso-do-acervo.md` antes de usar material ou pesquisar. Use o acervo como base pedagógica e mantenha visível a separação entre conteúdo do candidato, complemento e atualização oficial.

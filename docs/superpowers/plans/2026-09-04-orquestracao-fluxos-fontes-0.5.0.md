@@ -375,18 +375,18 @@ Demonstrar que a nova arquitetura melhora previsibilidade e fluidez sem reduzir 
 - Modify: `plugins/magistratura-enam-br/evals/pedagogia/evals.json`
 - Create: `plugins/magistratura-enam-br/evals/pedagogia/relatorio-orquestracao-0.5.0.md`
 
-- [ ] Reexecutar todos os casos novos tres vezes em sessoes independentes.
-- [ ] Comparar com o baseline `0.4.1`: acerto de rota, perguntas por abertura, transicoes corretas, pendencias preservadas e politica de fontes.
-- [ ] Aplicar revisao humana cega a amostra equivalente de respostas `0.4.1` e `0.5.0`.
-- [ ] Bloquear release diante de regressao juridica, mistura de skills, busca no modo exclusivo, memoria ficticia ou descarte silencioso.
+- [x] Reexecutar todos os casos novos tres vezes em sessoes independentes.
+- [x] Comparar com o baseline `0.4.1`: acerto de rota, perguntas por abertura, transicoes corretas, pendencias preservadas e politica de fontes.
+- [x] Aplicar revisao humana cega a amostra equivalente de respostas `0.4.1` e `0.5.0`.
+- [x] Bloquear release diante de regressao juridica, mistura de skills, busca no modo exclusivo, memoria ficticia ou descarte silencioso.
 
 ### Task 6.2: executar regressao tecnica e documental
 
-- [ ] Executar suite completa com `--basetemp` isolado no Windows.
-- [ ] Executar Ruff e `uv lock --check`.
-- [ ] Executar verificador de integracao e validador do plugin.
-- [ ] Construir Zensical e Material for MkDocs em modo estrito.
-- [ ] Confirmar que nenhum arquivo de perfil, rota ou log e criado durante testes conversacionais sem opt-in.
+- [x] Executar suite completa com `--basetemp` isolado no Windows.
+- [x] Executar Ruff e `uv lock --check`.
+- [x] Executar verificador de integracao e validador do plugin.
+- [x] Construir Zensical e Material for MkDocs em modo estrito.
+- [x] Confirmar que nenhum arquivo de perfil, rota ou log e criado durante testes conversacionais sem opt-in.
 
 ### Task 6.3: versionar e preparar distribuicao
 
@@ -400,21 +400,21 @@ Demonstrar que a nova arquitetura melhora previsibilidade e fluidez sem reduzir 
 - Modify: `.github/workflows/validar.yml`
 - Modify: `.github/workflows/docs.yml`
 
-- [ ] Sincronizar versao `0.5.0` em manifesto, projeto e lock.
-- [ ] Registrar migracao comportamental: `defaultPrompt`, ambientacao, transicoes e fontes.
-- [ ] Preservar compatibilidade dos schemas pedagogicos existentes ou fornecer migracao explicita.
-- [ ] Incluir todos os testes novos no CI.
-- [ ] Preparar notas de release sem declarar eficacia pedagogica nao medida.
+- [x] Sincronizar versao `0.5.0` em manifesto, projeto e lock.
+- [x] Registrar migracao comportamental: `defaultPrompt`, ambientacao, transicoes e fontes.
+- [x] Preservar compatibilidade dos schemas pedagogicos existentes ou fornecer migracao explicita.
+- [x] Incluir todos os testes novos no CI.
+- [x] Preparar notas de release sem declarar eficacia pedagogica nao medida.
 
 ### Task 6.4: gates de publicacao
 
-- [ ] Criar automaticamente o commit final da fase apos todos os gates locais.
-- [ ] Executar automaticamente o push da branch imediatamente apos o commit.
-- [ ] Abrir PR e aguardar CI de validacao e documentacao.
-- [ ] Revisar e incorporar na branch padrao.
-- [ ] Criar tag e release `v0.5.0` sobre o commit incorporado.
-- [ ] Reinstalar exclusivamente a tag `v0.5.0` em ambiente limpo.
-- [ ] Executar smoke de cada gatilho, de uma transicao, de retomada e de cada politica de fontes.
+- [x] Criar automaticamente o commit final da fase apos todos os gates locais.
+- [x] Executar automaticamente o push da branch imediatamente apos o commit.
+- [x] Abrir PR e aguardar CI de validacao e documentacao.
+- [x] Revisar e incorporar na branch padrao.
+- [x] Criar tag e release `v0.5.0` sobre o commit incorporado.
+- [x] Reinstalar exclusivamente a tag `v0.5.0` em ambiente limpo.
+- [x] Executar smoke de cada gatilho, de uma transicao, de retomada e de cada politica de fontes.
 
 ### Gates finais
 
@@ -452,4 +452,3 @@ uv run mkdocs build --strict --config-file ../../mkdocs.yml --site-dir ../../sit
 7. A fase 6 compara, valida e publica; nao corrige silenciosamente gate pendente de fase anterior.
 
 Cada fase produz uma entrega completa e revisavel. Implementacao de schema, prompt ou arquivo-base sem seus testes, execucoes comportamentais e documentacao correspondente nao conclui a fase.
-

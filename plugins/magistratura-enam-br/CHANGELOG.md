@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.5.0] - 2026-09-04
+
+### Adicionado
+
+- Orquestração conversacional com ambientação exclusiva na jornada guiada e roteamento direto para pedidos específicos.
+- Transições explícitas de continuidade, mudança, suspensão, retomada e encerramento, com preservação de pendências.
+- Políticas `acervo_exclusivo`, `acervo_com_validacao_oficial` e `pesquisa_juridica_completa`, com registro fechado de fontes.
+- Seis gatilhos de intenção distribuídos entre o cartão do plugin e as skills, respeitando o limite de três prompts da interface principal.
+- Relatório comparativo da matriz comportamental `0.5.0`, com 54 execuções finais e amostra cega pareada.
+
+### Alterado
+
+- O clique genérico deixa de iniciar conteúdo arbitrário e apresenta o ambiente antes de pedir um único recorte.
+- Mudanças de tema preservam modalidade; mudanças de modalidade preservam tema; referências incidentais não criam estado fictício.
+- STF, STJ e Planalto permanecem fontes primárias; Dizer o Direito, JOTA e Thomson Reuters / Revista dos Tribunais são apoio editorial identificado.
+- A documentação passa a explicar fluxos, fontes, defaults e limites de persistência sem expor contratos internos.
+
+### Qualidade
+
+- A matriz final não detectou regressão jurídica impeditiva em relação à `0.4.1`.
+- A release não declara aumento de aprovação, retenção ou eficácia pedagógica fora das dimensões avaliadas.
+
 ## [0.4.1] - 2026-09-04
 
 ### Adicionado

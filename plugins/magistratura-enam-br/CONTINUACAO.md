@@ -6,9 +6,9 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 ## Estado confirmado em 2026-09-04
 
-- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.3.3`.
+- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.5.0`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
-- Suíte de testes: 141 testes aprovados após as fases pedagógicas 0 a 4.
+- Suíte de testes: 207 testes aprovados após a arquitetura conversacional e de fontes `0.5.0`.
 - Qualidade estática: `ruff check .` aprovado.
 - Integridade: verificador interno de contrato do plugin e `uv lock --check` aprovados.
 - Integração contínua: o workflow de raiz `.github/workflows/validar.yml` executa a suíte canônica, no diretório do plugin, em `push` e pull request.
@@ -26,6 +26,10 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 8. Manifesto, `pyproject.toml` e `uv.lock` mantêm a mesma versão; `interface.capabilities` declara ao menos uma capacidade efetivamente implementada.
 9. O processamento de PDFs exige `pypdf>=6.16.1`; versões anteriores permanecem vedadas por vulnerabilidades de negação de serviço em entradas adversariais.
 10. A política adaptativa de jurisprudência permanece em modo sombra: registra intervalo e motivo sugeridos, mas `proxima_revisao` continua governada pelo ciclo fixo. Planilhas antigas recebem cinco colunas ao final sem perda dos dados existentes.
+11. Pedido genérico recebe ambientação breve; pedido específico segue diretamente à skill competente sem menu redundante.
+12. Mudança de tema preserva modalidade, mudança de modalidade preserva tema e menção incidental não cria rota, pendência ou suspensão.
+13. A política de fontes distingue acervo exclusivo, validação oficial e pesquisa completa; fontes editoriais não substituem STF, STJ, Planalto ou órgão oficial competente.
+14. A interface principal expõe no máximo três prompts, conforme o contrato do Codex; informativos, comparação e revisão usam os gatilhos próprios das skills.
 
 ## Validação obrigatória
 
