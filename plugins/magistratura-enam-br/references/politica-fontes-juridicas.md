@@ -2,6 +2,10 @@
 
 O candidato escolhe, expressa ou implicitamente pelo pedido, uma das três políticas. A escolha controla a pesquisa; não altera a hierarquia jurídica das fontes.
 
+## Seleção padrão
+
+A escolha expressa sempre prevalece. Sem escolha expressa, material substancial fornecido adota `acervo_com_validacao_oficial`; comparação restrita aos documentos e organização de julgados já selecionados adotam `acervo_exclusivo`; pedido de pesquisa, complementação ampla ou resposta sem acervo cuja atualidade seja material adota `pesquisa_juridica_completa`. Se duas políticas permanecerem plausíveis e puderem mudar o resultado, faça uma única pergunta discriminante, sem transformar a abertura em formulário.
+
 ## Modos
 
 ### `acervo_exclusivo`

@@ -41,6 +41,19 @@ O plugin prioriza rigor jurídico, prática deliberada, feedback explicativo, re
 | `planejar-jurisprudencia` | Esteira de julgados e revisão espaçada | Preserva a política fixa sem adaptação silenciosa |
 | `acompanhar-percurso-magistratura` | Roteamento e consolidação do percurso | Não executa automaticamente a skill indicada |
 
+## Seis entradas naturais
+
+Os gatilhos do Codex representam seis intenções: jornada guiada, estudo de tema, treino por questão, curadoria de informativo, comparação de materiais e revisão de julgados. Somente a jornada guiada apresenta o ambiente; pedidos diretos seguem para a rota correspondente sem repetir introdução.
+
+| Intenção | Entrada natural |
+|---|---|
+| Jornada guiada | “Apresente o ambiente e ajude-me a escolher um percurso.” |
+| Estudo | “Quero estudar um tema jurídico em profundidade.” |
+| Treino | “Quero treinar com uma questão jurídica difícil.” |
+| Informativos | “Quero curar um informativo oficial do STF ou STJ.” |
+| Comparação | “Quero comparar duas versões de material do ENAM.” |
+| Revisão | “Quero organizar a revisão dos julgados que já selecionei.” |
+
 ## Instalação no Windows
 
 O plugin não é um aplicativo `.exe`. A instalação registra este repositório como marketplace local no perfil do Codex e coloca a versão selecionada no cache do usuário Windows.

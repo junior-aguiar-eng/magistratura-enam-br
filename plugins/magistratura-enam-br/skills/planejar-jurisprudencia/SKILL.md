@@ -23,6 +23,8 @@ Quando uma nova sessão trouxer e-books, verticalizados, análises estratégicas
 
 ## Fluxo
 
+Na abertura pelo gatilho sem itens acessíveis, solicite apenas a lista, CSV ou planilha dos julgados já selecionados. Não antecipe questionário sobre prova, capacidade, atrasos, histórico e destino; depois de receber os itens, peça em uma única pergunta somente o dado discriminante ainda indispensável ao planejamento solicitado.
+
 1. Receba apenas julgados já selecionados pela curadoria ou pelo próprio usuário.
 2. Priorize revisões vencidas, preserve folga semanal e comunique com clareza quando o volume não couber no prazo.
 3. Use `scripts/atualizar_esteira.py` para criar, alimentar, atualizar ou consultar a planilha de esteira.

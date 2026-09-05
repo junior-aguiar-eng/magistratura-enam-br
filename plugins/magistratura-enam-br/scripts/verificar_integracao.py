@@ -299,9 +299,22 @@ def validar_contrato_plugin(raiz: Path, manifesto: object, erros: list[str]) -> 
     if not isinstance(interface, dict):
         erros.append("Manifesto deve conter interface como objeto.")
     else:
-        for campo in ("displayName", "shortDescription", "longDescription", "developerName", "category", "defaultPrompt"):
+        for campo in ("displayName", "shortDescription", "longDescription", "developerName", "category"):
             if not isinstance(interface.get(campo), str) or not interface[campo].strip():
                 erros.append(f"Manifesto interface sem {campo} não vazio.")
+        prompt_padrao = interface.get("defaultPrompt")
+        prompt_valido = isinstance(prompt_padrao, str) and bool(prompt_padrao.strip())
+        if isinstance(prompt_padrao, list):
+            prompt_valido = (
+                1 <= len(prompt_padrao) <= 3
+                and all(isinstance(item, str) and item.strip() for item in prompt_padrao)
+                and all(len(item) <= 128 for item in prompt_padrao)
+            )
+        if not prompt_valido:
+            erros.append(
+                "Manifesto interface.defaultPrompt deve conter de um a três prompts "
+                "não vazios de até 128 caracteres."
+            )
         capacidades = interface.get("capabilities")
         if not isinstance(capacidades, list) or not capacidades or not all(
             isinstance(item, str) and item.strip() for item in capacidades

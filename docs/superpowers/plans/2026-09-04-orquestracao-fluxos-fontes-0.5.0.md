@@ -328,11 +328,11 @@ Representar as rotas na interface do Codex e explicar o comportamento sem expor 
 - Modify: `plugins/magistratura-enam-br/.codex-plugin/plugin.json`
 - Test: `plugins/magistratura-enam-br/tests/test_manifest_interface.py`
 
-- [ ] Converter `interface.defaultPrompt` em lista com jornada guiada, tema juridico, treino, informativos, comparacao e revisao jurisprudencial.
-- [ ] Fazer cada prompt indicar intencao suficiente para o roteamento correspondente.
-- [ ] Manter a jornada guiada como unica entrada que apresenta o ambiente.
-- [ ] Validar o manifesto com o validador oficial do plugin.
-- [ ] Corrigir caminhos de icones das skills para que todos resolvam dentro de `assets/`, eliminando o aviso de `..` observado no smoke da `0.4.1`.
+- [x] Converter `interface.defaultPrompt` nos tres gatilhos admitidos pelo Codex e completar informativos, comparacao e revisao nos prompts das skills.
+- [x] Fazer cada prompt indicar intencao suficiente para o roteamento correspondente.
+- [x] Manter a jornada guiada como unica entrada que apresenta o ambiente.
+- [x] Validar o manifesto com o validador oficial do plugin.
+- [x] Corrigir caminhos de icones das skills para que todos resolvam dentro de `assets/`, eliminando o aviso de `..` observado no smoke da `0.4.1`.
 
 ### Task 5.2: atualizar documentacao
 
@@ -345,11 +345,11 @@ Representar as rotas na interface do Codex e explicar o comportamento sem expor 
 - Create: `docs/site/fontes-e-pesquisa.md`
 - Modify: `mkdocs.yml`
 
-- [ ] Explicar os tres modos de fontes e seus defaults.
-- [ ] Explicar transicoes sem sugerir memoria automatica.
-- [ ] Mostrar exemplos naturais, sem reproduzir schemas internos ao candidato comum.
-- [ ] Documentar que fontes secundarias complementam, mas nao substituem, STF, STJ e Planalto.
-- [ ] Manter documentacao publica sem dados pessoais, logs ou materiais protegidos.
+- [x] Explicar os tres modos de fontes e seus defaults.
+- [x] Explicar transicoes sem sugerir memoria automatica.
+- [x] Mostrar exemplos naturais, sem reproduzir schemas internos ao candidato comum.
+- [x] Documentar que fontes secundarias complementam, mas nao substituem, STF, STJ e Planalto.
+- [x] Manter documentacao publica sem dados pessoais, logs ou materiais protegidos.
 
 ### Gate da fase 5
 

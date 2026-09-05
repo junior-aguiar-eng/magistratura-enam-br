@@ -19,7 +19,11 @@
       "Revisão espaçada",
       "Acompanhamento pedagógico"
     ],
-    "defaultPrompt": "Quero estudar Direito brasileiro para a Magistratura.",
+    "defaultPrompt": [
+      "Apresente o ambiente e ajude-me a escolher um percurso.",
+      "Quero estudar um tema jurídico em profundidade.",
+      "Quero treinar com uma questão jurídica difícil."
+    ],
     "brandColor": "#006B4F",
     "composerIcon": "./assets/magistratura-enam-br.png",
     "logo": "./assets/magistratura-enam-br.png",

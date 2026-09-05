@@ -10,6 +10,10 @@ O plugin funciona sem perfil, histórico ou log. A instalação não cria memór
 - relatórios não produzem ranking, nota global ou previsão de aprovação;
 - materiais e registros privados não integram a documentação do site;
 - a adaptação não altera automaticamente a política fixa de revisão.
+- rota, tema e política inferidos existem apenas no contexto da conversa atual;
+- retomada em outra tarefa depende de estado ou checkpoint fornecido pelo candidato.
+
+Escolher uma política de fontes não cria preferência persistente. O modo pode ser inferido para o pedido atual, mas só integra perfil ou registro mediante pedido expresso, destino definido e confirmação.
 
 ## Documentação privada
 

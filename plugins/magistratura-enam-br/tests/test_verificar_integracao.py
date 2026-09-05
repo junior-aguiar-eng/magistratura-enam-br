@@ -199,3 +199,52 @@ def test_validador_de_contrato_rejeita_versao_divergente_do_pyproject(tmp_path):
     assert erros == [
         "Versão divergente: plugin.json declara 0.3.2 e pyproject.toml declara 0.3.1."
     ]
+
+
+def criar_plugin_minimo(tmp_path, prompts):
+    (tmp_path / "skills" / "exemplo").mkdir(parents=True)
+    (tmp_path / "assets").mkdir()
+    for nome in ("icone.png", "logo.png", "logo-dark.png"):
+        (tmp_path / "assets" / nome).write_bytes(b"imagem")
+    (tmp_path / "skills" / "exemplo" / "SKILL.md").write_text(
+        "---\nname: exemplo\ndescription: Skill de teste\n---\n", encoding="utf-8"
+    )
+    return {
+        "name": "magistratura-enam-br",
+        "version": "0.4.1",
+        "description": "Plugin de teste",
+        "skills": "./skills/",
+        "author": {"name": "Boni Jr"},
+        "interface": {
+            "displayName": "Teste",
+            "shortDescription": "Teste",
+            "longDescription": "Teste",
+            "developerName": "Boni Jr",
+            "category": "Education",
+            "capabilities": ["Estudo jurídico"],
+            "defaultPrompt": prompts,
+            "composerIcon": "./assets/icone.png",
+            "logo": "./assets/logo.png",
+            "logoDark": "./assets/logo-dark.png",
+        },
+    }
+
+
+def test_validador_de_contrato_aceita_lista_de_prompts(tmp_path):
+    manifesto = criar_plugin_minimo(tmp_path, ["Jornada guiada", "Estudar tema", "Treinar questão"])
+    erros = []
+
+    verificador.validar_contrato_plugin(tmp_path, manifesto, erros)
+
+    assert erros == []
+
+
+def test_validador_de_contrato_rejeita_mais_de_tres_prompts(tmp_path):
+    manifesto = criar_plugin_minimo(tmp_path, ["Um", "Dois", "Três", "Quatro"])
+    erros = []
+
+    verificador.validar_contrato_plugin(tmp_path, manifesto, erros)
+
+    assert erros == [
+        "Manifesto interface.defaultPrompt deve conter de um a três prompts não vazios de até 128 caracteres."
+    ]
