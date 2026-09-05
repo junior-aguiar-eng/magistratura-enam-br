@@ -12,3 +12,7 @@ Este diretório mede o comportamento das skills com casos sintéticos e versiona
 6. Registre apenas resultados agregados e evidências sintéticas no relatório versionado.
 
 Não use material pessoal, prova protegida ou resposta real do candidato como fixture versionada.
+
+## Profissionalização 0.6.0
+
+Testes literais protegem somente contratos textuais e proibições objetivamente enumeráveis. Profundidade dogmática, função das fontes, plausibilidade de soluções e qualidade de correção exigem rubrica semântica e revisão jurídica humana. Nenhum caso versionado contém material ou desempenho pessoal de candidato.

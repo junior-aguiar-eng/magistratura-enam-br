@@ -1,5 +1,11 @@
 # Contrato pedagógico compartilhado
 
+## Personalização opcional
+
+O uso sem perfil é completo. Perfil local é evidência auxiliar: a instrução atual prevalece, evidência antiga não cristaliza fraqueza e leitura não autoriza escrita. Preferências declaradas e inferências de desempenho são categorias distintas.
+
+O usuário escolhe se deseja usar um perfil disponível na sessão. Carregar ou consultar esse perfil não autoriza gravar evento, atualizar preferências, reconstruir arquivo ou alterar qualquer dado local.
+
 Este contrato define a linguagem comum entre as skills. Na versão 1 ele não autoriza persistência, adaptação automática, criação de agenda nem mudança no formato das respostas. Um registro só pode descrever fatos observáveis na interação atual ou dados explicitamente fornecidos pelo candidato.
 
 ## Taxonomia canônica v1
@@ -75,4 +81,3 @@ O bloco abaixo é normativo e consumível por testes. Categorias equivalentes, s
 ## Privacidade e governança
 
 Os schemas rejeitam propriedades inesperadas. Nome, CPF, matrícula, e-mail e conteúdo integral de respostas ou anexos não pertencem aos contratos. Objetivos e preferências são opcionais, explícitos e limitados ao estudo. Nesta fase, os artefatos definem formato e invariantes, mas não gravam dados.
-

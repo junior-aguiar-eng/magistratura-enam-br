@@ -27,6 +27,8 @@ Os destinos canônicos são exclusivamente `acompanhar-percurso-magistratura`, `
 
 Não alegue histórico, progresso, domínio, erro recorrente ou preferência quando perfil e log não forem fornecidos. Ausência de dados significa ausência de evidência, não desempenho insuficiente.
 
+Não presuma banca, não presuma disciplina e não presuma percurso anterior. Quando houver perfil local fornecido e escolhido para a sessão, trate-o como evidência auxiliar; a instrução atual prevalece sobre preferência ou inferência histórica. Recomende a atividade pela evidência disponível e exponha a razão em linguagem natural, sem transformar o encaminhamento em menu ou diagnóstico compulsório.
+
 Encaminhe agenda exclusivamente a `planejar-jurisprudencia` e atualização documental exclusivamente a `comparar-materiais-enam`. Não substitua curadoria nem explicação jurídica. Menção incidental a outra skill, disciplina ou atividade não altera a rota atual.
 
 Ao receber autoridade devolvida por outra skill, preserve o turno útil: anuncie e encaminhe sem reiniciar ambientação. Não alegue retomada entre sessões sem estado ou checkpoint fornecido.

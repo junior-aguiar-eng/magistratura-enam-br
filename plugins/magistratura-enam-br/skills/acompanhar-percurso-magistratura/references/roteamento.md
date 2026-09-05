@@ -39,6 +39,8 @@ Agenda pertence exclusivamente a `planejar-jurisprudencia`. Atualização docume
 
 Em ambiguidade residual, recomende `acompanhar-percurso-magistratura` e liste um único dado discriminante. Não invente perfil, histórico, remediação ou referência de conteúdo para decidir.
 
+O roteamento não presume banca, disciplina ou percurso. Perfil autorizado é evidência auxiliar e nunca supera o pedido atual. Quando o pedido já contiver verbo de ação, objeto e insumo suficientes, encaminhe diretamente sem entrevista de calibração.
+
 Citação incidental a outro ramo, material ou atividade não muda a rota. Considere mudança apenas quando houver verbo de ação ou decisão atual incompatível com a continuidade.
 
 O destino interno deve ser literalmente um dos cinco nomes canônicos desta referência. Nunca invente nome de skill; questões objetivas pertencem a `estudar-direito-magistratura`.

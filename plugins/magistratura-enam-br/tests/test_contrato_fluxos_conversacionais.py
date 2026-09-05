@@ -114,3 +114,11 @@ def test_retomada_sem_rota_suspensa_e_persistencia_implicita_sao_rejeitadas():
 
     assert not validator.is_valid(sem_rota)
     assert not validator.is_valid(persistencia)
+
+
+def test_contrato_preserva_estrutura_interna_e_fluidez_externa(texto):
+    contrato = texto("references/contrato-fluxos-conversacionais.md").casefold()
+    assert "estrutura interna" in contrato
+    assert "fluidez externa" in contrato
+    assert "no máximo uma pergunta" in contrato
+    assert "menu obrigatório" in contrato

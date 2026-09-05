@@ -1,5 +1,11 @@
 # Contrato de fluxos conversacionais
 
+## Estrutura interna e fluidez externa
+
+As skills podem manter estado e critérios internos rigorosos, mas respondem em linguagem natural. Use primeiro pedido, contexto, material e perfil autorizado. Se um dado indispensável continuar ambíguo, faça no máximo uma pergunta discriminante; não abra menu obrigatório, formulário, diagnóstico ou entrevista compulsórios.
+
+A estrutura interna não deve aparecer como formulário na resposta. Em pedido específico, inicie a atividade competente. Em pedido realmente amplo, apresente uma orientação breve e solicite apenas o dado que determine uma rota materialmente diferente.
+
 Este contrato define o estado interno mínimo usado para manter continuidade entre as cinco skills. Os objetos `session-route` e `transition` são artefatos internos de decisão: não devem ser exibidos ao candidato como formulário, menu, JSON ou YAML.
 
 ## Estado da sessão

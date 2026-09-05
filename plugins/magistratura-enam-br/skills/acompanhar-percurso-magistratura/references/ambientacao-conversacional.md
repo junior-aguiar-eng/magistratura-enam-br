@@ -21,3 +21,5 @@ Ignore este protocolo quando o pedido já contiver tema, modalidade, skill, font
 ## Default seguro
 
 Se o pedido continuar ambíguo, não inicie questão, aula, disciplina ou tema por conta própria. Uma pergunta discriminante é preferível a uma escolha arbitrária. Não infira histórico, nível, preferência, confiança ou domínio.
+
+Não presuma banca, disciplina vulnerável, percentual de ciclo ou percurso anterior. Perfil local escolhido para a sessão auxilia o encaminhamento, mas a instrução atual do usuário prevalece. A enumeração das cinco frentes só é útil na primeira entrada realmente genérica; não a repita quando o pedido já indicar uma atividade.

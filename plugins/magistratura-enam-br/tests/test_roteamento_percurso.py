@@ -81,3 +81,15 @@ def test_precedencia_preserva_rota_e_reserva_pergunta_para_ambiguidade():
     assert posicoes == sorted(posicoes)
     assert "Citação incidental" in referencia
     assert "não muda a rota" in referencia
+
+
+def test_orquestrador_nao_presume_banca_disciplina_ou_percurso(texto):
+    skill = texto("skills/acompanhar-percurso-magistratura/SKILL.md").casefold()
+    for conceito in ("não presuma banca", "não presuma disciplina", "não presuma percurso"):
+        assert conceito in skill
+
+
+def test_orquestrador_usa_perfil_como_evidencia_auxiliar(texto):
+    skill = texto("skills/acompanhar-percurso-magistratura/SKILL.md").casefold()
+    assert "evidência auxiliar" in skill
+    assert "instrução atual prevalece" in skill
