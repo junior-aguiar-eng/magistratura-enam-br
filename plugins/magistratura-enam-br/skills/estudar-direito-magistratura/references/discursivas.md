@@ -21,3 +21,5 @@ Não entregue espelho ou resposta-modelo antes da tentativa, salvo pedido expres
 ## Correção
 
 Mostre onde a resposta perdeu precisão ou pontos e reconstrua a passagem deficiente: comando, questão, fundamento, aplicação, objeção ou conclusão. Quando isso ajudar, proponha reescrita dirigida somente do trecho crítico e uma hipótese independente para transferência. A resposta-modelo não substitui a explicação do erro.
+
+Na própria correção, identifique expressamente o conteúdo indispensável que faltou e, somente quando pertinente, o desenvolvimento que elevaria a resposta à excelência. Não apresente elemento acessório como requisito de suficiência.

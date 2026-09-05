@@ -6,9 +6,17 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 ## Estado confirmado em 2026-09-04
 
-- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.5.0`.
+- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.6.0`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
-- Suíte de testes: 207 testes aprovados após a arquitetura conversacional e de fontes `0.5.0`.
+- Linha de base: 207 testes aprovados na arquitetura conversacional e de fontes `0.5.0`; candidata `0.6.0`: 238 testes aprovados no gate integrado.
+
+## Profissionalização 0.6.0
+
+- **Preservadas:** precisão jurídica, política de fontes, acervo, cinco rotas públicas, transições, trava objetiva, campos de curadoria, ciclos fixos, rastreabilidade documental e log append-only.
+- **Aprofundadas:** identidade para bacharéis, dogmática integrada, casos complexos, discursiva, oral, revisão, evidência por assistência e avaliação semântica.
+- **Realocadas:** fluidez para o contrato conversacional; dogmática e casos para referências próprias; discursiva e oral para arquivos especializados.
+- **Generalizadas:** defaults pessoais foram substituídos por perfil declarado opcional; extensão da curadoria tornou-se proporcional à função do campo.
+- **Removidas:** somente a referência combinada de discursiva e oral, depois da preservação integral de suas capacidades nos dois destinos e nos respectivos testes.
 - Qualidade estática: `ruff check .` aprovado.
 - Integridade: verificador interno de contrato do plugin e `uv lock --check` aprovados.
 - Integração contínua: o workflow de raiz `.github/workflows/validar.yml` executa a suíte canônica, no diretório do plugin, em `push` e pull request.

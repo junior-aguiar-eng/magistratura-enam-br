@@ -1,6 +1,6 @@
 ---
 title: Estudo Jurídico Avançado
-description: Ambiente privado de aprendizagem para Magistratura e ENAM no Codex.
+description: Ambiente profissional de aprendizagem para Magistratura e ENAM no Codex.
 ---
 
 # Estudo Jurídico Avançado
@@ -9,7 +9,7 @@ description: Ambiente privado de aprendizagem para Magistratura e ENAM no Codex.
 
 **Preparação jurídica rigorosa, rastreável e pedagogicamente intencional.**
 
-O `magistratura-enam-br` é um plugin privado para Codex que integra estudo jurídico, curadoria jurisprudencial, comparação de materiais, revisão espaçada e acompanhamento do percurso de aprendizagem.
+O `magistratura-enam-br` é um plugin para bacharéis em Direito que integra estudo dogmático, aplicação em casos, treino de provas, curadoria jurisprudencial, comparação de materiais, revisão espaçada e acompanhamento opcional do percurso.
 
 [Começar a usar](primeiros-passos.md){ .md-button .md-button--primary }
 [Entender a arquitetura](arquitetura-pedagogica.md){ .md-button }
@@ -22,7 +22,7 @@ O `magistratura-enam-br` é um plugin privado para Codex que integra estudo jur�
 
 ### Estudo de alto nível
 
-Explicações, questões e correções orientadas para Magistratura, com distinções conceituais, exceções e armadilhas de prova.
+Sessões cumulativas que integram conceitos, artigos pertinentes e precedentes pontuais, além de casos, questões objetivas, discursivas e prova oral.
 
 ### Curadoria jurisprudencial
 
@@ -42,5 +42,5 @@ Roteamento explícito entre as skills, relatório local e adaptação somente qu
 
 </div>
 
-!!! info "Privado por decisão do autor"
-    Esta documentação não é publicada no GitHub Pages. O workflow apenas constrói e valida o site dentro do repositório privado.
+!!! info "Arquitetura local"
+    O plugin funciona integralmente sem conta, nuvem ou telemetria. Perfil e histórico são opcionais e permanecem no caminho local escolhido pelo usuário.

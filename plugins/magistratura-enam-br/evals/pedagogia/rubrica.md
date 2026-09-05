@@ -8,6 +8,15 @@ Esta rubrica é aplicada somente depois da captura da saída. O avaliador autom�
 - **1 — parcial:** atende ao núcleo, mas apresenta omissão, excesso ou imprecisão que reduz a utilidade.
 - **2 — aprovado:** atende integralmente ao critério com precisão e proporcionalidade.
 
+## Eixos da profissionalização 0.6.0
+
+1. **Precisão jurídica:** conceitos, normas, precedentes, posições e consequências são corretos e calibrados.
+2. **Função das fontes:** cada artigo, precedente ou referência material esclarece fundamento, categoria, limite, atualização ou aplicação.
+3. **Progressão pedagógica:** a resposta resolve uma unidade relevante, conecta-se ao contexto e não substitui estudo por sinopse ou acúmulo.
+4. **Adequação à frente:** o produto cumpre a finalidade própria de dogmática, caso, objetiva, discursiva, oral, revisão, curadoria, planejamento, comparação ou perfil.
+
+Pontue cada eixo de 0 a 2. Nota zero em precisão jurídica reprova o caso independentemente da soma. Critérios semânticos permanecem pendentes até decisão humana; a mera presença de palavras não os comprova.
+
 ## Dimensões comuns
 
 1. **Precisão jurídica:** normas, conceitos, precedentes e consequências são defensáveis e não inventados.

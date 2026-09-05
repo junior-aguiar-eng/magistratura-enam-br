@@ -6,6 +6,8 @@ O uso sem perfil é completo. Perfil local é evidência auxiliar: a instrução
 
 O usuário escolhe se deseja usar um perfil disponível na sessão. Carregar ou consultar esse perfil não autoriza gravar evento, atualizar preferências, reconstruir arquivo ou alterar qualquer dado local.
 
+As operações locais seguem `persistencia-pedagogica-local.md`. Escritas exigem caminho e `--confirmar-gravacao-local`; exclusão exige caminho e `--confirmar-exclusao-local`. Esses comandos representam autorizações distintas e não podem ser inferidos da mera disponibilidade do arquivo.
+
 Este contrato define a linguagem comum entre as skills. Na versão 1 ele não autoriza persistência, adaptação automática, criação de agenda nem mudança no formato das respostas. Um registro só pode descrever fatos observáveis na interação atual ou dados explicitamente fornecidos pelo candidato.
 
 ## Taxonomia canônica v1

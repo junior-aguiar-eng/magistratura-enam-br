@@ -97,3 +97,20 @@ def test_avaliador_confere_ordem_do_comentario_jurisprudencial():
     assert resultado["status"] == "aprovado_estruturalmente"
     assert resultado["human_review_required"] == []
 
+
+def test_avaliador_nao_aprova_automaticamente_afirmacao_semantica():
+    avaliador = carregar_avaliador()
+    caso = {
+        "id": "dogmatica-fontes",
+        "assertions": [],
+        "semantic_claims": [{
+            "id": "funcao-das-fontes",
+            "description": "As fontes desempenham função dogmática.",
+            "evidence_required": "Vínculo entre fonte e proposição.",
+        }],
+    }
+
+    resultado = avaliador.avaliar_saida(caso, "Texto com artigo e precedente.")
+
+    assert resultado["status"] == "revisao_humana_pendente"
+    assert resultado["human_review_required"] == ["funcao-das-fontes"]

@@ -72,6 +72,7 @@ def main(argv: list[str] | None = None) -> int:
     append.add_argument("--log", type=Path, required=True)
     append.add_argument("--evento", type=Path, required=True)
     append.add_argument("--criar-diretorio", action="store_true")
+    append.add_argument("--confirmar-gravacao-local", action="store_true", required=True)
     args = parser.parse_args(argv)
     evento = _objeto(args.evento)
     if args.comando == "validate":

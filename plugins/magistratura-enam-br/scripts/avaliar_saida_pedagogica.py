@@ -50,7 +50,7 @@ def verificar(assertion: dict, texto: str) -> tuple[bool, str]:
 
 def avaliar_saida(caso: dict, texto: str) -> dict:
     resultados = []
-    revisao_humana = []
+    revisao_humana = [item["id"] for item in caso.get("semantic_claims", [])]
     for assertion in caso.get("assertions", []):
         if assertion.get("kind") == "human":
             revisao_humana.append(assertion["id"])

@@ -11,6 +11,9 @@ def test_discursiva_distingue_indispensavel_excelencia_e_acessorio(texto):
         assert criterio in referencia
     for faixa in ("indispensável", "excelência", "acessório"):
         assert faixa in referencia
+    assert "identifique expressamente" in referencia
+    assert "elevaria a resposta à excelência" in referencia
+    assert "requisito de suficiência" in referencia
 
 
 def test_oral_usa_repregunta_adaptativa_sem_simular_avaliacao_acustica(texto):

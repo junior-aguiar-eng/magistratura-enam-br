@@ -1,6 +1,6 @@
 # Estudos Jurídicos de Alto Nível
 
-Plugin para apoio ao estudo de Direito brasileiro voltado à Magistratura e ao Exame Nacional da Magistratura (ENAM). Ele reúne curadoria de informativos, estudo ativo, comparação de materiais do ENAM e planejamento de revisão de jurisprudência.
+Plugin profissional para bacharéis em Direito voltado ao estudo de alta complexidade para Magistratura e Exame Nacional da Magistratura (ENAM). Ele reúne estudo dogmático integrado, casos, questões, curadoria de informativos, comparação de materiais e planejamento de revisão de jurisprudência.
 
 ## Skills disponíveis
 
@@ -8,7 +8,7 @@ Plugin para apoio ao estudo de Direito brasileiro voltado à Magistratura e ao E
 | --- | --- |
 | `comparar-materiais-enam` | Compara versões de materiais do ENAM por tema e subtema, com quadro de deltas rastreáveis. |
 | `curar-informativos-stf-stj` | Seleciona e comenta julgados de informativos do STF e do STJ. |
-| `estudar-direito-magistratura` | Explica, revisa e treina Direito brasileiro em nível compatível com a Magistratura. |
+| `estudar-direito-magistratura` | Integra dogmática, legislação e jurisprudência e conduz casos, objetiva, discursiva, oral e revisão. |
 | `planejar-jurisprudencia` | Organiza a revisão espaçada de julgados já selecionados. |
 
 Cada skill lê `AGENTS.md` antes de atuar. As diretrizes preservam rigor jurídico, uso proporcional de fontes oficiais, estudo ativo e fronteiras claras entre curadoria, estudo, comparação e planejamento.
@@ -45,15 +45,17 @@ O workflow de raiz `.github/workflows/validar.yml` executa essa mesma sequência
 - `CHANGELOG.md`: histórico de alterações publicáveis.
 - `CONTINUACAO.md`: estado técnico e roteiro de manutenção.
 - `modelos/pedagogia/`: schemas versionados de evento, perfil reconstruível e recomendação de revisão; nesta fase, não há persistência automática.
-- `references/contrato-pedagogico.md`: taxonomia comum e limites de inferência entre as quatro skills.
+- `references/contrato-pedagogico.md`: taxonomia comum e limites de inferência entre as cinco skills.
 - `references/persistencia-pedagogica-local.md`: comandos explícitos, reconstrução, exportação e exclusão dos dados locais.
 - `scripts/eventos_aprendizagem.py` e `scripts/perfil_candidato.py`: log append-only e perfil reconstruível, sem rede ou caminho oculto.
 - `skills/`: instruções, referências, modelos, scripts e testes de cada skill.
 
 Consulte o [changelog](CHANGELOG.md) antes de atualizar ou publicar o plugin.
-## Ambiente pedagógico integrado 0.4
+## Ambiente pedagógico profissional 0.6
 
-A instalação funciona sem perfil e sem histórico: as cinco skills podem ser usadas diretamente, e a ausência de dados prévios é tratada como ausência de evidência. Persistência é opcional, local e acionada somente por pedido expresso, confirmação e caminho indicado pelo candidato.
+A instalação funciona sem perfil e sem histórico: as cinco skills podem ser usadas diretamente, e a ausência de dados prévios é tratada como ausência de evidência. Persistência é opcional, local e acionada somente por pedido expresso, confirmação e caminho indicado pelo candidato. Leitura, uso na sessão, gravação e exclusão são autorizações distintas.
+
+No estudo dogmático, legislação e jurisprudência entram no ponto em que instituem, delimitam, excepcionam, atualizam ou aplicam o conceito. Referências legais permanecem cirúrgicas; fontes jurisprudenciais oficiais consultadas são reunidas ao final da resposta, sem transformar a exposição em glossário ou boletim.
 
 O acompanhamento unificado recomenda a skill adequada, mas não executa escrita nem promete memória automática. Relatórios locais são gerados apenas mediante formato explícito:
 

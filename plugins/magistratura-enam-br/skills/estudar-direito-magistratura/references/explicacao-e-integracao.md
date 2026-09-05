@@ -52,6 +52,8 @@ Ao fechar o bloco, registre de modo natural o ponto alcançado e sua conexão co
 
 Quando houver consulta externa, encerre com `Base consultada`. Reúna nela as fontes jurisprudenciais oficiais utilizadas, com identificação suficiente para consulta, e as demais fontes materialmente relevantes. No corpo, mantenha a referência leve e ligada à proposição sustentada. Priorize teses qualificadas, súmulas e entendimentos determinantes sobre decisões apenas ilustrativas.
 
+Todo link deve conduzir à fonte oficial correspondente à identificação apresentada. Não rotule pesquisa genérica, clipping ou página temática como se fosse o inteiro teor, o tema ou o precedente determinado. Se o endereço direto não puder ser confirmado, forneça a identificação suficiente sem criar hiperlink e declare brevemente a limitação quando ela afetar a conferência.
+
 ## Antipadrões
 
 - sinopse usada como substituta do desenvolvimento;

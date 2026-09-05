@@ -99,14 +99,30 @@ def main(argv: list[str] | None = None) -> int:
     rebuild = sub.add_parser("rebuild")
     rebuild.add_argument("--log", type=Path, required=True)
     rebuild.add_argument("--perfil", type=Path, required=True)
+    rebuild.add_argument("--config", type=Path)
+    rebuild.add_argument("--confirmar-gravacao-local", action="store_true", required=True)
     export = sub.add_parser("export")
     export.add_argument("--log", type=Path, required=True)
     export.add_argument("--perfil", type=Path, required=True)
     export.add_argument("--saida", type=Path, required=True)
+    export.add_argument("--confirmar-gravacao-local", action="store_true", required=True)
+    inspect = sub.add_parser("inspect")
+    inspect.add_argument("--perfil", type=Path, required=True)
+    delete = sub.add_parser("delete")
+    delete.add_argument("--perfil", type=Path, required=True)
+    delete.add_argument("--confirmar-exclusao-local", action="store_true", required=True)
     args = parser.parse_args(argv)
+    if args.comando == "inspect":
+        print(args.perfil.read_text(encoding="utf-8"), end="")
+        return 0
+    if args.comando == "delete":
+        args.perfil.unlink(missing_ok=True)
+        print(json.dumps({"status": "removido", "perfil": str(args.perfil)}, ensure_ascii=False))
+        return 0
     eventos = ler_eventos(args.log)
     if args.comando == "rebuild":
-        salvar_perfil_atomico(args.perfil, reconstruir_perfil(eventos))
+        configuracao = json.loads(args.config.read_text(encoding="utf-8")) if args.config else None
+        salvar_perfil_atomico(args.perfil, reconstruir_perfil(eventos, configuracao))
         return 0
     pacote = {"events": eventos, "profile": json.loads(args.perfil.read_text(encoding="utf-8"))}
     if not args.saida.parent.is_dir():

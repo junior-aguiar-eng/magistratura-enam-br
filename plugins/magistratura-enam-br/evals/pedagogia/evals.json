@@ -1,6 +1,7 @@
 {
   "schema_version": "1.1.0",
-  "baseline": "0.4.1",
+  "baseline": "0.5.0",
+  "target": "0.6.0",
   "evals": [
     {
       "id": "estudo-explicacao-delimitada",
@@ -159,6 +160,7 @@
     },
     {
       "id": "curadoria-pendente-sem-invencao",
+      "front": "curadoria",
       "skill": "curar-informativos-stf-stj",
       "prompt": "Faça a curadoria deste informativo oficial sintético: STF, Plenário, ADI-SINTÉTICA-1; o tribunal declarou inconstitucional lei estadual que condicionava convênio do Executivo à autorização legislativa prévia, por violação à separação de poderes, com base no art. 2º da Constituição. O documento identifica julgamento e tese, mas não informa trânsito, embargos ou modulação. Não há outra fonte oficial disponível.",
       "fixtures": [
@@ -265,6 +267,7 @@
     },
     {
       "id": "planejamento-capacidade-insuficiente",
+      "front": "planejamento",
       "skill": "planejar-jurisprudencia",
       "prompt": "Tenho 30 minutos hoje. A esteira registra quatro revisões vencidas de 10 minutos e dois julgados novos de 25 minutos. Diga o que faço hoje.",
       "fixtures": [
@@ -371,6 +374,7 @@
     },
     {
       "id": "comparacao-alteracao-editorial",
+      "front": "comparacao",
       "skill": "comparar-materiais-enam",
       "prompt": "Compare dois trechos sintéticos: a edição anterior chama o capítulo de 'Controle de constitucionalidade'; a nova usa 'Fiscalização de constitucionalidade', mas mantém integralmente conteúdo, subtópicos e fontes.",
       "fixtures": [
@@ -578,6 +582,7 @@
     },
     {
       "id": "entrada-clique-generico",
+      "front": "orquestracao",
       "skill": "acompanhar-percurso-magistratura",
       "prompt": "Quero estudar Direito brasileiro para a Magistratura.",
       "turns": [
@@ -1151,6 +1156,126 @@
         "transicao",
         "fontes"
       ]
+    },
+    {
+      "id": "dogmatica-fontes-pulverizadas",
+      "front": "dogmatica",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Inicie um estudo aprofundado sobre desconsideração da personalidade jurídica, integrando dispositivos e jurisprudência aos conceitos sem esgotar o tema em uma resposta.",
+      "fixtures": ["Tema jurídico sintético, sem material pessoal."],
+      "expected_output": "Desenvolve uma unidade dogmática cumulativa, com referências legais cirúrgicas no corpo e fontes jurisprudenciais oficiais ao final.",
+      "assertions": [{"id": "avaliacao-dogmatica", "description": "A integração tem função explicativa e preserva progressão.", "kind": "human"}],
+      "semantic_claims": [{"id": "fontes-funcionais", "description": "Artigos e precedentes esclarecem categorias, limites ou aplicação.", "evidence_required": "Indicar a função de cada fonte material no raciocínio."}],
+      "human_rubric": ["Precisão jurídica", "Função das fontes", "Progressão pedagógica"],
+      "risk_tags": ["dogmatica", "fontes", "sobrecarga"]
+    },
+    {
+      "id": "dogmatica-pedido-pontual",
+      "front": "dogmatica",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Qual é a diferença específica entre desconsideração e responsabilidade direta do administrador?",
+      "fixtures": ["Dúvida pontual sem pedido de aula completa."],
+      "expected_output": "Resolve a distinção com densidade suficiente, sem abrir roteiro integral do instituto.",
+      "assertions": [{"id": "proporcionalidade-pontual", "description": "A extensão corresponde ao recorte pedido.", "kind": "human"}],
+      "semantic_claims": [{"id": "distincao-correta", "description": "Separa imputação direta e afastamento episódico da autonomia patrimonial.", "evidence_required": "Fundamento jurídico e consequência da distinção."}],
+      "human_rubric": ["Precisão", "Proporcionalidade", "Clareza"],
+      "risk_tags": ["dogmatica", "proporcionalidade"]
+    },
+    {
+      "id": "dogmatica-continuidade-sem-reinicio",
+      "front": "dogmatica",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Continue do ponto em que já distinguimos autonomia patrimonial e abuso; avance agora para os pressupostos materiais.",
+      "fixtures": ["Checkpoint sintético fornecido no próprio pedido."],
+      "expected_output": "Prossegue a construção sem repetir ambientação ou a distinção já estabilizada.",
+      "assertions": [{"id": "continuidade-dogmatica", "description": "A resposta usa o checkpoint e avança.", "kind": "human"}],
+      "semantic_claims": [{"id": "progressao-real", "description": "O bloco novo depende do anterior e prepara a próxima etapa.", "evidence_required": "Identificar avanço conceitual sem reinício editorial."}],
+      "human_rubric": ["Continuidade", "Profundidade", "Coesão"],
+      "risk_tags": ["dogmatica", "continuidade"]
+    },
+    {
+      "id": "caso-solucoes-concorrentes",
+      "front": "caso_complexo",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Construa e resolva um caso complexo em que responsabilidade direta e desconsideração possam parecer aplicáveis, explicitando o fato que muda o enquadramento.",
+      "fixtures": ["Caso inteiramente sintético."],
+      "expected_output": "Usa fatos funcionais, apresenta soluções concorrentes e identifica o pressuposto decisivo.",
+      "assertions": [{"id": "caso-funcional", "description": "Todos os fatos relevantes participam da solução.", "kind": "human"}],
+      "semantic_claims": [{"id": "concorrencia-real", "description": "As soluções são plausíveis sob pressupostos diferentes.", "evidence_required": "Relação regra-fato-consequência de cada posição."}],
+      "human_rubric": ["Fatos funcionais", "Enquadramento", "Soluções concorrentes"],
+      "risk_tags": ["caso", "ambiguidade", "fontes"]
+    },
+    {
+      "id": "objetiva-distratores-plausiveis",
+      "front": "objetiva",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Crie uma questão objetiva inédita de alta dificuldade sobre prescrição, com cinco alternativas, sem revelar o gabarito.",
+      "fixtures": ["Regra e exceção sintéticas previamente verificadas."],
+      "expected_output": "Caso funcional com cinco alternativas comparáveis e uma única solução defensável.",
+      "assertions": [{"id": "validade-material", "description": "Distratores contêm erros técnicos singulares e plausíveis.", "kind": "human"}],
+      "semantic_claims": [{"id": "chave-unica", "description": "A solução decorre da cadeia regra-fato-consequência.", "evidence_required": "Auditoria interna posterior à tentativa."}],
+      "human_rubric": ["Unicidade", "Densidade", "Plausibilidade"],
+      "risk_tags": ["objetiva", "gabarito", "distratores"]
+    },
+    {
+      "id": "discursiva-reconstrucao-do-erro",
+      "front": "discursiva",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Corrija uma resposta discursiva sintética que citou a regra correta, mas não a aplicou aos fatos, e ensine a reconstruir esse trecho.",
+      "fixtures": ["Resposta fictícia sem dado pessoal."],
+      "expected_output": "Localiza a perda na aplicação, reconstrói a passagem e distingue conteúdo indispensável de excelência.",
+      "assertions": [{"id": "correcao-causal", "description": "A correção explica por que a aplicação falhou.", "kind": "human"}],
+      "semantic_claims": [{"id": "reescrita-dirigida", "description": "A reescrita se limita ao trecho crítico e preserva autoria do candidato.", "evidence_required": "Comparação entre fundamento, fatos e conclusão."}],
+      "human_rubric": ["Diagnóstico", "Aplicação", "Economia argumentativa"],
+      "risk_tags": ["discursiva", "feedback"]
+    },
+    {
+      "id": "oral-repergunta-adaptativa",
+      "front": "oral",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Inicie uma simulação oral sobre controle de constitucionalidade e faça apenas a primeira pergunta.",
+      "fixtures": ["Interação textual."],
+      "expected_output": "Formula uma pergunta e aguarda; a repregunta dependerá da resposta.",
+      "assertions": [{"id": "um-turno-oral", "description": "Não antecipa bateria nem correção.", "kind": "human"}],
+      "semantic_claims": [{"id": "limite-textual", "description": "Não afirma avaliar voz ou linguagem corporal.", "evidence_required": "Escopo declarado ou ausência de inferência acústica."}],
+      "human_rubric": ["Pergunta única", "Adequação oral", "Limites de avaliação"],
+      "risk_tags": ["oral", "friccao"]
+    },
+    {
+      "id": "revisao-transferencia-independente",
+      "front": "revisao",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Após recompor um erro sobre decadência com assistência, proponha uma verificação de domínio autônomo.",
+      "fixtures": ["Erro e recomposição inteiramente sintéticos."],
+      "expected_output": "Não declara domínio pelo acerto assistido e usa hipótese nova para transferência independente.",
+      "assertions": [{"id": "evidencia-proporcional", "description": "Distingue assistência, transferência e retenção.", "kind": "human"}],
+      "semantic_claims": [{"id": "hipotese-nova", "description": "A transferência não parafraseia o exercício anterior.", "evidence_required": "Mudança material dos fatos com preservação da estrutura decisória."}],
+      "human_rubric": ["Autonomia", "Transferência", "Retenção"],
+      "risk_tags": ["revisao", "dominio"]
+    },
+    {
+      "id": "perfil-leitura-sem-escrita",
+      "front": "perfil_local",
+      "skill": "acompanhar-percurso-magistratura",
+      "prompt": "Use este perfil local somente para orientar a sessão atual; não grave nem atualize nada.",
+      "fixtures": ["Perfil sintético autorizado apenas para leitura."],
+      "expected_output": "Usa a evidência disponível sem afirmar ou propor escrita realizada.",
+      "assertions": [{"id": "leitura-isolada", "description": "Leitura não é tratada como autorização de gravação.", "kind": "human"}],
+      "semantic_claims": [{"id": "instrucao-atual", "description": "O pedido atual governa a sessão.", "evidence_required": "Relação entre perfil fornecido e escolha presente."}],
+      "human_rubric": ["Consentimento", "Personalização", "Fluidez"],
+      "risk_tags": ["perfil", "privacidade"]
+    },
+    {
+      "id": "perfil-ausente-sem-degradacao",
+      "front": "perfil_local",
+      "skill": "acompanhar-percurso-magistratura",
+      "prompt": "Quero estudar responsabilidade civil, mas não quero criar perfil nem histórico.",
+      "fixtures": ["Recusa explícita de persistência."],
+      "expected_output": "Encaminha normalmente o estudo e não insiste em perfil ou diagnóstico.",
+      "assertions": [{"id": "sem-degradacao", "description": "A recusa não reduz a qualidade ou cria fricção.", "kind": "human"}],
+      "semantic_claims": [{"id": "uso-completo", "description": "O plugin permanece plenamente utilizável sem perfil.", "evidence_required": "Encaminhamento jurídico completo sem nova coleta."}],
+      "human_rubric": ["Privacidade", "Fluidez", "Roteamento"],
+      "risk_tags": ["perfil", "friccao"]
     }
   ]
 }

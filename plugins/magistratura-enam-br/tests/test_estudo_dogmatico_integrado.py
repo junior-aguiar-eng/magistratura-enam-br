@@ -14,6 +14,15 @@ def test_norma_e_jurisprudencia_entram_na_construcao_dogmatica(texto):
     assert "desfile de artigos" in referencia
 
 
+def test_link_jurisprudencial_nao_pode_disfarcar_busca_generica(texto):
+    referencia = texto(
+        "skills/estudar-direito-magistratura/references/explicacao-e-integracao.md"
+    ).casefold()
+    assert "fonte oficial correspondente" in referencia
+    assert "pesquisa genérica" in referencia
+    assert "sem criar hiperlink" in referencia
+
+
 def test_sessao_e_cumulativa_sem_despejo_editorial(texto):
     referencia = texto("skills/estudar-direito-magistratura/references/explicacao-e-integracao.md").casefold()
     assert "unidade intelectualmente completa" in referencia

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0] - 2026-09-05
+
+- Despersonifica defaults e mantém especialização para bacharéis, Magistratura e ENAM.
+- Integra dogmática, legislação e jurisprudência em sessões cumulativas.
+- Especializa casos, objetiva, discursiva, oral, revisão, curadoria, planejamento e comparação.
+- Evolui o perfil local para distinguir assistência, transferência, retenção e preferências declaradas.
+- Separa leitura, gravação e exclusão do perfil por autorizações explícitas.
+
 ## [0.5.0] - 2026-09-04
 
 ### Adicionado
