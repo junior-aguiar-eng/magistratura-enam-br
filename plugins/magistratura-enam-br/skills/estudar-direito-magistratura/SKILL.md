@@ -55,6 +55,7 @@ Cronogramas e planos de remessa não definem tema, sequência, prioridade ou opo
 - Para construção, resolução ou correção de caso jurídico complexo, leia também `references/casos-complexos.md`.
 - Para revisão ativa de recuperação, consolidação ou véspera de prova, leia `references/revisao.md`.
 - Para questões objetivas, leia `references/questoes-fgv-enam.md` e trate a trava canônica de emissão nela prevista como condição obrigatória antes de responder. Se qualquer critério falhar, descarte o rascunho e reconstrua a questão; não flexibilize a trava por concisão, rapidez ou pedido de formato.
+- Para questões objetivas com MCP disponível, leia também `../../references/questoes-interativas-mcp.md`. Use o fluxo MCP Apps para projeção, interação e persistência, sem transferir ao MCP a elaboração jurídica; se a ferramenta ou a UI falhar, aplique imediatamente o fallback textual definido nessa referência.
 - Para discursiva, leia `references/discursivas.md`; para prova oral, leia `references/prova-oral.md`.
 
 Quando houver ganho real de retenção, aplique o contrato de `references/flashcards-de-alto-rendimento.md`; cartões são opcionais, limitados e não geram evidência antes de tentativa posterior.
@@ -105,4 +106,3 @@ Se o candidato pedir persistência sem confirmar gravação ou sem indicar desti
 ## Correção proporcional ao insumo
 
 Correção completa não significa reconstrução especulativa. Se enunciado ou alternativas não estiverem integralmente disponíveis, analise os conceitos informados e explicite o limite; não atribua ao enunciado expressão que não foi fornecida. Desenvolva fundamento, aplicação e distratores em densidade proporcional, sem repetir a mesma distinção em blocos sucessivos.
-

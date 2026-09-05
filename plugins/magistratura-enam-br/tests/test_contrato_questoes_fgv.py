@@ -61,3 +61,12 @@ def test_feedback_adaptativo_e_opt_in_e_preserva_correcao_completa(texto):
     assert "questão inválida" in referencia
     assert "feedback adaptativo" in revisao
     assert "não acrescente autor, obra ou filiação doutrinária" in referencia
+
+
+def test_fluxo_interativo_nao_reduz_trava_canonica(texto):
+    skill = texto("skills/estudar-direito-magistratura/SKILL.md")
+    integration = texto("references/questoes-interativas-mcp.md")
+
+    assert "questoes-fgv-enam.md" in integration
+    assert "trava canônica" in integration
+    assert "MCP Apps" in skill

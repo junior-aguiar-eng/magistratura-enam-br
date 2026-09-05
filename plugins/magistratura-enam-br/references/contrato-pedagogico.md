@@ -10,6 +10,8 @@ As operações locais seguem `persistencia-pedagogica-local.md`. Escritas exigem
 
 Este contrato define a linguagem comum entre as skills. Na versão 1 ele não autoriza persistência, adaptação automática, criação de agenda nem mudança no formato das respostas. Um registro só pode descrever fatos observáveis na interação atual ou dados explicitamente fornecidos pelo candidato.
 
+Em questões interativas, a questão é gerada pelo modelo sob as travas da skill. O MCP não define a substância jurídica: valida contratos, protege o gabarito, apresenta a interface e persiste eventos quando houver autorização local.
+
 ## Taxonomia canônica v1
 
 O bloco abaixo é normativo e consumível por testes. Categorias equivalentes, sinônimos ou extensões exigem nova versão do contrato.

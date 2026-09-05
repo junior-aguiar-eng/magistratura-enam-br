@@ -6,6 +6,8 @@
     "name": "Boni Jr"
   },
   "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "apps": "./.app.json",
   "interface": {
     "displayName": "Estudo Jurídico Avançado",
     "shortDescription": "Curadoria e estudo jurídico brasileiro para Magistratura.",

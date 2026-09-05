@@ -14,6 +14,7 @@ from urllib.parse import urlsplit
 
 ARQUIVOS_ESSENCIAIS = (
     ".codex-plugin/plugin.json",
+    ".mcp.json",
     "AGENTS.md",
     "pyproject.toml",
     ".python-version",
@@ -68,6 +69,8 @@ DIRETORIOS_GERADOS = frozenset({
     "__pycache__",
     "build",
     "dist",
+    "node_modules",
+    "node_modules.incomplete",
 })
 
 SCHEMAS_PEDAGOGICOS = (
@@ -337,6 +340,32 @@ def validar_contrato_plugin(raiz: Path, manifesto: object, erros: list[str]) -> 
         validar_frontmatter_skill(skill, erros)
 
 
+def validar_mcp_bundled(raiz: Path, valor: object, erros: list[str]) -> None:
+    """Valida servidor stdio portável, com diretórios fornecidos pelo host."""
+    if valor != "./.mcp.json":
+        erros.append("Manifesto deve declarar mcpServers como ./.mcp.json.")
+        return
+    path = raiz / ".mcp.json"
+    try:
+        servers = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        erros.append("Configuração .mcp.json ausente ou inválida.")
+        return
+    if not isinstance(servers, dict) or not servers:
+        erros.append("Configuração .mcp.json deve declarar ao menos um servidor.")
+        return
+    for name, server in servers.items():
+        if not isinstance(server, dict) or server.get("command") != "uv":
+            erros.append(f"Servidor MCP {name} deve usar o executável portável uv.")
+            continue
+        args = server.get("args")
+        serialized = json.dumps(server, ensure_ascii=False)
+        if not isinstance(args, list) or "${PLUGIN_ROOT}" not in serialized or "${PLUGIN_DATA}" not in serialized:
+            erros.append(f"Servidor MCP {name} deve usar PLUGIN_ROOT e PLUGIN_DATA fornecidos pelo host.")
+        if not isinstance(args, list) or not args or args[-1] != "stdio":
+            erros.append(f"Servidor MCP {name} deve iniciar com transporte stdio.")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Verifica a integração do plugin Magistratura e ENAM Brasil.")
     parser.add_argument("--plugin", type=Path, default=Path(__file__).resolve().parents[1])
@@ -367,6 +396,8 @@ def main() -> None:
         except (OSError, UnicodeError, json.JSONDecodeError) as exc:
             erros.append(f"Manifesto JSON inválido: {exc}")
     validar_contrato_plugin(raiz, dados_manifesto, erros)
+    if isinstance(dados_manifesto, dict):
+        validar_mcp_bundled(raiz, dados_manifesto.get("mcpServers"), erros)
 
     total_json = 0
     for caminho in arquivos_fonte(raiz, "*.json"):

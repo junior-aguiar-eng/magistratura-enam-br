@@ -191,19 +191,19 @@ uv run python -m pytest tests/test_mcp_ui_resource.py tests/test_mcp_tools.py -v
 - Modificar: `plugins/magistratura-enam-br/tests/test_contrato_questoes_fgv.py`
 - Criar: `plugins/magistratura-enam-br/tests/test_integracao_questoes_mcp.py`
 
-- [ ] Testar o fluxo: busca local opcional, fontes atuais, geração privada, criação, renderização, tentativa e correção.
-- [ ] Testar que a skill continua exigindo cinco alternativas, gabarito único e análise integral dos distratores.
-- [ ] Testar fonte canônica em ordem Planalto, STF/STJ, acervo e fonte jurídica subsidiária.
-- [ ] Testar `source_status: caution` e aviso obrigatório quando não houver verificação atual.
-- [ ] Testar fallback textual sem antecipação do gabarito quando MCP Apps não estiver disponível.
-- [ ] Remover duplicações apenas depois de apontar a nova fonte canônica.
-- [ ] Executar:
+- [x] Testar o fluxo: busca local opcional, fontes atuais, geração privada, criação, renderização, tentativa e correção.
+- [x] Testar que a skill continua exigindo cinco alternativas, gabarito único e análise integral dos distratores.
+- [x] Testar fonte canônica em ordem Planalto, STF/STJ, acervo e fonte jurídica subsidiária.
+- [x] Testar `source_status: caution` e aviso obrigatório quando não houver verificação atual.
+- [x] Testar fallback textual sem antecipação do gabarito quando MCP Apps não estiver disponível.
+- [x] Remover duplicações apenas depois de apontar a nova fonte canônica.
+- [x] Executar:
 
 ```powershell
 uv run python -m pytest tests/test_contrato_questoes_fgv.py tests/test_integracao_questoes_mcp.py tests/test_politica_fontes.py tests/test_governanca_fontes.py -v --basetemp .test-tmp/mcp-task-7
 ```
 
-- [ ] Commit: `feat(skill): route objective questions through mcp`.
+- [x] Integrar ao commit conjunto das Tarefas 7–9.
 
 ## Tarefa 8: Empacotamento para Codex
 
@@ -215,13 +215,13 @@ uv run python -m pytest tests/test_contrato_questoes_fgv.py tests/test_integraca
 - Modificar: `plugins/magistratura-enam-br/tests/test_manifest_interface.py`
 - Modificar: `plugins/magistratura-enam-br/tests/test_verificar_integracao.py`
 
-- [ ] Criar teste de manifesto exigindo `mcpServers: "./.mcp.json"` e comando portável relativo ao plugin.
-- [ ] Configurar o servidor bundled para iniciar por `stdio` sem caminho absoluto da máquina do autor.
-- [ ] Verificar como `PLUGIN_ROOT` é disponibilizado ao processo e evitar comandos dependentes do shell quando houver alternativa.
-- [ ] Instalar o plugin em fonte local e iniciar uma sessão limpa do Codex.
-- [ ] Executar cenário real com biblioteca temporária: indexar, buscar, criar, renderizar ou aplicar fallback, responder e reiniciar.
-- [ ] Registrar evidências e limitações específicas da superfície.
-- [ ] Commit: `feat(plugin): bundle local mcp server`.
+- [x] Criar teste de manifesto exigindo `mcpServers: "./.mcp.json"` e comando portável relativo ao plugin.
+- [x] Configurar o servidor bundled para iniciar por `stdio` sem caminho absoluto da máquina do autor.
+- [x] Verificar como `PLUGIN_ROOT` é disponibilizado ao processo e evitar comandos dependentes do shell quando houver alternativa.
+- [x] Instalar o plugin em fonte local e iniciar uma sessão limpa do Codex.
+- [x] Executar cenário real com biblioteca temporária: indexar, buscar, criar, renderizar ou aplicar fallback, responder e reiniciar.
+- [x] Registrar evidências e limitações específicas da superfície.
+- [x] Integrar ao commit conjunto das Tarefas 7–9.
 
 ## Tarefa 9: Conexão privada com ChatGPT
 
@@ -233,15 +233,15 @@ uv run python -m pytest tests/test_contrato_questoes_fgv.py tests/test_integraca
 - Criar: `plugins/magistratura-enam-br/docs/chatgpt-local.md`
 - Criar: `plugins/magistratura-enam-br/tests/test_app_mapping.py`
 
-- [ ] Confirmar o transporte HTTP local com cliente MCP antes de configurar o túnel.
-- [ ] Criar endpoint no Secure MCP Tunnel e executar `tunnel-client` no Windows com conexão somente de saída.
-- [ ] Registrar o endpoint no modo desenvolvedor do ChatGPT e obter o identificador `plugin_asdk_app...`.
-- [ ] Determinar documentalmente se o identificador técnico pode ser versionado. Credenciais e identidade do túnel nunca serão versionadas.
-- [ ] Criar `.app.json`, apontar `apps: "./.app.json"` no manifesto e validar os caminhos relativos.
-- [ ] Instalar o plugin a partir da fonte local e testar em chat novo.
-- [ ] Executar o fluxo ponta a ponta com o widget real e confirmar que os dados foram gravados somente na biblioteca local.
-- [ ] Desligar o túnel e confirmar falha segura no ChatGPT e funcionamento preservado no Codex.
-- [ ] Commit apenas de arquivos não sensíveis: `feat(plugin): map private chatgpt mcp connection`.
+- [x] Confirmar o transporte HTTP local com cliente MCP antes de configurar o túnel.
+- [x] Criar endpoint no Secure MCP Tunnel e executar `tunnel-client` no Windows com conexão somente de saída.
+- [x] Registrar o endpoint no modo desenvolvedor do ChatGPT e obter o identificador `plugin_asdk_app...`.
+- [x] Determinar documentalmente se o identificador técnico pode ser versionado. Credenciais e identidade do túnel nunca serão versionadas.
+- [x] Criar `.app.json`, apontar `apps: "./.app.json"` no manifesto e validar os caminhos relativos.
+- [x] Instalar o plugin a partir da fonte local e testar em chat novo.
+- [x] Executar o fluxo ponta a ponta com o widget real e confirmar que os dados foram gravados somente na biblioteca local.
+- [x] Desligar o túnel e confirmar indisponibilidade sem exposição de dados no ChatGPT e funcionamento preservado no Codex.
+- [x] Integrar somente arquivos não sensíveis ao commit conjunto das Tarefas 7–9.
 
 ## Tarefa 10: Inicialização com Windows
 

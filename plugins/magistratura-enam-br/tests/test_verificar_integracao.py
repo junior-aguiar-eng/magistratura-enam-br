@@ -52,6 +52,18 @@ def test_validador_exige_contratos_e_registro_de_fontes():
     assert esperados <= set(verificador.ARQUIVOS_ESSENCIAIS)
 
 
+def test_validador_exige_e_confere_mcp_bundled(tmp_path):
+    (tmp_path / ".mcp.json").write_text(
+        '{"estudo":{"command":"uv","args":["--project","${PLUGIN_ROOT}","--config","${PLUGIN_DATA}/library-config.json","stdio"]}}',
+        encoding="utf-8",
+    )
+    erros = []
+
+    verificador.validar_mcp_bundled(tmp_path, "./.mcp.json", erros)
+
+    assert erros == []
+
+
 def preparar_ambiente(tmp_path):
     (tmp_path / "pyproject.toml").write_text(
         "[project]\nname = 'magistratura-enam-br'\nrequires-python = '>=3.14,<3.15'\n",
