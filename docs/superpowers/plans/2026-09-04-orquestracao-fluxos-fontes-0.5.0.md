@@ -118,10 +118,10 @@ session-route: schema_version, skill_ativa, modalidade_ativa, tema_ativo,
 transition: from, to, kind, reason, requires_confirmation, preserves
 ```
 
-- [ ] Escrever fixtures validas para continuidade, mudanca de tema, mudanca de modalidade, mudanca de skill, suspensao, retomada e encerramento.
-- [ ] Escrever fixtures invalidas para skill inexistente, modalidade pertencente a outra skill, retomada sem rota suspensa e persistencia implicita.
-- [ ] Implementar schemas com `additionalProperties: false` e versao explicita.
-- [ ] Documentar que os objetos sao internos e nao devem aparecer como formulario ou YAML para o candidato.
+- [x] Escrever fixtures validas para continuidade, mudanca de tema, mudanca de modalidade, mudanca de skill, suspensao, retomada e encerramento.
+- [x] Escrever fixtures invalidas para skill inexistente, modalidade pertencente a outra skill, retomada sem rota suspensa e persistencia implicita.
+- [x] Implementar schemas com `additionalProperties: false` e versao explicita.
+- [x] Documentar que os objetos sao internos e nao devem aparecer como formulario ou YAML para o candidato.
 
 ### Task 1.2: criar contrato de fontes
 
@@ -133,12 +133,12 @@ transition: from, to, kind, reason, requires_confirmation, preserves
 - Create: `plugins/magistratura-enam-br/references/fontes-confiaveis.json`
 - Test: `plugins/magistratura-enam-br/tests/test_politica_fontes.py`
 
-- [ ] Definir `acervo_exclusivo`, `acervo_com_validacao_oficial` e `pesquisa_juridica_completa`.
-- [ ] Cadastrar STF, STJ e Planalto como fontes primarias com finalidades permitidas.
-- [ ] Cadastrar Dizer o Direito, JOTA e Thomson Reuters / Revista dos Tribunais como fontes secundarias, com limites explicitos.
-- [ ] Exigir verificacao do dominio canonico durante a implementacao e impedir correspondencia insegura por substring.
-- [ ] Exigir inclusao deliberada no registro para qualquer nova fonte; "site conceituado" nao autoriza busca aberta.
-- [ ] Proibir que fonte secundaria confirme isoladamente vigencia, tese, resultado, modulacao ou transito em julgado.
+- [x] Definir `acervo_exclusivo`, `acervo_com_validacao_oficial` e `pesquisa_juridica_completa`.
+- [x] Cadastrar STF, STJ e Planalto como fontes primarias com finalidades permitidas.
+- [x] Cadastrar Dizer o Direito, JOTA e Thomson Reuters / Revista dos Tribunais como fontes secundarias, com limites explicitos.
+- [x] Exigir verificacao do dominio canonico durante a implementacao e impedir correspondencia insegura por substring.
+- [x] Exigir inclusao deliberada no registro para qualquer nova fonte; "site conceituado" nao autoriza busca aberta.
+- [x] Proibir que fonte secundaria confirme isoladamente vigencia, tese, resultado, modulacao ou transito em julgado.
 
 ### Task 1.3: integrar os contratos ao verificador
 
@@ -147,10 +147,10 @@ transition: from, to, kind, reason, requires_confirmation, preserves
 - Modify: `plugins/magistratura-enam-br/scripts/verificar_integracao.py`
 - Modify: `plugins/magistratura-enam-br/tests/test_verificar_integracao.py`
 
-- [ ] Fazer o verificador exigir os quatro schemas, as duas referencias e o registro de fontes.
-- [ ] Validar nomes das cinco skills e modalidades aceitas.
-- [ ] Validar que toda fonte secundaria declare `limitations` e toda primaria declare `authoritative_for`.
-- [ ] Confirmar que nenhum comportamento das skills mudou nesta fase.
+- [x] Fazer o verificador exigir os quatro schemas, as duas referencias e o registro de fontes.
+- [x] Validar nomes das cinco skills e modalidades aceitas.
+- [x] Validar que toda fonte secundaria declare `limitations` e toda primaria declare `authoritative_for`.
+- [x] Confirmar que nenhum comportamento das skills mudou nesta fase.
 
 ### Gate da fase 1
 

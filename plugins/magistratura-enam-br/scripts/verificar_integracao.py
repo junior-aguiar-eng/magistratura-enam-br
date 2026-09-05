@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import tomllib
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ARQUIVOS_ESSENCIAIS = (
     ".codex-plugin/plugin.json",
@@ -19,11 +20,18 @@ ARQUIVOS_ESSENCIAIS = (
     "uv.lock",
     "requirements.txt",
     "references/contrato-pedagogico.md",
+    "references/contrato-fluxos-conversacionais.md",
+    "references/politica-fontes-juridicas.md",
+    "references/fontes-confiaveis.json",
     "references/persistencia-pedagogica-local.md",
     "references/protocolo-uso-do-acervo.md",
     "modelos/pedagogia/learning-event.schema.json",
     "modelos/pedagogia/candidate-profile.schema.json",
     "modelos/pedagogia/review-recommendation.schema.json",
+    "modelos/pedagogia/session-route.schema.json",
+    "modelos/pedagogia/transition.schema.json",
+    "modelos/pedagogia/source-policy.schema.json",
+    "modelos/pedagogia/trusted-source-registry.schema.json",
     "scripts/eventos_aprendizagem.py",
     "scripts/perfil_candidato.py",
     "scripts/relatorio_aprendizagem.py",
@@ -65,7 +73,46 @@ SCHEMAS_PEDAGOGICOS = (
     "modelos/pedagogia/candidate-profile.schema.json",
     "modelos/pedagogia/learning-event.schema.json",
     "modelos/pedagogia/review-recommendation.schema.json",
+    "modelos/pedagogia/session-route.schema.json",
+    "modelos/pedagogia/transition.schema.json",
+    "modelos/pedagogia/source-policy.schema.json",
+    "modelos/pedagogia/trusted-source-registry.schema.json",
 )
+
+SKILLS_CANONICAS = frozenset({
+    "acompanhar-percurso-magistratura",
+    "comparar-materiais-enam",
+    "curar-informativos-stf-stj",
+    "estudar-direito-magistratura",
+    "planejar-jurisprudencia",
+})
+
+MODALIDADES_CANONICAS = frozenset({
+    "roteamento",
+    "explicacao",
+    "recuperacao",
+    "consolidacao",
+    "vespera",
+    "questao_objetiva",
+    "discursiva_curta",
+    "prova_oral",
+    "curadoria_informativo",
+    "comparacao_material",
+    "leitura_julgado",
+    "revisao_julgado",
+    "planejamento_revisao",
+})
+
+FONTES_CONFIAVEIS = frozenset({
+    "stf",
+    "stj",
+    "planalto",
+    "dizer-o-direito",
+    "jota",
+    "thomson-reuters-rt",
+})
+
+PADRAO_DOMINIO = re.compile(r"^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$")
 
 
 def arquivos_fonte(raiz: Path, padrao: str):
@@ -93,6 +140,55 @@ def validar_schemas_pedagogicos(raiz: Path, erros: list[str]) -> None:
             continue
         if not isinstance(schema, dict):
             erros.append(f"Schema pedagógico inválido em {relativo}.")
+
+
+def dominio_registrado(url: str, dominios: set[str] | frozenset[str]) -> bool:
+    """Compara o hostname normalizado por igualdade exata, nunca por substring."""
+    try:
+        hostname = urlsplit(url).hostname
+    except ValueError:
+        return False
+    return isinstance(hostname, str) and hostname.casefold() in {item.casefold() for item in dominios}
+
+
+def validar_contratos_fluxos_fontes(raiz: Path, erros: list[str]) -> None:
+    """Valida vocabulário fechado de rotas, modalidades e fontes confiáveis."""
+    rota_path = raiz / "modelos" / "pedagogia" / "session-route.schema.json"
+    registro_path = raiz / "references" / "fontes-confiaveis.json"
+    try:
+        rota = json.loads(rota_path.read_text(encoding="utf-8"))
+        skills = frozenset(rota["properties"]["skill_ativa"]["enum"])
+        modalidades = frozenset(rota["$defs"]["modalidade"]["enum"])
+        if skills != SKILLS_CANONICAS:
+            erros.append("session-route deve declarar exatamente as cinco skills canônicas.")
+        if modalidades != MODALIDADES_CANONICAS:
+            erros.append("session-route contém modalidades ausentes ou não canônicas.")
+    except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError):
+        erros.append("Não foi possível validar o vocabulário de session-route.")
+
+    try:
+        registro = json.loads(registro_path.read_text(encoding="utf-8"))
+        fontes = registro["sources"]
+        ids = [fonte["id"] for fonte in fontes]
+        if len(ids) != len(set(ids)):
+            erros.append("Registro de fontes contém identificadores duplicados.")
+        if frozenset(ids) != FONTES_CONFIAVEIS:
+            erros.append("Registro de fontes diverge da inclusão explícita autorizada.")
+        for fonte in fontes:
+            dominios = fonte.get("canonical_domains", [])
+            if not dominios or any(
+                not isinstance(dominio, str)
+                or dominio != dominio.casefold()
+                or PADRAO_DOMINIO.fullmatch(dominio) is None
+                for dominio in dominios
+            ):
+                erros.append(f"Fonte {fonte.get('id', '<sem-id>')} possui domínio canônico inválido.")
+            if fonte.get("tier") == "primaria" and not fonte.get("authoritative_for"):
+                erros.append(f"Fonte primária {fonte.get('id', '<sem-id>')} sem authoritative_for.")
+            if fonte.get("tier") == "secundaria" and not fonte.get("limitations"):
+                erros.append(f"Fonte secundária {fonte.get('id', '<sem-id>')} sem limitations.")
+    except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError):
+        erros.append("Não foi possível validar o registro fechado de fontes.")
 
 
 def validar_ambiente_uv(raiz: Path, erros: list[str]) -> None:
@@ -238,6 +334,7 @@ def main() -> None:
 
     validar_ambiente_uv(raiz, erros)
     validar_schemas_pedagogicos(raiz, erros)
+    validar_contratos_fluxos_fontes(raiz, erros)
 
     manifesto = raiz / ".codex-plugin" / "plugin.json"
     dados_manifesto: object = None

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/junior-aguiar-eng/magistratura-enam-br/schemas/pedagogia/transition-v1.json",
+  "title": "Conversation transition v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "from", "to", "kind", "reason", "requires_confirmation", "preserves"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "from": {"$ref": "#/$defs/route_state"},
+    "to": {"$ref": "#/$defs/route_state"},
+    "kind": {"enum": ["continuidade", "mudanca_tema", "mudanca_modalidade", "mudanca_skill", "suspensao", "retomada", "encerramento"]},
+    "reason": {"type": "string", "minLength": 1, "maxLength": 240},
+    "requires_confirmation": {"type": "boolean"},
+    "preserves": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["skill", "modalidade", "tema", "pendencia", "politica_fontes"]}
+    }
+  },
+  "$defs": {
+    "route_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill", "modalidade", "tema", "etapa", "tem_pendencia", "tem_rota_suspensa"],
+      "properties": {
+        "skill": {"enum": ["acompanhar-percurso-magistratura", "comparar-materiais-enam", "curar-informativos-stf-stj", "estudar-direito-magistratura", "planejar-jurisprudencia"]},
+        "modalidade": {"type": ["string", "null"], "minLength": 1},
+        "tema": {"type": ["string", "null"], "minLength": 1},
+        "etapa": {"enum": ["ambientacao", "em_execucao", "aguardando_resposta", "suspensa", "encerrada"]},
+        "tem_pendencia": {"type": "boolean"},
+        "tem_rota_suspensa": {"type": "boolean"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"kind": {"const": "retomada"}}},
+      "then": {
+        "properties": {
+          "from": {"properties": {"tem_rota_suspensa": {"const": true}}},
+          "to": {"properties": {"tem_rota_suspensa": {"const": false}}}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"kind": {"const": "suspensao"}}},
+      "then": {"properties": {"to": {"properties": {"tem_rota_suspensa": {"const": true}}}}}
+    }
+  ]
+}

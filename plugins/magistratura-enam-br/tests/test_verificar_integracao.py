@@ -6,6 +6,10 @@ SCHEMAS_PEDAGOGICOS = {
     "modelos/pedagogia/learning-event.schema.json",
     "modelos/pedagogia/candidate-profile.schema.json",
     "modelos/pedagogia/review-recommendation.schema.json",
+    "modelos/pedagogia/session-route.schema.json",
+    "modelos/pedagogia/transition.schema.json",
+    "modelos/pedagogia/source-policy.schema.json",
+    "modelos/pedagogia/trusted-source-registry.schema.json",
 }
 
 
@@ -25,7 +29,25 @@ def test_validador_rejeita_schema_pedagogico_ausente_ou_invalido(tmp_path):
     assert erros == [
         "Schema pedagógico inválido em modelos/pedagogia/candidate-profile.schema.json.",
         "Schema pedagógico ausente: modelos/pedagogia/review-recommendation.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/session-route.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/transition.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/source-policy.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/trusted-source-registry.schema.json.",
     ]
+
+
+def test_validador_exige_contratos_e_registro_de_fontes():
+    esperados = {
+        "references/contrato-fluxos-conversacionais.md",
+        "references/politica-fontes-juridicas.md",
+        "references/fontes-confiaveis.json",
+        "modelos/pedagogia/session-route.schema.json",
+        "modelos/pedagogia/transition.schema.json",
+        "modelos/pedagogia/source-policy.schema.json",
+        "modelos/pedagogia/trusted-source-registry.schema.json",
+    }
+
+    assert esperados <= set(verificador.ARQUIVOS_ESSENCIAIS)
 
 
 def preparar_ambiente(tmp_path):

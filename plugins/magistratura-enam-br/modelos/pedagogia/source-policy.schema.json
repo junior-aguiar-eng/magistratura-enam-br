@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/junior-aguiar-eng/magistratura-enam-br/schemas/pedagogia/source-policy-v1.json",
+  "title": "Legal source policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mode", "candidate_material", "allow_external_research", "allowed_source_tiers", "registry_version"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "mode": {"enum": ["acervo_exclusivo", "acervo_com_validacao_oficial", "pesquisa_juridica_completa"]},
+    "candidate_material": {"enum": ["disponivel", "ausente", "nao_aplicavel"]},
+    "allow_external_research": {"type": "boolean"},
+    "allowed_source_tiers": {"type": "array", "uniqueItems": true, "items": {"enum": ["primaria", "secundaria"]}},
+    "registry_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"mode": {"const": "acervo_exclusivo"}}},
+      "then": {"properties": {"allow_external_research": {"const": false}, "allowed_source_tiers": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "acervo_com_validacao_oficial"}}},
+      "then": {"properties": {"allow_external_research": {"const": true}, "allowed_source_tiers": {"const": ["primaria"]}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "pesquisa_juridica_completa"}}},
+      "then": {"properties": {"allow_external_research": {"const": true}, "allowed_source_tiers": {"const": ["primaria", "secundaria"]}}}
+    }
+  ]
+}

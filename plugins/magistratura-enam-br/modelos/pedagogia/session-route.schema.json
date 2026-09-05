@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/junior-aguiar-eng/magistratura-enam-br/schemas/pedagogia/session-route-v1.json",
+  "title": "Session route v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "skill_ativa", "modalidade_ativa", "tema_ativo", "etapa", "pendencia", "rota_suspensa", "politica_fontes"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "skill_ativa": {
+      "enum": [
+        "acompanhar-percurso-magistratura",
+        "comparar-materiais-enam",
+        "curar-informativos-stf-stj",
+        "estudar-direito-magistratura",
+        "planejar-jurisprudencia"
+      ]
+    },
+    "modalidade_ativa": {
+      "anyOf": [{"$ref": "#/$defs/modalidade"}, {"type": "null"}]
+    },
+    "tema_ativo": {"type": ["string", "null"], "minLength": 1, "maxLength": 240},
+    "etapa": {"enum": ["ambientacao", "em_execucao", "aguardando_resposta", "suspensa", "encerrada"]},
+    "pendencia": {
+      "anyOf": [{"$ref": "#/$defs/pendencia"}, {"type": "null"}]
+    },
+    "rota_suspensa": {
+      "anyOf": [{"$ref": "#/$defs/rota_suspensa"}, {"type": "null"}]
+    },
+    "politica_fontes": {
+      "enum": ["acervo_exclusivo", "acervo_com_validacao_oficial", "pesquisa_juridica_completa"]
+    }
+  },
+  "$defs": {
+    "modalidade": {
+      "enum": [
+        "roteamento",
+        "explicacao",
+        "recuperacao",
+        "consolidacao",
+        "vespera",
+        "questao_objetiva",
+        "discursiva_curta",
+        "prova_oral",
+        "curadoria_informativo",
+        "comparacao_material",
+        "leitura_julgado",
+        "revisao_julgado",
+        "planejamento_revisao"
+      ]
+    },
+    "pendencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tipo", "descricao", "aguarda_resposta"],
+      "properties": {
+        "tipo": {"enum": ["questao_objetiva", "discursiva_curta", "prova_oral", "recuperacao", "confirmacao"]},
+        "descricao": {"type": "string", "minLength": 1, "maxLength": 240},
+        "aguarda_resposta": {"type": "boolean"}
+      }
+    },
+    "rota_suspensa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill", "modalidade", "tema", "etapa", "pendencia_preservada"],
+      "properties": {
+        "skill": {"$ref": "#/$defs/skill"},
+        "modalidade": {"$ref": "#/$defs/modalidade"},
+        "tema": {"type": ["string", "null"], "minLength": 1, "maxLength": 240},
+        "etapa": {"enum": ["em_execucao", "aguardando_resposta", "suspensa"]},
+        "pendencia_preservada": {"type": "boolean"}
+      }
+    },
+    "skill": {
+      "enum": [
+        "acompanhar-percurso-magistratura",
+        "comparar-materiais-enam",
+        "curar-informativos-stf-stj",
+        "estudar-direito-magistratura",
+        "planejar-jurisprudencia"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"skill_ativa": {"const": "acompanhar-percurso-magistratura"}}},
+      "then": {"properties": {"modalidade_ativa": {"enum": [null, "roteamento"]}}}
+    },
+    {
+      "if": {"properties": {"skill_ativa": {"const": "estudar-direito-magistratura"}}},
+      "then": {"properties": {"modalidade_ativa": {"enum": [null, "explicacao", "recuperacao", "consolidacao", "vespera", "questao_objetiva", "discursiva_curta", "prova_oral"]}}}
+    },
+    {
+      "if": {"properties": {"skill_ativa": {"const": "curar-informativos-stf-stj"}}},
+      "then": {"properties": {"modalidade_ativa": {"enum": [null, "curadoria_informativo"]}}}
+    },
+    {
+      "if": {"properties": {"skill_ativa": {"const": "comparar-materiais-enam"}}},
+      "then": {"properties": {"modalidade_ativa": {"enum": [null, "comparacao_material"]}}}
+    },
+    {
+      "if": {"properties": {"skill_ativa": {"const": "planejar-jurisprudencia"}}},
+      "then": {"properties": {"modalidade_ativa": {"enum": [null, "leitura_julgado", "revisao_julgado", "planejamento_revisao"]}}}
+    },
+    {
+      "if": {"properties": {"etapa": {"const": "aguardando_resposta"}}},
+      "then": {"properties": {"pendencia": {"$ref": "#/$defs/pendencia"}}}
+    }
+  ]
+}
