@@ -22,7 +22,10 @@
     "source_status": {"enum": ["verified", "partial", "caution"]},
     "caution_notice": {"type": "string", "minLength": 1},
     "correct_option": {"enum": ["A", "B", "C", "D", "E"]},
-    "correction": {"$ref": "#/$defs/correction"}
+    "correction": {"$ref": "#/$defs/correction"},
+    "selected_option": {"enum": ["A", "B", "C", "D", "E"]},
+    "result": {"enum": ["correct", "incorrect"]},
+    "answered_at": {"type": "string", "format": "date-time"}
   },
   "oneOf": [
     {
@@ -43,7 +46,7 @@
         "projection": {"const": "corrected"},
         "state": {"const": "answered"}
       },
-      "required": ["correct_option", "correction"]
+      "required": ["correct_option", "correction", "selected_option", "result", "answered_at"]
     }
   ],
   "allOf": [
@@ -125,4 +128,3 @@
     }
   }
 }
-

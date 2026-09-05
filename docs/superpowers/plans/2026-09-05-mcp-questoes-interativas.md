@@ -49,7 +49,7 @@ uv run python -m pytest tests/test_mcp_schemas.py -v --basetemp .test-tmp/mcp-ta
 uv lock --check
 ```
 
-- [ ] Commit conjunto das Tarefas 1–3, conforme gate definido pelo usuário.
+- [x] Commit conjunto das Tarefas 1–3, conforme gate definido pelo usuário.
 
 ## Tarefa 2: Raiz autorizada e contenção segura
 
@@ -107,19 +107,19 @@ uv run python -m pytest tests/test_mcp_indexer.py tests/test_mcp_retrieval.py te
 - Modificar, se necessário: `plugins/magistratura-enam-br/scripts/eventos_aprendizagem.py`
 - Modificar, se necessário: `plugins/magistratura-enam-br/scripts/perfil_candidato.py`
 
-- [ ] Testar append UTF-8, flush, lock, IDs estáveis, timestamps UTC e rejeição de JSONL previamente corrompido.
-- [ ] Testar `draft -> ready -> answered`, invalidação explícita e proibição de transições regressivas.
-- [ ] Testar que a criação retorna somente a projeção pública.
-- [ ] Testar primeira resposta, repetição idempotente e conflito quando uma segunda alternativa diverge.
-- [ ] Testar reconstrução do perfil e do histórico após reinício do processo.
-- [ ] Integrar tentativas ao contrato pedagógico existente sem criar perfil paralelo.
-- [ ] Executar:
+- [x] Testar append UTF-8, flush, lock, IDs estáveis, timestamps UTC e rejeição de JSONL previamente corrompido.
+- [x] Testar `draft -> ready -> answered`, invalidação explícita e proibição de transições regressivas.
+- [x] Testar que a criação retorna somente a projeção pública.
+- [x] Testar primeira resposta, repetição idempotente e conflito quando uma segunda alternativa diverge.
+- [x] Testar reconstrução do perfil e do histórico após reinício do processo.
+- [x] Integrar tentativas ao contrato pedagógico existente sem criar perfil paralelo.
+- [x] Executar:
 
 ```powershell
 uv run python -m pytest tests/test_mcp_persistence.py tests/test_mcp_question_sessions.py tests/test_eventos_aprendizagem.py tests/test_perfil_candidato.py -v --basetemp .test-tmp/mcp-task-4
 ```
 
-- [ ] Commit: `feat(mcp): persist question sessions and attempts`.
+- [ ] Commit conjunto das Tarefas 4–6, conforme gate definido pelo usuário.
 
 ## Tarefa 5: Servidor MCP e ferramentas de dados
 
@@ -130,19 +130,19 @@ uv run python -m pytest tests/test_mcp_persistence.py tests/test_mcp_question_se
 - Criar: `plugins/magistratura-enam-br/tests/test_mcp_tools.py`
 - Criar: `plugins/magistratura-enam-br/tests/test_mcp_transport.py`
 
-- [ ] Testar contratos de `indexar_acervo`, `buscar_acervo`, `criar_sessao_questao`, `responder_questao` e `consultar_historico_questoes` por cliente MCP real.
-- [ ] Confirmar que ferramentas de dados não carregam `_meta.ui.resourceUri`.
-- [ ] Confirmar por busca recursiva serializada que a criação não devolve chave, correção nem distratores.
-- [ ] Implementar composição explícita das dependências para permitir biblioteca temporária nos testes.
-- [ ] Oferecer `stdio` para Codex e transporte HTTP compatível para o túnel sem duplicar regras de domínio.
-- [ ] Aplicar limites de entrada e mensagens de erro sem divulgar caminhos além do necessário.
-- [ ] Executar:
+- [x] Testar contratos de `indexar_acervo`, `buscar_acervo`, `criar_sessao_questao`, `responder_questao` e `consultar_historico_questoes` por cliente MCP real.
+- [x] Confirmar que ferramentas de dados não carregam `_meta.ui.resourceUri`.
+- [x] Confirmar por busca recursiva serializada que a criação não devolve chave, correção nem distratores.
+- [x] Implementar composição explícita das dependências para permitir biblioteca temporária nos testes.
+- [x] Oferecer `stdio` para Codex e transporte HTTP compatível para o túnel sem duplicar regras de domínio.
+- [x] Aplicar limites de entrada e mensagens de erro sem divulgar caminhos além do necessário.
+- [x] Executar:
 
 ```powershell
 uv run python -m pytest tests/test_mcp_tools.py tests/test_mcp_transport.py -v --basetemp .test-tmp/mcp-task-5
 ```
 
-- [ ] Commit: `feat(mcp): expose legal study tools`.
+- [x] Integrar ao commit conjunto das Tarefas 4–6.
 
 ## Tarefa 6: Recurso MCP Apps e widget moderno
 
@@ -160,13 +160,13 @@ uv run python -m pytest tests/test_mcp_tools.py tests/test_mcp_transport.py -v -
 - Criar: `plugins/magistratura-enam-br/web/src/QuestionWidget.test.tsx`
 - Criar: `plugins/magistratura-enam-br/tests/test_mcp_ui_resource.py`
 
-- [ ] Criar primeiro testes dos estados visualmente observáveis: pronta, selecionada, enviando, correta, incorreta, cautela e erro.
-- [ ] Testar teclado, radio group, foco, `aria-live`, contraste e ausência do gabarito no DOM antes da resposta.
-- [ ] Implementar identidade visual derivada do plugin, layout responsivo e preferência de movimento reduzido.
-- [ ] Fazer o widget chamar `responder_questao` pelo bridge MCP Apps e renderizar exclusivamente a resposta liberada.
-- [ ] Registrar `ui://estudo-juridico/questao/v1.html` com MIME exigido pela especificação vigente.
-- [ ] Implementar `renderizar_questao` como única ferramenta inicial contendo `_meta.ui.resourceUri`.
-- [ ] Executar:
+- [x] Criar primeiro testes dos estados visualmente observáveis: pronta, selecionada, enviando, correta, incorreta, cautela e erro.
+- [x] Testar teclado, radio group, foco, `aria-live`, contraste e ausência do gabarito no DOM antes da resposta.
+- [x] Implementar identidade visual derivada do plugin, layout responsivo e preferência de movimento reduzido.
+- [x] Fazer o widget chamar `responder_questao` pelo bridge MCP Apps e renderizar exclusivamente a resposta liberada.
+- [x] Registrar `ui://estudo-juridico/questao/v1.html` com MIME exigido pela especificação vigente.
+- [x] Implementar `renderizar_questao` como única ferramenta inicial contendo `_meta.ui.resourceUri`.
+- [x] Executar:
 
 ```powershell
 Set-Location web
@@ -177,8 +177,8 @@ Set-Location ..
 uv run python -m pytest tests/test_mcp_ui_resource.py tests/test_mcp_tools.py -v --basetemp .test-tmp/mcp-task-6
 ```
 
-- [ ] Fazer inspeção visual do widget em largura estreita e larga; teste estrutural não substitui esse gate.
-- [ ] Commit: `feat(ui): add interactive legal question widget`.
+- [x] Fazer inspeção visual do widget em largura estreita e larga; teste estrutural não substitui esse gate.
+- [x] Integrar ao commit conjunto das Tarefas 4–6.
 
 ## Tarefa 7: Integração pedagógica e fallback textual
 
