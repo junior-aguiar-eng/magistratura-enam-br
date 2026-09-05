@@ -6,6 +6,10 @@ SCHEMAS_PEDAGOGICOS = {
     "modelos/pedagogia/learning-event.schema.json",
     "modelos/pedagogia/candidate-profile.schema.json",
     "modelos/pedagogia/review-recommendation.schema.json",
+    "modelos/pedagogia/session-route.schema.json",
+    "modelos/pedagogia/transition.schema.json",
+    "modelos/pedagogia/source-policy.schema.json",
+    "modelos/pedagogia/trusted-source-registry.schema.json",
 }
 
 
@@ -25,7 +29,25 @@ def test_validador_rejeita_schema_pedagogico_ausente_ou_invalido(tmp_path):
     assert erros == [
         "Schema pedagógico inválido em modelos/pedagogia/candidate-profile.schema.json.",
         "Schema pedagógico ausente: modelos/pedagogia/review-recommendation.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/session-route.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/transition.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/source-policy.schema.json.",
+        "Schema pedagógico ausente: modelos/pedagogia/trusted-source-registry.schema.json.",
     ]
+
+
+def test_validador_exige_contratos_e_registro_de_fontes():
+    esperados = {
+        "references/contrato-fluxos-conversacionais.md",
+        "references/politica-fontes-juridicas.md",
+        "references/fontes-confiaveis.json",
+        "modelos/pedagogia/session-route.schema.json",
+        "modelos/pedagogia/transition.schema.json",
+        "modelos/pedagogia/source-policy.schema.json",
+        "modelos/pedagogia/trusted-source-registry.schema.json",
+    }
+
+    assert esperados <= set(verificador.ARQUIVOS_ESSENCIAIS)
 
 
 def preparar_ambiente(tmp_path):
@@ -176,4 +198,53 @@ def test_validador_de_contrato_rejeita_versao_divergente_do_pyproject(tmp_path):
 
     assert erros == [
         "Versão divergente: plugin.json declara 0.3.2 e pyproject.toml declara 0.3.1."
+    ]
+
+
+def criar_plugin_minimo(tmp_path, prompts):
+    (tmp_path / "skills" / "exemplo").mkdir(parents=True)
+    (tmp_path / "assets").mkdir()
+    for nome in ("icone.png", "logo.png", "logo-dark.png"):
+        (tmp_path / "assets" / nome).write_bytes(b"imagem")
+    (tmp_path / "skills" / "exemplo" / "SKILL.md").write_text(
+        "---\nname: exemplo\ndescription: Skill de teste\n---\n", encoding="utf-8"
+    )
+    return {
+        "name": "magistratura-enam-br",
+        "version": "0.4.1",
+        "description": "Plugin de teste",
+        "skills": "./skills/",
+        "author": {"name": "Boni Jr"},
+        "interface": {
+            "displayName": "Teste",
+            "shortDescription": "Teste",
+            "longDescription": "Teste",
+            "developerName": "Boni Jr",
+            "category": "Education",
+            "capabilities": ["Estudo jurídico"],
+            "defaultPrompt": prompts,
+            "composerIcon": "./assets/icone.png",
+            "logo": "./assets/logo.png",
+            "logoDark": "./assets/logo-dark.png",
+        },
+    }
+
+
+def test_validador_de_contrato_aceita_lista_de_prompts(tmp_path):
+    manifesto = criar_plugin_minimo(tmp_path, ["Jornada guiada", "Estudar tema", "Treinar questão"])
+    erros = []
+
+    verificador.validar_contrato_plugin(tmp_path, manifesto, erros)
+
+    assert erros == []
+
+
+def test_validador_de_contrato_rejeita_mais_de_tres_prompts(tmp_path):
+    manifesto = criar_plugin_minimo(tmp_path, ["Um", "Dois", "Três", "Quatro"])
+    erros = []
+
+    verificador.validar_contrato_plugin(tmp_path, manifesto, erros)
+
+    assert erros == [
+        "Manifesto interface.defaultPrompt deve conter de um a três prompts não vazios de até 128 caracteres."
     ]

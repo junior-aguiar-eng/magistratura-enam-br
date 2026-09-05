@@ -5,6 +5,16 @@ description: Realize curadoria jurisprudencial de informativos do STF e do STJ p
 
 # Curadoria de informativos STF/STJ
 
+## Política de fontes na curadoria
+
+Leia `../../references/politica-fontes-juridicas.md` e `../../references/protocolo-uso-do-acervo.md`. A curadoria exige o informativo oficial do STF ou STJ como fonte determinante; notícia, resumo ou comentário não o substituem.
+
+- Em `acervo_exclusivo`, cure somente o documento oficial já fornecido. Não procure o informativo nem complemente externamente; se a identidade ou atualização não puder ser confirmada no próprio acervo, declare a limitação.
+- Em `acervo_com_validacao_oficial`, valide no portal do tribunal somente identidade, íntegra e estado materialmente relevante.
+- Em `pesquisa_juridica_completa`, localize e leia primeiro o informativo e os documentos oficiais aplicáveis; Dizer o Direito, JOTA e Thomson Reuters / Revista dos Tribunais podem apenas apoiar contexto e localização, identificados como fontes editoriais secundárias.
+
+Notícia de julgamento sem acórdão oficial disponível deve permanecer como julgamento noticiado, não como tese confirmada. Só mude o modo se o pedido ampliar ou restringir efetivamente as fontes. Quando houver consulta externa, use `Base consultada` compacta e integrada, sem catálogo de links.
+
 ## Objetivo
 
 Selecionar, dentre os julgados de um informativo, aqueles que efetivamente merecem estudo aprofundado para a Magistratura. O resultado deve ser um boletim jurídico conciso e denso, não um resumo integral do informativo nem um capítulo de manual.
@@ -58,6 +68,8 @@ Ao alterar substancialmente a seleção ou o comentário de julgados, execute o 
 ## Limites
 
 Não transforme o boletim em lista de memorização, não atribua frequência de cobrança à FGV sem base objetiva e não trate decisão isolada, cautelar ou pendente como entendimento consolidado.
+
+Trate complemento do mesmo informativo, seleção ou comentário como continuidade, sem repetir ambientação. Se o objetivo mudar para estudo de julgado isolado, comparação documental ou planejamento de revisão, anuncie a mudança em uma frase e devolva a autoridade a `acompanhar-percurso-magistratura`; não execute silenciosamente a outra skill. Aplique `../acompanhar-percurso-magistratura/references/transicoes-inteligentes.md` para curadoria incompleta, suspensão, retomada e encerramento. Mudança de assunto não conclui boletim nem cria avaliação do candidato. Entre sessões, só retome com estado ou checkpoint fornecido.
 ## Estrutura canônica do comentário
 
 Para cada julgado selecionado, use na ordem e literalmente os marcadores `Situação precedental`, `Tese:`, `Controvérsia e contexto`, `Base normativa`, `Aplicação e limites` e `Relevância para a Magistratura`. Não dissolva esses marcadores em parágrafos sem título, ainda que o conteúdo apareça na mesma ordem. Quando uma informação estiver ausente, mantenha o marcador e registre objetivamente a lacuna, sem completar por inferência.

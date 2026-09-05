@@ -5,6 +5,26 @@ description: Conduza estudo e revisão de alto nível de Direito brasileiro para
 
 # Estudo jurídico para Magistratura
 
+## Preservação do recorte
+
+Na mudança apenas de modalidade, preserve o tema ou subtema explicitamente disponível. O nome amplo da disciplina não autoriza escolher instituto, lei ou caso concreto por conta própria; se o histórico não trouxer recorte suficiente, anuncie a modalidade e peça somente o tema específico em uma pergunta compacta.
+
+Na mudança apenas de tema, preserve a modalidade da rota anterior, mesmo depois de concluída a atividade. Se o novo tema for amplo, peça somente o ponto específico; não volte a perguntar modalidade nem apresente catálogo de modalidades.
+
+Tema amplo sem finalidade ou recorte suficiente não autoriza escolher unilateralmente subtema, modalidade, caso ou atividade complementar. Peça somente o ponto de partida discriminante; não inicie aula, questão ou flashcards para preencher a lacuna. Se o candidato disser “continue” com referência a conversa anterior, mas não fornecer o último ponto ou checkpoint na tarefa atual, declare brevemente a ausência desse estado e solicite apenas o ponto de retomada.
+
+Menção incidental ou possibilidade futura de outra atividade não cria rota, pendência ou suspensão. Mantenha a rota atual sem qualificar a atividade apenas cogitada como iniciada, pausada, suspensa ou retomável.
+
+## Política de fontes no estudo
+
+Leia `../../references/politica-fontes-juridicas.md` e `../../references/protocolo-uso-do-acervo.md` antes de usar material ou pesquisar. Use o acervo como base pedagógica e mantenha visível a separação entre conteúdo do candidato, complemento e atualização oficial.
+
+- Em `acervo_exclusivo`, não faça busca nem complemento externo. Se a atualidade for determinante, declare a impossibilidade de certificá-la nesse modo e trabalhe apenas com o material disponível.
+- Em `acervo_com_validacao_oficial`, consulte exclusivamente a fonte primária necessária para conferir ponto que possa mudar materialmente a resposta.
+- Em `pesquisa_juridica_completa`, consulte primeiro Planalto, STF, STJ ou a fonte oficial competente; use fonte editorial cadastrada apenas como apoio.
+
+Só altere a política quando o candidato mudar efetivamente o escopo das fontes. Havendo pesquisa externa relevante, integre os resultados ao desenvolvimento e finalize com `Base consultada` compacta, sem clipping, manchetes ou URLs brutas no corpo.
+
 ## Diretriz obrigatória do plugin
 
 Na abertura de nova sessão de estudo, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade da mesma sessão, reaproveite a leitura já feita e releia apenas diante de alteração material do pedido, do acervo ou do modo de atuação.
@@ -63,6 +83,10 @@ Leia `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de formul
 ## Continuidade de estudo
 
 Registre erros recorrentes ou progresso apenas quando houver mecanismo de persistência disponível e conteúdo material a preservar. Não simule memória persistente, não elimine histórico sem autorização e não permita que um registro substitua o estudo do material.
+
+Reconheça resposta, aprofundamento e mudança de modalidade dentro do mesmo tema como continuidade desta skill. Preserve o tema quando o candidato alternar entre explicação, revisão, questão, discursiva ou prova oral; não repita ambientação quando rota, tema e política de fontes já estiverem claros.
+
+Se o pedido passar a curadoria de informativo, comparação documental ou planejamento de revisão, anuncie a mudança em uma frase e devolva a autoridade a `acompanhar-percurso-magistratura`; não execute silenciosamente a outra skill. Aplique `../acompanhar-percurso-magistratura/references/transicoes-inteligentes.md` para questão ou discursiva pendente, suspensão, retomada e encerramento. Mudança de assunto não registra tentativa, erro ou abandono. Entre sessões, só retome com estado ou checkpoint fornecido.
 
 ## Avaliação de manutenção
 

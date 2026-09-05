@@ -60,6 +60,12 @@ Na ausência de material de conteúdo pertinente, a skill pode convidar facultat
 
 O uso prioritário do acervo não impede investigação complementar útil para estudo, revisão ou formulação de questões. Quando ela for materialmente relevante, busque fontes profissionais identificáveis e proporcionais ao tema: legislação e atos em portais oficiais; jurisprudência e informações processuais nos portais do STF, STJ, TSE, STM, tribunais competentes e CNJ; e, para contextualização técnica, doutrina, periódicos, instituições acadêmicas ou editoriais jurídicos especializados com autoria e referência verificáveis. Fontes privadas especializadas, inclusive o Dizer o Direito, podem orientar aprofundamento ou localização de fontes, mas não substituem texto normativo, julgado ou repositório oficial como prova da regra jurídica atual. Não apresente complemento editorial como entendimento oficial e identifique-o como tal.
 
+## Governança operacional de fontes
+
+Toda skill jurídica deve aplicar `references/politica-fontes-juridicas.md` e `references/protocolo-uso-do-acervo.md`. `acervo_exclusivo` impede qualquer busca ou complemento externo e exige declaração de limitação quando a atualidade não puder ser certificada. `acervo_com_validacao_oficial` permite somente validação primária materialmente necessária. `pesquisa_juridica_completa` começa pela fonte primária competente; fontes secundárias do registro fechado são apoio editorial e jamais autoridade oficial.
+
+Preferência inferida por modo de fontes é estado efêmero da conversa, nunca perfil persistente. Alteração do modo ocorre apenas quando o pedido mudar efetivamente o escopo. Consulta externa relevante deve ser integrada à análise e sintetizada ao final em `Base consultada`, sem manchetes, cards, URLs brutas no corpo ou lista de resultados. Citações automáticas da plataforma não devem ser ocultadas.
+
 ## Revisão ativa de conteúdo
 
 Revisão de conteúdo deve priorizar recuperação ativa, precisão da correção e retenção do critério jurídico; não pode degenerar em nova aula abreviada ou resumo indiscriminado. Use recuperação quando houver esquecimento ou erro, consolidação para estabilizar o mapa decisório e véspera para reduzir risco de prova. O calendário, os intervalos e a capacidade de estudo pertencem exclusivamente à skill de planejamento de jurisprudência.

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.4.1" src="https://img.shields.io/badge/vers%C3%A3o-0.4.1-006B4F"></a>
+  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.5.0" src="https://img.shields.io/badge/vers%C3%A3o-0.5.0-006B4F"></a>
   <a href="plugins/magistratura-enam-br/pyproject.toml"><img alt="Python 3.14" src="https://img.shields.io/badge/Python-3.14-1F6F54"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml"><img alt="Validação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml/badge.svg"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml"><img alt="Documentação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml/badge.svg"></a>
@@ -41,6 +41,19 @@ O plugin prioriza rigor jurídico, prática deliberada, feedback explicativo, re
 | `planejar-jurisprudencia` | Esteira de julgados e revisão espaçada | Preserva a política fixa sem adaptação silenciosa |
 | `acompanhar-percurso-magistratura` | Roteamento e consolidação do percurso | Não executa automaticamente a skill indicada |
 
+## Seis entradas naturais
+
+Os gatilhos do Codex representam seis intenções: jornada guiada, estudo de tema, treino por questão, curadoria de informativo, comparação de materiais e revisão de julgados. Somente a jornada guiada apresenta o ambiente; pedidos diretos seguem para a rota correspondente sem repetir introdução.
+
+| Intenção | Entrada natural |
+|---|---|
+| Jornada guiada | “Apresente o ambiente e ajude-me a escolher um percurso.” |
+| Estudo | “Quero estudar um tema jurídico em profundidade.” |
+| Treino | “Quero treinar com uma questão jurídica difícil.” |
+| Informativos | “Quero curar um informativo oficial do STF ou STJ.” |
+| Comparação | “Quero comparar duas versões de material do ENAM.” |
+| Revisão | “Quero organizar a revisão dos julgados que já selecionei.” |
+
 ## Instalação no Windows
 
 O plugin não é um aplicativo `.exe`. A instalação registra este repositório como marketplace local no perfil do Codex e coloca a versão selecionada no cache do usuário Windows.
@@ -66,7 +79,7 @@ Depois da instalação, abra uma nova tarefa no Codex. O instalador não envia a
 ### Pelo marketplace Git
 
 ```powershell
-codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.4.1
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.5.0
 codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 

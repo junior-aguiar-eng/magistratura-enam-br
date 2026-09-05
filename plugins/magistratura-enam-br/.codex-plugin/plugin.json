@@ -1,6 +1,6 @@
 {
   "name": "magistratura-enam-br",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Curadoria, estudo e revisão de Direito brasileiro para Magistratura e ENAM.",
   "author": {
     "name": "Boni Jr"
@@ -19,7 +19,11 @@
       "Revisão espaçada",
       "Acompanhamento pedagógico"
     ],
-    "defaultPrompt": "Quero estudar Direito brasileiro para a Magistratura.",
+    "defaultPrompt": [
+      "Apresente o ambiente e ajude-me a escolher um percurso.",
+      "Quero estudar um tema jurídico em profundidade.",
+      "Quero treinar com uma questão jurídica difícil."
+    ],
     "brandColor": "#006B4F",
     "composerIcon": "./assets/magistratura-enam-br.png",
     "logo": "./assets/magistratura-enam-br.png",

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "registry_version": "1.0.0",
+  "sources": [
+    {
+      "id": "stf",
+      "name": "Supremo Tribunal Federal",
+      "tier": "primaria",
+      "canonical_domains": ["portal.stf.jus.br", "jurisprudencia.stf.jus.br"],
+      "allowed_purposes": ["jurisprudencia", "andamento_processual", "informativo", "noticia_institucional"],
+      "authoritative_for": ["jurisprudencia", "andamento_processual", "informativo"]
+    },
+    {
+      "id": "stj",
+      "name": "Superior Tribunal de Justiça",
+      "tier": "primaria",
+      "canonical_domains": ["www.stj.jus.br", "processo.stj.jus.br"],
+      "allowed_purposes": ["jurisprudencia", "andamento_processual", "informativo", "noticia_institucional"],
+      "authoritative_for": ["jurisprudencia", "andamento_processual", "informativo"]
+    },
+    {
+      "id": "planalto",
+      "name": "Portal da Legislação da Presidência da República",
+      "tier": "primaria",
+      "canonical_domains": ["www.planalto.gov.br"],
+      "allowed_purposes": ["legislacao"],
+      "authoritative_for": ["legislacao"]
+    },
+    {
+      "id": "dizer-o-direito",
+      "name": "Dizer o Direito",
+      "tier": "secundaria",
+      "canonical_domains": ["www.dizerodireito.com.br"],
+      "allowed_purposes": ["analise_editorial", "localizacao_fontes"],
+      "limitations": ["Não comprova isoladamente vigência, tese, resultado, modulação, trânsito em julgado ou situação processual."]
+    },
+    {
+      "id": "jota",
+      "name": "JOTA",
+      "tier": "secundaria",
+      "canonical_domains": ["www.jota.info"],
+      "allowed_purposes": ["analise_editorial", "localizacao_fontes"],
+      "limitations": ["Conteúdo jornalístico ou analítico exige confirmação na fonte oficial competente."]
+    },
+    {
+      "id": "thomson-reuters-rt",
+      "name": "Thomson Reuters / Revista dos Tribunais",
+      "tier": "secundaria",
+      "canonical_domains": ["www.thomsonreuters.com.br", "next-proview.thomsonreuters.com"],
+      "allowed_purposes": ["doutrina", "analise_editorial", "localizacao_fontes"],
+      "limitations": ["Doutrina e conteúdo editorial não substituem texto normativo, julgado ou andamento oficial; parte do conteúdo pode exigir assinatura."]
+    }
+  ]
+}

@@ -5,6 +5,14 @@ description: Compare materiais publicados do ENAM por capítulo, tema e subtema 
 
 # Comparação de materiais do ENAM
 
+## Política de fontes na comparação
+
+Leia `../../references/politica-fontes-juridicas.md` e `../../references/protocolo-uso-do-acervo.md`. Se o escopo for comparar exclusivamente os documentos fornecidos, aplique `acervo_exclusivo`: não introduza pesquisa externa, não complete lacunas e não use conhecimento externo para classificar delta. Aponte o que os documentos permitem ou não concluir.
+
+Em `acervo_com_validacao_oficial`, valide externamente apenas alteração legislativa ou jurisprudencial material que dependa de confirmação atual. Em `pesquisa_juridica_completa`, consulte primeiro a fonte oficial competente antes de atribuir causa jurídica a uma diferença; fonte editorial cadastrada é apenas apoio secundário. Só transite entre políticas quando o candidato alterar efetivamente o universo de fontes.
+
+Quando houver consulta externa relevante, apresente as fontes decisivas em `Base consultada`, sem manchetes, cards, URLs brutas no corpo ou lista de resultados. Identifique expressamente qualquer fonte secundária por sua natureza editorial.
+
 ## Diretriz obrigatória do plugin
 
 Na abertura de nova comparação, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade do mesmo par documental e escopo, reaproveite essa leitura e releia apenas se houver nova versão, mudança de escopo ou dúvida real de fonte.
@@ -31,3 +39,5 @@ Não conclua exclusão sem demonstração de cobertura integral do material post
 Cronogramas e planos de remessa de curso não comprovam disponibilidade, versão, alteração, prioridade ou exclusão de conteúdo. Não infira a existência de documento não fornecido, nem converta análise estratégica em prova de mudança jurídica ou editorial.
 
 Consulte `../../references/diretrizes-estudo-juridico-brasileiro.md` antes de classificar delta jurídico, legislativo ou jurisprudencial; não o carregue para conferir alteração meramente editorial e reaproveite a leitura enquanto o conjunto documental permanecer o mesmo.
+
+Trate novo recorte do mesmo par documental como continuidade e não repita ambientação. Se o pedido mudar para explicação jurídica, curadoria ou planejamento, anuncie a mudança em uma frase e devolva a autoridade a `acompanhar-percurso-magistratura`; não execute silenciosamente a outra skill. Aplique `../acompanhar-percurso-magistratura/references/transicoes-inteligentes.md` quando faltar o segundo documento ou houver suspensão, retomada e encerramento. Mudança de assunto não confirma delta, exclusão, tentativa, erro ou abandono. Entre sessões, só retome com estado ou checkpoint fornecido.
