@@ -1,5 +1,7 @@
 import copy
 import json
+import tomllib
+from pathlib import Path
 
 import pytest
 from mcp.client import Client
@@ -33,10 +35,28 @@ async def test_apenas_renderizador_declara_recurso_ui(server):
         tools = await client.list_tools()
 
     by_name = {tool.name: tool for tool in tools.tools}
-    assert by_name["renderizar_questao"].meta["ui"]["resourceUri"] == UI_URI
+    render_meta = by_name["renderizar_questao"].meta
+    assert render_meta["ui"] == {
+        "resourceUri": UI_URI,
+        "visibility": ["model", "app"],
+    }
+    assert render_meta["openai/outputTemplate"] == UI_URI
+    assert render_meta["openai/widgetAccessible"] is True
+    assert render_meta["openai/toolInvocation/invoking"] == "Abrindo questão…"
+    assert render_meta["openai/toolInvocation/invoked"] == "Questão pronta"
     for name, tool in by_name.items():
         if name != "renderizar_questao":
             assert tool.meta is None or "ui" not in tool.meta
+
+
+@pytest.mark.anyio
+async def test_servidor_publica_versao_real_do_pacote(server):
+    async with Client(server) as client:
+        version = client.server_info.version
+
+    pyproject = Path(__file__).resolve().parents[1] / "pyproject.toml"
+    package_version = tomllib.loads(pyproject.read_text(encoding="utf-8"))["project"]["version"]
+    assert version == package_version
 
 
 @pytest.mark.anyio
@@ -46,6 +66,15 @@ async def test_recurso_ui_e_autocontido(server):
 
     resource = result.contents[0]
     assert resource.mime_type == "text/html;profile=mcp-app"
+    assert resource.meta["ui"]["prefersBorder"] is True
+    assert resource.meta["openai/widgetPrefersBorder"] is True
+    assert resource.meta["openai/widgetDescription"] == (
+        "Questão jurídica objetiva com correção após a tentativa."
+    )
+    assert resource.meta["openai/widgetCSP"] == {
+        "connect_domains": [],
+        "resource_domains": [],
+    }
     assert '<div id="root"></div>' in resource.text
     assert "<script" in resource.text
     assert "<style" in resource.text

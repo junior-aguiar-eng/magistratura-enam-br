@@ -1,4 +1,5 @@
 import argparse
+import tomllib
 from pathlib import Path
 from typing import Any, Literal
 
@@ -64,7 +65,9 @@ def build_server(config: LibraryConfig) -> MCPServer:
         "estudo-juridico-avancado",
         title="Estudo Jurídico Avançado",
         description="Acervo Markdown local e sessões jurídicas interativas.",
-        version="0.1.0",
+        version=tomllib.loads(
+            (Path(__file__).resolve().parent.parent / "pyproject.toml").read_text(encoding="utf-8")
+        )["project"]["version"],
     )
 
     @server.tool(
@@ -126,7 +129,16 @@ def build_server(config: LibraryConfig) -> MCPServer:
             "Use imediatamente após criar_sessao_questao para exibir a sessão pronta como card "
             "interativo com alternativas clicáveis. Não substitua o card por texto estático."
         ),
-        meta={"ui": {"resourceUri": UI_URI}},
+        meta={
+            "ui": {
+                "resourceUri": UI_URI,
+                "visibility": ["model", "app"],
+            },
+            "openai/outputTemplate": UI_URI,
+            "openai/widgetAccessible": True,
+            "openai/toolInvocation/invoking": "Abrindo questão…",
+            "openai/toolInvocation/invoked": "Questão pronta",
+        },
         structured_output=True,
         annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False),
     )
@@ -144,7 +156,12 @@ def build_server(config: LibraryConfig) -> MCPServer:
             "ui": {
                 "prefersBorder": True,
                 "csp": {"connectDomains": [], "resourceDomains": []},
-            }
+            },
+            "openai/widgetPrefersBorder": True,
+            "openai/widgetCSP": {
+                "connect_domains": [],
+                "resource_domains": [],
+            },
         },
     )
     @server.resource(
@@ -159,6 +176,11 @@ def build_server(config: LibraryConfig) -> MCPServer:
                 "csp": {"connectDomains": [], "resourceDomains": []},
             },
             "openai/widgetDescription": "Questão jurídica objetiva com correção após a tentativa.",
+            "openai/widgetPrefersBorder": True,
+            "openai/widgetCSP": {
+                "connect_domains": [],
+                "resource_domains": [],
+            },
         },
     )
     def question_widget() -> str:
