@@ -28,6 +28,9 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 - Codex usa o servidor empacotado por `stdio`; ChatGPT usa conexão privada previamente registrada, sem credenciais versionadas.
 - O modelo gera a questão; a skill governa o conteúdo jurídico; o MCP executa persistência, isolamento do gabarito, renderização e correção.
 - Inicialização automática do túnel é opt-in, limitada a `HKCU` e removível sem apagar biblioteca ou histórico.
+- O runner é um supervisor persistente: valida executável, perfil e diretório, usa mutex para evitar duplicidade, acompanha a instância efetiva e reinicia o túnel cinco segundos após uma queda. PIDs e logs operacionais ficam em `%LOCALAPPDATA%`.
+- O widget lê `ui/notifications/tool-result` em `params.structuredContent`, mantém compatibilidade legada e usa `ui://estudo-juridico/questao/v2.html` para evitar recurso visual obsoleto em cache; `v1.html` continua registrado como alias durante a atualização de catálogos existentes.
+- Os metadados de `criar_sessao_questao` e `renderizar_questao` tornam obrigatório o card interativo para pedidos de questão quando o MCP estiver disponível; fallback textual exige falha explícita da chamada.
 
 ## Contratos que exigem preservação
 

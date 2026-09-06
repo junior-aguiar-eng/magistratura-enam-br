@@ -7,7 +7,7 @@ from mcp.types import ToolAnnotations
 from pydantic import BaseModel, ConfigDict, Field
 
 from .config import LibraryConfig
-from .resources import UI_MIME_TYPE, UI_URI, load_question_widget
+from .resources import LEGACY_UI_URI, UI_MIME_TYPE, UI_URI, load_question_widget
 from .tools import StudyService
 
 Option = Literal["A", "B", "C", "D", "E"]
@@ -88,6 +88,12 @@ def build_server(config: LibraryConfig) -> MCPServer:
         return service.search(consulta, limit=limite, path_prefix=prefixo)
 
     @server.tool(
+        description=(
+            "Sempre use esta ferramenta quando o usuário pedir uma questão jurídica objetiva, "
+            "um treino por questões ou uma questão para responder. Gere a questão privada completa, "
+            "crie a sessão e, ao receber o session_id, chame renderizar_questao. Não entregue a questão "
+            "como texto estático quando estas ferramentas estiverem disponíveis."
+        ),
         structured_output=True,
         annotations=ToolAnnotations(
             readOnlyHint=False, destructiveHint=False, idempotentHint=False, openWorldHint=False
@@ -116,7 +122,10 @@ def build_server(config: LibraryConfig) -> MCPServer:
         return service.history(limit=limite, cursor=cursor)
 
     @server.tool(
-        description="Use quando uma sessão pronta deve ser exibida na interface interativa.",
+        description=(
+            "Use imediatamente após criar_sessao_questao para exibir a sessão pronta como card "
+            "interativo com alternativas clicáveis. Não substitua o card por texto estático."
+        ),
         meta={"ui": {"resourceUri": UI_URI}},
         structured_output=True,
         annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False),
@@ -125,6 +134,19 @@ def build_server(config: LibraryConfig) -> MCPServer:
         """Carrega a projeção pública atual de uma sessão para o widget."""
         return service.questions.get_session(session_id)
 
+    @server.resource(
+        LEGACY_UI_URI,
+        name="questao-juridica-interativa-v1",
+        title="Questão jurídica interativa (compatibilidade)",
+        description="Alias compatível do widget para catálogos ainda vinculados à versão anterior.",
+        mime_type=UI_MIME_TYPE,
+        meta={
+            "ui": {
+                "prefersBorder": True,
+                "csp": {"connectDomains": [], "resourceDomains": []},
+            }
+        },
+    )
     @server.resource(
         UI_URI,
         name="questao-juridica-interativa",

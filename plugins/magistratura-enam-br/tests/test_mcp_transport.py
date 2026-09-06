@@ -91,6 +91,11 @@ async def test_config_bundled_inicia_servidor_stdio_real(tmp_path):
     creation = by_name["criar_sessao_questao"]
     creation_schema = json.dumps(creation.input_schema)
     assert all(field in creation_schema for field in ("subject", "alternatives", "correct_option"))
+    assert "Sempre use esta ferramenta quando o usuário pedir uma questão jurídica" in creation.description
+    assert "chame renderizar_questao" in creation.description
+    rendering = by_name["renderizar_questao"]
+    assert "imediatamente após criar_sessao_questao" in rendering.description
+    assert "Não substitua o card por texto estático" in rendering.description
     assert creation.annotations.destructive_hint is False
     assert creation.annotations.open_world_hint is False
     assert by_name["buscar_acervo"].annotations.read_only_hint is True

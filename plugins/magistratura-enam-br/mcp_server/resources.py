@@ -1,6 +1,7 @@
 from pathlib import Path
 
-UI_URI = "ui://estudo-juridico/questao/v1.html"
+UI_URI = "ui://estudo-juridico/questao/v2.html"
+LEGACY_UI_URI = "ui://estudo-juridico/questao/v1.html"
 UI_MIME_TYPE = "text/html;profile=mcp-app"
 
 

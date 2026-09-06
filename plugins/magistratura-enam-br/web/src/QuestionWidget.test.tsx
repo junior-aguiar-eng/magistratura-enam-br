@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { QuestionWidget } from "./QuestionWidget";
 import type { Question } from "./contracts";
@@ -32,4 +32,23 @@ test("apresenta erro sem inventar correção", async () => {
   await userEvent.click(screen.getByRole("button", {name:"Responder"}));
   expect(await screen.findByText(/Não foi possível/)).toBeInTheDocument();
   expect(screen.queryByText(/gabarito/i)).not.toBeInTheDocument();
+});
+
+test("carrega a questão pelo formato de resultado do bridge MCP Apps", async () => {
+  window.openai = undefined;
+  render(<QuestionWidget />);
+  expect(screen.getByText("Carregando questão…")).toBeInTheDocument();
+
+  await act(async () => {
+    window.dispatchEvent(new MessageEvent("message", {
+      data: {
+        jsonrpc: "2.0",
+        method: "ui/notifications/tool-result",
+        params: { structuredContent: ready },
+      },
+    }));
+  });
+
+  expect(await screen.findByRole("button", { name: "Responder" })).toBeInTheDocument();
+  expect(screen.getByText(ready.prompt)).toBeInTheDocument();
 });

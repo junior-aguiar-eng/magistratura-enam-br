@@ -8,7 +8,8 @@ from test_mcp_question_sessions import sessao
 from mcp_server.config import LibraryConfig
 from mcp_server.server import build_server
 
-UI_URI = "ui://estudo-juridico/questao/v1.html"
+UI_URI = "ui://estudo-juridico/questao/v2.html"
+LEGACY_UI_URI = "ui://estudo-juridico/questao/v1.html"
 
 
 @pytest.fixture
@@ -48,6 +49,16 @@ async def test_recurso_ui_e_autocontido(server):
     assert '<div id="root"></div>' in resource.text
     assert "<script" in resource.text
     assert "<style" in resource.text
+
+
+@pytest.mark.anyio
+async def test_recurso_ui_anterior_permanece_disponivel_durante_atualizacao(server):
+    async with Client(server) as client:
+        current = await client.read_resource(UI_URI)
+        legacy = await client.read_resource(LEGACY_UI_URI)
+
+    assert legacy.contents[0].mime_type == current.contents[0].mime_type
+    assert legacy.contents[0].text == current.contents[0].text
 
 
 @pytest.mark.anyio

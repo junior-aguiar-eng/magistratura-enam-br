@@ -9,8 +9,13 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
 
   useEffect(() => {
     const receive = (event: MessageEvent) => {
-      const payload = event.data?.params?.result?.structuredContent;
-      if (event.data?.method === "ui/notifications/tool-result" && payload) setQuestion(payload);
+      if (event.data?.method !== "ui/notifications/tool-result") return;
+      const params = event.data?.params;
+      const payload = params?.structuredContent
+        ?? params?.structured_content
+        ?? params?.result?.structuredContent
+        ?? params?.result?.structured_content;
+      if (payload) setQuestion(payload);
     };
     window.addEventListener("message", receive);
     return () => window.removeEventListener("message", receive);
