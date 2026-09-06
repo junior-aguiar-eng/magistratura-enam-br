@@ -10,11 +10,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $serviceName = 'EstudoJuridicoAvancadoMcp'
+$taskName = $serviceName
 $runKey = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
-$runtimeDirectory = Join-Path $env:LOCALAPPDATA 'Estudo Jurídico Avançado\startup'
 $sourceRunnerPath = Join-Path $PSScriptRoot 'local_service_runner.ps1'
-$runnerPath = Join-Path $runtimeDirectory 'runner.ps1'
-$manifestPath = Join-Path $runtimeDirectory 'startup.json'
 
 if (-not $Confirm) {
     throw 'A instalação exige confirmação explícita: execute novamente com -Confirm.'
@@ -40,30 +38,52 @@ if (-not $pluginItem.PSIsContainer) {
     throw "O diretório do plugin precisa ser uma pasta: $PluginDirectory"
 }
 $pluginRoot = $pluginItem.FullName
+$runtimeDirectory = Join-Path $pluginRoot '.runtime\startup'
+$runtimeProfilePath = Join-Path $runtimeDirectory 'tunnel-profile.yaml'
+$manifestPath = Join-Path $runtimeDirectory 'startup.json'
 $runtimeKey = [Environment]::GetEnvironmentVariable('CONTROL_PLANE_API_KEY', 'User')
 if ([string]::IsNullOrWhiteSpace($runtimeKey)) {
     throw 'CONTROL_PLANE_API_KEY precisa existir no ambiente do usuário; nenhum segredo será gravado pelo instalador.'
 }
 
 New-Item -ItemType Directory -Path $runtimeDirectory -Force | Out-Null
+Copy-Item -LiteralPath $tunnelProfile -Destination $runtimeProfilePath -Force
 @{
     tunnel_client = $tunnelClient
-    tunnel_profile = $tunnelProfile
+    tunnel_profile = $runtimeProfilePath
     working_directory = $pluginRoot
 } | ConvertTo-Json | Set-Content -LiteralPath $manifestPath -Encoding utf8
-Copy-Item -LiteralPath $sourceRunnerPath -Destination $runnerPath -Force
 
 $powershell = Join-Path $PSHOME 'powershell.exe'
 if (-not (Test-Path -LiteralPath $powershell)) {
     $powershell = (Get-Command powershell.exe -ErrorAction Stop).Source
 }
-$runCommand = '"{0}" -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "{1}"' -f $powershell, $runnerPath
-New-Item -Path $runKey -Force | Out-Null
-Set-ItemProperty -Path $runKey -Name $serviceName -Value $runCommand
+$actionArguments = "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$sourceRunnerPath`" -TunnelClientPath `"$tunnelClient`" -TunnelProfilePath `"$runtimeProfilePath`" -WorkingDirectory `"$pluginRoot`" -RuntimeDirectory `"$runtimeDirectory`""
+$action = New-ScheduledTaskAction `
+    -Execute $powershell `
+    -Argument $actionArguments
+$identity = [Security.Principal.WindowsIdentity]::GetCurrent().Name
+$trigger = New-ScheduledTaskTrigger -AtLogOn -User $identity
+$principal = New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel Limited
+$taskSettings = New-ScheduledTaskSettingsSet `
+    -AllowStartIfOnBatteries `
+    -DontStopIfGoingOnBatteries `
+    -StartWhenAvailable `
+    -ExecutionTimeLimit ([TimeSpan]::Zero) `
+    -MultipleInstances IgnoreNew `
+    -RestartCount 999 `
+    -RestartInterval (New-TimeSpan -Minutes 1)
+Register-ScheduledTask `
+    -TaskName $taskName `
+    -Action $action `
+    -Trigger $trigger `
+    -Principal $principal `
+    -Settings $taskSettings `
+    -Description 'Mantém o túnel MCP do Estudo Jurídico Avançado disponível.' `
+    -Force | Out-Null
 
-$quotedRunner = '"' + $runnerPath + '"'
-Start-Process -FilePath $powershell `
-    -ArgumentList @('-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', $quotedRunner) `
-    -WorkingDirectory $runtimeDirectory `
-    -WindowStyle Hidden
+if (Test-Path -LiteralPath $runKey) {
+    Remove-ItemProperty -Path $runKey -Name $serviceName -ErrorAction SilentlyContinue
+}
+Start-ScheduledTask -TaskName $taskName
 Write-Output "Inicialização automática instalada no escopo do usuário: $serviceName"

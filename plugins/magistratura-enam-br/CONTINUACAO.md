@@ -27,8 +27,8 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 - Servidor MCP, widget, persistência local e indexação recursiva integrados na versão `0.7.0`.
 - Codex usa o servidor empacotado por `stdio`; ChatGPT usa conexão privada previamente registrada, sem credenciais versionadas.
 - O modelo gera a questão; a skill governa o conteúdo jurídico; o MCP executa persistência, isolamento do gabarito, renderização e correção.
-- Inicialização automática do túnel é opt-in, limitada a `HKCU` e removível sem apagar biblioteca ou histórico.
-- O runner é um supervisor persistente: valida executável, perfil e diretório, usa mutex para evitar duplicidade, acompanha a instância efetiva e reinicia o túnel cinco segundos após uma queda. PIDs e logs operacionais ficam em `%LOCALAPPDATA%`.
+- Inicialização automática do túnel é opt-in, registrada no Agendador de Tarefas para o usuário atual e removível sem apagar biblioteca ou histórico; a chave legada de `HKCU\...\Run` é retirada na migração.
+- O runner é um supervisor persistente lançado pelo Agendador de Tarefas, não pelo shell instalador: valida executável, perfil e diretório, usa mutex para evitar duplicidade, acompanha a instância efetiva e reinicia o túnel cinco segundos após uma queda. O próprio supervisor recebe política de reinício do Windows. Perfil copiado, PIDs e logs operacionais ficam em `.runtime/startup`, ignorado pelo Git e compartilhado com o contexto do Agendador.
 - O widget lê `ui/notifications/tool-result` em `params.structuredContent`, mantém compatibilidade legada e usa `ui://estudo-juridico/questao/v2.html` para evitar recurso visual obsoleto em cache; `v1.html` continua registrado como alias durante a atualização de catálogos existentes.
 - Os metadados de `criar_sessao_questao` e `renderizar_questao` tornam obrigatório o card interativo para pedidos de questão quando o MCP estiver disponível; fallback textual exige falha explícita da chamada.
 

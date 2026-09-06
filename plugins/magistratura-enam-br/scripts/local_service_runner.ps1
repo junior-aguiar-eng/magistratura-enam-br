@@ -1,5 +1,9 @@
 [CmdletBinding()]
 param(
+    [string]$TunnelClientPath,
+    [string]$TunnelProfilePath,
+    [string]$WorkingDirectory,
+    [string]$RuntimeDirectory,
     [ValidateRange(0, 300)]
     [int]$RestartDelaySeconds = 5,
     [ValidateRange(0, 1000)]
@@ -8,11 +12,32 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$startupDirectory = Split-Path -Parent $PSCommandPath
-$settings = Get-Content -LiteralPath (Join-Path $startupDirectory 'startup.json') -Raw | ConvertFrom-Json
-$clientPath = [IO.Path]::GetFullPath([string]$settings.tunnel_client)
-$profilePath = [IO.Path]::GetFullPath([string]$settings.tunnel_profile)
-$workingDirectory = [IO.Path]::GetFullPath([string]$settings.working_directory)
+$startupDirectory = if ([string]::IsNullOrWhiteSpace($RuntimeDirectory)) {
+    Split-Path -Parent $PSCommandPath
+}
+else {
+    [IO.Path]::GetFullPath($RuntimeDirectory)
+}
+New-Item -ItemType Directory -Path $startupDirectory -Force | Out-Null
+
+if ([string]::IsNullOrWhiteSpace($TunnelClientPath)) {
+    $settingsPath = Join-Path $startupDirectory 'startup.json'
+    $settings = Get-Content -LiteralPath $settingsPath -Raw | ConvertFrom-Json
+    $TunnelClientPath = [string]$settings.tunnel_client
+    $TunnelProfilePath = [string]$settings.tunnel_profile
+    $WorkingDirectory = [string]$settings.working_directory
+}
+if (
+    [string]::IsNullOrWhiteSpace($TunnelClientPath) -or
+    [string]::IsNullOrWhiteSpace($TunnelProfilePath) -or
+    [string]::IsNullOrWhiteSpace($WorkingDirectory)
+) {
+    throw 'TunnelClientPath, TunnelProfilePath e WorkingDirectory precisam ser informados em conjunto.'
+}
+
+$clientPath = [IO.Path]::GetFullPath($TunnelClientPath)
+$profilePath = [IO.Path]::GetFullPath($TunnelProfilePath)
+$workingDirectory = [IO.Path]::GetFullPath($WorkingDirectory)
 $stdoutPath = Join-Path $startupDirectory 'tunnel-client.stdout.log'
 $stderrPath = Join-Path $startupDirectory 'tunnel-client.stderr.log'
 $supervisorLogPath = Join-Path $startupDirectory 'supervisor.log'

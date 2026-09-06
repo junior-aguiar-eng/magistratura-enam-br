@@ -21,21 +21,34 @@ def test_scripts_exigem_confirmacao_explicita() -> None:
 
 def test_instalacao_e_escopo_do_usuario_sao_seguros() -> None:
     text = INSTALL.read_text(encoding="utf-8")
+    assert ".runtime\\startup" in text
+    assert "Estudo Jurídico Avançado\\startup" not in text
     assert "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" in text
-    assert "Start-Process" in text
-    assert "-WorkingDirectory" in text
+    assert "-WorkingDirectory $runtimeDirectory" not in text
     assert "CONTROL_PLANE_API_KEY" in text
     assert "ConvertTo-Json" in text
     assert "-WindowStyle Hidden" in text
     assert "local_service_runner.ps1" in text
-    assert "Copy-Item -LiteralPath $sourceRunnerPath" in text
-    assert "Start-Process -FilePath $powershell" in text
+    assert '-File `"$sourceRunnerPath`"' in text
+    assert '-TunnelClientPath `"$tunnelClient`"' in text
+    assert '-RuntimeDirectory `"$runtimeDirectory`"' in text
+    assert "Copy-Item -LiteralPath $tunnelProfile" in text
+    assert "$runtimeProfilePath" in text
+    assert "Copy-Item -LiteralPath $sourceRunnerPath" not in text
+    assert "Register-ScheduledTask" in text
+    assert "Start-ScheduledTask" in text
+    assert "RestartCount 999" in text
+    assert "MultipleInstances IgnoreNew" in text
+    assert "Set-ItemProperty" not in text
     assert "& $runnerPath" not in text
 
 
 def test_runner_e_idempotente_e_registra_falhas_operacionais() -> None:
     text = RUNNER.read_text(encoding="utf-8")
 
+    assert "[string]$TunnelClientPath" in text
+    assert "[string]$RuntimeDirectory" in text
+    assert "New-Item -ItemType Directory" in text
     assert "Get-CimInstance Win32_Process" in text
     assert "ExecutablePath" in text
     assert "-ieq $clientPath" in text
@@ -106,6 +119,8 @@ def test_supervisor_reinicia_tunnel_que_encerra_inesperadamente(tmp_path: Path) 
 
 def test_desinstalacao_e_simetrica_e_preserva_dados() -> None:
     text = UNINSTALL.read_text(encoding="utf-8")
+    assert ".runtime\\startup" in text
+    assert "tunnel-profile.yaml" in text
     assert "Remove-ItemProperty" in text
     assert "runner.ps1" in text
     assert "library-config.json" not in text
@@ -119,3 +134,6 @@ def test_desinstalacao_e_simetrica_e_preserva_dados() -> None:
     assert "supervisor.pid" in text
     assert "supervisor.log" in text
     assert "expectedRunnerPath" in text
+    assert "Join-Path $PSScriptRoot 'local_service_runner.ps1'" in text
+    assert "Stop-ScheduledTask" in text
+    assert "Unregister-ScheduledTask" in text

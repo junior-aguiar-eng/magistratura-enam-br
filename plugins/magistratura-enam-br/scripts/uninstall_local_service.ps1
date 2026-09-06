@@ -3,10 +3,13 @@ param([switch]$Confirm)
 
 $ErrorActionPreference = 'Stop'
 $serviceName = 'EstudoJuridicoAvancadoMcp'
+$taskName = $serviceName
 $runKey = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
-$runtimeDirectory = Join-Path $env:LOCALAPPDATA 'Estudo Jurídico Avançado\startup'
+$pluginRoot = Split-Path -Parent $PSScriptRoot
+$runtimeDirectory = Join-Path $pluginRoot '.runtime\startup'
 $runnerPath = Join-Path $runtimeDirectory 'runner.ps1'
 $manifestPath = Join-Path $runtimeDirectory 'startup.json'
+$runtimeProfilePath = Join-Path $runtimeDirectory 'tunnel-profile.yaml'
 $pidPath = Join-Path $runtimeDirectory 'tunnel.pid'
 $supervisorPidPath = Join-Path $runtimeDirectory 'supervisor.pid'
 $stdoutLogPath = Join-Path $runtimeDirectory 'tunnel-client.stdout.log'
@@ -17,8 +20,14 @@ if (-not $Confirm) {
     throw 'A remoção exige confirmação explícita: execute novamente com -Confirm.'
 }
 
+$scheduledTask = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+if ($null -ne $scheduledTask) {
+    Stop-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+    Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
+}
+
 $expectedClientPath = $null
-$expectedRunnerPath = [IO.Path]::GetFullPath($runnerPath)
+$expectedRunnerPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot 'local_service_runner.ps1'))
 if (Test-Path -LiteralPath $manifestPath) {
     $settings = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
     if ($settings.tunnel_client) {
@@ -66,6 +75,7 @@ foreach ($path in @(
     $supervisorPidPath,
     $runnerPath,
     $manifestPath,
+    $runtimeProfilePath,
     $stdoutLogPath,
     $stderrLogPath,
     $supervisorLogPath

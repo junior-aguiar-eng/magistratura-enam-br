@@ -7,7 +7,8 @@
 - Servidor MCP local com indexação recursiva de Markdown, busca, sessões de questão, correção e histórico em JSONL.
 - Widget interativo com gabarito validado no servidor e aviso explícito quando as fontes atuais não puderem ser confirmadas.
 - Empacotamento para Codex por `stdio`, conexão privada com o ChatGPT e inicialização opcional no Windows em escopo do usuário.
-- Supervisor idempotente do `tunnel-client`, com validação de caminhos, instância única, reinicialização automática após queda, PIDs coerentes e logs locais de diagnóstico.
+- Supervisor idempotente do `tunnel-client`, iniciado pelo Agendador de Tarefas do Windows para não herdar o ciclo de vida do instalador, com recuperação do túnel após queda e política adicional de reinício da tarefa.
+- Diretório operacional compartilhado `.runtime/startup`, ignorado pelo Git e visível ao contexto real do Agendador mesmo quando a instalação parte de um ambiente isolado.
 - Widget alinhado ao payload atual do MCP Apps e publicado em nova URI para invalidar o cache visual do cliente.
 - Metadados das ferramentas orientam pedidos de questão ao fluxo obrigatório de criação e renderização, em vez de resposta estática.
 - URI visual anterior mantida como alias compatível durante a atualização do catálogo do ChatGPT.
