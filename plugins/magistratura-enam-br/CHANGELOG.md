@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.7.2] - 2026-09-22
+
+- Sincroniza os guias de instalação e questões interativas com a configuração distribuída do MCP e do supervisor Windows.
+- Documenta a quinta skill e os pré-requisitos do servidor local no README principal e no README do plugin.
+
 ## [0.7.1] - 2026-09-22
 
 - Corrige o formato de `.mcp.json` exigido pelo Codex e valida sua estrutura no verificador de integração.

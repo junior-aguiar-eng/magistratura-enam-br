@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.7.1" src="https://img.shields.io/badge/vers%C3%A3o-0.7.1-006B4F"></a>
+  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.7.2" src="https://img.shields.io/badge/vers%C3%A3o-0.7.2-006B4F"></a>
   <a href="plugins/magistratura-enam-br/pyproject.toml"><img alt="Python 3.14" src="https://img.shields.io/badge/Python-3.14-1F6F54"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml"><img alt="Validação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml/badge.svg"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml"><img alt="Documentação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml/badge.svg"></a>
@@ -83,11 +83,11 @@ Depois da instalação, abra uma nova tarefa no Codex. O instalador não envia a
 ### Pelo marketplace Git
 
 ```powershell
-codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.7.1
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.7.2
 codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 
-Esse comando instala a tag `v0.7.1`. Como o repositório é privado, esse método exige autenticação no GitHub e permissão de leitura. A instalação é local por computador e não é sincronizada automaticamente.
+Esse comando instala a tag `v0.7.2`. Como o repositório é privado, esse método exige autenticação no GitHub e permissão de leitura. A instalação é local por computador e não é sincronizada automaticamente.
 
 ## Arquitetura do repositório
 

@@ -6,7 +6,8 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 ## Estado em 2026-09-22
 
-- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.7.1`, publicada na tag `v0.7.1`.
+- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.7.2`, publicada na tag `v0.7.2`.
+- A versão `0.7.2` distribui as correções documentais de instalação, MCP, supervisor Windows e catálogo de skills feitas após a tag `v0.7.1`; não altera o comportamento do plugin.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
 - Linha de base: 207 testes aprovados na arquitetura conversacional e de fontes `0.5.0`; candidata `0.6.0`: 238 testes aprovados no gate integrado.
 
