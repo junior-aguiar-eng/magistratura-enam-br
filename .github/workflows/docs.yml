@@ -39,7 +39,7 @@ jobs:
       - name: Build principal com Zensical
         run: uv run zensical build --clean --config-file ../../mkdocs.yml
       - name: Build de compatibilidade com Material for MkDocs
-        run: uv run mkdocs build --strict --config-file ../../mkdocs.yml --site-dir ../../site-material
+        run: uv run mkdocs build --strict --config-file ../../mkdocs.yml --site-dir site-material
       - uses: actions/upload-artifact@v4
         with:
           name: documentacao-privada

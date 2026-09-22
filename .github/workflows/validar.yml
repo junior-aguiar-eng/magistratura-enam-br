@@ -32,3 +32,41 @@ jobs:
         run: uv run ruff check .
       - name: Verificar integração
         run: uv run python scripts/verificar_integracao.py
+
+  instalar-plugin:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar CLI do Codex
+        run: npm install --global @openai/codex@0.148.0
+      - name: Validar marketplace e bundle pelo Codex
+        working-directory: ${{ github.workspace }}
+        run: |
+          codex plugin marketplace add .
+          codex plugin add magistratura-enam-br@magistratura-enam-br
+
+  validar-widget:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: plugins/magistratura-enam-br/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: plugins/magistratura-enam-br/web/package-lock.json
+      - name: Instalar dependências travadas
+        run: npm ci
+      - name: Auditar dependências
+        run: npm audit --audit-level=moderate
+      - name: Testar widget
+        run: npm test -- --run
+      - name: Conferir tipos
+        run: npm run lint
+      - name: Compilar widget
+        run: npm run build
