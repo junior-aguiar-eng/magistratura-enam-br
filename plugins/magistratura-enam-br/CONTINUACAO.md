@@ -6,7 +6,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 ## Estado em 2026-09-22
 
-- Versão candidata sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.7.1`; a última tag publicada permanece `v0.7.0`.
+- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.7.1`, publicada na tag `v0.7.1`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
 - Linha de base: 207 testes aprovados na arquitetura conversacional e de fontes `0.5.0`; candidata `0.6.0`: 238 testes aprovados no gate integrado.
 
@@ -24,9 +24,9 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 ## Questões interativas — 0.7.0
 
 - Servidor MCP, widget, persistência local e indexação recursiva integrados na versão `0.7.0`.
-- A candidata `0.7.1` corrige o manifesto MCP, reconcilia evento pedagógico após falha parcial e restringe o transporte HTTP ao loopback.
+- A versão `0.7.1` corrige o manifesto MCP, reconcilia evento pedagógico após falha parcial e restringe o transporte HTTP ao loopback.
 - O workflow de raiz `.github/workflows/validar.yml` executa a suíte canônica, a instalação pelo CLI do Codex e os gates do widget em `push` e pull request.
-- Validação local da candidata: 308 testes Python, Ruff, verificador de integração, validador do plugin, lockfile, quatro testes do widget, auditoria npm sem alertas e builds Zensical/MkDocs aprovados.
+- Validação local da versão: suíte Python, Ruff, verificador de integração, validador do plugin, lockfile, quatro testes do widget, auditoria npm sem alertas e builds Zensical/MkDocs aprovados.
 - Codex usa o servidor empacotado por `stdio`; ChatGPT usa conexão privada previamente registrada, sem credenciais versionadas.
 - O modelo gera a questão; a skill governa o conteúdo jurídico; o MCP executa persistência, isolamento do gabarito, renderização e correção.
 - Inicialização automática do túnel é opt-in, registrada no Agendador de Tarefas para o usuário atual e removível sem apagar biblioteca ou histórico; a chave legada de `HKCU\...\Run` é retirada na migração.

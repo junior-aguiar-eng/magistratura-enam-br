@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.7.1] - Não publicado
+## [0.7.1] - 2026-09-22
 
 - Corrige o formato de `.mcp.json` exigido pelo Codex e valida sua estrutura no verificador de integração.
 - Reconcilia o evento pedagógico em uma repetição idempotente quando a gravação da tentativa foi concluída e a do evento falhou.
