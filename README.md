@@ -31,6 +31,8 @@ O **Estudo Jurídico Avançado** reúne cinco skills especializadas para estudo,
 
 O plugin prioriza rigor jurídico, prática deliberada, feedback explicativo, recuperação espaçada e rastreabilidade. Não presume memória automática, não cria perfil sem autorização e não interpreta ausência de dados como desempenho insuficiente.
 
+As questões objetivas também podem usar um servidor MCP local e um widget interativo. O modelo gera o conteúdo jurídico; o servidor mantém o gabarito fora do navegador até a tentativa e registra questões e respostas somente na biblioteca local autorizada. No Codex, a conexão é por `stdio`; no ChatGPT, depende de um túnel privado configurado separadamente. Consulte [Questões interativas](docs/site/questoes-interativas.md) e [Conexão privada com o ChatGPT](plugins/magistratura-enam-br/docs/chatgpt-local.md).
+
 ## Capacidades
 
 | Skill | Finalidade | Limite principal |
@@ -58,6 +60,8 @@ Os gatilhos do Codex representam seis intenções: jornada guiada, estudo de tem
 
 O plugin não é um aplicativo `.exe`. A instalação registra este repositório como marketplace local no perfil do Codex e coloca a versão selecionada no cache do usuário Windows.
 
+É necessário ter o Codex CLI. Para usar o servidor MCP de questões, `uv` deve estar disponível no `PATH`; a versão do Python é fixada em `plugins/magistratura-enam-br/.python-version` e as dependências em `plugins/magistratura-enam-br/uv.lock`. O túnel privado do ChatGPT é opcional e exige configuração própria.
+
 ### Por ZIP
 
 1. Baixe e descompacte o repositório em uma pasta permanente.
@@ -68,7 +72,7 @@ O plugin não é um aplicativo `.exe`. A instalação registra este repositório
 .\INSTALAR.ps1
 ```
 
-Para preparar também as dependências opcionais dos scripts de PDF e planilha:
+Para preparar as dependências Python do plugin, inclusive as usadas pelo MCP e pelos scripts de PDF e planilha:
 
 ```powershell
 .\INSTALAR.ps1 -InstalarDependencias
@@ -115,7 +119,7 @@ Esse comando instala a tag `v0.7.1`. Como o repositório é privado, esse métod
 - [Privacidade e persistência](docs/site/privacidade-e-persistencia.md)
 - [Desenvolvimento](docs/site/desenvolvimento.md)
 
-O site é construído prioritariamente com Zensical e validado também com Material for MkDocs. A publicação está desabilitada; os builds permanecem privados e locais.
+O site é construído prioritariamente com Zensical e validado também com Material for MkDocs. A publicação pública está desabilitada; o CI disponibiliza o artefato apenas no workflow privado do repositório.
 
 ## Desenvolvimento e qualidade
 

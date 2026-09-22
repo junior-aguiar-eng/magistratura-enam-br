@@ -3,18 +3,20 @@
 ## Requisitos
 
 - Codex com suporte a plugins;
-- Git e acesso autenticado ao repositório privado;
-- autorização de leitura no GitHub;
+- Git, autenticação e autorização de leitura no repositório privado para a instalação pelo marketplace Git;
+- `uv` no `PATH` para executar o servidor MCP local de questões (o projeto fixa Python 3.14 em `.python-version`);
 - uma nova tarefa do Codex após a instalação.
 
 ## Versão estável
 
 ```powershell
-codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.6.0
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.7.1
 codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 
 A instalação é local por computador. Ela não é sincronizada automaticamente entre máquinas ou usuários.
+
+No Windows, também é possível instalar a partir de um ZIP descompactado em pasta permanente com `.\INSTALAR.ps1` na raiz do repositório. Use `.\INSTALAR.ps1 -InstalarDependencias` para preparar as dependências Python do plugin. A conexão privada do ChatGPT e a inicialização automática do túnel são opcionais e exigem configuração separada.
 
 ## Atualização
 

@@ -12,11 +12,11 @@ Quando a atualização determinante não puder ser confirmada, a questão ainda 
 
 ## Funcionamento nas duas superfícies
 
-- **Codex:** o plugin inicia o MCP local por `stdio`; se o componente não estiver disponível, a skill mantém o fluxo textual sem antecipar o gabarito.
+- **Codex:** o plugin inicia o MCP local por `stdio`; o fluxo textual só substitui o card interativo se a chamada MCP falhar explicitamente e não antecipa o gabarito.
 - **ChatGPT:** um app privado acessa o mesmo MCP por Secure MCP Tunnel. O túnel deve estar em execução no Windows.
 
 As respostas ficam em `.estudo-juridico/tentativas.jsonl`, e as questões em `.estudo-juridico/questoes.jsonl`. O índice e os eventos ficam na mesma subpasta. O servidor só grava quando `write_consent` está habilitado na configuração da biblioteca; os Markdown originais permanecem intactos.
 
 ## Inicialização no Windows
 
-Após o teste manual, `scripts/install_local_service.ps1 ... -Confirm` registra o runner em `HKCU`, sem direitos administrativos. `scripts/uninstall_local_service.ps1 -Confirm` remove apenas a inicialização e os auxiliares operacionais, preservando toda a biblioteca e o histórico.
+Após o teste manual, `scripts/install_local_service.ps1 ... -Confirm` registra uma tarefa de logon no Agendador de Tarefas do usuário atual, sem direitos administrativos. O instalador remove a antiga chave de inicialização em `HKCU\...\Run` durante a migração. `scripts/uninstall_local_service.ps1 -Confirm` remove apenas a tarefa e os auxiliares operacionais, preservando toda a biblioteca e o histórico.

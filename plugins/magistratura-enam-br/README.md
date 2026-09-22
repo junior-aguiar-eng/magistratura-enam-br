@@ -1,4 +1,4 @@
-# Estudos Jurídicos de Alto Nível
+# Estudo Jurídico Avançado
 
 Plugin profissional para bacharéis em Direito voltado ao estudo de alta complexidade para Magistratura e Exame Nacional da Magistratura (ENAM). Ele reúne estudo dogmático integrado, casos, questões, curadoria de informativos, comparação de materiais e planejamento de revisão de jurisprudência.
 
@@ -10,6 +10,7 @@ Plugin profissional para bacharéis em Direito voltado ao estudo de alta complex
 | `curar-informativos-stf-stj` | Seleciona e comenta julgados de informativos do STF e do STJ. |
 | `estudar-direito-magistratura` | Integra dogmática, legislação e jurisprudência e conduz casos, objetiva, discursiva, oral e revisão. |
 | `planejar-jurisprudencia` | Organiza a revisão espaçada de julgados já selecionados. |
+| `acompanhar-percurso-magistratura` | Apresenta as frentes disponíveis, orienta a escolha da skill e consolida o percurso sem executar automaticamente outra skill. |
 
 Cada skill lê `AGENTS.md` antes de atuar. As diretrizes preservam rigor jurídico, uso proporcional de fontes oficiais, estudo ativo e fronteiras claras entre curadoria, estudo, comparação e planejamento.
 
@@ -65,7 +66,8 @@ O workflow de raiz `.github/workflows/validar.yml` executa esses gates e instala
 - `skills/`: instruções, referências, modelos, scripts e testes de cada skill.
 
 Consulte o [changelog](CHANGELOG.md) antes de atualizar ou publicar o plugin.
-## Ambiente pedagógico profissional 0.6
+
+## Acompanhamento e persistência
 
 A instalação funciona sem perfil e sem histórico: as cinco skills podem ser usadas diretamente, e a ausência de dados prévios é tratada como ausência de evidência. Persistência é opcional, local e acionada somente por pedido expresso, confirmação e caminho indicado pelo candidato. Leitura, uso na sessão, gravação e exclusão são autorizações distintas.
 
