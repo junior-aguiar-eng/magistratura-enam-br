@@ -75,12 +75,16 @@ try {
     Set-Content -LiteralPath $supervisorPidPath -Value $PID -Encoding ascii
     Write-SupervisorLog "supervisor started pid=$PID"
     $starts = 0
+    $profileArgumentPattern = '(?i)(?:^|\s)--config\s+(?:"' +
+        [regex]::Escape($profilePath) + '"|' + [regex]::Escape($profilePath) + ')(?:\s|$)'
 
     while ($true) {
         $running = @(Get-CimInstance Win32_Process -Filter "Name = 'tunnel-client.exe'" |
             Where-Object {
                 $_.ExecutablePath -and
-                ([IO.Path]::GetFullPath([string]$_.ExecutablePath) -ieq $clientPath)
+                ([IO.Path]::GetFullPath([string]$_.ExecutablePath) -ieq $clientPath) -and
+                $_.CommandLine -and
+                [regex]::IsMatch([string]$_.CommandLine, $profileArgumentPattern)
             })
 
         if ($running.Count -gt 0) {
