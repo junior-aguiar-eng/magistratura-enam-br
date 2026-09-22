@@ -131,6 +131,38 @@ def test_tentativa_gera_evento_pedagogico_compativel_sem_perfil_paralelo(tmp_pat
     assert not (repo.state_dir / "perfil-mcp.json").exists()
 
 
+def test_retry_reconcilia_evento_apos_falha_entre_os_dois_logs(tmp_path, monkeypatch):
+    repo = repositorio(tmp_path)
+    repo.create_session(sessao())
+    append_original = repo.learning_events_store.append
+
+    def falhar_uma_vez(_evento):
+        raise OSError("falha simulada no evento")
+
+    monkeypatch.setattr(repo.learning_events_store, "append", falhar_uma_vez)
+    with pytest.raises(OSError, match="falha simulada"):
+        repo.answer("qsn_0123456789abcdef", "B", answered_at="2026-09-05T18:05:00Z")
+
+    assert len(repo.attempts_store.read_all()) == 1
+    assert repo.learning_events_store.read_all() == []
+
+    monkeypatch.setattr(repo.learning_events_store, "append", append_original)
+    reaberto = QuestionRepository(repo.state_dir)
+    primeira = reaberto.answer(
+        "qsn_0123456789abcdef", "B", answered_at="2026-09-05T18:06:00Z"
+    )
+    repetida = reaberto.answer(
+        "qsn_0123456789abcdef", "B", answered_at="2026-09-05T18:07:00Z"
+    )
+
+    assert primeira == repetida
+    assert primeira["answered_at"] == "2026-09-05T18:05:00Z"
+    assert len(reaberto.attempts_store.read_all()) == 1
+    eventos = reaberto.learning_events_store.read_all()
+    assert len(eventos) == 1
+    assert eventos[0] == reaberto._learning_event(sessao(), reaberto.attempts_store.read_all()[0])
+
+
 def test_payload_privado_invalido_nao_e_persistido(tmp_path):
     repo = repositorio(tmp_path)
     invalida = copy.deepcopy(sessao())
