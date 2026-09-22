@@ -347,11 +347,18 @@ def validar_mcp_bundled(raiz: Path, valor: object, erros: list[str]) -> None:
         return
     path = raiz / ".mcp.json"
     try:
-        servers = json.loads(path.read_text(encoding="utf-8"))
+        config = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError):
         erros.append("Configuração .mcp.json ausente ou inválida.")
         return
-    if not isinstance(servers, dict) or not servers:
+    if not isinstance(config, dict) or not isinstance(config.get("mcpServers"), dict):
+        erros.append("Configuração .mcp.json deve declarar mcpServers como objeto.")
+        return
+    if set(config) != {"mcpServers"}:
+        erros.append("Configuração .mcp.json contém campos superiores não reconhecidos.")
+        return
+    servers = config["mcpServers"]
+    if not servers:
         erros.append("Configuração .mcp.json deve declarar ao menos um servidor.")
         return
     for name, server in servers.items():

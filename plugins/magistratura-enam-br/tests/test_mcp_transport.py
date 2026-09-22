@@ -56,6 +56,14 @@ def test_cli_rejeita_transporte_e_porta_invalidos(tmp_path):
         )
 
 
+def test_cli_rejeita_exposicao_http_fora_do_loopback(tmp_path):
+    parser = build_parser()
+    with pytest.raises(SystemExit):
+        parser.parse_args(
+            ["--config", str(tmp_path / "config.json"), "--transport", "streamable-http", "--host", "0.0.0.0"]
+        )
+
+
 @pytest.mark.anyio
 async def test_config_bundled_inicia_servidor_stdio_real(tmp_path):
     plugin_root = Path(__file__).resolve().parents[1]
@@ -77,7 +85,7 @@ async def test_config_bundled_inicia_servidor_stdio_real(tmp_path):
         encoding="utf-8",
     )
     bundled = json.loads((plugin_root / ".mcp.json").read_text(encoding="utf-8"))
-    definition = bundled["estudo-juridico-avancado"]
+    definition = bundled["mcpServers"]["estudo-juridico-avancado"]
     args = [
         arg.replace("${PLUGIN_ROOT}", str(plugin_root)).replace("${PLUGIN_DATA}", str(data))
         for arg in definition["args"]
