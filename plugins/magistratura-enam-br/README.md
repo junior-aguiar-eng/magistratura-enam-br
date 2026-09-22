@@ -38,11 +38,17 @@ uv lock --check
 uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests
 uv run ruff check .
 uv run python scripts/verificar_integracao.py
+cd web
+npm ci
+npm audit --audit-level=moderate
+npm test -- --run
+npm run lint
+npm run build
 ```
 
 O verificador interno é somente leitura: ele valida arquivos distribuíveis, contrato do manifesto e das skills, JSON, sintaxe Python, coerência de versão e o lockfile, sem criar artefatos no código-fonte.
 
-O workflow de raiz `.github/workflows/validar.yml` executa essa mesma sequência, no diretório do plugin, em cada `push` e pull request.
+O workflow de raiz `.github/workflows/validar.yml` executa esses gates e instala o bundle com o CLI do Codex em cada `push` e pull request.
 
 ## Estrutura relevante
 

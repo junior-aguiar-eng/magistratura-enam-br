@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1] - Não publicado
+
+- Corrige o formato de `.mcp.json` exigido pelo Codex e valida sua estrutura no verificador de integração.
+- Reconcilia o evento pedagógico em uma repetição idempotente quando a gravação da tentativa foi concluída e a do evento falhou.
+- Restringe o transporte HTTP ao loopback e associa o supervisor apenas ao túnel iniciado com o perfil configurado.
+- Acrescenta gates de instalação do plugin e de testes, build, lint e auditoria de dependências do widget ao CI.
+
 ## [0.7.0] - 2026-09-05
 
 ### Adicionado
