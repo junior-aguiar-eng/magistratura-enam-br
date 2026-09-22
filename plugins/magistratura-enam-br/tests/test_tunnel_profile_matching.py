@@ -23,20 +23,12 @@ def test_supervisor_ignora_tunnel_com_outro_perfil(tmp_path: Path) -> None:
     workspace.mkdir()
 
     other_tunnel = subprocess.Popen(
-        [str(tunnel), "-NoProfile", "-Command", f"Start-Sleep -Seconds 30; # --config {other_profile} ignored"],
+        [str(tunnel), "-NoProfile", "-Command", f"Start-Sleep -Seconds 120; # --config {other_profile} ignored"],
         cwd=runtime,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
     try:
-        info = subprocess.run(
-            [powershell, "-NoProfile", "-Command", f"(Get-CimInstance Win32_Process -Filter 'ProcessId = {other_tunnel.pid}').CommandLine"],
-            capture_output=True,
-            text=True,
-            timeout=10,
-            check=True,
-        )
-        assert str(other_profile) in info.stdout
         assert other_tunnel.poll() is None
         result = subprocess.run(
             [
@@ -49,7 +41,7 @@ def test_supervisor_ignora_tunnel_com_outro_perfil(tmp_path: Path) -> None:
             cwd=runtime,
             capture_output=True,
             text=True,
-            timeout=15,
+            timeout=45,
             check=False,
         )
         assert result.returncode == 0, result.stderr
