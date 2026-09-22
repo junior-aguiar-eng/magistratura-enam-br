@@ -189,6 +189,21 @@ class QuestionRepository:
             },
         }
 
+    def _ensure_learning_event(self, private: dict, attempt: dict) -> None:
+        expected = self._learning_event(private, attempt)
+        existing = next(
+            (
+                item
+                for item in self.learning_events_store.read_all()
+                if item["event_id"] == expected["event_id"]
+            ),
+            None,
+        )
+        if existing is None:
+            self.learning_events_store.append(expected)
+        elif existing != expected:
+            raise QuestionConflictError("Evento pedagógico diverge da tentativa registrada")
+
     def answer(self, session_id: str, selected_option: str, *, answered_at: str) -> dict:
         if selected_option not in {"A", "B", "C", "D", "E"}:
             raise ValueError("Alternativa inválida")
@@ -202,6 +217,7 @@ class QuestionRepository:
             if existing is not None:
                 if existing["selected_option"] != selected_option:
                     raise QuestionConflictError("Sessão já respondida com outra alternativa")
+                self._ensure_learning_event(private, existing)
                 return self._corrected(private, existing)
 
             result = "correct" if selected_option == private["correct_option"] else "incorrect"
@@ -218,7 +234,7 @@ class QuestionRepository:
                 "source_refs": source_refs,
             }
             self.attempts_store.append(attempt)
-            self.learning_events_store.append(self._learning_event(private, attempt))
+            self._ensure_learning_event(private, attempt)
         return self._corrected(private, attempt)
 
     @staticmethod

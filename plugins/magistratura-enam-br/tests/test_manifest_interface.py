@@ -21,7 +21,7 @@ def test_manifesto_empacota_servidor_mcp_portatil():
     config = json.loads((ROOT / ".mcp.json").read_text(encoding="utf-8"))
 
     assert manifesto["mcpServers"] == "./.mcp.json"
-    server = config["estudo-juridico-avancado"]
+    server = config["mcpServers"]["estudo-juridico-avancado"]
     assert server["command"] == "uv"
     serialized = json.dumps(server, ensure_ascii=False)
     assert "${PLUGIN_ROOT}" in serialized

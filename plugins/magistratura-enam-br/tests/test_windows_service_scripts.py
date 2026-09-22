@@ -52,6 +52,8 @@ def test_runner_e_idempotente_e_registra_falhas_operacionais() -> None:
     assert "Get-CimInstance Win32_Process" in text
     assert "ExecutablePath" in text
     assert "-ieq $clientPath" in text
+    assert "CommandLine" in text
+    assert "[regex]::Escape($profilePath)" in text
     assert "RedirectStandardOutput" in text
     assert "RedirectStandardError" in text
     assert "tunnel-client.stdout.log" in text

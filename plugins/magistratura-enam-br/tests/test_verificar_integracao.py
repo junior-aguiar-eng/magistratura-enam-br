@@ -54,7 +54,7 @@ def test_validador_exige_contratos_e_registro_de_fontes():
 
 def test_validador_exige_e_confere_mcp_bundled(tmp_path):
     (tmp_path / ".mcp.json").write_text(
-        '{"estudo":{"command":"uv","args":["--project","${PLUGIN_ROOT}","--config","${PLUGIN_DATA}/library-config.json","stdio"]}}',
+        '{"mcpServers":{"estudo":{"command":"uv","args":["--project","${PLUGIN_ROOT}","--config","${PLUGIN_DATA}/library-config.json","stdio"]}}}',
         encoding="utf-8",
     )
     erros = []
@@ -62,6 +62,18 @@ def test_validador_exige_e_confere_mcp_bundled(tmp_path):
     verificador.validar_mcp_bundled(tmp_path, "./.mcp.json", erros)
 
     assert erros == []
+
+
+def test_validador_rejeita_mcp_sem_campo_mcp_servers(tmp_path):
+    (tmp_path / ".mcp.json").write_text(
+        '{"estudo":{"command":"uv","args":["${PLUGIN_ROOT}","${PLUGIN_DATA}","stdio"]}}',
+        encoding="utf-8",
+    )
+    erros = []
+
+    verificador.validar_mcp_bundled(tmp_path, "./.mcp.json", erros)
+
+    assert erros == ["Configuração .mcp.json deve declarar mcpServers como objeto."]
 
 
 def preparar_ambiente(tmp_path):

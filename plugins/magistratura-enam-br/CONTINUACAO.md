@@ -4,9 +4,9 @@
 
 Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junior-aguiar-eng/magistratura-enam-br`. O manifesto válido é `.codex-plugin/plugin.json`; não mantenha cópias aninhadas ou versões paralelas. Leia `AGENTS.md` antes de qualquer alteração.
 
-## Estado confirmado em 2026-09-05
+## Estado em 2026-09-22
 
-- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.7.0`.
+- Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.7.1`, publicada na tag `v0.7.1`.
 - Ambiente canônico: `uv` com Python 3.14, fixado em `.python-version` e resolvido em `uv.lock`.
 - Linha de base: 207 testes aprovados na arquitetura conversacional e de fontes `0.5.0`; candidata `0.6.0`: 238 testes aprovados no gate integrado.
 
@@ -19,12 +19,14 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 - **Removidas:** somente a referência combinada de discursiva e oral, depois da preservação integral de suas capacidades nos dois destinos e nos respectivos testes.
 - Qualidade estática: `ruff check .` aprovado.
 - Integridade: verificador interno de contrato do plugin e `uv lock --check` aprovados.
-- Integração contínua: o workflow de raiz `.github/workflows/validar.yml` executa a suíte canônica, no diretório do plugin, em `push` e pull request.
-- Árvore versionada: limpa após a auditoria; ambientes e caches locais permanecem ignorados pelo Git.
+- Ambientes e caches locais permanecem ignorados pelo Git.
 
 ## Questões interativas — 0.7.0
 
 - Servidor MCP, widget, persistência local e indexação recursiva integrados na versão `0.7.0`.
+- A versão `0.7.1` corrige o manifesto MCP, reconcilia evento pedagógico após falha parcial e restringe o transporte HTTP ao loopback.
+- O workflow de raiz `.github/workflows/validar.yml` executa a suíte canônica, a instalação pelo CLI do Codex e os gates do widget em `push` e pull request.
+- Validação local da versão: suíte Python, Ruff, verificador de integração, validador do plugin, lockfile, quatro testes do widget, auditoria npm sem alertas e builds Zensical/MkDocs aprovados.
 - Codex usa o servidor empacotado por `stdio`; ChatGPT usa conexão privada previamente registrada, sem credenciais versionadas.
 - O modelo gera a questão; a skill governa o conteúdo jurídico; o MCP executa persistência, isolamento do gabarito, renderização e correção.
 - Inicialização automática do túnel é opt-in, registrada no Agendador de Tarefas para o usuário atual e removível sem apagar biblioteca ou histórico; a chave legada de `HKCU\...\Run` é retirada na migração.
@@ -58,6 +60,8 @@ uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/compar
 uv run ruff check .
 uv run python scripts/verificar_integracao.py
 ```
+
+No widget, execute a partir de `web/`: `npm ci`, `npm audit --audit-level=moderate`, `npm test -- --run`, `npm run lint` e `npm run build`. O CI instala o bundle com o CLI do Codex para verificar o contrato externo do plugin.
 
 Não crie ambiente virtual manualmente, não use `pip install` nos scripts internos e não versione `.venv`, caches, bytecode ou saídas temporárias.
 ## Fase 6 — candidata 0.4.0

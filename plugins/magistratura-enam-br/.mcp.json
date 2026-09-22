@@ -1,17 +1,19 @@
 {
-  "estudo-juridico-avancado": {
-    "command": "uv",
-    "args": [
-      "run",
-      "--directory",
-      "${PLUGIN_ROOT}",
-      "python",
-      "-m",
-      "mcp_server.server",
-      "--config",
-      "${PLUGIN_DATA}/library-config.json",
-      "--transport",
-      "stdio"
-    ]
+  "mcpServers": {
+    "estudo-juridico-avancado": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "${PLUGIN_ROOT}",
+        "python",
+        "-m",
+        "mcp_server.server",
+        "--config",
+        "${PLUGIN_DATA}/library-config.json",
+        "--transport",
+        "stdio"
+      ]
+    }
   }
 }
