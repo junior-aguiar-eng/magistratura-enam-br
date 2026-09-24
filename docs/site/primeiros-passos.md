@@ -2,6 +2,8 @@
 
 Use o gatilho que corresponda ao resultado desejado. A jornada guiada apresenta brevemente as cinco frentes e faz, no máximo, uma pergunta compacta. Um pedido específico segue diretamente para estudo, treino, curadoria, comparação ou revisão, sem menu nem introdução redundante.
 
+No Codex, `$treinador-fgv-magistratura` é uma habilidade global separada: invoque-a pelo nome quando desejar especificamente seu fluxo de treino. Uma questão FGV/ENAM pedida genericamente ao plugin segue `estudar-direito-magistratura`. Se a habilidade externa não estiver disponível no cliente, ela não deve ser apresentada como executada; o estudo do plugin é uma escolha distinta.
+
 ## Exemplos
 
 === "Estudar"
@@ -39,6 +41,8 @@ Use o gatilho que corresponda ao resultado desejado. A jornada guiada apresenta 
 Você pode mudar tema, modalidade ou módulo em linguagem natural. Quando a mudança for inequívoca, o plugin a comunica em uma frase e prossegue no mesmo turno. Uma confirmação só é necessária se houver perda material de atividade pendente ou ação persistente; questão, comparação ou remediação suspensa não vira erro ou abandono apenas porque o assunto mudou.
 
 O plugin não presume memória automática, não cria perfil sem autorização e não converte ausência de dados em desempenho insuficiente. Retomada entre tarefas exige que você forneça o estado ou um checkpoint.
+
+Se usar o acervo MCP, consulte `diagnosticar_acervo` para saber qual biblioteca e índice estão configurados. A busca exige um índice existente; a indexação local é uma ação separada que requer confirmação de gravação. No ChatGPT, o MCP local depende da conexão privada pelo túnel descrita na [instalação](instalacao.md).
 
 ## Fontes
 

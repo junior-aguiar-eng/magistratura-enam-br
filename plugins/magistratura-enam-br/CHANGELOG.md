@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.3] — candidata de branch, sem tag
+
+- Acrescenta `diagnosticar_acervo` ao MCP para informar, sem escrita, os caminhos configurados e o estado estrutural do índice local.
+- Alinha o contrato de documentos indexados ao Markdown aceito pelo indexador e preserva o título do arquivo quando um H1 não tem texto útil.
+- Introduz oito casos sintéticos de benchmark jurídico com referência a fonte oficial, critérios de proporcionalidade e transferência e aprovação jurídica humana ainda pendente.
+- Explicita o roteamento do treinador FGV externo e os limites distintos de Codex local e ChatGPT com conexão privada.
+
 ## [0.7.2] - 2026-09-22
 
 - Sincroniza os guias de instalação e questões interativas com a configuração distribuída do MCP e do supervisor Windows.

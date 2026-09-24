@@ -4,6 +4,15 @@
 
 Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junior-aguiar-eng/magistratura-enam-br`. O manifesto válido é `.codex-plugin/plugin.json`; não mantenha cópias aninhadas ou versões paralelas. Leia `AGENTS.md` antes de qualquer alteração.
 
+## Candidata 0.7.3 em 2026-09-24
+
+- Checkout `codex/organizacao-qualidade-plugin`, HEAD de partida `8a0949d`. Manifesto, `pyproject.toml` e lock identificam a candidata `0.7.3`; a versão estável por tag permanece `v0.7.2`. Push da branch, build e instalação são gates operacionais distintos, a conferir na entrega, sem presumir tag, PR ou merge.
+- O MCP novo expõe `diagnosticar_acervo` somente para leitura: distingue índice ausente, estruturalmente válido e inválido, sem afirmar atualização perante os arquivos da biblioteca. A validação do índice foi alinhada ao indexador para cabeçalhos longos, extensão `.MD` e H1 sem texto útil. Busca e questões foram exercitadas com fixture sintética e transporte `stdio`; não houve acesso ao acervo pessoal.
+- O benchmark jurídico piloto contém oito casos sintéticos e referências oficiais, mas sua revisão jurídica independente e as três execuções limpas por caso permanecem pendentes. Por decisão do usuário, a candidata será experimentada em uso real: os casos formais não são pré-requisito desse piloto e não devem ser apresentados como aprovados. Os testes de schema não comprovam qualidade semântica nem aprovam o gabarito.
+- ChatGPT com túnel não foi homologado neste ciclo: não havia túnel operacional e a consulta local a `/readyz` retornou HTTP 404. A documentação distingue esse limite do fluxo Codex local.
+- Gates executados nesta candidata: `uv sync --all-groups`; `uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests -q --basetemp .pytest-install-073` (323 aprovados); Ruff; `uv lock --check`; verificador de integração (42 checks, zero erros); `npm ci`, quatro testes do widget, lint, auditoria sem vulnerabilidades e build; builds MkDocs estrito e Zensical. O teste estrutural do plugin não substitui revisão jurídica humana ou smoke na interface do ChatGPT.
+- Open Notebook e ingestão de PDFs/OCR não foram incluídos: a avaliação de multimodalidade exigiria amostra não sensível, citação localizável por página e comparação de qualidade e privacidade com o índice Markdown.
+
 ## Estado em 2026-09-22
 
 - Versão sincronizada no manifesto, em `pyproject.toml` e no `uv.lock`: `0.7.2`, publicada na tag `v0.7.2`.
