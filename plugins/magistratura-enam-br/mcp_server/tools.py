@@ -5,6 +5,8 @@ import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 
+from jsonschema import Draft202012Validator, FormatChecker
+
 from .config import LibraryConfig
 from .indexer import index_library
 from .questions import QuestionRepository
@@ -37,6 +39,55 @@ class StudyService:
             raise FileNotFoundError(f"Subpasta local não existe: {self.state_dir}")
         self.index_path = self.state_dir / "index.json"
         self.questions = QuestionRepository(self.state_dir)
+
+    def diagnose_library(self) -> dict:
+        result = {
+            "schema_version": "1.0.0",
+            "library_root": str(self.config.library_root),
+            "state_dir": str(self.state_dir),
+            "index_path": str(self.index_path),
+            "index_status": "missing",
+            "document_count": None,
+            "generated_at": None,
+        }
+        if not self.index_path.exists() and not self.index_path.is_symlink():
+            return result
+        if not self.index_path.is_file():
+            result["index_status"] = "invalid"
+            return result
+        try:
+            manifest = json.loads(self.index_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError):
+            result["index_status"] = "invalid"
+            return result
+        if (
+            not isinstance(manifest, dict)
+            or manifest.get("schema_version") != "1.0.0"
+            or not isinstance(manifest.get("generated_at"), str)
+            or not isinstance(manifest.get("documents"), list)
+            or any(not isinstance(item, dict) for item in manifest["documents"])
+        ):
+            result["index_status"] = "invalid"
+            return result
+        try:
+            generated_at = datetime.fromisoformat(manifest["generated_at"])
+        except ValueError:
+            result["index_status"] = "invalid"
+            return result
+        if generated_at.utcoffset() is None:
+            result["index_status"] = "invalid"
+            return result
+        document_schema = json.loads(
+            (Path(__file__).parent / "schemas" / "indexed-document.schema.json").read_text(encoding="utf-8")
+        )
+        validator = Draft202012Validator(document_schema, format_checker=FormatChecker())
+        if any(not validator.is_valid(document) for document in manifest["documents"]):
+            result["index_status"] = "invalid"
+            return result
+        result["index_status"] = "available"
+        result["document_count"] = len(manifest["documents"])
+        result["generated_at"] = manifest["generated_at"]
+        return result
 
     def index_library(self, *, confirmed: bool) -> dict:
         if not confirmed:
@@ -113,4 +164,3 @@ class StudyService:
         page = items[cursor : cursor + limit]
         next_cursor = cursor + len(page) if cursor + len(page) < len(items) else None
         return {"items": page, "next_cursor": next_cursor, "total": len(items)}
-

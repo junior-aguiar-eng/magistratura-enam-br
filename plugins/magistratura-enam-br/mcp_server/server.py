@@ -91,6 +91,14 @@ def build_server(config: LibraryConfig) -> MCPServer:
         return service.search(consulta, limit=limite, path_prefix=prefixo)
 
     @server.tool(
+        structured_output=True,
+        annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False),
+    )
+    def diagnosticar_acervo() -> dict[str, Any]:
+        """Informa a raiz configurada e o estado do índice local sem gravar arquivos."""
+        return service.diagnose_library()
+
+    @server.tool(
         description=(
             "Sempre use esta ferramenta quando o usuário pedir uma questão jurídica objetiva, "
             "um treino por questões ou uma questão para responder. Gere a questão privada completa, "

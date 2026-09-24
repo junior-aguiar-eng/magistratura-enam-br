@@ -36,6 +36,7 @@ async def test_cliente_mcp_real_descobre_as_ferramentas_de_dados(services):
     assert {tool.name for tool in result.tools} >= {
         "indexar_acervo",
         "buscar_acervo",
+        "diagnosticar_acervo",
         "criar_sessao_questao",
         "responder_questao",
         "consultar_historico_questoes",
@@ -45,6 +46,8 @@ async def test_cliente_mcp_real_descobre_as_ferramentas_de_dados(services):
         for tool in result.tools
         if tool.name != "renderizar_questao"
     )
+    diagnostico = next(tool for tool in result.tools if tool.name == "diagnosticar_acervo")
+    assert diagnostico.annotations.read_only_hint is True
 
 
 @pytest.mark.anyio
@@ -117,3 +120,135 @@ async def test_indexacao_exige_confirmacao_explicita(services):
 
     assert result.is_error
     assert not (raiz / ".estudo-juridico" / "index.json").exists()
+
+
+@pytest.mark.anyio
+async def test_diagnostico_sem_indice_informa_caminhos_sem_escrever(services):
+    server, raiz = services
+    estado = raiz / ".estudo-juridico"
+    antes = sorted(item.name for item in estado.iterdir())
+
+    async with Client(server) as client:
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    payload = result.structured_content
+    assert payload == {
+        "schema_version": "1.0.0",
+        "library_root": str(raiz.resolve()),
+        "state_dir": str(estado.resolve()),
+        "index_path": str((estado / "index.json").resolve()),
+        "index_status": "missing",
+        "document_count": None,
+        "generated_at": None,
+    }
+    assert sorted(item.name for item in estado.iterdir()) == antes
+
+
+@pytest.mark.anyio
+async def test_diagnostico_indice_valido_informa_metadados_sem_conteudo(services):
+    server, raiz = services
+    indice = raiz / ".estudo-juridico" / "index.json"
+    async with Client(server) as client:
+        await client.call_tool("indexar_acervo", {"confirmar_gravacao_local": True})
+        antes = indice.read_bytes()
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    payload = result.structured_content
+    assert payload["index_status"] == "available"
+    assert payload["document_count"] == 1
+    assert payload["generated_at"] == json.loads(antes)["generated_at"]
+    assert "civil.md" not in json.dumps(payload)
+    assert "inadimplemento" not in json.dumps(payload)
+    assert indice.read_bytes() == antes
+
+
+@pytest.mark.anyio
+async def test_diagnostico_indice_invalido_preserva_arquivo(services):
+    server, raiz = services
+    indice = raiz / ".estudo-juridico" / "index.json"
+    indice.write_text("{invalido", encoding="utf-8")
+    antes = indice.read_bytes()
+
+    async with Client(server) as client:
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    payload = result.structured_content
+    assert payload["index_status"] == "invalid"
+    assert payload["document_count"] is None
+    assert payload["generated_at"] is None
+    assert indice.read_bytes() == antes
+
+
+@pytest.mark.anyio
+async def test_diagnostico_manifesto_sem_documentos_validos_nao_conta_caracteres(services):
+    server, raiz = services
+    indice = raiz / ".estudo-juridico" / "index.json"
+    indice.write_text('{"schema_version":"1.0.0","generated_at":"2026-09-24T12:00:00Z","documents":"texto"}', encoding="utf-8")
+
+    async with Client(server) as client:
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    assert result.structured_content["index_status"] == "invalid"
+
+
+@pytest.mark.anyio
+async def test_diagnostico_rejeita_documento_incompleto(services):
+    server, raiz = services
+    indice = raiz / ".estudo-juridico" / "index.json"
+    indice.write_text('{"schema_version":"1.0.0","generated_at":"2026-09-24T12:00:00Z","documents":[{}]}', encoding="utf-8")
+
+    async with Client(server) as client:
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    assert result.structured_content["index_status"] == "invalid"
+
+
+@pytest.mark.anyio
+async def test_diagnostico_rejeita_data_sem_fuso(services):
+    server, raiz = services
+    indice = raiz / ".estudo-juridico" / "index.json"
+    indice.write_text('{"schema_version":"1.0.0","generated_at":"2026-09-24","documents":[]}', encoding="utf-8")
+
+    async with Client(server) as client:
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    assert result.structured_content["index_status"] == "invalid"
+
+
+@pytest.mark.anyio
+async def test_diagnostico_diretorio_no_caminho_do_indice_e_invalido(services):
+    server, raiz = services
+    indice = raiz / ".estudo-juridico" / "index.json"
+    indice.mkdir()
+
+    async with Client(server) as client:
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    assert result.structured_content["index_status"] == "invalid"
+    assert indice.is_dir()
+
+
+@pytest.mark.anyio
+async def test_diagnostico_aceita_indice_criado_com_cabecalho_longo_e_extensao_maiuscula(services):
+    server, raiz = services
+    (raiz / "LONGO.MD").write_text("# " + "X" * 501 + "\n\nConteúdo.", encoding="utf-8")
+
+    async with Client(server) as client:
+        await client.call_tool("indexar_acervo", {"confirmar_gravacao_local": True})
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    assert result.structured_content["index_status"] == "available"
+    assert result.structured_content["document_count"] == 2
+
+
+@pytest.mark.anyio
+async def test_diagnostico_aceita_indice_criado_com_h1_em_branco(services):
+    server, raiz = services
+    (raiz / "branco.md").write_text("#   \n\nConteúdo.", encoding="utf-8")
+
+    async with Client(server) as client:
+        await client.call_tool("indexar_acervo", {"confirmar_gravacao_local": True})
+        result = await client.call_tool("diagnosticar_acervo", {})
+
+    assert result.structured_content["index_status"] == "available"
+    assert result.structured_content["document_count"] == 2

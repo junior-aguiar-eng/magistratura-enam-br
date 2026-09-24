@@ -2,6 +2,10 @@
 
 O servidor permanece no computador e expõe `http://127.0.0.1:8765/mcp`. O Secure MCP Tunnel abre somente uma conexão HTTPS de saída para a OpenAI; não é necessário liberar porta de entrada no roteador ou firewall.
 
+O ChatGPT não se conecta diretamente ao servidor MCP local. Sem túnel ativo, as operações do MCP — diagnóstico e busca do índice, sessões, histórico e card interativo — não ficam disponíveis nesse app. Uma conversa pode usar apenas as habilidades efetivamente carregadas na sua superfície; a instalação da skill global `$treinador-fgv-magistratura` no Codex não a instala no ChatGPT. O túnel é uma conexão privada para uso/teste em produtos compatíveis, não substitui o endpoint HTTPS público exigido para submissão pública do plugin.
+
+Não há uma segunda versão de código para o ChatGPT: `.app.json` registra o app que usa este mesmo servidor MCP. Instalar uma versão no Codex não atualiza, por si só, a conexão nem o catálogo de ferramentas do app no ChatGPT; essa superfície exige atualização e teste próprios.
+
 ## Pré-requisitos locais
 
 1. Crie `library-config.json` no diretório de dados do plugin com o caminho absoluto da biblioteca autorizada, `write_consent: true`, exclusões `.git`, `.estudo-juridico` e `node_modules`, e os limites documentados no schema.
@@ -15,6 +19,8 @@ Crie o túnel em [Platform tunnel settings](https://platform.openai.com/settings
 Inicialize e valide o perfil conforme a [documentação oficial do Secure MCP Tunnel](https://developers.openai.com/api/docs/guides/secure-mcp-tunnels). No ChatGPT, habilite o modo desenvolvedor, crie o app privado usando a conexão Tunnel e copie o identificador técnico `plugin_asdk_app...` da URL. Esse identificador não é credencial; pode constar em `.app.json`, enquanto todo segredo continua local.
 
 Depois de alterar ferramentas ou metadados, atualize o app no ChatGPT e teste em conversa nova. Com o túnel desligado, o ChatGPT deve falhar sem revelar caminhos ou dados; o fluxo local do Codex continua disponível por `stdio`.
+
+Na primeira conversa após atualizar a conexão, peça `diagnosticar_acervo` e confira `library_root`, `index_path`, `index_status`, `document_count` e `generated_at`. `missing` ou `invalid` não autoriza reparo automático; `available` atesta que o manifesto foi lido, não que cada Markdown atual tenha o mesmo hash da última indexação. Teste `buscar_acervo` somente após confirmar o índice. Para a questão interativa, crie uma sessão de teste, renderize-a e confira que o gabarito só aparece após a tentativa. Registre separadamente descoberta de ferramentas, operação textual e renderização visual.
 
 ## Inicialização automática no Windows
 

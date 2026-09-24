@@ -90,7 +90,7 @@ def _chunks(relative_path: str, text: str) -> tuple[str, list[dict]]:
         if match:
             flush()
             current_heading = match.group(2).strip()
-            if match.group(1) == "#" and title == Path(relative_path).stem:
+            if match.group(1) == "#" and current_heading and title == Path(relative_path).stem:
                 title = current_heading
         else:
             body.append(line)
