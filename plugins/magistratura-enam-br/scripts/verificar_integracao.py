@@ -62,6 +62,7 @@ SEMVER = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z.-]
 DIRETORIOS_GERADOS = frozenset({
     ".git",
     ".pytest_cache",
+    ".runtime",
     ".test-deps",
     ".test-tmp",
     ".venv",

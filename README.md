@@ -33,6 +33,8 @@ O plugin prioriza rigor jurídico, prática deliberada, feedback explicativo, re
 
 As questões objetivas também podem usar um servidor MCP local e um widget interativo. O modelo gera o conteúdo jurídico; o servidor mantém o gabarito fora do navegador até a tentativa e registra questões e respostas somente na biblioteca local autorizada. No Codex, a conexão é por `stdio`; no ChatGPT, depende de um túnel privado configurado separadamente. Consulte [Questões interativas](docs/site/questoes-interativas.md) e [Conexão privada com o ChatGPT](plugins/magistratura-enam-br/docs/chatgpt-local.md).
 
+Após a primeira indexação explícita, é possível instalar separadamente uma verificação pontual do acervo Markdown: ela roda no login e a cada dez minutos, atualiza o índice somente quando detecta mudança e encerra, sem manter um monitor de arquivos residente. A opção e sua remoção estão descritas no [guia de conexão local](plugins/magistratura-enam-br/docs/chatgpt-local.md#verificação-pontual-do-índice-no-windows).
+
 ## Capacidades
 
 | Skill | Finalidade | Limite principal |

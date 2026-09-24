@@ -20,7 +20,7 @@ O plugin inclui um servidor MCP local e um widget moderno para questões objetiv
 
 O Codex inicia o servidor empacotado por `stdio`. O ChatGPT usa o mesmo servidor por conexão privada do Secure MCP Tunnel. Consulte [docs/chatgpt-local.md](docs/chatgpt-local.md) para configuração, inicialização automática opcional e limites de segurança.
 
-Antes da primeira busca, `diagnosticar_acervo` informa a raiz configurada, o caminho do índice, sua existência, a data de geração e a quantidade registrada de documentos. A ferramenta é somente de leitura. Conexão MCP e índice existente não demonstram que os arquivos Markdown atuais estão sincronizados; `indexar_acervo` continua sendo uma ação separada, com confirmação explícita de gravação.
+Antes da primeira busca, `diagnosticar_acervo` informa a raiz configurada, o caminho do índice, sua existência, a data de geração e a quantidade registrada de documentos. A ferramenta é somente de leitura. Conexão MCP e índice existente não demonstram que os arquivos Markdown atuais estão sincronizados; a primeira indexação e o reparo de um índice inválido continuam exigindo `indexar_acervo` com confirmação explícita. Opcionalmente, um verificador de execução curta pode conferir o índice no login e a cada dez minutos, atualizar apenas quando o conteúdo mudou e encerrar; ele não altera a ferramenta de busca nem mantém monitor residente. A instalação está em [docs/chatgpt-local.md](docs/chatgpt-local.md).
 
 ## Ambiente de desenvolvimento
 

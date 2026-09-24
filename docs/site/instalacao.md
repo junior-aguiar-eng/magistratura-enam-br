@@ -16,7 +16,7 @@ codex plugin add magistratura-enam-br@magistratura-enam-br
 
 A instalação é local por computador. Ela não é sincronizada automaticamente entre máquinas ou usuários.
 
-A versão instalada pelo comando acima é o snapshot estável `v0.7.2`. A candidata `0.7.3` da branch `codex/organizacao-qualidade-plugin`, incluindo `diagnosticar_acervo`, não entra nessa instalação por tag; seu piloto local requer instalar a branch explicitamente. Ela ainda não é uma release estável.
+A versão instalada pelo comando acima é o snapshot estável `v0.7.2`. A candidata `0.7.4` da branch `codex/organizacao-qualidade-plugin`, incluindo `diagnosticar_acervo` e a verificação opcional do índice, não entra nessa instalação por tag; seu piloto local requer instalar a branch explicitamente. Ela ainda não é uma release estável.
 
 No Windows, também é possível instalar a partir de um ZIP descompactado em pasta permanente com `.\INSTALAR.ps1` na raiz do repositório. Use `.\INSTALAR.ps1 -InstalarDependencias` para preparar as dependências Python do plugin. A conexão privada do ChatGPT e a inicialização automática do túnel são opcionais e exigem configuração separada.
 

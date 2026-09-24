@@ -18,6 +18,17 @@ def test_schemas_pedagogicos_sao_artefatos_essenciais():
     assert SCHEMAS_PEDAGOGICOS <= set(verificador.ARQUIVOS_ESSENCIAIS)
 
 
+def test_varredura_de_json_ignora_estado_operacional_do_indice(tmp_path):
+    (tmp_path / ".runtime" / "index-sync").mkdir(parents=True)
+    (tmp_path / ".runtime" / "index-sync" / "last-run.json").write_bytes(b"\xef\xbb\xbf{}")
+    (tmp_path / "references").mkdir()
+    (tmp_path / "references" / "fonte.json").write_text("{}", encoding="utf-8")
+
+    encontrados = {path.relative_to(tmp_path).as_posix() for path in verificador.arquivos_fonte(tmp_path, "*.json")}
+
+    assert encontrados == {"references/fonte.json"}
+
+
 def test_validador_rejeita_schema_pedagogico_ausente_ou_invalido(tmp_path):
     modelos = tmp_path / "modelos" / "pedagogia"
     modelos.mkdir(parents=True)

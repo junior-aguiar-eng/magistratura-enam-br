@@ -4,9 +4,17 @@
 
 Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junior-aguiar-eng/magistratura-enam-br`. O manifesto válido é `.codex-plugin/plugin.json`; não mantenha cópias aninhadas ou versões paralelas. Leia `AGENTS.md` antes de qualquer alteração.
 
+## Candidata 0.7.4 — verificação pontual do índice
+
+- Manifesto, `pyproject.toml` e `uv.lock` identificam a candidata `0.7.4`; a tag estável permanece `v0.7.2` até publicação específica. A instalação do autor deve ser verificada pelo cache efetivo do Codex, não apenas pela versão do manifesto.
+- `mcp_server.index_sync` executa uma checagem de hashes e termina; `StudyService.sync_if_changed` não regrava o índice inalterado e não repara estados `missing` ou `invalid`. O conteúdo de cada Markdown elegível é verificado, sem processo residente adicional.
+- `scripts/install_index_sync.ps1` registra tarefa separada do túnel no login e a cada dez minutos; `scripts/uninstall_index_sync.ps1` remove apenas essa tarefa. O status mais recente fica em `.runtime/index-sync/last-run.json`, ignorado pelo Git.
+- O runner registra saída e código mesmo quando o processo emite `stderr`; o verificador de integração exclui `.runtime` por não integrar a árvore distribuível.
+- A primeira indexação continua explícita por `indexar_acervo(confirmar_gravacao_local=true)`. Não confundir instalação da tarefa no computador do autor com distribuição da candidata ou homologação em outros ambientes.
+
 ## Candidata 0.7.3 em 2026-09-24
 
-- Checkout `codex/organizacao-qualidade-plugin`, HEAD de partida `8a0949d`. Manifesto, `pyproject.toml` e lock identificam a candidata `0.7.3`; a versão estável por tag permanece `v0.7.2`. Push da branch, build e instalação são gates operacionais distintos, a conferir na entrega, sem presumir tag, PR ou merge.
+- Na etapa anterior desta branch, manifesto, `pyproject.toml` e lock identificavam a candidata `0.7.3`; a versão estável por tag permanecia `v0.7.2`. Push da branch, build e instalação são gates operacionais distintos; não presumir tag, PR ou merge.
 - O MCP novo expõe `diagnosticar_acervo` somente para leitura: distingue índice ausente, estruturalmente válido e inválido, sem afirmar atualização perante os arquivos da biblioteca. A validação do índice foi alinhada ao indexador para cabeçalhos longos, extensão `.MD` e H1 sem texto útil. Busca e questões foram exercitadas com fixture sintética e transporte `stdio`; não houve acesso ao acervo pessoal.
 - O benchmark jurídico piloto contém oito casos sintéticos e referências oficiais, mas sua revisão jurídica independente e as três execuções limpas por caso permanecem pendentes. Por decisão do usuário, a candidata será experimentada em uso real: os casos formais não são pré-requisito desse piloto e não devem ser apresentados como aprovados. Os testes de schema não comprovam qualidade semântica nem aprovam o gabarito.
 - ChatGPT com túnel não foi homologado neste ciclo: não havia túnel operacional e a consulta local a `/readyz` retornou HTTP 404. A documentação distingue esse limite do fluxo Codex local.

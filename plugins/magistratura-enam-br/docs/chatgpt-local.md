@@ -30,4 +30,16 @@ O script inicia imediatamente o mesmo runner que será acionado no próximo logo
 
 O runner é um supervisor persistente e idempotente, iniciado pelo serviço do Agendador de Tarefas para não depender do shell que executou o instalador. Um mutex impede supervisores duplicados; se o túnel já estiver ativo, o supervisor acompanha essa instância e, se ela encerrar, inicia outra após cinco segundos. O Agendador mantém uma política adicional de reinício do supervisor em caso de falha. Fechar ou reiniciar uma conversa do ChatGPT não afeta esse processo. O PID do supervisor fica em `supervisor.pid`, o PID do túnel em `tunnel.pid` e os eventos de recuperação em `supervisor.log`. O stdout e o stderr do cliente ficam em `.runtime/startup/tunnel-client.stdout.log` e `tunnel-client.stderr.log`, respectivamente. A cópia local do perfil também fica nessa pasta ignorada pelo Git, visível ao contexto real do Agendador.
 
-Para confirmar que o cliente está operacional antes de testar no ChatGPT, consulte `http://127.0.0.1:8080/readyz` e obtenha `ready`; se a resposta remota ainda disser que o cliente não foi visto, confira também esses logs e a associação do `tunnel_id`. Não execute uma segunda instância manual com a mesma porta de health. A desinstalação encerra primeiro o supervisor e depois o túnel, sem apagar biblioteca ou histórico.
+Para confirmar que o cliente está operacional antes de testar no ChatGPT, consulte `/readyz` na porta de health configurada no perfil (8080 por padrão) e obtenha `ready`; se a resposta remota ainda disser que o cliente não foi visto, confira também esses logs e a associação do `tunnel_id`. Não execute uma segunda instância manual com a mesma porta de health. A desinstalação encerra primeiro o supervisor e depois o túnel, sem apagar biblioteca ou histórico.
+
+## Verificação pontual do índice no Windows
+
+Após a primeira indexação explícita, `scripts/install_index_sync.ps1` pode registrar uma tarefa independente do túnel, no escopo do usuário. Ela executa `python -m mcp_server.index_sync` no login e a cada dez minutos, sem processo de indexação residente. Cada execução confere os hashes dos Markdown elegíveis, reaproveita as entradas inalteradas e só substitui atomicamente `index.json` quando houve inclusão, alteração ou remoção. A busca MCP permanece somente leitura. Como não há monitor contínuo, uma mudança pode levar até dez minutos para aparecer; o login também dispara uma verificação. Não há chamada à API para essa checagem local.
+
+Com PowerShell aberto na pasta do plugin, informe os caminhos reais de `uv` e do arquivo de configuração local:
+
+```powershell
+.\scripts\install_index_sync.ps1 -UvPath (Get-Command uv).Source -ConfigPath 'C:\caminho\library-config.json' -Confirm
+```
+
+O resultado da última execução fica em `.runtime/index-sync/last-run.json`. `missing` e `invalid` são falhas explícitas: a tarefa não cria nem repara silenciosamente o índice; use `indexar_acervo` com confirmação após examinar a causa. Para remover apenas essa verificação, execute `scripts/uninstall_index_sync.ps1 -Confirm`. O túnel, a biblioteca, o índice e o histórico são preservados.

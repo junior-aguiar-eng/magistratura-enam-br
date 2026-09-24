@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.7.4] — candidata de branch, sem tag
+
+- Adiciona verificação pontual e opt-in do índice Markdown no Windows, no login e a cada dez minutos, sem monitor residente; mudanças são sincronizadas e índices ausentes ou inválidos não são reparados automaticamente.
+- Exclui o estado operacional `.runtime` da verificação de integridade da árvore distribuível.
+
 ## [0.7.3] — candidata de branch, sem tag
 
 - Acrescenta `diagnosticar_acervo` ao MCP para informar, sem escrita, os caminhos configurados e o estado estrutural do índice local.

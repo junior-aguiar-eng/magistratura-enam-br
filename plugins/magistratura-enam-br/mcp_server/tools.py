@@ -106,6 +106,25 @@ class StudyService:
             "ignored_files": list(result.ignored_files),
         }
 
+    def sync_if_changed(self) -> dict:
+        diagnosis = self.diagnose_library()
+        if diagnosis["index_status"] != "available":
+            return {"status": diagnosis["index_status"]}
+
+        previous = json.loads(self.index_path.read_text(encoding="utf-8"))
+        result = index_library(self.config, previous_manifest=previous)
+        document_count = len(result.manifest["documents"])
+        if result.indexed_count == 0 and result.removed_count == 0:
+            return {"status": "unchanged", "document_count": document_count}
+
+        _write_json_atomic(self.index_path, result.manifest)
+        return {
+            "status": "updated",
+            "document_count": document_count,
+            "indexed_count": result.indexed_count,
+            "removed_count": result.removed_count,
+        }
+
     def search(self, query: str, *, limit: int, path_prefix: str | None) -> dict:
         if not self.index_path.is_file():
             raise FileNotFoundError("Índice local ainda não foi criado")
