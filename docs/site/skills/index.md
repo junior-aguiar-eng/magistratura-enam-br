@@ -11,3 +11,5 @@
 As fronteiras evitam sobreposição, respostas genéricas e persistência implícita. Cada skill mantém seu próprio formato e compartilha apenas o contrato pedagógico necessário à integração.
 
 Na skill de estudo, cada frente possui finalidade própria. Dogmática constrói domínio conceitual cumulativo; casos treinam enquadramentos concorrentes; objetiva exige chave única e distratores plausíveis; discursiva trabalha comando, aplicação e economia argumentativa; oral usa uma pergunta por vez e repreguntas adaptativas; revisão distingue assistência, transferência e retenção.
+
+`$treinador-fgv-magistratura` é uma skill global independente das cinco listadas. No cliente em que estiver instalada, a invocação nominal escolhe seu fluxo próprio; o plugin não compartilha automaticamente com ela prompts, persistência ou histórico. Quando ambos estiverem disponíveis, a seleção automática para um pedido genérico pode variar conforme o cliente. A invocação nominal evita atribuir ao plugin os comandos ou a calibração do treinador externo.
