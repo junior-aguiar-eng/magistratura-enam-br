@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "estudo-juridico-avancado": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "plugins/magistratura-enam-br",
+        "python",
+        "-m",
+        "mcp_server.server",
+        "--config",
+        "${ESTUDO_JURIDICO_CONFIG}",
+        "--transport",
+        "stdio"
+      ]
+    }
+  }
+}
