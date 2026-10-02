@@ -34,6 +34,8 @@ Para confirmar que o cliente está operacional antes de testar no ChatGPT, consu
 
 ## Verificação pontual do índice no Windows
 
+Para verificar o índice somente quando desejar, dê duplo clique em `SINCRONIZAR_ACERVO.bat` na pasta do plugin. Ele usa `.runtime/library-config.json` e exibe o resultado antes de fechar. Se a configuração estiver em outro local, passe o caminho como primeiro argumento ao executar o arquivo. Esse modo não instala tarefa agendada.
+
 Após a primeira indexação explícita, `scripts/install_index_sync.ps1` pode registrar uma tarefa independente do túnel, no escopo do usuário. Ela executa `python -m mcp_server.index_sync` no login e a cada dez minutos, sem processo de indexação residente. Cada execução confere os hashes dos Markdown elegíveis, reaproveita as entradas inalteradas e só substitui atomicamente `index.json` quando houve inclusão, alteração ou remoção. A busca MCP permanece somente leitura. Como não há monitor contínuo, uma mudança pode levar até dez minutos para aparecer; o login também dispara uma verificação. Não há chamada à API para essa checagem local.
 
 Com PowerShell aberto na pasta do plugin, informe os caminhos reais de `uv` e do arquivo de configuração local:
