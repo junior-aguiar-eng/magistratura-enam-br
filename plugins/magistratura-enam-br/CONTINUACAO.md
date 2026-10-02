@@ -6,6 +6,8 @@ Versão 0.7.5 sincronizada no manifesto e no ambiente Python. O usuário autoriz
 
 Gates locais repetidos após integrar main: 364 testes Python aprovados (70,44 s), 15 testes do widget, TypeScript, build, Ruff, lockfile e 42 verificações de integração; npm audit sem vulnerabilidades e builds Zensical/MkDocs estrito aprovados. CI remoto, tag e reinstalação devem ser conferidos nos respectivos registros operacionais.
 
+Os alertas de dependências identificados no push motivaram atualização pontual do lockfile: PyJWT 2.15.1, pypdf 6.19.0 e urllib3 2.8.0, mantendo as restrições existentes. Após essa atualização, os 364 testes Python passaram novamente (66,64 s), assim como Ruff, lockfile e integração. pip-audit sobre o export completo do lockfile, incluindo grupos de desenvolvimento e documentação, não encontrou vulnerabilidades conhecidas.
+
 ## Correções locais da auditoria — etapa anterior à release
 
 Na etapa de correção, as sete frentes da auditoria receberam correções locais, antes da autorização para instalação e publicação. O plano está em `docs/superpowers/plans/2026-10-02-correcoes-auditoria-plugin.md` na raiz do repositório. Eventos novos usam 2.1; logs 1.x/2.0 permanecem legíveis e retries antigos não os reescrevem. Invalidações pós-tentativa são append-only e retiram a atividade das projeções reconstruídas com o log completo. Nenhum acervo pessoal foi migrado.

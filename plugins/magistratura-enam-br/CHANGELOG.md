@@ -2,6 +2,8 @@
 
 ## [0.7.5] — 2026-10-02
 
+- Atualiza PyJWT para 2.15.1, pypdf para 6.19.0 e urllib3 para 2.8.0 no lockfile para tratar os alertas de dependências identificados durante a publicação.
+
 - Consolida as candidatas 0.7.3 e 0.7.4 e atualiza as instruções de instalação por tag do repositório público.
 
 - Registra tentativas MCP sem presumir erro específico, domínio, assistência ou versão da fonte; preserva retries e eventos antigos.
