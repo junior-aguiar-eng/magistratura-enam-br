@@ -1,5 +1,15 @@
 # Continuação de manutenção
 
+## Correções locais da auditoria — 2026-10-02
+
+As sete frentes da auditoria receberam correções locais, ainda sem instalação ou publicação. O plano está em `docs/superpowers/plans/2026-10-02-correcoes-auditoria-plugin.md` na raiz do repositório. Eventos novos usam 2.1; logs 1.x/2.0 permanecem legíveis e retries antigos não os reescrevem. Invalidações pós-tentativa são append-only e retiram a atividade das projeções reconstruídas com o log completo. Nenhum acervo pessoal foi migrado.
+
+A ferramenta `invalidar_questao` aceita motivo explícito; repetir com o mesmo motivo conclui gravação parcial. O widget usa o SDK MCP Apps, mantém `window.openai` e apresenta a correção completa após a tentativa. A reconstrução explícita do índice tolera conteúdo anterior inválido; a sincronização automática preserva a política de não reparo.
+
+O benchmark deixa de exigir revisão eternamente pendente. Aprovação ou rejeição da fixture exige revisor, data e nota; o registrador de execuções preserva versão/modelo/cliente, sessão, rodada, saída, hash e revisão por critério. Revisões jurídicas reais e homologação visual no Codex/ChatGPT não foram realizadas por esta alteração.
+
+Validação final deste ciclo: 364 testes Python, 15 testes do widget com SDK real e host simulado, TypeScript, build Vite, Ruff e 42 verificações de integração aprovados. A revisão independente identificou regressões por notificações atrasadas, payloads malformados e reaproveitamento de revisão após mudar o caso; os três achados foram reproduzidos e corrigidos. O build contém avisos não impeditivos de comentários da dependência Zod. O bundle distribuído foi regenerado; não houve commit, instalação, push ou publicação.
+
 ## Fonte canônica
 
 Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junior-aguiar-eng/magistratura-enam-br`. O manifesto válido é `.codex-plugin/plugin.json`; não mantenha cópias aninhadas ou versões paralelas. Leia `AGENTS.md` antes de qualquer alteração.
@@ -8,6 +18,7 @@ Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junio
 
 - Manifesto, `pyproject.toml` e `uv.lock` identificam a candidata `0.7.4`; a tag estável permanece `v0.7.2` até publicação específica. A instalação do autor deve ser verificada pelo cache efetivo do Codex, não apenas pela versão do manifesto.
 - `mcp_server.index_sync` executa uma checagem de hashes e termina; `StudyService.sync_if_changed` não regrava o índice inalterado e não repara estados `missing` ou `invalid`. O conteúdo de cada Markdown elegível é verificado, sem processo residente adicional.
+- `SINCRONIZAR_ACERVO.bat` executa a mesma checagem sob demanda, por duplo clique, usando por padrão `.runtime/library-config.json`; não registra tarefa agendada.
 - `scripts/install_index_sync.ps1` registra tarefa separada do túnel no login e a cada dez minutos; `scripts/uninstall_index_sync.ps1` remove apenas essa tarefa. O status mais recente fica em `.runtime/index-sync/last-run.json`, ignorado pelo Git.
 - O runner registra saída e código mesmo quando o processo emite `stderr`; o verificador de integração exclui `.runtime` por não integrar a árvore distribuível.
 - A primeira indexação continua explícita por `indexar_acervo(confirmar_gravacao_local=true)`. Não confundir instalação da tarefa no computador do autor com distribuição da candidata ou homologação em outros ambientes.

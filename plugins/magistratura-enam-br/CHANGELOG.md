@@ -1,7 +1,16 @@
 # Changelog
 
+## Não publicado — correções da auditoria de 2026-10-02
+
+- Registra tentativas MCP sem presumir erro específico, domínio, assistência ou versão da fonte; preserva retries e eventos antigos.
+- Permite invalidação auditável após resposta, reconcilia histórico e exclui a atividade invalidada do perfil e dos relatórios reconstruídos.
+- Corrige inicialização e chamadas do widget pelo SDK MCP Apps; apresenta fontes, exceções, armadilhas e estado invalidado.
+- Reconstrói índices corrompidos somente com confirmação e valida a cobertura dos distratores e fontes de questões verificadas.
+- Permite revisão identificada do benchmark e registra execuções com versões, sessão, saída, hashes e avaliação humana vinculada ao texto.
+
 ## [0.7.4] — candidata de branch, sem tag
 
+- Adiciona `SINCRONIZAR_ACERVO.bat` para verificação manual do índice por duplo clique, sem tarefa agendada.
 - Adiciona verificação pontual e opt-in do índice Markdown no Windows, no login e a cada dez minutos, sem monitor residente; mudanças são sincronizadas e índices ausentes ou inválidos não são reparados automaticamente.
 - Exclui o estado operacional `.runtime` da verificação de integridade da árvore distribuível.
 

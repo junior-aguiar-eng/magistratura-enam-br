@@ -162,7 +162,7 @@ def _referencias_de_fontes_validas(catalogo: dict, ids_fontes: set[str]) -> bool
     )
 
 
-def test_benchmark_piloto_usa_fontes_oficiais_localizaveis_e_revisao_pendente():
+def test_benchmark_piloto_usa_fontes_oficiais_localizaveis_e_revisao_valida():
     fontes = carregar_json(ROOT / "evals" / "pedagogia" / "benchmark-juridico" / "fontes.json")
     ids_fontes = {fonte["id"] for fonte in fontes["sources"]}
     assert ids_fontes
@@ -176,11 +176,24 @@ def test_benchmark_piloto_usa_fontes_oficiais_localizaveis_e_revisao_pendente():
     }
     for caso in casos:
         base = caso["legal_grounding"]
-        assert base["human_review"]["review_status"] == "pending"
         assert base["claims"]
+    assert not list(Draft202012Validator(carregar_json(SCHEMA), format_checker=FormatChecker()).iter_errors(catalogo))
     assert _referencias_de_fontes_validas(catalogo, ids_fontes)
 
     caso_sem_fonte = copy.deepcopy(catalogo)
     caso_sem_fonte["evals"][0]["legal_grounding"] = copy.deepcopy(casos[0]["legal_grounding"])
     caso_sem_fonte["evals"][0]["legal_grounding"]["claims"][0]["official_source"] = "src_inexistente"
     assert not _referencias_de_fontes_validas(caso_sem_fonte, ids_fontes)
+
+
+def test_revisao_juridica_pode_avancar_mas_exige_autor_data_e_evidencia():
+    catalogo = carregar_json(CATALOGO)
+    caso = next(c for c in catalogo['evals'] if c['id'].startswith('juridico-'))
+    review = caso['legal_grounding']['human_review']
+    review.update(review_status='approved', review_note='Art. 189: vínculo conferido com a proposição.')
+    validator = Draft202012Validator(carregar_json(SCHEMA), format_checker=FormatChecker())
+    assert list(validator.iter_errors(catalogo)), 'Aprovação sem responsável e data não é auditável'
+    review.update(reviewer='Revisor de teste', reviewed_at='2026-10-02')
+    assert not list(validator.iter_errors(catalogo))
+    review['reviewed_at'] = '2026-13-99'
+    assert list(validator.iter_errors(catalogo))

@@ -51,6 +51,7 @@ def verificar(assertion: dict, texto: str) -> tuple[bool, str]:
 def avaliar_saida(caso: dict, texto: str) -> dict:
     resultados = []
     revisao_humana = [item["id"] for item in caso.get("semantic_claims", [])]
+    revisao_humana.extend(f"rubrica-{index}" for index, _ in enumerate(caso.get("human_rubric", []), 1))
     base_juridica = caso.get("legal_grounding")
     if base_juridica:
         if base_juridica["human_review"]["review_status"] == "pending":

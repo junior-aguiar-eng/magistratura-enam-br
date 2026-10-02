@@ -87,6 +87,16 @@ class QuestionRepository:
             item["session_id"] == session_id for item in self.state_events_store.read_all()
         )
 
+    def _validate_ready(self, private: dict) -> None:
+        # Semantic checks apply to new ready sessions, not old append-only records.
+        self.questions_store._validate(private)
+        expected = {"A", "B", "C", "D", "E"} - {private["correct_option"]}
+        actual = [item["option"] for item in private["correction"]["distractor_analysis"]]
+        if len(actual) != 4 or set(actual) != expected:
+            raise ValueError("A correção deve analisar exatamente os quatro distratores")
+        if private["source_status"] == "verified" and not private["sources"]:
+            raise ValueError("Questão verificada exige ao menos uma fonte rastreável")
+
     @staticmethod
     def _public(private: dict) -> dict:
         public = {
@@ -110,6 +120,7 @@ class QuestionRepository:
     def create_session(self, private: dict) -> dict:
         if private.get("state") != "ready":
             raise ValueError("Sessão apresentável deve usar state=ready")
+        self._validate_ready(private)
         with self._lock:
             if self._question_records(private["session_id"]):
                 raise QuestionConflictError("Sessão já existe")
@@ -125,28 +136,36 @@ class QuestionRepository:
                 raise QuestionConflictError("Somente sessão draft pode avançar para ready")
             ready = copy.deepcopy(private)
             ready["state"] = "ready"
+            self._validate_ready(ready)
             self.questions_store.append(ready)
         return self._public(ready)
 
     def invalidate(self, session_id: str, *, reason: str, invalidated_at: str) -> dict:
+        if not reason.strip():
+            raise ValueError("A invalidação exige motivo explícito")
         with self._lock:
-            if self._attempt(session_id) is not None:
-                raise QuestionConflictError("Sessão respondida não pode ser invalidada")
             private = self._private(session_id)
-            if self._is_invalidated(session_id):
-                raise QuestionConflictError("Sessão já invalidada")
-            event = {
+            existing = next((item for item in self.state_events_store.read_all()
+                             if item["session_id"] == session_id), None)
+            if existing is not None and existing["reason"] != reason:
+                raise QuestionConflictError("Sessão já invalidada com outro motivo")
+            event = existing or {
                 "transition_id": f"qtr_{_digest([session_id, reason, invalidated_at])[:24]}",
-                "session_id": session_id,
-                "state": "invalidated",
-                "reason": reason,
-                "occurred_at": invalidated_at,
+                "session_id": session_id, "state": "invalidated",
+                "reason": reason, "occurred_at": invalidated_at,
             }
-            self.state_events_store.append(event)
-        result = self._public(private)
-        result["state"] = "invalidated"
-        result["invalidation_reason"] = reason
-        return result
+            if existing is None:
+                self.state_events_store.append(event)
+            attempt = self._attempt(session_id)
+            if attempt is not None:
+                # Retrying after a partial write completes the append-only invalidation.
+                invalidation = self._learning_event(private, attempt)
+                invalidation["event_id"] = f"evt_{_digest(event)[:32]}"
+                invalidation["occurred_at"] = event["occurred_at"]
+                invalidation["performance"]["result"] = "questao_invalida"
+                invalidation["routing"] = {"target_skill": None, "reason_codes": ["questao_invalidada"]}
+                self._ensure_event(invalidation)
+            return self.get_session(session_id)
 
     def _learning_event(self, private: dict, attempt: dict) -> dict:
         correct = attempt["result"] == "correct"
@@ -157,7 +176,7 @@ class QuestionRepository:
         }[private["source_status"]]
         content_id = private["session_id"].replace("_", "-")
         return {
-            "schema_version": "2.0.0",
+            "schema_version": "2.1.0",
             "event_id": f"evt_{_digest(attempt)[:32]}",
             "occurred_at": attempt["answered_at"],
             "skill": "estudar-direito-magistratura",
@@ -169,18 +188,17 @@ class QuestionRepository:
                 "subtema": private["topic"],
                 "source_refs": attempt["source_refs"],
                 "source_state": source_state,
-                "source_version": attempt["answered_at"][:10],
             },
             "activity": {
                 "activity_id": f"atividade-{content_id}",
                 "modality": "questao_objetiva",
                 "attempt_observed": True,
-                "assistance_level": "nenhuma",
+                "assistance_level": "nao_registrada",
             },
             "performance": {
                 "result": "correto" if correct else "incorreto",
-                "error_types": [] if correct else ["distincao"],
-                "domain_evidence": ["evocacao_regra"],
+                "error_types": [],
+                "domain_evidence": [],
                 "confidence": None,
             },
             "routing": {
@@ -191,6 +209,16 @@ class QuestionRepository:
 
     def _ensure_learning_event(self, private: dict, attempt: dict) -> None:
         expected = self._learning_event(private, attempt)
+        # Preserve retries of pre-2.1 events without rewriting historical observations.
+        legacy = copy.deepcopy(expected)
+        legacy["schema_version"] = "2.0.0"
+        legacy["content_ref"]["source_version"] = attempt["answered_at"][:10]
+        legacy["activity"]["assistance_level"] = "nenhuma"
+        legacy["performance"]["error_types"] = [] if attempt["result"] == "correct" else ["distincao"]
+        legacy["performance"]["domain_evidence"] = ["evocacao_regra"]
+        self._ensure_event(expected, legacy=legacy)
+
+    def _ensure_event(self, expected: dict, *, legacy: dict | None = None) -> None:
         existing = next(
             (
                 item
@@ -201,7 +229,7 @@ class QuestionRepository:
         )
         if existing is None:
             self.learning_events_store.append(expected)
-        elif existing != expected:
+        elif existing != expected and existing != legacy:
             raise QuestionConflictError("Evento pedagógico diverge da tentativa registrada")
 
     def answer(self, session_id: str, selected_option: str, *, answered_at: str) -> dict:
@@ -249,9 +277,12 @@ class QuestionRepository:
 
     def get_session(self, session_id: str) -> dict:
         private = self._private(session_id)
-        if self._is_invalidated(session_id):
+        invalidation = next((item for item in self.state_events_store.read_all()
+                             if item["session_id"] == session_id), None)
+        if invalidation is not None:
             result = self._public(private)
             result["state"] = "invalidated"
+            result["invalidation_reason"] = invalidation["reason"]
             return result
         attempt = self._attempt(session_id)
         if attempt is not None:

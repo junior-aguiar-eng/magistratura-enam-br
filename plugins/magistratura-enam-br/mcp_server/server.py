@@ -9,7 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from .config import LibraryConfig
 from .resources import LEGACY_UI_URI, UI_MIME_TYPE, UI_URI, load_question_widget
-from .tools import StudyService
+from .tools import StudyService, _utc_now
 
 Option = Literal["A", "B", "C", "D", "E"]
 
@@ -116,6 +116,7 @@ def build_server(config: LibraryConfig) -> MCPServer:
 
     @server.tool(
         structured_output=True,
+        meta={"openai/widgetAccessible": True},
         annotations=ToolAnnotations(
             readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=False
         ),
@@ -123,6 +124,16 @@ def build_server(config: LibraryConfig) -> MCPServer:
     def responder_questao(session_id: str, alternativa: str) -> dict[str, Any]:
         """Registra a primeira tentativa e somente então libera a correção completa."""
         return service.answer_question(session_id, alternativa)
+
+    @server.tool(
+        structured_output=True,
+        annotations=ToolAnnotations(
+            readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=False
+        ),
+    )
+    def invalidar_questao(session_id: str, motivo: str) -> dict[str, Any]:
+        """Invalida questão ambígua ou defeituosa, mesmo após a tentativa; preserva os logs e retira seus efeitos pedagógicos."""
+        return service.questions.invalidate(session_id, reason=motivo, invalidated_at=_utc_now())
 
     @server.tool(
         structured_output=True,

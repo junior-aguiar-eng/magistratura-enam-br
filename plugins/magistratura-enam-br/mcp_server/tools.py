@@ -93,7 +93,7 @@ class StudyService:
         if not confirmed:
             raise PermissionError("A indexação exige confirmação explícita de gravação local")
         previous = None
-        if self.index_path.exists():
+        if self.diagnose_library()["index_status"] == "available":
             previous = json.loads(self.index_path.read_text(encoding="utf-8"))
         result = index_library(self.config, previous_manifest=previous)
         _write_json_atomic(self.index_path, result.manifest)
@@ -166,6 +166,7 @@ class StudyService:
         attempts = {
             attempt["session_id"]: attempt for attempt in self.questions.attempts_store.read_all()
         }
+        invalidated = {event["session_id"] for event in self.questions.state_events_store.read_all()}
         items = []
         for session_id, question in latest.items():
             attempt = attempts.get(session_id)
@@ -175,8 +176,8 @@ class StudyService:
                     "created_at": question["created_at"],
                     "subject": question["subject"],
                     "topic": question["topic"],
-                    "state": "answered" if attempt else question["state"],
-                    "result": attempt["result"] if attempt else None,
+                    "state": "invalidated" if session_id in invalidated else "answered" if attempt else question["state"],
+                    "result": attempt["result"] if attempt and session_id not in invalidated else None,
                 }
             )
         items.sort(key=lambda item: (item["created_at"], item["session_id"]), reverse=True)

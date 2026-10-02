@@ -41,10 +41,12 @@
           "required": ["review_status", "review_note"],
           "properties": {
             "review_status": {"enum": ["pending", "approved", "rejected"]},
-            "review_note": {"type": "string"}
+            "review_note": {"type": "string"},
+            "reviewer": {"type": "string", "pattern": "\\S"},
+            "reviewed_at": {"type": "string", "format": "date"}
           },
-          "if": {"properties": {"review_status": {"const": "approved"}}},
-          "then": {"properties": {"review_note": {"minLength": 1, "pattern": "\\S"}}}
+          "if": {"properties": {"review_status": {"enum": ["approved", "rejected"]}}},
+          "then": {"required": ["reviewer", "reviewed_at"], "properties": {"review_note": {"minLength": 1, "pattern": "\\S"}}}
         }
       }
     },
