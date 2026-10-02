@@ -8,6 +8,8 @@ Plano/spec aprovados e versionados na branch `codex/incrementos-mcp-calibracao`,
 
 Validação: 374 testes Python aprovados (62,56 s), Ruff, lockfile e 42 verificações de integração aprovadas. Discovery e chamadas reais por cliente MCP, `stdio` e HTTP local usam apenas biblioteca sintética. A saída pública também rejeita campos de tentativa para evitar revelação indireta da chave. A inicialização foi verificada no protocolo; aplicação dessas instruções pelo modelo e homologação visual no ChatGPT são limites distintos.
 
+Revisão independente do intervalo `8b245f1..b062ce0` aprovada, sem achados críticos, importantes ou menores. O revisor verificou adicionalmente, com cliente MCP real, que retorno privado inválido gera erro sem conteúdo privado no envelope e que sessões corrigidas históricas continuam legíveis. As tasks posteriores e a homologação no ChatGPT permanecem pendentes conforme o plano.
+
 ## Release 0.7.5 — 2026-10-02
 
 Versão 0.7.5 sincronizada no manifesto e no ambiente Python. O usuário autorizou commit, push, reinstalação e publicação em 2026-10-02. As correções foram integradas com os três commits novos de main; a publicação exige os gates desta árvore final. O repositório remoto foi confirmado público. Nenhuma tarefa agendada ou indexação pessoal é ativada pela release.

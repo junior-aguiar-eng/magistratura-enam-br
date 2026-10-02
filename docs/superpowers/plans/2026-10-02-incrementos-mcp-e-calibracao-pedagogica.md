@@ -55,6 +55,8 @@ A e B podem ser integradas separadamente. Sequência recomendada: A → B → C.
 
 **Registro da execução:** contratos separados em `mcp_server/outputs.py`, com RootModel/TypedDict suportados pelo SDK atual; não foi necessário modificar o schema persistido nem dependências. A asserção antiga de `tests/test_mcp_tools.py` foi alinhada à visibilidade padronizada, preservando a exclusividade do recurso UI no renderizador. Suíte integral: 374 testes aprovados; Ruff, lockfile e integração (42 checks) aprovados. Trabalho feito na branch indicada, no checkout existente; tasks 2–8 aguardam execução própria.
 
+**Encerramento da task 1:** gate específico com 29 testes aprovados; build MkDocs estrito aprovado. Revisão independente em `8b245f1..b062ce0` sem achados críticos, importantes ou menores, com verificação adicional de erro sem vazamento e legibilidade histórica por cliente MCP real. Retry/bridge, estado entre cards, adaptação do host, corpus e desempenho pedagógico permanecem nas tasks previstas; comportamento visual e cumprimento das instruções pelo modelo não foram homologados neste ciclo.
+
 ## Task 2: Bridge padronizado e lifecycle
 
 **Files:** criar `web/src/mcp-host.ts` e `web/src/mcp-host.test.ts`; modificar `web/src/QuestionWidget.tsx`, `web/src/contracts.ts`, `web/src/QuestionWidget.test.tsx`.
