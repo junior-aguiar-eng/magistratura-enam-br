@@ -9,7 +9,7 @@ import tempfile
 from collections.abc import Iterable
 from pathlib import Path
 
-from eventos_aprendizagem import ler_eventos, validar_evento
+from eventos_aprendizagem import eventos_efetivos, ler_eventos, validar_evento
 from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +47,11 @@ def _configuracao_validada(configuracao: dict | None) -> dict:
 
 def reconstruir_perfil(eventos: Iterable[dict], configuracao: dict | None = None) -> dict:
     ordenados = sorted(eventos, key=lambda e: (e.get("occurred_at", ""), e.get("event_id", "")))
+    for evento in ordenados:
+        erros = validar_evento(evento)
+        if erros:
+            raise ValueError(f"Evento inválido: {'; '.join(erros)}")
+    efetivos = {e["event_id"] for e in eventos_efetivos(ordenados)}
     ids, competencias, remediacoes = set(), {}, {}
     for evento in ordenados:
         erros = validar_evento(evento)
@@ -56,7 +61,7 @@ def reconstruir_perfil(eventos: Iterable[dict], configuracao: dict | None = None
         if event_id in ids:
             raise ValueError(f"event_id duplicado: {event_id}")
         ids.add(event_id)
-        if not evento["activity"]["attempt_observed"]:
+        if evento["event_id"] not in efetivos or not evento["activity"]["attempt_observed"]:
             continue
         chave = _chave(evento)
         item = competencias.setdefault(chave, {"competency_id": chave, "evidence": {e: "nao_observado" for e in EVIDENCIAS}, "observations": []})

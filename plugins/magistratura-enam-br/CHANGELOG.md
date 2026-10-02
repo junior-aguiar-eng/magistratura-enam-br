@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.7.5] — 2026-10-02
+
+- Atualiza PyJWT para 2.15.1, pypdf para 6.19.0 e urllib3 para 2.8.0 no lockfile para tratar os alertas de dependências identificados durante a publicação.
+
+- Consolida as candidatas 0.7.3 e 0.7.4 e atualiza as instruções de instalação por tag do repositório público.
+
+- Registra tentativas MCP sem presumir erro específico, domínio, assistência ou versão da fonte; preserva retries e eventos antigos.
+- Permite invalidação auditável após resposta, reconcilia histórico e exclui a atividade invalidada do perfil e dos relatórios reconstruídos.
+- Corrige inicialização e chamadas do widget pelo SDK MCP Apps; apresenta fontes, exceções, armadilhas e estado invalidado.
+- Reconstrói índices corrompidos somente com confirmação e valida a cobertura dos distratores e fontes de questões verificadas.
+- Permite revisão identificada do benchmark e registra execuções com versões, sessão, saída, hashes e avaliação humana vinculada ao texto.
+
+## [0.7.4] — candidata de branch, sem tag
+
+- Adiciona `SINCRONIZAR_ACERVO.bat` para verificação manual do índice por duplo clique, sem tarefa agendada.
+- Adiciona verificação pontual e opt-in do índice Markdown no Windows, no login e a cada dez minutos, sem monitor residente; mudanças são sincronizadas e índices ausentes ou inválidos não são reparados automaticamente.
+- Exclui o estado operacional `.runtime` da verificação de integridade da árvore distribuível.
+
+## [0.7.3] — candidata de branch, sem tag
+
+- Acrescenta `diagnosticar_acervo` ao MCP para informar, sem escrita, os caminhos configurados e o estado estrutural do índice local.
+- Alinha o contrato de documentos indexados ao Markdown aceito pelo indexador e preserva o título do arquivo quando um H1 não tem texto útil.
+- Introduz oito casos sintéticos de benchmark jurídico com referência a fonte oficial, critérios de proporcionalidade e transferência e aprovação jurídica humana ainda pendente.
+- Explicita o roteamento do treinador FGV externo e os limites distintos de Codex local e ChatGPT com conexão privada.
+
 ## [0.7.2] - 2026-09-22
 
 - Sincroniza os guias de instalação e questões interativas com a configuração distribuída do MCP e do supervisor Windows.

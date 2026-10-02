@@ -1,8 +1,44 @@
 # Continuação de manutenção
 
+## Release 0.7.5 — 2026-10-02
+
+Versão 0.7.5 sincronizada no manifesto e no ambiente Python. O usuário autorizou commit, push, reinstalação e publicação em 2026-10-02. As correções foram integradas com os três commits novos de main; a publicação exige os gates desta árvore final. O repositório remoto foi confirmado público. Nenhuma tarefa agendada ou indexação pessoal é ativada pela release.
+
+Gates locais repetidos após integrar main: 364 testes Python aprovados (70,44 s), 15 testes do widget, TypeScript, build, Ruff, lockfile e 42 verificações de integração; npm audit sem vulnerabilidades e builds Zensical/MkDocs estrito aprovados. CI remoto, tag e reinstalação devem ser conferidos nos respectivos registros operacionais.
+
+Os alertas de dependências identificados no push motivaram atualização pontual do lockfile: PyJWT 2.15.1, pypdf 6.19.0 e urllib3 2.8.0, mantendo as restrições existentes. Após essa atualização, os 364 testes Python passaram novamente (66,64 s), assim como Ruff, lockfile e integração. pip-audit sobre o export completo do lockfile, incluindo grupos de desenvolvimento e documentação, não encontrou vulnerabilidades conhecidas.
+
+## Correções locais da auditoria — etapa anterior à release
+
+Na etapa de correção, as sete frentes da auditoria receberam correções locais, antes da autorização para instalação e publicação. O plano está em `docs/superpowers/plans/2026-10-02-correcoes-auditoria-plugin.md` na raiz do repositório. Eventos novos usam 2.1; logs 1.x/2.0 permanecem legíveis e retries antigos não os reescrevem. Invalidações pós-tentativa são append-only e retiram a atividade das projeções reconstruídas com o log completo. Nenhum acervo pessoal foi migrado.
+
+A ferramenta `invalidar_questao` aceita motivo explícito; repetir com o mesmo motivo conclui gravação parcial. O widget usa o SDK MCP Apps, mantém `window.openai` e apresenta a correção completa após a tentativa. A reconstrução explícita do índice tolera conteúdo anterior inválido; a sincronização automática preserva a política de não reparo.
+
+O benchmark deixa de exigir revisão eternamente pendente. Aprovação ou rejeição da fixture exige revisor, data e nota; o registrador de execuções preserva versão/modelo/cliente, sessão, rodada, saída, hash e revisão por critério. Revisões jurídicas reais e homologação visual no Codex/ChatGPT não foram realizadas por esta alteração.
+
+Validação final deste ciclo: 364 testes Python, 15 testes do widget com SDK real e host simulado, TypeScript, build Vite, Ruff e 42 verificações de integração aprovados. A revisão independente identificou regressões por notificações atrasadas, payloads malformados e reaproveitamento de revisão após mudar o caso; os três achados foram reproduzidos e corrigidos. O build contém avisos não impeditivos de comentários da dependência Zod. O bundle distribuído foi regenerado. Esse registro de validação antecede os commits, a instalação, o push e a publicação da release.
+
 ## Fonte canônica
 
 Trabalhe exclusivamente em `plugins/magistratura-enam-br` no repositório `junior-aguiar-eng/magistratura-enam-br`. O manifesto válido é `.codex-plugin/plugin.json`; não mantenha cópias aninhadas ou versões paralelas. Leia `AGENTS.md` antes de qualquer alteração.
+
+## Candidata 0.7.4 — verificação pontual do índice
+
+- Manifesto, `pyproject.toml` e `uv.lock` identificam a candidata `0.7.4`; a tag estável permanece `v0.7.2` até publicação específica. A instalação do autor deve ser verificada pelo cache efetivo do Codex, não apenas pela versão do manifesto.
+- `mcp_server.index_sync` executa uma checagem de hashes e termina; `StudyService.sync_if_changed` não regrava o índice inalterado e não repara estados `missing` ou `invalid`. O conteúdo de cada Markdown elegível é verificado, sem processo residente adicional.
+- `SINCRONIZAR_ACERVO.bat` executa a mesma checagem sob demanda, por duplo clique, usando por padrão `.runtime/library-config.json`; não registra tarefa agendada.
+- `scripts/install_index_sync.ps1` registra tarefa separada do túnel no login e a cada dez minutos; `scripts/uninstall_index_sync.ps1` remove apenas essa tarefa. O status mais recente fica em `.runtime/index-sync/last-run.json`, ignorado pelo Git.
+- O runner registra saída e código mesmo quando o processo emite `stderr`; o verificador de integração exclui `.runtime` por não integrar a árvore distribuível.
+- A primeira indexação continua explícita por `indexar_acervo(confirmar_gravacao_local=true)`. Não confundir instalação da tarefa no computador do autor com distribuição da candidata ou homologação em outros ambientes.
+
+## Candidata 0.7.3 em 2026-09-24
+
+- Na etapa anterior desta branch, manifesto, `pyproject.toml` e lock identificavam a candidata `0.7.3`; a versão estável por tag permanecia `v0.7.2`. Push da branch, build e instalação são gates operacionais distintos; não presumir tag, PR ou merge.
+- O MCP novo expõe `diagnosticar_acervo` somente para leitura: distingue índice ausente, estruturalmente válido e inválido, sem afirmar atualização perante os arquivos da biblioteca. A validação do índice foi alinhada ao indexador para cabeçalhos longos, extensão `.MD` e H1 sem texto útil. Busca e questões foram exercitadas com fixture sintética e transporte `stdio`; não houve acesso ao acervo pessoal.
+- O benchmark jurídico piloto contém oito casos sintéticos e referências oficiais, mas sua revisão jurídica independente e as três execuções limpas por caso permanecem pendentes. Por decisão do usuário, a candidata será experimentada em uso real: os casos formais não são pré-requisito desse piloto e não devem ser apresentados como aprovados. Os testes de schema não comprovam qualidade semântica nem aprovam o gabarito.
+- ChatGPT com túnel não foi homologado neste ciclo: não havia túnel operacional e a consulta local a `/readyz` retornou HTTP 404. A documentação distingue esse limite do fluxo Codex local.
+- Gates executados nesta candidata: `uv sync --all-groups`; `uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests -q --basetemp .pytest-install-073` (323 aprovados); Ruff; `uv lock --check`; verificador de integração (42 checks, zero erros); `npm ci`, quatro testes do widget, lint, auditoria sem vulnerabilidades e build; builds MkDocs estrito e Zensical. O teste estrutural do plugin não substitui revisão jurídica humana ou smoke na interface do ChatGPT.
+- Open Notebook e ingestão de PDFs/OCR não foram incluídos: a avaliação de multimodalidade exigiria amostra não sensível, citação localizável por página e comparação de qualidade e privacidade com o índice Markdown.
 
 ## Estado em 2026-09-22
 

@@ -34,6 +34,8 @@ Em uma mesma sessão contínua, a leitura inicial destas diretrizes e a classifi
 
 O verificador de integração deve ser determinístico e estritamente de leitura: deriva a versão do manifesto, valida somente a árvore distribuível e nunca cria bytecode, cache ou outro artefato na fonte canônica.
 
+Nas questões MCP, a alternativa escolhida comprova somente o resultado objetivo. Não infira tipo de erro, evidência de domínio, assistência ou versão da fonte sem suporte observável. Questões defeituosas podem ser invalidadas antes ou depois da tentativa por motivo explícito: preserve os logs e exclua a atividade invalidada das projeções de perfil e relatório. A correção interativa deve apresentar fontes, exceções e armadilhas disponíveis somente após a tentativa. Aprovação estrutural de benchmark nunca substitui revisão jurídica humana identificada e vinculada à saída avaliada.
+
 No comparador ENAM, `id_item` é o vínculo canônico entre mapeamento e comparativo. O auditor deve rejeitar tipo de correspondência fora do vocabulário, item duplicado ou órfão, divergência de tipo e ausência de linha comparativa para item mapeado.
 
 Os schemas JSON do comparador são contratos executáveis, não documentação ilustrativa: a auditoria deve validá-los antes das regras semânticas próprias, inclusive para padrão de identificadores, campos obrigatórios e propriedades não permitidas.
@@ -133,4 +135,3 @@ Estas diretrizes somente podem ser afastadas, alteradas ou ignoradas mediante co
 - `acompanhar-percurso-magistratura` recomenda uma das cinco skills canônicas e não produz conteúdo jurídico, agenda ou atualização documental.
 - Escrita em perfil, log, relatório ou planilha exige destino e confirmação correspondentes.
 - A política fixa da esteira é o padrão; recomendações adaptativas permanecem em modo sombra até opt-in expresso.
-

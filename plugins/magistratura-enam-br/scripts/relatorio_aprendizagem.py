@@ -10,6 +10,8 @@ from collections.abc import Iterable
 from datetime import date, datetime
 from pathlib import Path
 
+from eventos_aprendizagem import eventos_efetivos
+
 RESULTADOS_AVALIADOS = {"correto", "parcial", "incorreto"}
 
 
@@ -31,7 +33,7 @@ def gerar_relatorio(
         raise ValueError("início do período deve ser anterior ou igual ao fim")
 
     selecionados = [
-        evento for evento in eventos if inicio <= _data_evento(evento) <= fim
+        evento for evento in eventos_efetivos(eventos) if inicio <= _data_evento(evento) <= fim
     ]
     tentativas = [
         evento

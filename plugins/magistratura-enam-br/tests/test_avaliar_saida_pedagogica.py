@@ -114,3 +114,36 @@ def test_avaliador_nao_aprova_automaticamente_afirmacao_semantica():
 
     assert resultado["status"] == "revisao_humana_pendente"
     assert resultado["human_review_required"] == ["funcao-das-fontes"]
+
+
+def test_fundamentacao_juridica_exige_revisao_da_saida_mesmo_com_fixture_aprovada():
+    avaliador = carregar_avaliador()
+    caso = {
+        "id": "juridico-pontual",
+        "assertions": [],
+        "legal_grounding": {
+            "human_review": {"review_status": "approved", "review_note": "Fonte conferida."},
+            "claims": [{"id": "pretensao"}],
+        },
+    }
+
+    resultado = avaliador.avaliar_saida(caso, "A violação faz nascer a pretensão.")
+
+    assert resultado["status"] == "revisao_humana_pendente"
+    assert resultado["human_review_required"] == ["aplicacao-fundamentacao-juridica"]
+
+
+def test_fixture_juridica_rejeitada_reprova_saida_independentemente_da_estrutura():
+    avaliador = carregar_avaliador()
+    caso = {
+        "id": "juridico-rejeitado",
+        "assertions": [],
+        "legal_grounding": {
+            "human_review": {"review_status": "rejected", "review_note": "Fonte não sustenta a tese."},
+            "claims": [{"id": "pretensao"}],
+        },
+    }
+
+    resultado = avaliador.avaliar_saida(caso, "Texto.")
+
+    assert resultado["status"] == "reprovado"

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.7.2" src="https://img.shields.io/badge/vers%C3%A3o-0.7.2-006B4F"></a>
+  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.7.5" src="https://img.shields.io/badge/vers%C3%A3o-0.7.5-006B4F"></a>
   <a href="plugins/magistratura-enam-br/pyproject.toml"><img alt="Python 3.14" src="https://img.shields.io/badge/Python-3.14-1F6F54"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml"><img alt="Validação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml/badge.svg"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml"><img alt="Documentação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml/badge.svg"></a>
@@ -32,6 +32,8 @@ O **Estudo Jurídico Avançado** reúne cinco skills especializadas para estudo,
 O plugin prioriza rigor jurídico, prática deliberada, feedback explicativo, recuperação espaçada e rastreabilidade. Não presume memória automática, não cria perfil sem autorização e não interpreta ausência de dados como desempenho insuficiente.
 
 As questões objetivas também podem usar um servidor MCP local e um widget interativo. O modelo gera o conteúdo jurídico; o servidor mantém o gabarito fora do navegador até a tentativa e registra questões e respostas somente na biblioteca local autorizada. No Codex, a conexão é por `stdio`; no ChatGPT, depende de um túnel privado configurado separadamente. Consulte [Questões interativas](docs/site/questoes-interativas.md) e [Conexão privada com o ChatGPT](plugins/magistratura-enam-br/docs/chatgpt-local.md).
+
+Após a primeira indexação explícita, é possível instalar separadamente uma verificação pontual do acervo Markdown: ela roda no login e a cada dez minutos, atualiza o índice somente quando detecta mudança e encerra, sem manter um monitor de arquivos residente. A opção e sua remoção estão descritas no [guia de conexão local](plugins/magistratura-enam-br/docs/chatgpt-local.md#verificação-pontual-do-índice-no-windows).
 
 ## Capacidades
 
@@ -83,11 +85,11 @@ Depois da instalação, abra uma nova tarefa no Codex. O instalador não envia a
 ### Pelo marketplace Git
 
 ```powershell
-codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.7.2
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.7.5
 codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 
-Esse comando instala a tag `v0.7.2`. Como o repositório é privado, esse método exige autenticação no GitHub e permissão de leitura. A instalação é local por computador e não é sincronizada automaticamente.
+Esse comando instala a tag `v0.7.5`. O repositório é público e pode ser obtido sem permissão individual de leitura. A instalação é local por computador e não é sincronizada automaticamente.
 
 ### Uso do MCP no Claude Code
 
@@ -101,7 +103,7 @@ O `.mcp.json` da raiz registra o servidor `estudo-juridico-avancado` para quem a
 ├── .github/workflows/                     # validação do plugin e da documentação
 ├── docs/
 │   ├── README.md                          # índice documental do repositório
-│   ├── site/                              # conteúdo do site privado
+│   ├── site/                              # conteúdo da documentação
 │   └── superpowers/                       # especificações e planos internos
 ├── plugins/magistratura-enam-br/
 │   ├── .codex-plugin/plugin.json          # manifesto canônico
@@ -123,7 +125,7 @@ O `.mcp.json` da raiz registra o servidor `estudo-juridico-avancado` para quem a
 - [Privacidade e persistência](docs/site/privacidade-e-persistencia.md)
 - [Desenvolvimento](docs/site/desenvolvimento.md)
 
-O site é construído prioritariamente com Zensical e validado também com Material for MkDocs. A publicação pública está desabilitada; o CI disponibiliza o artefato apenas no workflow privado do repositório.
+O site é construído prioritariamente com Zensical e validado também com Material for MkDocs. O deploy do site está desabilitado; o CI disponibiliza o artefato de documentação no workflow do repositório público.
 
 ## Desenvolvimento e qualidade
 

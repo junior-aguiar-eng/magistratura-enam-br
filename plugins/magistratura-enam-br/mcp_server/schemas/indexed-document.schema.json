@@ -11,12 +11,12 @@
     "relative_path": {
       "type": "string",
       "minLength": 3,
-      "pattern": "^(?![A-Za-z]:)(?![\\\\/])(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+\\.md$"
+      "pattern": "^(?![A-Za-z]:)(?![\\\\/])(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+\\.[mM][dD]$"
     },
     "size_bytes": {"type": "integer", "minimum": 0},
     "modified_at": {"type": "string", "format": "date-time"},
     "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-    "title": {"type": "string", "minLength": 1, "maxLength": 500},
+    "title": {"type": "string", "minLength": 1},
     "chunks": {
       "type": "array",
       "items": {"$ref": "#/$defs/chunk"}
@@ -29,11 +29,10 @@
       "required": ["chunk_id", "heading", "ordinal", "text"],
       "properties": {
         "chunk_id": {"type": "string", "pattern": "^chk_[0-9a-f]{16,64}$"},
-        "heading": {"type": ["string", "null"], "maxLength": 500},
+        "heading": {"type": ["string", "null"]},
         "ordinal": {"type": "integer", "minimum": 0},
         "text": {"type": "string", "minLength": 1}
       }
     }
   }
 }
-

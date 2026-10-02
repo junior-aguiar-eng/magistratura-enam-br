@@ -1,5 +1,11 @@
 # Contrato pedagógico compartilhado
 
+## Eventos MCP 2.1 e invalidação
+
+Uma escolha objetiva registra acerto ou erro, sem inferir a categoria do erro, domínio, assistência ou versão da fonte. Nos eventos MCP 2.1, `assistance_level: nao_registrada` é explícito; `source_version` desconhecida fica ausente. A leitura de eventos 1.x e 2.0 continua suportada sem reescrita automática.
+
+`questao_invalida` retira a atividade identificada por skill, conteúdo e `activity_id` das projeções efetivas, inclusive quando a invalidação é posterior ao período do relatório. O log original permanece intacto. Reconstruções devem usar o log completo; relatórios e perfis exportados anteriormente não são alterados automaticamente.
+
 ## Personalização opcional
 
 O uso sem perfil é completo. Perfil local é evidência auxiliar: a instrução atual prevalece, evidência antiga não cristaliza fraqueza e leitura não autoriza escrita. Preferências declaradas e inferências de desempenho são categorias distintas.

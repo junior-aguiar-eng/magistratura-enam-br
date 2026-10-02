@@ -5,6 +5,8 @@ import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 
+from jsonschema import Draft202012Validator, FormatChecker
+
 from .config import LibraryConfig
 from .indexer import index_library
 from .questions import QuestionRepository
@@ -38,11 +40,60 @@ class StudyService:
         self.index_path = self.state_dir / "index.json"
         self.questions = QuestionRepository(self.state_dir)
 
+    def diagnose_library(self) -> dict:
+        result = {
+            "schema_version": "1.0.0",
+            "library_root": str(self.config.library_root),
+            "state_dir": str(self.state_dir),
+            "index_path": str(self.index_path),
+            "index_status": "missing",
+            "document_count": None,
+            "generated_at": None,
+        }
+        if not self.index_path.exists() and not self.index_path.is_symlink():
+            return result
+        if not self.index_path.is_file():
+            result["index_status"] = "invalid"
+            return result
+        try:
+            manifest = json.loads(self.index_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError):
+            result["index_status"] = "invalid"
+            return result
+        if (
+            not isinstance(manifest, dict)
+            or manifest.get("schema_version") != "1.0.0"
+            or not isinstance(manifest.get("generated_at"), str)
+            or not isinstance(manifest.get("documents"), list)
+            or any(not isinstance(item, dict) for item in manifest["documents"])
+        ):
+            result["index_status"] = "invalid"
+            return result
+        try:
+            generated_at = datetime.fromisoformat(manifest["generated_at"])
+        except ValueError:
+            result["index_status"] = "invalid"
+            return result
+        if generated_at.utcoffset() is None:
+            result["index_status"] = "invalid"
+            return result
+        document_schema = json.loads(
+            (Path(__file__).parent / "schemas" / "indexed-document.schema.json").read_text(encoding="utf-8")
+        )
+        validator = Draft202012Validator(document_schema, format_checker=FormatChecker())
+        if any(not validator.is_valid(document) for document in manifest["documents"]):
+            result["index_status"] = "invalid"
+            return result
+        result["index_status"] = "available"
+        result["document_count"] = len(manifest["documents"])
+        result["generated_at"] = manifest["generated_at"]
+        return result
+
     def index_library(self, *, confirmed: bool) -> dict:
         if not confirmed:
             raise PermissionError("A indexação exige confirmação explícita de gravação local")
         previous = None
-        if self.index_path.exists():
+        if self.diagnose_library()["index_status"] == "available":
             previous = json.loads(self.index_path.read_text(encoding="utf-8"))
         result = index_library(self.config, previous_manifest=previous)
         _write_json_atomic(self.index_path, result.manifest)
@@ -53,6 +104,25 @@ class StudyService:
             "reused_count": result.reused_count,
             "removed_count": result.removed_count,
             "ignored_files": list(result.ignored_files),
+        }
+
+    def sync_if_changed(self) -> dict:
+        diagnosis = self.diagnose_library()
+        if diagnosis["index_status"] != "available":
+            return {"status": diagnosis["index_status"]}
+
+        previous = json.loads(self.index_path.read_text(encoding="utf-8"))
+        result = index_library(self.config, previous_manifest=previous)
+        document_count = len(result.manifest["documents"])
+        if result.indexed_count == 0 and result.removed_count == 0:
+            return {"status": "unchanged", "document_count": document_count}
+
+        _write_json_atomic(self.index_path, result.manifest)
+        return {
+            "status": "updated",
+            "document_count": document_count,
+            "indexed_count": result.indexed_count,
+            "removed_count": result.removed_count,
         }
 
     def search(self, query: str, *, limit: int, path_prefix: str | None) -> dict:
@@ -96,6 +166,7 @@ class StudyService:
         attempts = {
             attempt["session_id"]: attempt for attempt in self.questions.attempts_store.read_all()
         }
+        invalidated = {event["session_id"] for event in self.questions.state_events_store.read_all()}
         items = []
         for session_id, question in latest.items():
             attempt = attempts.get(session_id)
@@ -105,12 +176,11 @@ class StudyService:
                     "created_at": question["created_at"],
                     "subject": question["subject"],
                     "topic": question["topic"],
-                    "state": "answered" if attempt else question["state"],
-                    "result": attempt["result"] if attempt else None,
+                    "state": "invalidated" if session_id in invalidated else "answered" if attempt else question["state"],
+                    "result": attempt["result"] if attempt and session_id not in invalidated else None,
                 }
             )
         items.sort(key=lambda item: (item["created_at"], item["session_id"]), reverse=True)
         page = items[cursor : cursor + limit]
         next_cursor = cursor + len(page) if cursor + len(page) < len(items) else None
         return {"items": page, "next_cursor": next_cursor, "total": len(items)}
-

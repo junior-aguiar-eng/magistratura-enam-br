@@ -44,3 +44,9 @@ O roteamento não presume banca, disciplina ou percurso. Perfil autorizado é ev
 Citação incidental a outro ramo, material ou atividade não muda a rota. Considere mudança apenas quando houver verbo de ação ou decisão atual incompatível com a continuidade.
 
 O destino interno deve ser literalmente um dos cinco nomes canônicos desta referência. Nunca invente nome de skill; questões objetivas pertencem a `estudar-direito-magistratura`.
+
+## Habilidade FGV externa
+
+`$treinador-fgv-magistratura` é uma habilidade global independente, fora das cinco skills deste plugin. Quando o candidato a invocar nominalmente e ela estiver disponível no cliente, respeite essa escolha sem atribuir sua execução ao plugin. Se ela não estiver disponível, informe a indisponibilidade e apresente `estudar-direito-magistratura` como alternativa dependente da escolha do candidato; não substitua a habilidade solicitada silenciosamente.
+
+Um pedido genérico de questão FGV/ENAM, sem invocação nominal da habilidade externa, pertence à modalidade de questões de `estudar-direito-magistratura` neste plugin. Não atribua a essa modalidade a calibração, os comandos ou o estado local próprios do treinador externo. A seleção automática de skills feita pelo cliente pode variar quando os dois pacotes estiverem instalados; a invocação nominal é a forma inequívoca de escolher o treinador.

@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "sources": [
+    {
+      "id": "src_cc-2002-compilado",
+      "issuer": "Presidência da República, Casa Civil",
+      "title": "Lei nº 10.406, de 10 de janeiro de 2002 — Código Civil, texto compilado",
+      "url": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm",
+      "checked_at": "2026-09-24",
+      "locators": ["Art. 189", "Art. 202, caput, VI e parágrafo único", "Arts. 207 a 211"]
+    }
+  ]
+}

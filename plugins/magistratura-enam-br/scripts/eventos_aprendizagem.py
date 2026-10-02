@@ -12,6 +12,23 @@ from jsonschema import Draft202012Validator, FormatChecker
 SCHEMA = Path(__file__).resolve().parents[1] / "modelos/pedagogia/learning-event.schema.json"
 
 
+def eventos_efetivos(eventos):
+    """Exclui das projeções questões invalidadas, preservando o log original.
+
+    Considera todo o log antes de filtrar períodos: a data da invalidação não
+    torna válido o resultado de uma tentativa anterior.
+    """
+    eventos = list(eventos)
+    def identidade(evento):
+        ref = evento.get("content_ref", {})
+        activity = evento.get("activity", {})
+        return (evento.get("skill"), ref.get("kind"), ref.get("id") or ref.get("content_id"),
+                activity.get("activity_id") or evento.get("event_id"))
+    invalidados = {identidade(evento) for evento in eventos
+                   if evento.get("performance", {}).get("result") == "questao_invalida"}
+    return [evento for evento in eventos if identidade(evento) not in invalidados]
+
+
 def validar_evento(evento: dict) -> list[str]:
     if not isinstance(evento, dict):
         return ["evento deve ser objeto JSON"]

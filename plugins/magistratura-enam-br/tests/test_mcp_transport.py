@@ -107,6 +107,7 @@ async def test_config_bundled_inicia_servidor_stdio_real(tmp_path):
     assert creation.annotations.destructive_hint is False
     assert creation.annotations.open_world_hint is False
     assert by_name["buscar_acervo"].annotations.read_only_hint is True
+    assert by_name["diagnosticar_acervo"].annotations.read_only_hint is True
 
 
 @pytest.mark.anyio

@@ -20,3 +20,5 @@ As respostas ficam em `.estudo-juridico/tentativas.jsonl`, e as questões em `.e
 ## Inicialização no Windows
 
 Após o teste manual, `scripts/install_local_service.ps1 ... -Confirm` registra uma tarefa de logon no Agendador de Tarefas do usuário atual, sem direitos administrativos. O instalador remove a antiga chave de inicialização em `HKCU\...\Run` durante a migração. `scripts/uninstall_local_service.ps1 -Confirm` remove apenas a tarefa e os auxiliares operacionais, preservando toda a biblioteca e o histórico.
+
+A atualização automática do índice é opcional e independente do túnel. Depois da primeira indexação explícita, `scripts/install_index_sync.ps1` registra uma tarefa curta no login e a cada dez minutos: ela confere os hashes do acervo, só regrava o índice se algo mudou e encerra. Não mantém um monitor de arquivos na memória, nem repara silenciosamente um índice ausente ou inválido. `scripts/uninstall_index_sync.ps1 -Confirm` remove apenas essa tarefa. A configuração está detalhada em `plugins/magistratura-enam-br/docs/chatgpt-local.md`.

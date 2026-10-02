@@ -4,6 +4,8 @@ O plugin funciona sem perfil, histórico ou log. A instalação não cria memór
 
 Quando o candidato habilita a biblioteca de questões, a autorização é restrita a uma pasta local. A indexação lê recursivamente arquivos Markdown dessa pasta, respeita exclusões configuradas e grava seus artefatos apenas na subpasta `.estudo-juridico`: `index.json`, `questoes.jsonl`, `tentativas.jsonl` e `eventos.jsonl`. Os Markdown originais não são modificados.
 
+`diagnosticar_acervo` consulta somente os metadados do índice: raiz e caminhos locais, existência, data de geração e contagem de documentos. Não retorna trechos nem nomes dos arquivos indexados e não cria ou repara o índice. Se o índice estiver ausente ou inválido, a busca não fica automaticamente pronta; a indexação exige confirmação própria. A data do índice não comprova, sozinha, que todos os Markdown continuam iguais aos da última indexação.
+
 Cada usuário pode manter seu próprio perfil em caminho local escolhido. Carregar o arquivo, usá-lo na sessão, gravar eventos, reconstruir o perfil, exportar e excluir são operações distintas. Somente as operações de escrita ou exclusão exigem suas confirmações explícitas correspondentes.
 
 ## Regras

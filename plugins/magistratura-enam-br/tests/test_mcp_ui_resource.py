@@ -44,6 +44,7 @@ async def test_apenas_renderizador_declara_recurso_ui(server):
     assert render_meta["openai/widgetAccessible"] is True
     assert render_meta["openai/toolInvocation/invoking"] == "Abrindo questão…"
     assert render_meta["openai/toolInvocation/invoked"] == "Questão pronta"
+    assert by_name["responder_questao"].meta["openai/widgetAccessible"] is True
     for name, tool in by_name.items():
         if name != "renderizar_questao":
             assert tool.meta is None or "ui" not in tool.meta

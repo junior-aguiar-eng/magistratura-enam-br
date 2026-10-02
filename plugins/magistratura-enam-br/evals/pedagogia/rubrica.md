@@ -36,6 +36,12 @@ Reprove o caso independentemente da média quando houver gabarito antecipado, ma
 
 Registre nota e evidência curta por dimensão. Não grave material pessoal, resposta integral do candidato ou trechos protegidos. Divergência entre avaliadores deve permanecer explícita até revisão humana; não usar média para ocultá-la.
 
+## Piloto jurídico com fonte localizada
+
+Em cada saída do piloto, registre separadamente: precisão da conclusão e de seus limites; vínculo entre afirmação e dispositivo oficial; operação cognitiva efetiva (recordar, distinguir, aplicar ou transferir); qualidade causal do feedback; adequação à modalidade; e proporcionalidade da extensão. Use a escala 0–2 acima em cada dimensão aplicável. A pergunta pontual e a explicação aprofundada formam um par de contraste: avalie se a extensão atende ao pedido, sem teto geral de palavras.
+
+Gabarito ambíguo, distrator juridicamente defensável como segunda resposta, fonte que não sustente afirmação decisiva ou nota zero em precisão jurídica reprovam o caso independentemente da soma. Em correção e transferência, verifique se os fatos novos alteram a aplicação do critério, em vez de premiar repetição da explicação anterior. `legal_grounding.human_review` qualifica a fixture; cada saída ainda exige julgamento humano próprio.
+
 ## Dimensões conversacionais e de fontes
 
 1. **Roteamento:** identifica a skill e a modalidade adequadas sem executar outro módulo por associação incidental.
