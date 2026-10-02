@@ -42,7 +42,7 @@ async def test_cliente_mcp_real_descobre_as_ferramentas_de_dados(services):
         "consultar_historico_questoes",
     }
     assert all(
-        tool.meta is None or "ui" not in tool.meta
+        tool.meta is None or "resourceUri" not in tool.meta.get("ui", {})
         for tool in result.tools
         if tool.name != "renderizar_questao"
     )

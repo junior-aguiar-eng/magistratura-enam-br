@@ -1,5 +1,12 @@
 # Changelog
 
+## Não publicado — incrementos MCP, task 1
+
+- Transmite instruções gerais em `initialize`, extraídas de bloco único na referência canônica; bloco ausente, vazio ou incompleto impede inicialização silenciosa sem orientações.
+- Explicita `ui.visibility`: renderização e resposta para modelo/app, demais ferramentas para modelo, preservando annotations e o bridge legado.
+- Publica schemas específicos nas oito ferramentas pelo SDK instalado, sem atualização de dependências ou alteração dos envelopes. Sessões derivam do contrato canônico e excluem a projeção privada; a correção continua condicionada à tentativa.
+- Acrescenta regressões de discovery e chamadas MCP reais com biblioteca sintética, incluindo consentimento de indexação e ciclo de criação, resposta e invalidação.
+
 ## [0.7.5] — 2026-10-02
 
 - Atualiza PyJWT para 2.15.1, pypdf para 6.19.0 e urllib3 para 2.8.0 no lockfile para tratar os alertas de dependências identificados durante a publicação.

@@ -46,12 +46,14 @@ A e B podem ser integradas separadamente. Sequência recomendada: A → B → C.
 
 **Interfaces:** `load_server_instructions() -> str`, derivada de bloco delimitado `<!-- mcp-instructions:start/end -->` da referência canônica. Saída de sessão reutiliza definições existentes; não devolver schema privado em endpoint público. O registrador SDK deve anunciar instructions e schemas no protocolo negociado, sem monkey patch.
 
-- [ ] Escrever regressões `test_servidor_anuncia_instrucoes_canonicas`, `test_visibilidade_resposta_modelo_e_app` e `test_schema_saida_publica_nao_exige_gabarito`: descobrir servidor real, verificar instruções não vazias, metadados padronizados, sessão pronta sem campos privados e sessão respondida coerente. Testar annotations de leitura/escrita e ausência de nova autorização implícita.
-- [ ] Executar os testes e confirmar falha por ausência do novo contrato.
-- [ ] Implementar bloco compacto com fontes, chave única, distratores, correção integral, invalidação, sequência e fallback. Encaminhar referência humana aos contratos completos; não alegar que o ChatGPT lê arquivos locais. Testar bloco ausente/incompleto como erro de manutenção.
-- [ ] Definir `ui.visibility` explícita para renderizar/responder `[model, app]`; não tornar responder exclusivo do app. Conferir compatibilidade de instructions/outputs no SDK fixado antes de mudar dependência; se API não existir, registrar prova e escolher atualização mínima suportada.
-- [ ] Rodar `uv run python -m pytest tests/test_mcp_transport.py tests/test_mcp_ui_resource.py tests/test_mcp_schemas.py -q --basetemp=.pytest-mcp-instructions`; aprovação somente com discovery e tools/call reais, usando biblioteca sintética.
-- [ ] Atualizar documentação operacional e commitar a unidade após diff staged revisado.
+- [x] Escrever regressões `test_servidor_anuncia_instrucoes_canonicas`, `test_visibilidade_resposta_modelo_e_app` e `test_schema_saida_publica_nao_exige_gabarito`: descobrir servidor real, verificar instruções não vazias, metadados padronizados, sessão pronta sem campos privados e sessão respondida coerente. Testar annotations de leitura/escrita e ausência de nova autorização implícita.
+- [x] Executar os testes e confirmar falha por ausência do novo contrato.
+- [x] Implementar bloco compacto com fontes, chave única, distratores, correção integral, invalidação, sequência e fallback. Encaminhar referência humana aos contratos completos; não alegar que o ChatGPT lê arquivos locais. Testar bloco ausente/incompleto como erro de manutenção.
+- [x] Definir `ui.visibility` explícita para renderizar/responder `[model, app]`; não tornar responder exclusivo do app. Conferir compatibilidade de instructions/outputs no SDK fixado antes de mudar dependência; se API não existir, registrar prova e escolher atualização mínima suportada.
+- [x] Rodar `uv run python -m pytest tests/test_mcp_transport.py tests/test_mcp_ui_resource.py tests/test_mcp_schemas.py -q --basetemp=.pytest-mcp-instructions`; aprovação somente com discovery e tools/call reais, usando biblioteca sintética.
+- [x] Atualizar documentação operacional e commitar a unidade após diff staged revisado.
+
+**Registro da execução:** contratos separados em `mcp_server/outputs.py`, com RootModel/TypedDict suportados pelo SDK atual; não foi necessário modificar o schema persistido nem dependências. A asserção antiga de `tests/test_mcp_tools.py` foi alinhada à visibilidade padronizada, preservando a exclusividade do recurso UI no renderizador. Suíte integral: 374 testes aprovados; Ruff, lockfile e integração (42 checks) aprovados. Trabalho feito na branch indicada, no checkout existente; tasks 2–8 aguardam execução própria.
 
 ## Task 2: Bridge padronizado e lifecycle
 

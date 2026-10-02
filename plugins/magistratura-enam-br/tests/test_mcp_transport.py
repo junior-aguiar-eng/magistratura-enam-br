@@ -42,7 +42,9 @@ def test_cli_rejeita_transporte_e_porta_invalidos(tmp_path):
     parser = build_parser()
 
     with pytest.raises(SystemExit):
-        parser.parse_args(["--config", str(tmp_path / "config.json"), "--transport", "sse"])
+        parser.parse_args(
+            ["--config", str(tmp_path / "config.json"), "--transport", "sse"]
+        )
     with pytest.raises(SystemExit):
         parser.parse_args(
             [
@@ -60,7 +62,14 @@ def test_cli_rejeita_exposicao_http_fora_do_loopback(tmp_path):
     parser = build_parser()
     with pytest.raises(SystemExit):
         parser.parse_args(
-            ["--config", str(tmp_path / "config.json"), "--transport", "streamable-http", "--host", "0.0.0.0"]
+            [
+                "--config",
+                str(tmp_path / "config.json"),
+                "--transport",
+                "streamable-http",
+                "--host",
+                "0.0.0.0",
+            ]
         )
 
 
@@ -87,19 +96,33 @@ async def test_config_bundled_inicia_servidor_stdio_real(tmp_path):
     bundled = json.loads((plugin_root / ".mcp.json").read_text(encoding="utf-8"))
     definition = bundled["mcpServers"]["estudo-juridico-avancado"]
     args = [
-        arg.replace("${PLUGIN_ROOT}", str(plugin_root)).replace("${PLUGIN_DATA}", str(data))
+        arg.replace("${PLUGIN_ROOT}", str(plugin_root)).replace(
+            "${PLUGIN_DATA}", str(data)
+        )
         for arg in definition["args"]
     ]
 
-    async with Client(StdioServerParameters(command=definition["command"], args=args)) as client:
+    async with Client(
+        StdioServerParameters(command=definition["command"], args=args)
+    ) as client:
         tools = await client.list_tools()
+        assert client.instructions
+        diagnostic = await client.call_tool("diagnosticar_acervo", {})
+        assert not diagnostic.is_error
+        assert diagnostic.structured_content["index_status"] == "missing"
 
     by_name = {tool.name: tool for tool in tools.tools}
     assert "renderizar_questao" in by_name
     creation = by_name["criar_sessao_questao"]
     creation_schema = json.dumps(creation.input_schema)
-    assert all(field in creation_schema for field in ("subject", "alternatives", "correct_option"))
-    assert "Sempre use esta ferramenta quando o usuário pedir uma questão jurídica" in creation.description
+    assert all(
+        field in creation_schema
+        for field in ("subject", "alternatives", "correct_option")
+    )
+    assert (
+        "Sempre use esta ferramenta quando o usuário pedir uma questão jurídica"
+        in creation.description
+    )
     assert "chame renderizar_questao" in creation.description
     rendering = by_name["renderizar_questao"]
     assert "imediatamente após criar_sessao_questao" in rendering.description
