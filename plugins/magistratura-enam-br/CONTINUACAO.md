@@ -1,14 +1,20 @@
 # Continuação de manutenção
 
-## Correções locais da auditoria — 2026-10-02
+## Release 0.7.5 — 2026-10-02
 
-As sete frentes da auditoria receberam correções locais, ainda sem instalação ou publicação. O plano está em `docs/superpowers/plans/2026-10-02-correcoes-auditoria-plugin.md` na raiz do repositório. Eventos novos usam 2.1; logs 1.x/2.0 permanecem legíveis e retries antigos não os reescrevem. Invalidações pós-tentativa são append-only e retiram a atividade das projeções reconstruídas com o log completo. Nenhum acervo pessoal foi migrado.
+Versão 0.7.5 sincronizada no manifesto e no ambiente Python. O usuário autorizou commit, push, reinstalação e publicação em 2026-10-02. As correções foram integradas com os três commits novos de main; a publicação exige os gates desta árvore final. O repositório remoto foi confirmado público. Nenhuma tarefa agendada ou indexação pessoal é ativada pela release.
+
+Gates locais repetidos após integrar main: 364 testes Python aprovados (70,44 s), 15 testes do widget, TypeScript, build, Ruff, lockfile e 42 verificações de integração; npm audit sem vulnerabilidades e builds Zensical/MkDocs estrito aprovados. CI remoto, tag e reinstalação devem ser conferidos nos respectivos registros operacionais.
+
+## Correções locais da auditoria — etapa anterior à release
+
+Na etapa de correção, as sete frentes da auditoria receberam correções locais, antes da autorização para instalação e publicação. O plano está em `docs/superpowers/plans/2026-10-02-correcoes-auditoria-plugin.md` na raiz do repositório. Eventos novos usam 2.1; logs 1.x/2.0 permanecem legíveis e retries antigos não os reescrevem. Invalidações pós-tentativa são append-only e retiram a atividade das projeções reconstruídas com o log completo. Nenhum acervo pessoal foi migrado.
 
 A ferramenta `invalidar_questao` aceita motivo explícito; repetir com o mesmo motivo conclui gravação parcial. O widget usa o SDK MCP Apps, mantém `window.openai` e apresenta a correção completa após a tentativa. A reconstrução explícita do índice tolera conteúdo anterior inválido; a sincronização automática preserva a política de não reparo.
 
 O benchmark deixa de exigir revisão eternamente pendente. Aprovação ou rejeição da fixture exige revisor, data e nota; o registrador de execuções preserva versão/modelo/cliente, sessão, rodada, saída, hash e revisão por critério. Revisões jurídicas reais e homologação visual no Codex/ChatGPT não foram realizadas por esta alteração.
 
-Validação final deste ciclo: 364 testes Python, 15 testes do widget com SDK real e host simulado, TypeScript, build Vite, Ruff e 42 verificações de integração aprovados. A revisão independente identificou regressões por notificações atrasadas, payloads malformados e reaproveitamento de revisão após mudar o caso; os três achados foram reproduzidos e corrigidos. O build contém avisos não impeditivos de comentários da dependência Zod. O bundle distribuído foi regenerado; não houve commit, instalação, push ou publicação.
+Validação final deste ciclo: 364 testes Python, 15 testes do widget com SDK real e host simulado, TypeScript, build Vite, Ruff e 42 verificações de integração aprovados. A revisão independente identificou regressões por notificações atrasadas, payloads malformados e reaproveitamento de revisão após mudar o caso; os três achados foram reproduzidos e corrigidos. O build contém avisos não impeditivos de comentários da dependência Zod. O bundle distribuído foi regenerado. Esse registro de validação antecede os commits, a instalação, o push e a publicação da release.
 
 ## Fonte canônica
 

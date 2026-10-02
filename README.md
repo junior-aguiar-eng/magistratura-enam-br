@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.7.2" src="https://img.shields.io/badge/vers%C3%A3o-0.7.2-006B4F"></a>
+  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.7.5" src="https://img.shields.io/badge/vers%C3%A3o-0.7.5-006B4F"></a>
   <a href="plugins/magistratura-enam-br/pyproject.toml"><img alt="Python 3.14" src="https://img.shields.io/badge/Python-3.14-1F6F54"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml"><img alt="Validação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml/badge.svg"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml"><img alt="Documentação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml/badge.svg"></a>
@@ -85,11 +85,11 @@ Depois da instalação, abra uma nova tarefa no Codex. O instalador não envia a
 ### Pelo marketplace Git
 
 ```powershell
-codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.7.2
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref v0.7.5
 codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 
-Esse comando instala a tag `v0.7.2`. Como o repositório é privado, esse método exige autenticação no GitHub e permissão de leitura. A instalação é local por computador e não é sincronizada automaticamente.
+Esse comando instala a tag `v0.7.5`. O repositório é público e pode ser obtido sem permissão individual de leitura. A instalação é local por computador e não é sincronizada automaticamente.
 
 ### Uso do MCP no Claude Code
 
@@ -103,7 +103,7 @@ O `.mcp.json` da raiz registra o servidor `estudo-juridico-avancado` para quem a
 ├── .github/workflows/                     # validação do plugin e da documentação
 ├── docs/
 │   ├── README.md                          # índice documental do repositório
-│   ├── site/                              # conteúdo do site privado
+│   ├── site/                              # conteúdo da documentação
 │   └── superpowers/                       # especificações e planos internos
 ├── plugins/magistratura-enam-br/
 │   ├── .codex-plugin/plugin.json          # manifesto canônico
@@ -125,7 +125,7 @@ O `.mcp.json` da raiz registra o servidor `estudo-juridico-avancado` para quem a
 - [Privacidade e persistência](docs/site/privacidade-e-persistencia.md)
 - [Desenvolvimento](docs/site/desenvolvimento.md)
 
-O site é construído prioritariamente com Zensical e validado também com Material for MkDocs. A publicação pública está desabilitada; o CI disponibiliza o artefato apenas no workflow privado do repositório.
+O site é construído prioritariamente com Zensical e validado também com Material for MkDocs. O deploy do site está desabilitado; o CI disponibiliza o artefato de documentação no workflow do repositório público.
 
 ## Desenvolvimento e qualidade
 

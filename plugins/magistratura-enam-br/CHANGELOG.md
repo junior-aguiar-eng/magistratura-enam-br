@@ -1,6 +1,8 @@
 # Changelog
 
-## Não publicado — correções da auditoria de 2026-10-02
+## [0.7.5] — 2026-10-02
+
+- Consolida as candidatas 0.7.3 e 0.7.4 e atualiza as instruções de instalação por tag do repositório público.
 
 - Registra tentativas MCP sem presumir erro específico, domínio, assistência ou versão da fonte; preserva retries e eventos antigos.
 - Permite invalidação auditável após resposta, reconcilia histórico e exclui a atividade invalidada do perfil e dos relatórios reconstruídos.
