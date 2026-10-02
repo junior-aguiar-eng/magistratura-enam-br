@@ -91,6 +91,10 @@ codex plugin add magistratura-enam-br@magistratura-enam-br
 
 Esse comando instala a tag `v0.7.2`. Como o repositório é privado, esse método exige autenticação no GitHub e permissão de leitura. A instalação é local por computador e não é sincronizada automaticamente.
 
+### Uso do MCP no Claude Code
+
+O `.mcp.json` da raiz registra o servidor `estudo-juridico-avancado` para quem abre este repositório no Claude Code. Defina a variável de ambiente `ESTUDO_JURIDICO_CONFIG` com o caminho absoluto do seu `library-config.json` (schema em `plugins/magistratura-enam-br/mcp_server/schemas/library-config.schema.json`) e aprove o servidor quando o Claude Code solicitar. O `library_root` da configuração exige caminho Windows (`C:\\...` ou UNC), portanto o servidor não sobe em ambiente Linux/nuvem.
+
 ## Arquitetura do repositório
 
 ```text
