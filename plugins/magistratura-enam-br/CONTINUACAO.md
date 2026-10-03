@@ -1,5 +1,15 @@
 # Continuação de manutenção
 
+## Incrementos MCP — task 2, 2026-10-02
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `04c1be8`, por pedido específico do usuário. `QuestionHost` concentra conexão, chamadas e fechamento; `bindSession` ancora a questão inicial e a entrada completa do host. O widget usa um único transporte, trava submissão e incerteza por sessão e reconcilia falhas por `renderizar_questao`, sem nova mutação automática. A entrada do host não é conteúdo renderizável, e projeção pública não aceita campos de tentativa.
+
+Vitest inclui agora testes `.ts` previstos no plano. Validação: 35 testes web (14 do adaptador, 20 do widget e um build real), 374 testes Python, TypeScript, build, Ruff, lockfile, 42 verificações de integração e MkDocs estrito aprovados. O bundle `web/dist/index.html` foi regenerado da fonte canônica. Os avisos de comentários PURE da dependência Zod permanecem não impeditivos.
+
+O gate de auditoria npm identificou `braces` vulnerável sem versão corrigida na cadeia de `vite-plugin-singlefile`. Esse empacotador foi substituído por um plugin Vite restrito ao único HTML do widget, sem seleção por glob; o teste compila JS/CSS/SVG e valida incorporação e escape de delimitadores HTML. `npm audit --audit-level=moderate` passou sem vulnerabilidades após a remoção. `@types/jsdom` serve somente à tipagem do teste de build.
+
+As capacidades de mensagens/contexto são expostas para a task 3; seus métodos e ações ainda não foram implementados. Fullscreen permanece na task 4. Nenhum acervo pessoal ou log foi alterado; release/reinstalação e homologação no ChatGPT não integram esta task.
+
 ## Incrementos MCP — task 1, 2026-10-02
 
 Plano/spec aprovados e versionados na branch `codex/incrementos-mcp-calibracao`, a partir de `main` em `8b245f1`. O pedido vigente executa somente a task 1; tasks 2–8 permanecem pendentes, incluindo fullscreen na task 4. Manifesto e pacote continuam em 0.7.5; esta alteração ainda não constitui release ou reinstalação.

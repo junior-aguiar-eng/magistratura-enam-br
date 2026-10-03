@@ -32,7 +32,11 @@ Se a auditoria jurídica detectar questão ambígua ou defeituosa, chame `invali
 
 Eventos MCP novos usam `schema_version: 2.1.0`: registram acerto/erro, mas deixam `error_types` e `domain_evidence` vazios, assistência `nao_registrada` e omitem `source_version` desconhecida. Eventos antigos são preservados, sem migração automática ou reclassificação retroativa.
 
-O widget usa o SDK MCP Apps para inicialização e chamadas correlacionadas, com suporte adicional ao bridge `window.openai`. Uma chamada pendente bloqueia nova submissão; falha de conexão ou resposta é exibida sem inventar resultado. Testes de transporte local não substituem homologação visual no host.
+O widget negocia uma única conexão pelo adaptador `web/src/mcp-host.ts`: tenta o SDK MCP Apps e verifica `serverTools`; ausência dessa capacidade ou falha de inicialização pode selecionar `window.openai` antes de qualquer chamada de ferramenta. A escolha permanece fixa na instância. Timeout ou falha após envio nunca provoca nova mutação por outro transporte.
+
+`ontoolinput` vincula somente argumentos completos de renderização com `session_id`. Entrada privada, parcial ou resultado de sessão anterior não vira conteúdo público. Apenas resultado validado libera apresentação/correção, e a normalização descarta `_meta` e conteúdo auxiliar do envelope. Sessões respondidas ou invalidadas não regridem para prontas por notificação atrasada.
+
+Uma resposta pendente bloqueia nova submissão da mesma sessão. Quando não é possível confirmar o resultado, o card bloqueia a repetição e consulta `renderizar_questao` pelo mesmo transporte, somente para leitura. Resposta ou invalidação confirmada reconcilia a tela; snapshot ainda pronto não comprova que uma mutação pendente jamais será efetivada. Nesse caso, mantenha o aviso e aguarde atualização ou reabra para consultar o estado, sem reenviar automaticamente. Fechar o card remove listeners, observer, frame de resize e chamadas pendentes. Testes com SDK real e host simulado não substituem homologação visual no ChatGPT.
 
 ## Fallback
 

@@ -14,13 +14,34 @@ export interface Question {
 
 export interface ToolResult { isError?: boolean; structuredContent?: unknown; structured_content?: unknown }
 
+export interface QuestionHost {
+  readonly capabilities: { messages: boolean; context: boolean };
+  bindSession(sessionId: string): void;
+  connect(): Promise<void>;
+  callTool(name: string, args: Record<string, unknown>): Promise<ToolResult>;
+  close(): void;
+}
+
+export function normalizeToolResult(raw: unknown): ToolResult {
+  if (!raw || typeof raw !== "object") throw new Error("Resultado inválido");
+  const result = raw as Record<string, unknown>;
+  if ((result.isError !== undefined && typeof result.isError !== "boolean")
+    || (result.is_error !== undefined && typeof result.is_error !== "boolean")) throw new Error("Resultado inválido");
+  const output: ToolResult = {};
+  if (result.isError === true || result.is_error === true) output.isError = true;
+  const value = result.structuredContent ?? result.structured_content;
+  if (value !== undefined) output.structuredContent = value;
+  return output;
+}
+
 function stringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every(item => typeof item === "string");
 }
 
 export function readQuestion(result: ToolResult): Question {
-  const value = result.structuredContent ?? result.structured_content;
-  if (result.isError || !value || typeof value !== "object") throw new Error("Resultado inválido");
+  const normalized = normalizeToolResult(result);
+  const value = normalized.structuredContent;
+  if (normalized.isError || !value || typeof value !== "object") throw new Error("Resultado inválido");
   const q = value as Question;
   if (typeof q.session_id !== "string" || typeof q.prompt !== "string"
     || typeof q.subject !== "string" || typeof q.topic !== "string"
@@ -39,7 +60,8 @@ export function readQuestion(result: ToolResult): Question {
     && (source.excerpt === undefined || typeof source.excerpt === "string")))) {
     throw new Error("Fontes inválidas");
   }
-  if (q.state !== "answered" && (q.projection !== "public" || q.correct_option !== undefined || q.correction !== undefined)) {
+  if (q.state !== "answered" && (q.projection !== "public" || q.correct_option !== undefined || q.correction !== undefined
+    || "selected_option" in q || "result" in q || "answered_at" in q)) {
     throw new Error("Projeção pública inválida");
   }
   if (q.state === "invalidated" && typeof q.invalidation_reason !== "string") throw new Error("Invalidação sem motivo");
@@ -59,6 +81,10 @@ export function readQuestion(result: ToolResult): Question {
 
 declare global {
   interface Window {
-    openai?: { toolOutput?: Question; callTool?: (name: string, args: unknown) => Promise<ToolResult> };
+    openai?: {
+      toolOutput?: Question; toolInput?: unknown;
+      callTool?: (name: string, args: unknown) => Promise<ToolResult>;
+      sendFollowUpMessage?: (args: { prompt: string }) => Promise<unknown>;
+    };
   }
 }

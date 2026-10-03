@@ -1,5 +1,14 @@
 # Changelog
 
+## Não publicado — incrementos MCP, task 2
+
+- Centraliza negociação e lifecycle em `mcp-host.ts`, com preferência pelo SDK MCP Apps, fallback OpenAI anterior ao envio e transporte fixo por instância.
+- Separa entrada de renderização e resultado validado, descarta `_meta` e preserva sessão/estado diante de notificações e respostas atrasadas.
+- Consulta o estado por leitura após falha de confirmação, bloqueando repetição incerta e impedindo reenvio de mutação por outro transporte.
+- Remove listeners, observer, frame e chamadas pendentes no fechamento; preserva resize e chamadas correlacionadas com progresso de aprovação.
+- Amplia o Vitest para arquivos `.ts` e `.tsx`, acrescenta cenários com SDK real e host simulado e regenera o bundle distribuído.
+- Substitui `vite-plugin-singlefile`, cuja cadeia contém `braces` vulnerável sem versão corrigida, por um empacotador Vite restrito ao HTML do widget; testa JS/CSS/assets incorporados e escape de delimitadores HTML.
+
 ## Não publicado — incrementos MCP, task 1
 
 - Transmite instruções gerais em `initialize`, extraídas de bloco único na referência canônica; bloco ausente, vazio ou incompleto impede inicialização silenciosa sem orientações.

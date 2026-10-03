@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { QuestionWidget } from "./QuestionWidget";
 import type { Question } from "./contracts";
@@ -6,8 +6,17 @@ import type { Question } from "./contracts";
 const ready: Question = { session_id: "qsn_1234567890abcdef", projection: "public", state: "ready", subject: "Processo Civil", topic: "Provas", prompt: "Assinale a alternativa correta.", alternatives: (["A","B","C","D","E"] as const).map((id) => ({ id, text: `Alternativa ${id}` })), source_status: "caution", caution_notice: "Fontes canônicas parcialmente disponíveis." };
 const corrected: Question = { ...ready, projection: "corrected", state: "answered", selected_option: "B", correct_option: "C", result: "incorrect", correction: { correct_rationale: "A alternativa C observa o CPC.", distractor_analysis: [{option:"A",analysis:"Erro A"},{option:"B",analysis:"Erro B"},{option:"D",analysis:"Erro D"},{option:"E",analysis:"Erro E"}], exceptions: [], traps: [] } };
 
-beforeEach(() => { window.openai = { callTool: vi.fn() }; });
-afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals(); });
+beforeEach(() => {
+  window.openai = { callTool: vi.fn() };
+  vi.spyOn(window.parent, "postMessage").mockImplementation(message => {
+    if (message.method === "ui/initialize") queueMicrotask(() => {
+      window.dispatchEvent(new MessageEvent("message", { source: window.parent, data: {
+        jsonrpc: "2.0", id: message.id, error: { code: -32601, message: "Only OpenAI bridge" },
+      } }));
+    });
+  });
+});
+afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 async function hostMessage(data: unknown) {
   await act(async () => {
@@ -15,11 +24,11 @@ async function hostMessage(data: unknown) {
   });
 }
 
-async function connectHost() {
+async function connectHost(legacy = false, initialQuestion?: Question) {
   vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
-  window.openai = undefined;
+  if (!legacy) window.openai = undefined;
   const post = vi.spyOn(window.parent, "postMessage").mockImplementation(() => {});
-  render(<QuestionWidget />);
+  render(<QuestionWidget initialQuestion={initialQuestion} />);
   await waitFor(() => expect(post).toHaveBeenCalledWith(expect.objectContaining({ method: "ui/initialize" }), "*"));
   const initialize = post.mock.calls.find(([message]) => message.method === "ui/initialize")![0];
   await hostMessage({ jsonrpc: "2.0", id: initialize.id, result: {
@@ -43,6 +52,7 @@ test("seleciona por teclado, envia e focaliza correção", async () => {
   window.openai = { callTool };
   render(<QuestionWidget initialQuestion={ready} />);
   const radio = screen.getByRole("radio", {name:/Alternativa B/});
+  await waitFor(() => expect(radio).toBeEnabled());
   radio.focus(); await userEvent.keyboard(" ");
   await userEvent.click(screen.getByRole("button", {name:"Responder"}));
   expect(callTool).toHaveBeenCalledWith("responder_questao", {session_id:ready.session_id, alternativa:"B"});
@@ -156,4 +166,79 @@ test("payload inicial malformado recebe erro visível", () => {
   window.openai!.toolOutput = { ...corrected, sources: [null] } as unknown as Question;
   render(<QuestionWidget />);
   expect(screen.getByText(/Não foi possível carregar/)).toBeInTheDocument();
+});
+
+test("ambos os bridges usam SDK e aguardam resultado depois da entrada", async () => {
+  const legacy = window.openai!.callTool!;
+  const post = await connectHost(true);
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-input", params: { arguments: { session_id: ready.session_id } } });
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-input-partial", params: { arguments: { ...corrected, projection: "private" } } });
+  expect(screen.getByText("Carregando questão…")).toBeInTheDocument();
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: ready } });
+  await userEvent.click(screen.getByRole("radio", { name: /Alternativa B/ }));
+  await userEvent.click(screen.getByRole("button", { name: "Responder" }));
+  const request = post.mock.calls.find(([m]) => m.method === "tools/call")![0];
+  await hostMessage({ jsonrpc: "2.0", id: request.id, result: { content: [], structuredContent: corrected } });
+  expect(await screen.findByText(/gabarito C/)).toBeInTheDocument();
+  expect(legacy).not.toHaveBeenCalled();
+});
+
+test("timeout de resposta efetivada consulta estado sem reenviar a mutação", async () => {
+  const legacy = window.openai!.callTool!;
+  const post = await connectHost(true, ready);
+  vi.useFakeTimers();
+  fireEvent.click(screen.getByRole("radio", { name: /Alternativa B/ }));
+  fireEvent.click(screen.getByRole("button", { name: "Responder" }));
+  await act(async () => { await vi.advanceTimersByTimeAsync(30001); });
+  const calls = post.mock.calls.map(([m]) => m).filter(m => m.method === "tools/call");
+  expect(calls.filter(m => m.params.name === "responder_questao")).toHaveLength(1);
+  const reading = calls.find(m => m.params.name === "renderizar_questao");
+  expect(reading).toBeDefined();
+  expect(screen.getByRole("button", { name: "Responder" })).toBeDisabled();
+  await hostMessage({ jsonrpc: "2.0", id: reading.id, result: { content: [], structuredContent: corrected } });
+  expect(screen.getByText(/gabarito C/)).toBeInTheDocument();
+  expect(legacy).not.toHaveBeenCalled();
+});
+
+test("resultado tardio da tentativa anterior não substitui uma sessão nova", async () => {
+  const post = await connectHost(false, ready);
+  await userEvent.click(screen.getByRole("radio", { name: /Alternativa B/ }));
+  await userEvent.click(screen.getByRole("button", { name: "Responder" }));
+  const answering = post.mock.calls.find(([m]) => m.method === "tools/call")![0];
+  const next = { ...ready, session_id: "qsn_abcdef1234567890", prompt: "Questão da sessão nova." };
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-input", params: { arguments: { session_id: next.session_id } } });
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: next } });
+  await hostMessage({ jsonrpc: "2.0", id: answering.id, result: { content: [], structuredContent: corrected } });
+  expect(screen.getByText(next.prompt)).toBeInTheDocument();
+  expect(screen.queryByText(/gabarito/i)).not.toBeInTheDocument();
+});
+
+test("sessão nova pode responder enquanto chamada antiga ainda está pendente", async () => {
+  const post = await connectHost(false, ready);
+  await userEvent.click(screen.getByRole("radio", { name: /Alternativa B/ }));
+  await userEvent.click(screen.getByRole("button", { name: "Responder" }));
+  const next = { ...ready, session_id: "qsn_abcdef1234567890", prompt: "Sessão nova ainda pode responder." };
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-input", params: { arguments: { session_id: next.session_id } } });
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: next } });
+  await userEvent.click(screen.getByRole("radio", { name: /Alternativa B/ }));
+  await userEvent.click(screen.getByRole("button", { name: "Responder" }));
+  const calls = post.mock.calls.map(([m]) => m).filter(m => m.method === "tools/call" && m.params.name === "responder_questao");
+  expect(calls).toHaveLength(2);
+  await hostMessage({ jsonrpc: "2.0", id: calls[0].id, result: { content: [], structuredContent: corrected } });
+  expect(screen.getByRole("button", { name: "Corrigindo…" })).toBeDisabled();
+  await hostMessage({ jsonrpc: "2.0", id: calls[1].id, result: { content: [], structuredContent: { ...corrected, session_id: next.session_id } } });
+  expect(screen.getByText(/gabarito C/)).toBeInTheDocument();
+});
+
+test("snapshot ready após falha não habilita repetição nem oculta o aviso", async () => {
+  const post = await connectHost(false, ready);
+  vi.useFakeTimers();
+  fireEvent.click(screen.getByRole("radio", { name: /Alternativa B/ }));
+  fireEvent.click(screen.getByRole("button", { name: "Responder" }));
+  await act(async () => { await vi.advanceTimersByTimeAsync(30001); });
+  const reading = post.mock.calls.map(([m]) => m).find(m => m.method === "tools/call" && m.params.name === "renderizar_questao");
+  await hostMessage({ jsonrpc: "2.0", id: reading.id, result: { content: [], structuredContent: ready } });
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: ready } });
+  expect(screen.getByText(/Não foi possível confirmar/)).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: "Responder" })).toBeDisabled();
 });

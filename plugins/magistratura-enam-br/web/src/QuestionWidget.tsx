@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { App } from "@modelcontextprotocol/ext-apps";
-import { readQuestion, type OptionId, type Question, type ToolResult } from "./contracts";
+import { readQuestion, type OptionId, type Question, type QuestionHost, type ToolResult } from "./contracts";
+import { createQuestionHost } from "./mcp-host";
 
 function sourceUrl(url?: string) {
   if (!url) return undefined;
@@ -16,13 +16,17 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
   const [selected, setSelected] = useState<OptionId>();
   const [status, setStatus] = useState<"ready" | "sending" | "error">(initialQuestion && !question ? "error" : "ready");
   const resultRef = useRef<HTMLDivElement>(null);
-  const appRef = useRef<App | null>(null);
+  const hostRef = useRef<QuestionHost | null>(null);
+  const activeRef = useRef(false);
   const currentRef = useRef(question);
-  const sendingRef = useRef(false);
-  const [connected, setConnected] = useState(Boolean(window.openai?.callTool));
+  const sendingRef = useRef(new Set<string>());
+  const [connected, setConnected] = useState(false);
+  const [uncertain, setUncertain] = useState(false);
+  const uncertainRef = useRef(new Set<string>());
   const [connectionError, setConnectionError] = useState(false);
 
   function receiveResult(result: ToolResult) {
+    if (!activeRef.current) return;
     const incoming = readQuestion(result);
     const current = currentRef.current;
     const rank = { ready: 0, answered: 1, invalidated: 2 };
@@ -32,32 +36,26 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
       setStatus("ready");
     }
     currentRef.current = incoming;
-    if (incoming.session_id !== current?.session_id || incoming.state !== "ready" || !sendingRef.current) setStatus("ready");
+    if (incoming.state !== "ready") uncertainRef.current.delete(incoming.session_id);
+    const blocked = uncertainRef.current.has(incoming.session_id);
+    setUncertain(blocked);
+    if (blocked) setStatus("error");
+    else if (incoming.session_id !== current?.session_id || incoming.state !== "ready" || !sendingRef.current.has(incoming.session_id)) setStatus("ready");
     setQuestion(incoming);
   }
 
   useEffect(() => {
-    let active = true;
-    if (window.openai?.callTool) {
-      const receiveGlobals = (event: Event) => {
-        const output = (event as CustomEvent).detail?.globals?.toolOutput;
-        if (output) {
-          try { receiveResult({ structuredContent: output }); } catch { setStatus("error"); }
-        }
-      };
-      window.addEventListener("openai:set_globals", receiveGlobals);
-      return () => window.removeEventListener("openai:set_globals", receiveGlobals);
-    }
-    const app = new App({ name: "estudo-juridico-question-widget", version: "0.1.0" }, {});
-    appRef.current = app;
-    app.ontoolresult = result => {
-      if (!active) return;
+    activeRef.current = true;
+    const host = createQuestionHost(result => {
+      if (!activeRef.current) return;
       try { receiveResult(result); } catch { setStatus("error"); }
-    };
-    app.connect(undefined, { timeout: 10000 }).then(() => {
-      if (active) setConnected(true);
-    }).catch(() => { if (active) setConnectionError(true); });
-    return () => { active = false; appRef.current = null; void app.close(); };
+    });
+    hostRef.current = host;
+    if (currentRef.current) host.bindSession(currentRef.current.session_id);
+    host.connect().then(() => {
+      if (activeRef.current && hostRef.current === host) setConnected(true);
+    }).catch(() => { if (activeRef.current && hostRef.current === host) setConnectionError(true); });
+    return () => { activeRef.current = false; hostRef.current = null; host.close(); };
   }, []);
 
   useEffect(() => { if (question?.state === "answered") resultRef.current?.focus(); }, [question]);
@@ -67,24 +65,32 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
   const invalidated = question.state === "invalidated";
 
   async function answer() {
-    if (!selected || question?.state !== "ready" || sendingRef.current || !connected) return;
-    sendingRef.current = true;
+    if (!selected || question?.state !== "ready" || sendingRef.current.has(question.session_id) || uncertainRef.current.has(question.session_id) || !connected || !hostRef.current) return;
     const sessionId = question.session_id;
+    sendingRef.current.add(sessionId);
+    const host = hostRef.current;
     setStatus("sending");
     try {
-      let response: ToolResult;
-      if (window.openai?.callTool) {
-        response = await window.openai.callTool("responder_questao", { session_id: sessionId, alternativa: selected });
-      } else {
-        if (!appRef.current) throw new Error("Conexão indisponível");
-        response = await appRef.current.callServerTool({ name: "responder_questao", arguments: { session_id: sessionId, alternativa: selected } }, { timeout: 30000 });
-      }
+      const response = await host.callTool("responder_questao", { session_id: sessionId, alternativa: selected });
+      if (!activeRef.current || hostRef.current !== host) return;
       const updated = readQuestion(response);
       if (updated.session_id !== sessionId || !["answered", "invalidated"].includes(updated.state)) throw new Error("Resposta divergente");
       if (currentRef.current?.session_id === sessionId && currentRef.current.state !== "invalidated") receiveResult(response);
       if (currentRef.current?.session_id === sessionId) setStatus("ready");
-    } catch { if (currentRef.current?.session_id === sessionId) setStatus("error"); }
-    finally { sendingRef.current = false; }
+    } catch {
+      if (!activeRef.current || hostRef.current !== host || currentRef.current?.session_id !== sessionId) return;
+      if (currentRef.current.state !== "ready") return;
+      setStatus("error");
+      uncertainRef.current.add(sessionId);
+      setUncertain(true);
+      try {
+        const snapshot = await host.callTool("renderizar_questao", { session_id: sessionId });
+        if (!activeRef.current || hostRef.current !== host || currentRef.current?.session_id !== sessionId) return;
+        const updated = readQuestion(snapshot);
+        if (updated.session_id === sessionId && updated.state !== "ready") receiveResult(snapshot);
+      } catch { /* Keep the attempt blocked until an authoritative result arrives. */ }
+    }
+    finally { sendingRef.current.delete(sessionId); }
   }
 
   return <main className="shell">
@@ -96,15 +102,15 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     {question.source_status === "caution" && <aside role="alert" className="caution"><strong>Cuidado:</strong> {question.caution_notice}</aside>}
     <h1>{question.prompt}</h1>
     {invalidated && <aside role="alert" className="caution"><strong>Questão invalidada.</strong><p>{question.invalidation_reason}</p><p>Esta questão não conta para seu desempenho.</p></aside>}
-    <fieldset disabled={answered || invalidated || status === "sending" || !connected}><legend className="sr-only">Alternativas</legend>
+    <fieldset disabled={answered || invalidated || uncertain || status === "sending" || !connected}><legend className="sr-only">Alternativas</legend>
       {question.alternatives.map(option => <label key={option.id} className={`option ${selected === option.id ? "selected" : ""} ${answered && option.id === question.correct_option ? "correct" : ""} ${answered && option.id === question.selected_option && question.result === "incorrect" ? "incorrect" : ""}`}>
         <input type="radio" name="answer" value={option.id} checked={answered ? question.selected_option === option.id : selected === option.id} onChange={() => setSelected(option.id)} />
         <span className="letter">{option.id}</span><span>{option.text}</span>
       </label>)}
     </fieldset>
-    {!answered && !invalidated && <button onClick={answer} disabled={!selected || status === "sending" || !connected}>{status === "sending" ? "Corrigindo…" : "Responder"}</button>}
+    {!answered && !invalidated && <button onClick={answer} disabled={!selected || uncertain || status === "sending" || !connected}>{status === "sending" ? "Corrigindo…" : "Responder"}</button>}
     {connectionError && <p role="alert">Não foi possível conectar o card. Reabra a questão ou continue pelo chat.</p>}
-    <p className="status" aria-live="polite">{status === "error" ? "Não foi possível registrar a resposta. Tente novamente." : status === "sending" ? "Registrando sua resposta…" : ""}</p>
+    <p className="status" aria-live="polite">{status === "error" ? uncertain ? "Não foi possível confirmar sua resposta. Aguarde a atualização ou reabra o card para consultar o estado." : "Não foi possível registrar a resposta. Reabra o card ou continue pelo chat." : status === "sending" ? "Registrando sua resposta…" : ""}</p>
     {answered && <section ref={resultRef} tabIndex={-1} className={`result ${question.result}`} aria-live="polite">
       <h2>{question.result === "correct" ? "Resposta correta" : `Resposta incorreta · gabarito ${question.correct_option}`}</h2>
       <p>{question.correction?.correct_rationale}</p>

@@ -20,7 +20,7 @@
 - Logs históricos permanecem legíveis e não são reescritos; a UI nunca é fonte de verdade de resultado.
 - Não adicionar API paga, biblioteca de UI ou backend de coleta sem necessidade demonstrada. SDK instalado já contém sendMessage, updateModelContext e eventos de contexto.
 - Atualizar README, CHANGELOG e CONTINUACAO nos commits que alterem comportamento. Regerar bundle somente a partir de fonte validada.
-- Plano aprovado em 2026-10-02. O pedido vigente autoriza versionar plano/spec e executar e commitar somente a task 1 na branch indicada. Tasks 2–8, push, reinstalação e publicação permanecem fora desta execução.
+- Plano aprovado em 2026-10-02. Task 1 concluída e revisada; o pedido vigente autoriza executar e commitar somente a task 2 na mesma branch. Tasks 3–8, push, reinstalação e publicação permanecem fora desta execução.
 
 ## Review Focus
 
@@ -63,12 +63,14 @@ A e B podem ser integradas separadamente. Sequência recomendada: A → B → C.
 
 **Interfaces:** `createQuestionHost(onResult: (result: ToolResult) => void): QuestionHost`; `QuestionHost` expõe `connect(): Promise<void>`, `callTool(name: string, args: Record<string, unknown>): Promise<ToolResult>`, `close(): void` e capacidade de mensagens/contexto. Métodos opcionais da tarefa 3 serão `sendMessage(text: string): Promise<void>` e `updateContext(context: FollowUpContext): Promise<void>`. Uma instância escolhe um transporte; a UI não decide novamente a cada botão.
 
-- [ ] Escrever testes de host com ambos os bridges, somente SDK, somente OpenAI, aprovação seguida de entrada e resultado, timeout, isError, desmontagem e notificação atrasada. Usar SDK real com host simulado como nos testes atuais.
-- [ ] Executar `npm test -- --run src/mcp-host.test.ts src/QuestionWidget.test.tsx` e capturar RED para a prioridade padronizada e lifecycle.
-- [ ] Implementar negociação por capacidades. Falha inequívoca antes de enviar pode selecionar bridge legado; timeout de chamada enviada não provoca retry por outro transporte. Solicitar estado por leitura para reconciliação quando disponível.
-- [ ] Tratar `ontoolinput` apenas como entrada de renderização contendo session_id; aguardar resultado validado. Ignorar entradas privadas e parciais como conteúdo público. Normalizar envelopes sem renderizar `_meta` oculto.
-- [ ] Reexecutar testes: uma resposta efetivada seguida de timeout produz no máximo um envio de mutação; resultado de sessão antiga não substitui a atual; unmount remove listeners/conexão.
-- [ ] Atualizar referência MCP, validar TypeScript e commitar a unidade.
+- [x] Escrever testes de host com ambos os bridges, somente SDK, somente OpenAI, aprovação seguida de entrada e resultado, timeout, isError, desmontagem e notificação atrasada. Usar SDK real com host simulado como nos testes atuais.
+- [x] Executar `npm test -- --run src/mcp-host.test.ts src/QuestionWidget.test.tsx` e capturar RED para a prioridade padronizada e lifecycle.
+- [x] Implementar negociação por capacidades. Falha inequívoca antes de enviar pode selecionar bridge legado; timeout de chamada enviada não provoca retry por outro transporte. Solicitar estado por leitura para reconciliação quando disponível.
+- [x] Tratar `ontoolinput` apenas como entrada de renderização contendo session_id; aguardar resultado validado. Ignorar entradas privadas e parciais como conteúdo público. Normalizar envelopes sem renderizar `_meta` oculto.
+- [x] Reexecutar testes: uma resposta efetivada seguida de timeout produz no máximo um envio de mutação; resultado de sessão antiga não substitui a atual; unmount remove listeners/conexão.
+- [x] Atualizar referência MCP, validar TypeScript e commitar a unidade.
+
+**Registro da execução:** `bindSession` ancora também a questão inicial. A incerteza de confirmação bloqueia repetição por sessão; consulta pronta não autoriza reenvio. Vitest passa a descobrir `.ts` além de `.tsx`. O gate obrigatório de auditoria encontrou uma cadeia vulnerável sem versão corrigida em `vite-plugin-singlefile`; um plugin Vite limitado ao único HTML substitui esse empacotador, com teste de incorporação e escape de JS/CSS/assets. Não foi acrescentada biblioteca de UI ou dependência de runtime. Métodos de mensagens/contexto e fullscreen permanecem nas tasks 3 e 4.
 
 ## Task 3: Continuidade entre card e conversa
 
