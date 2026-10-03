@@ -1,5 +1,17 @@
 # Continuação de manutenção
 
+## Incrementos MCP — task 6, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `f94142d`, por autorização específica. `scripts/auditar_questoes.py` oferece dataclass, parser Markdown/JSON, auditor e CLI de leitura; não grava, reordena alternativas ou registra atividade. O parser conserva duplicatas e exige bloco interpretável; o auditor confronta IDs/A–E e chaves, detecta solução explícita e separa erros, avisos e checagens omitidas. O schema do relatório impede aprovação com erro ou cobertura explicitamente incompleta.
+
+Métricas de tamanho/formatos independem de chave; padrões de chave usam só questões elegíveis e informam numerador/denominador. Chave como única mais longa e correta sem absolutos diante de quatro distratores com absolutos produzem aviso somente com pelo menos oito itens e frequência superior a 75%; três letras consecutivas iguais são aviso, não reprovação jurídica. Relatório não devolve textos ou gabaritos individuais, mas continua privado de autoria porque distribuições podem revelar a resposta em amostras pequenas.
+
+Dois contratos locais foram explicitados: `correct_option` opcional na dataclass, oculto do repr, permite confrontar chave já existente em projeção privada/corrigida sem mudar o MCP; `--perfil` é recebido e marcado não validado, sem ativar quotas ou certificação de corpus. Comparação empírica depende da task 7.
+
+Validação: 52 testes novos inicialmente RED, seguidos de refinamentos RED→GREEN de status/cabeçalhos/seções, V/F e marcadores simples de solução; 67 testes do auditor aprovados e suíte completa com 455 testes Python aprovados (80,78 s). Ruff, lockfile, 42 verificações de integração e MkDocs estrito aprovados. Os testes da CLI verificam entradas byte a byte e ausência de arquivos novos no destino; fixtures são sintéticas, sem caderno protegido ou desempenho real.
+
+Manifesto permanece 0.7.5. Não há migração de sessão, alteração do widget, indexação ou ativação do script na instalação. Publicação/reinstalação e tasks 7–8 permanecem pendentes; a task 5 continua candidata sem aprovação jurídica humana.
+
 ## Incrementos MCP — task 5, 2026-10-03
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `d00540c`, por autorização específica. Revisão ancorada reutiliza o protocolo de acervo e conserva recuperação, consolidação e véspera; material anterior inacessível exige apenas recorte/checkpoint, sem memória fabricada. Notícia sem fundamentos não permite reconstruir ratio, modulação ou trânsito. Mudança de base é expressa e não suspende a política de fontes.

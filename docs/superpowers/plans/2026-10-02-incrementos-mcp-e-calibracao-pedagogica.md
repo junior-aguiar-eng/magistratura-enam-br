@@ -20,7 +20,7 @@
 - Logs históricos permanecem legíveis e não são reescritos; a UI nunca é fonte de verdade de resultado.
 - Não adicionar API paga, biblioteca de UI ou backend de coleta sem necessidade demonstrada. SDK instalado já contém sendMessage, updateModelContext e eventos de contexto.
 - Atualizar README, CHANGELOG e CONTINUACAO nos commits que alterem comportamento. Regerar bundle somente a partir de fonte validada.
-- Plano aprovado em 2026-10-02. Tasks 1–3 concluídas e revisadas; o pedido vigente autoriza executar e commitar somente a task 4 na mesma branch. Tasks 5–8, push, reinstalação e publicação permanecem fora desta execução.
+- Plano aprovado em 2026-10-02. Tasks 1–5 executadas localmente; a task 5 permanece candidata pendente de revisão humana. O pedido vigente autoriza executar e commitar somente a task 6 na mesma branch. Tasks 7–8, push, reinstalação e publicação permanecem fora desta execução.
 
 ## Review Focus
 
@@ -134,12 +134,14 @@ Extender `QuestionHost` com `requestDisplayMode(mode: "inline" | "fullscreen"): 
 
 **Interfaces:** definir `AuditQuestion` como dataclass com `id: str`, `format: Literal["direto", "numerado", "vf", "associacao"]`, `prompt: str` e `alternatives: list[tuple[str, str]]`; preservar duplicatas na lista para detectá-las antes de construir dicionário. `parse_question_block(text: str, *, format: Literal["markdown", "json"]) -> list[AuditQuestion]`; JSON aceita array das projeções de sessão existentes, usando session_id como id. `audit_question_block(questions: list[AuditQuestion], answers: dict[str, str] | None = None, profile: dict | None = None) -> dict`. Resultado: `schema_version`, `questions_count`, `errors`, `warnings`, `not_checked`, `metrics`; métricas incluem amostra/denominador. CLI leitura: `--questoes PATH --formato markdown|json [--gabarito PATH] [--perfil PATH]`; imprime JSON, sem salvar nem alterar entradas.
 
-- [ ] Testar cinco A, ausência de E, ID duplicado, chave fora de A–E, gabaritos contraditórios, arquivo vazio, assertivas multilinha, Markdown estilizado e formato não interpretável. Todos os erros impedem aprovação estrutural; não assumir bloco válido por contar cinco linhas.
-- [ ] Testar vazamento explícito de solução; não marcar toda ocorrência de “correta” no comando como gabarito antecipado. Gabarito separado nunca é anexado à saída pré-tentativa.
-- [ ] Testar bloco sem chave ou com chave parcial: resultados devem informar checagens omitidas e usar denominador apenas dos itens elegíveis; não tratar cobertura parcial como aprovação global.
-- [ ] Confirmar RED; implementar parser determinístico e análise somente leitura. Letras repetidas, extensão e absolutos produzem métricas/avisos, sem invalidar conteúdo por heurística isolada.
-- [ ] Medir todos os tamanhos; emitir alerta agregado de extensão/absolutos apenas com ≥8 itens elegíveis e padrão >75%, explicitando que o limiar é heurística do projeto, não estatística oficial. Sem perfil, não aplicar quota de formato nem declarar bloco fiel ao ENAM. Gabarito sequencial é aviso, não reprovação jurídica.
-- [ ] Rodar `uv run python -m pytest tests/test_auditar_questoes.py -q --basetemp=.pytest-block-audit`; inputs permanecem byte a byte idênticos, saídas validam schema. Documentar fronteira da revisão humana e commitar.
+- [x] Testar cinco A, ausência de E, ID duplicado, chave fora de A–E, gabaritos contraditórios, arquivo vazio, assertivas multilinha, Markdown estilizado e formato não interpretável. Todos os erros impedem aprovação estrutural; não assumir bloco válido por contar cinco linhas.
+- [x] Testar vazamento explícito de solução; não marcar toda ocorrência de “correta” no comando como gabarito antecipado. Gabarito separado nunca é anexado à saída pré-tentativa.
+- [x] Testar bloco sem chave ou com chave parcial: resultados devem informar checagens omitidas e usar denominador apenas dos itens elegíveis; não tratar cobertura parcial como aprovação global.
+- [x] Confirmar RED; implementar parser determinístico e análise somente leitura. Letras repetidas, extensão e absolutos produzem métricas/avisos, sem invalidar conteúdo por heurística isolada.
+- [x] Medir todos os tamanhos; emitir alerta agregado de extensão/absolutos apenas com ≥8 itens elegíveis e padrão >75%, explicitando que o limiar é heurística do projeto, não estatística oficial. Sem perfil, não aplicar quota de formato nem declarar bloco fiel ao ENAM. Gabarito sequencial é aviso, não reprovação jurídica.
+- [x] Rodar `uv run python -m pytest tests/test_auditar_questoes.py -q --basetemp=.pytest-block-audit`; inputs permanecem byte a byte idênticos, saídas validam schema. Documentar fronteira da revisão humana e commitar.
+
+**Registro da execução:** parser/auditor/CLI e schema implementados em modo somente leitura, com 67 testes específicos RED→GREEN, confronto de chaves e status parcial sem cobertura completa. Padrões de extensão/absolutos exigem oito itens elegíveis e frequência >75%; nenhum aviso comprova vício jurídico. Perfil recebido permanece não validado até o contrato de corpus da task 7. Campo opcional privado na dataclass conserva chave interna para detectar contradição, sem mudança MCP. Relatórios com chave são privados, inclusive pelas distribuições agregadas. Documentação e commits locais integram esta task.
 
 ## Task 7: Corpus e calibração de simulado
 

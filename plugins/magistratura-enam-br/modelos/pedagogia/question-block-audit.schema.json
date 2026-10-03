@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://magistratura-enam-br.local/schemas/question-block-audit-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "questions_count", "errors", "warnings", "not_checked", "metrics"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "status": {"enum": ["reprovado_estruturalmente", "checagem_parcial", "aprovado_estruturalmente"]},
+    "questions_count": {"type": "integer", "minimum": 0},
+    "errors": {"$ref": "#/$defs/issues"},
+    "warnings": {"$ref": "#/$defs/issues"},
+    "not_checked": {"$ref": "#/$defs/issues"},
+    "metrics": {
+      "type": "object", "additionalProperties": false,
+      "required": ["answer_coverage", "answer_distribution", "format_distribution", "alternative_lengths", "absolute_frequency", "length_pattern", "absolute_pattern", "key_runs", "profile_provided"],
+      "properties": {
+        "answer_coverage": {"$ref": "#/$defs/coverage"},
+        "answer_distribution": {"$ref": "#/$defs/distribution"},
+        "format_distribution": {"$ref": "#/$defs/distribution"},
+        "absolute_frequency": {"$ref": "#/$defs/distribution"},
+        "length_pattern": {"$ref": "#/$defs/pattern"},
+        "absolute_pattern": {"$ref": "#/$defs/pattern"},
+        "profile_provided": {"type": "boolean"},
+        "key_runs": {
+          "type": "object", "additionalProperties": false,
+          "required": ["sample_size", "denominator", "longest_run"],
+          "properties": {"sample_size": {"$ref": "#/$defs/count"}, "denominator": {"$ref": "#/$defs/count"}, "longest_run": {"$ref": "#/$defs/count"}}
+        },
+        "alternative_lengths": {
+          "type": "object", "additionalProperties": false,
+          "required": ["sample_size", "denominator", "items"],
+          "properties": {
+            "sample_size": {"$ref": "#/$defs/count"}, "denominator": {"$ref": "#/$defs/count"},
+            "items": {"type": "array", "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["question_id", "option", "characters", "words"],
+              "properties": {"question_id": {"type": "string"}, "option": {"type": "string"}, "characters": {"$ref": "#/$defs/count"}, "words": {"$ref": "#/$defs/count"}}
+            }}
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"errors": {"minItems": 1}}},
+      "then": {"properties": {"status": {"const": "reprovado_estruturalmente"}}}
+    },
+    {
+      "if": {"properties": {"not_checked": {"contains": {"properties": {"code": {"const": "answer_coverage"}}, "required": ["code"]}}}},
+      "then": {"properties": {"status": {"enum": ["reprovado_estruturalmente", "checagem_parcial"]}}}
+    },
+    {
+      "if": {"properties": {"status": {"const": "aprovado_estruturalmente"}}},
+      "then": {"properties": {"questions_count": {"minimum": 1}, "errors": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"questions_count": {"const": 0}}},
+      "then": {"properties": {"status": {"const": "reprovado_estruturalmente"}, "errors": {"minItems": 1}}}
+    }
+  ],
+  "$defs": {
+    "count": {"type": "integer", "minimum": 0},
+    "issues": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false, "required": ["code", "message"],
+      "properties": {"code": {"type": "string", "pattern": "^[a-z_]+$"}, "message": {"type": "string", "minLength": 1}, "question_id": {"type": "string"}}
+    }},
+    "coverage": {
+      "type": "object", "additionalProperties": false, "required": ["sample_size", "denominator"],
+      "properties": {"sample_size": {"$ref": "#/$defs/count"}, "denominator": {"$ref": "#/$defs/count"}}
+    },
+    "distribution": {
+      "type": "object", "additionalProperties": false, "required": ["sample_size", "denominator", "counts"],
+      "properties": {"sample_size": {"$ref": "#/$defs/count"}, "denominator": {"$ref": "#/$defs/count"}, "counts": {"type": "object", "additionalProperties": {"$ref": "#/$defs/count"}}}
+    },
+    "pattern": {
+      "type": "object", "additionalProperties": false, "required": ["sample_size", "denominator", "fraction"],
+      "properties": {"sample_size": {"$ref": "#/$defs/count"}, "denominator": {"$ref": "#/$defs/count"}, "fraction": {"type": ["number", "null"], "minimum": 0, "maximum": 1}}
+    }
+  }
+}

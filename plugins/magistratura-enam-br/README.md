@@ -44,6 +44,8 @@ O widget usa o SDK MCP Apps e apresenta fontes, exceções e armadilhas após a 
 
 ## Ambiente de desenvolvimento
 
+O [auditor quantitativo de blocos](evals/pedagogia/README.md#auditor-quantitativo-de-blocos--task-6) lê Markdown ou JSON de questões e separa erros estruturais, avisos editoriais e checagens omitidas. Ausência de gabarito completo conserva resultado parcial; heurísticas não substituem revisão jurídica. Relatórios com chaves são privados de autoria, inclusive pelas distribuições de letras. A comparação empírica com perfil de corpus permanece pendente na task 7.
+
 O projeto usa `uv` e Python 3.14. Instale as dependências de desenvolvimento com:
 
 ```powershell

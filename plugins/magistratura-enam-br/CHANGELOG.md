@@ -1,5 +1,12 @@
 # Changelog
 
+## Não publicado — incrementos MCP, task 6
+
+- Adiciona auditor somente leitura de Markdown/JSON com preservação de duplicatas, validação de IDs/A–E, confronto de gabaritos e detecção de solução explícita.
+- Separa erro estrutural, aviso editorial e checagem parcial; ausência de chave não recebe aprovação global. O schema rejeita status incompatível com erros ou cobertura explicitamente incompleta.
+- Mede formatos, letras, extensão e absolutos com cobertura/denominador; padrões agregados exigem oito itens elegíveis e frequência superior a 75%, sem certificação jurídica ou quota empírica.
+- Acrescenta CLI e regressões de arquivo vazio, formatos multilinha, Markdown estilizado, chaves contraditórias e preservação byte a byte das entradas; documenta privacidade dos relatórios e perfil ainda não validado.
+
 ## Não publicado — incrementos MCP, task 5
 
 - Ancora revisão, distinções e flashcards no material acessível; solicita recorte anterior ausente e explicita limites de notícia sem fundamentos e do modo acervo exclusivo.
