@@ -8,6 +8,7 @@
 - Anuncia inline/fullscreen na inicialização e nos recursos atual/legado; mantém as URIs compatíveis.
 - Aplica tema e variáveis de estilo do host, respeita altura/áreas reservadas e oferece rolagem de conteúdo longo, foco visível e movimento reduzido.
 - Acrescenta regressões de restauração, troca de sessão, recusa, notificações externas e ACK atrasado; regenera o HTML autocontido.
+- Mantém retorno ao chat quando o host deixa somente inline disponível durante fullscreen e remove limite de altura anterior quando novas dimensões não o restringem.
 
 ## Não publicado — incrementos MCP, task 3
 

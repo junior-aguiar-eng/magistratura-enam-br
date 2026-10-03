@@ -291,3 +291,13 @@ test('fechamento durante fullscreen não aplica ACK nem tema posteriores', async
   expect(host.presentation.displayMode).toBe('inline');
   expect(document.documentElement.style.colorScheme).not.toBe('dark');
 });
+
+test('nova dimensão sem altura remove limite anterior; atualização sem dimensão o preserva', async () => {
+  const { host } = await sdkHost(false, true, {}, { displayMode: 'fullscreen', availableDisplayModes: ['inline'], containerDimensions: { maxHeight: 240, maxWidth: 900 } });
+  expect(document.documentElement.style.getPropertyValue('--study-host-height')).toBe('240px');
+  await message({ jsonrpc: '2.0', method: 'ui/notifications/host-context-changed', params: { theme: 'dark' } });
+  expect(document.documentElement.style.getPropertyValue('--study-host-height')).toBe('240px');
+  await message({ jsonrpc: '2.0', method: 'ui/notifications/host-context-changed', params: { containerDimensions: { maxWidth: 900 } } });
+  expect(document.documentElement.style.getPropertyValue('--study-host-height')).toBe('');
+  host.close();
+});

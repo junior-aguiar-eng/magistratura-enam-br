@@ -41,9 +41,10 @@ export function createQuestionHost(onResult: (result: ToolResult) => void, onPre
     }
     const dimensions = context.containerDimensions;
     const height = dimensions && ("height" in dimensions ? dimensions.height : dimensions.maxHeight);
-    if (typeof height === "number" && Number.isFinite(height) && height > 0) {
+    if (dimensions) {
       rememberVariable("--study-host-height");
-      root.style.setProperty("--study-host-height", `${height}px`);
+      if (typeof height === "number" && Number.isFinite(height) && height > 0) root.style.setProperty("--study-host-height", `${height}px`);
+      else root.style.removeProperty("--study-host-height");
     }
     if (context.safeAreaInsets) {
       for (const side of ["top", "right", "bottom", "left"] as const) {

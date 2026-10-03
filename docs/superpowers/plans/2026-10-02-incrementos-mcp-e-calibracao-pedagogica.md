@@ -109,7 +109,9 @@ Extender `QuestionHost` com `requestDisplayMode(mode: "inline" | "fullscreen"): 
 - [x] Rodar Vitest, `npm run lint`, `npm run build`; regenerar `web/dist/index.html`. Usar nova URI visual versionada em `mcp_server/resources.py` se o host mantiver cache, preservando aliases anteriores e seus testes.
 - [x] Documentar que estado de widget não equivale a memória entre sessões; commitar.
 
-**Registro da execução:** 377 testes Python e 91 web aprovados. Restauração validada, armazenamento opcional, tema/variáveis e negociação de fullscreen implementados sem mutação de ferramentas. QA visual usa navegador com host sintético: teclado, 360 px, zoom 200%, temas e movimento reduzido; longos painéis/fontes rolam sem bloquear o composer simulado. ChatGPT real permanece na task 8. `openai/ui.availableDisplayModes` é anunciado no conteúdo dos dois recursos, além da inicialização do SDK. Sem evidência de cache do host, URIs v2/v1 preservadas; reavaliar no host real.
+**Registro da execução:** 377 testes Python e 94 web aprovados após a revisão. Restauração validada, armazenamento opcional, tema/variáveis e negociação de fullscreen implementados sem mutação de ferramentas. QA visual usa navegador com host sintético: teclado, 360 px, zoom 200%, temas e movimento reduzido; longos painéis/fontes rolam sem bloquear o composer simulado. ChatGPT real permanece na task 8. `openai/ui.availableDisplayModes` é anunciado no conteúdo dos dois recursos, além da inicialização do SDK. Sem evidência de cache do host, URIs v2/v1 preservadas; reavaliar no host real.
+
+**Revisão independente:** dois achados importantes de contexto do host (retorno permitido somente inline e remoção de limite de altura) reproduzidos RED e corrigidos; suíte94/94 e build regenerado. Nenhum crítico/menor; sem segunda revisão.
 
 ## Task 5: Revisão ancorada, formatos e desenhos
 

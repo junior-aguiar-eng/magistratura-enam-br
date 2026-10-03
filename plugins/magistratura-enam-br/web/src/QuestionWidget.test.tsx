@@ -528,3 +528,21 @@ test('notificação externa legado muda controle sem pedido; tema não desfaz mo
   expect(screen.getByRole('button', { name: 'Voltar ao chat' })).toBeEnabled();
   expect(requestDisplayMode).not.toHaveBeenCalled();
 });
+
+test('fullscreen inicial com somente inline mantém retorno ao chat', async () => {
+  const post = await connectHost(false, ready, {}, { displayMode: 'fullscreen', availableDisplayModes: ['inline'] });
+  const button = await screen.findByRole('button', { name: 'Voltar ao chat' });
+  await userEvent.click(button);
+  await waitFor(() => expect(post.mock.calls.some(([m]) => m.method === 'ui/request-display-mode')).toBe(true));
+  const request = post.mock.calls.find(([m]) => m.method === 'ui/request-display-mode')![0];
+  expect(request.params).toEqual({ mode: 'inline' });
+  await hostMessage({ jsonrpc: '2.0', id: request.id, result: { mode: 'inline' } });
+  expect(screen.getByRole('main')).toHaveAttribute('data-display-mode', 'inline');
+  expect(screen.queryByRole('button', { name: 'Expandir para estudar' })).not.toBeInTheDocument();
+});
+
+test('remoção externa de fullscreen mantém retorno inline permitido', async () => {
+  await connectHost(false, ready, {}, { displayMode: 'fullscreen', availableDisplayModes: ['inline', 'fullscreen'] });
+  await hostMessage({ jsonrpc: '2.0', method: 'ui/notifications/host-context-changed', params: { availableDisplayModes: ['inline'] } });
+  expect(screen.getByRole('button', { name: 'Voltar ao chat' })).toBeEnabled();
+});

@@ -184,9 +184,10 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     finally { sendingRef.current.delete(sessionId); }
   }
 
-  const canExpand = presentation.availableDisplayModes.includes("inline") && presentation.availableDisplayModes.includes("fullscreen");
+  const canChangePresentation = presentation.availableDisplayModes.includes("inline")
+    && (presentation.displayMode === "fullscreen" || presentation.availableDisplayModes.includes("fullscreen"));
   return <main className="shell" data-display-mode={presentation.displayMode}>
-    {canExpand && <div className="study-toolbar"><button className="display-toggle" disabled={!connected || displayPending} aria-busy={displayPending} onClick={() => void changeDisplayMode()}>{presentation.displayMode === "fullscreen" ? "Voltar ao chat" : "Expandir para estudar"}</button></div>}
+    {canChangePresentation && <div className="study-toolbar"><button className="display-toggle" disabled={!connected || displayPending} aria-busy={displayPending} onClick={() => void changeDisplayMode()}>{presentation.displayMode === "fullscreen" ? "Voltar ao chat" : "Expandir para estudar"}</button></div>}
     {displayError && <p role="alert">Não foi possível mudar a apresentação. Você pode tentar novamente.</p>}
     <div className="accent" />
     <header>
