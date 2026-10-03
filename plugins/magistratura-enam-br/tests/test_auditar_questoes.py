@@ -457,3 +457,56 @@ def test_cabecalho_indentado_e_continuacao_da_alternativa(auditor):
     parsed = auditor.parse_question_block(text, format="markdown")
     assert len(parsed) == 1
     assert "Questão adicional" in parsed[0].alternatives[-1][1]
+
+
+@pytest.mark.parametrize("marker", ["Gabarito: C", "Resposta correta: letra B"])
+def test_solucao_no_titulo_nao_e_descartada(tmp_path, auditor, marker):
+    text = bloco().replace("Tema sintético", marker)
+    process, result = cli(tmp_path, text, answers={"1": "C"})
+    assert process.returncode == 2
+    assert result["status"] == "reprovado_estruturalmente"
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Assinale a alternativa correta e a respectiva fundamentação.",
+        "A solução é a anulação do ato administrativo.",
+    ],
+)
+def test_artigo_e_conjuncao_nao_sao_letra_de_gabarito(auditor, text):
+    question = questao(auditor)
+    question.prompt = text
+    question.alternatives[0] = ("A", text)
+    result = auditor.audit_question_block([question], {"q1": "C"})
+    assert not result["errors"]
+    assert result["status"] == "aprovado_estruturalmente"
+
+
+@pytest.mark.parametrize("title", ["**Correção**", "__Justificativa__", "Correção:"])
+def test_secao_de_solucao_estilizada_nao_integra_alternativa(auditor, title):
+    with pytest.raises(ValueError):
+        auditor.parse_question_block(
+            bloco()
+            + "\n"
+            + title
+            + "\nA opção C é a única correta porque satisfaz os requisitos.",
+            format="markdown",
+        )
+
+
+def test_continuacao_com_palavra_correcao_permanece_na_opcao(auditor):
+    continuation = "Correção do cadastro depende da comprovação dos requisitos."
+    parsed = auditor.parse_question_block(
+        bloco() + "\n" + continuation, format="markdown"
+    )
+    assert parsed[0].alternatives[-1][1].endswith(continuation)
+
+
+@pytest.mark.parametrize(
+    "marker", ["A alternativa correta é C.", "Gabarito: C — justificativa posterior."]
+)
+def test_letra_explicita_antes_de_pontuacao_continua_detectada(auditor, marker):
+    question = questao(auditor)
+    question.prompt = marker
+    assert "answer_leak" in codes(auditor.audit_question_block([question]))

@@ -168,6 +168,8 @@ def parse_question_block(
             re.sub(r"^#{1,6}\s+", "", _plain(line)),
         )
         if heading and len(line) - len(line.lstrip()) < 4:
+            if _leaks(line):
+                raise ValueError("Marcador explícito de solução no cabeçalho")
             if had_heading:
                 sections.append((identifier, current))
             elif current:
@@ -184,7 +186,18 @@ def parse_question_block(
         alternatives: list[tuple[str, str]] = []
         for line in section:
             cleaned = _plain(line)
-            if alternatives and re.match(r"^#{1,6}\s+", cleaned):
+            if alternatives and (
+                re.match(r"^#{1,6}\s+", cleaned)
+                or _normal(cleaned).rstrip(":").strip()
+                in (
+                    "correcao",
+                    "justificativa",
+                    "gabarito",
+                    "resposta comentada",
+                    "resolucao",
+                    "solucao",
+                )
+            ):
                 raise ValueError(
                     "Seção posterior às alternativas não integra uma questão"
                 )
@@ -223,7 +236,8 @@ def _leaks(text: str) -> bool:
     text = _normal(_plain(text))
     return bool(
         re.search(
-            r"\b(?:gabarito|resposta(?: correta)?|alternativa correta|solucao)\s*(?::|=|e\s+)\s*(?:letra\s+|alternativa\s+)?[a-e]\b",
+            r"\b(?:gabarito|resposta(?: correta)?|alternativa correta|solucao)\s*(?::|=|e\s+)\s*"
+            r"(?:(?:letra|alternativa)\s+[a-e]\b|[a-e]\b(?![ \t]+\w))",
             text,
         )
         or re.search(r"[✓✔✅]|\((?:correta|gabarito)\)", text)

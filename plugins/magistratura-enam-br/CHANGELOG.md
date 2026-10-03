@@ -6,6 +6,7 @@
 - Separa erro estrutural, aviso editorial e checagem parcial; ausência de chave não recebe aprovação global. O schema rejeita status incompatível com erros ou cobertura explicitamente incompleta.
 - Mede formatos, letras, extensão e absolutos com cobertura/denominador; padrões agregados exigem oito itens elegíveis e frequência superior a 75%, sem certificação jurídica ou quota empírica.
 - Acrescenta CLI e regressões de arquivo vazio, formatos multilinha, Markdown estilizado, chaves contraditórias e preservação byte a byte das entradas; documenta privacidade dos relatórios e perfil ainda não validado.
+- Recusa solução explícita no título e seções de correção estilizadas após alternativas; evita confundir artigos/conjunções com a letra de resposta em frases naturais.
 
 ## Não publicado — incrementos MCP, task 5
 
