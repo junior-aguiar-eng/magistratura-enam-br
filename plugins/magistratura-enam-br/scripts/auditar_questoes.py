@@ -280,17 +280,39 @@ def audit_question_block(
             ),
             _issue(
                 "format_calibration",
-                "Sem corpus validado não há quota de formatos nem certificação de fidelidade ao ENAM.",
+                "Representatividade do corpus e fidelidade ao ENAM não certificadas; não impor quota automática de formatos.",
             ),
         ],
     )
-    if profile is not None:
-        if not isinstance(profile, dict):
-            errors.append(_issue("invalid_profile", "Perfil deve ser objeto JSON."))
+    if profile is not None and not isinstance(profile, dict):
+        errors.append(_issue("invalid_profile", "Perfil deve ser objeto JSON."))
+    calibration_profile = None
+    if isinstance(profile, dict) and profile.get("kind") == "exam_calibration_profile":
+        from calibrar_provas import validate_calibration_profile
+
+        try:
+            validate_calibration_profile(profile)
+            if profile["empirical_reference_available"]:
+                calibration_profile = profile
+            else:
+                not_checked.append(
+                    _issue(
+                        "profile_not_empirical",
+                        "Perfil sintético ou sem itens elegíveis; não serve como referência empírica.",
+                    )
+                )
+        except ValueError:
+            errors.append(
+                _issue(
+                    "invalid_profile",
+                    "Perfil diverge do corpus ou contém registro inválido.",
+                )
+            )
+    elif profile is not None:
         not_checked.append(
             _issue(
                 "profile_not_validated",
-                "Perfil recebido por leitura; validação e comparação empírica dependem do contrato de corpus da task 7.",
+                "Perfil não reconhecido pelo contrato do corpus; não ativa comparação ou quotas.",
             )
         )
     if answers is not None and not isinstance(answers, dict):
@@ -465,6 +487,34 @@ def audit_question_block(
                     "Padrão em mais de 75% de pelo menos oito itens elegíveis; heurística do projeto, não estatística oficial ou defeito jurídico comprovado.",
                 )
             )
+    calibration = {"performed": False}
+    if calibration_profile is not None and not errors and formats_recognized:
+        reference = calibration_profile["distributions"]["formats"]
+        denominator = reference["denominator"]
+        calibration = {
+            "performed": True,
+            "reference_corpus_sha256": calibration_profile["corpus_sha256"],
+            "reference_sample_size": denominator,
+            "block_sample_size": formats_recognized,
+            "format_deltas": {
+                name: format_counts[name] / formats_recognized
+                - reference["counts"][name] / denominator
+                for name in FORMATS
+            },
+        }
+        if denominator < 8 or formats_recognized < 8:
+            warnings.append(
+                _issue(
+                    "calibration_small_sample",
+                    "Comparação descritiva com amostra menor que oito; não generaliza padrão nem impõe quota.",
+                )
+            )
+        not_checked.append(
+            _issue(
+                "calibration_scope",
+                "Comparação limitada a formatos do subconjunto revisado da edição declarada; bytes oficiais, representatividade e dificuldade não certificados.",
+            )
+        )
     return {
         "schema_version": "1.0.0",
         "questions_count": len(questions),
@@ -506,6 +556,7 @@ def audit_question_block(
                 "longest_run": longest_run,
             },
             "profile_provided": profile is not None,
+            "calibration": calibration,
         },
     }
 

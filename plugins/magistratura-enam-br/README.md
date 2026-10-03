@@ -104,3 +104,7 @@ uv run python scripts/relatorio_aprendizagem.py --entrada eventos.jsonl --inicio
 ```
 
 Planilhas antigas continuam usando a política fixa como padrão. A política adaptativa permanece em modo sombra e não substitui datas sem opt-in. O fechamento de remediação exige evento validado e confirmação explícita.
+
+## Corpus e calibração
+
+O [contrato de calibração por edição/caderno](evals/pedagogia/calibracao-enam/README.md) oferece schema de metadados/classificações e CLI somente leitura. `scripts/calibrar_provas.py` gera perfil descritivo recomputável, com cobertura e exclusões; o auditor pode comparar formatos quando a referência for fornecida e elegível. Nenhum corpus oficial é distribuído ou coletado automaticamente: o perfil empírico permanece pendente até seleção e conferência documental próprias, sem quotas ou aprovação jurídica automática.

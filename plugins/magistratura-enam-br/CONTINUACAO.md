@@ -1,5 +1,19 @@
 # Continuação de manutenção
 
+## Incrementos pedagógicos — task 7, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `235c4f0`, por autorização específica. `modelos/pedagogia/exam-corpus.schema.json` e `scripts/calibrar_provas.py` definem registro por edição/caderno e perfil descritivo recomputável. CLI e APIs apenas leem metadados/classificações; não coletam cadernos, conferem bytes remotos, indexam biblioteca ou gravam atividade. Hash e revisão documental declarada não provam autenticidade por si.
+
+Cobertura distingue total esperado, cadastro, classificação revisada, elegíveis, exclusões e faltantes. Gabarito provisório/ausente exclui todos os itens; anuladas, pendências, revisão ausente, classificação incompleta e divergência sem resolução também não entram nas distribuições. Todas as revisões e resolução identificada permanecem rastreáveis, sem média ou última revisão automática. Dificuldade é estimativa editorial com autor/método; não se infere de extensão/duração/disciplina nem representa taxa de acerto.
+
+Auditor task6 e schema de relatório foram ampliados para consumir perfil task7, uma integração necessária além dos arquivos novos listados no brief. Perfil inclui o corpus de metadados para recomputação integral; inconsistente é recusado. Somente referência declarada oficial com item elegível permite comparação descritiva dos formatos, sem quotas, certificação jurídica ou generalização. Fixture sintética não se torna referência empírica. Bloco sem chave completa continua parcial.
+
+Nenhum corpus oficial foi selecionado/coletado; [contrato e procedimento próprios](evals/pedagogia/calibracao-enam/README.md) registram **perfil empírico pendente**. A amostra rotulada dos testes é sintética, não caderno real ou aprovação humana. Orientação de treino/simulado e três cenários do catálogo preservam alta complexidade, decisão expressa diante de divergência com AGENTS, correção integral e proteção pré-tentativa. AGENTS e instruções MCP permanecem inalterados; as orientações novas continuam candidatas sem homologação humana/host real.
+
+Validação: 43 falhas RED confirmadas após contrato inicial, seguidas de 120 corpus/auditor aprovados; duas regressões RED de contagens adulteradas por tipo corrigidas por recomputação canônica. Agora 47 testes do corpus, 124 corpus/auditor e 133 com catálogo aprovados; suíte completa com 512 Python aprovados (63,65 s), Ruff/lock/42checks aprovados. Controle comportamental já recusava proporção empírica 75/25, mas não possuía contrato executável; candidata recusou perfil fabricado, média/última revisão e aprovação/quota sem evidência em três cenários, após emissão. Isso não é benchmark repetido no mesmo modelo/cliente nem aprovação jurídica humana.
+
+Manifesto mantido em 0.7.5; task8, push, reinstalação e publicação permanecem pendentes. O achado menor da task6 sobre numeração arábica permanece registrado, sem ampliação incidental desta task.
+
 ## Incrementos MCP — task 6, 2026-10-03
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `f94142d`, por autorização específica. `scripts/auditar_questoes.py` oferece dataclass, parser Markdown/JSON, auditor e CLI de leitura; não grava, reordena alternativas ou registra atividade. O parser conserva duplicatas e exige bloco interpretável; o auditor confronta IDs/A–E e chaves, detecta solução explícita e separa erros, avisos e checagens omitidas. O schema do relatório impede aprovação com erro ou cobertura explicitamente incompleta.

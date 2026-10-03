@@ -8,6 +8,18 @@
 
 Nos três contextos, mantenha caso consistente, cinco alternativas plausíveis, chave única, paralelismo e auditoria. A diferença de contexto não flexibiliza a validade da questão.
 
+## Calibração disponível na sessão
+
+Em **treino**, preserve aprofundamento e alta complexidade, com erro técnico identificável em cada distrator. Em **simulado**, varie demandas de recuperação, aplicação, distinção e articulação entre planos jurídicos conforme a referência escolhida pelo candidato; a variedade não autoriza alternativa óbvia, ambiguidade ou enfraquecimento de âncoras. Dificuldade é estimativa editorial com autor e método, nunca propriedade oficial, taxa de acerto presumida ou efeito automático de extensão, duração e disciplina. A divisão 75/25 do Claude não é default estatístico do plugin.
+
+Se o candidato fornecer ou selecionar registro/perfil de corpus, consulte o [contrato de calibração](../../../evals/pedagogia/calibracao-enam/README.md) e use `uv run python scripts/calibrar_provas.py --corpus CAMINHO`, a partir da raiz canônica, para gerar perfil por leitura. A saída vai ao stdout; salvar em arquivo exige destino autorizado. Antes de consumir um perfil já fornecido, valide sua evidência com `validate_calibration_profile` ou com o auditor `uv run python scripts/auditar_questoes.py --questoes BLOCO --formato markdown --perfil PERFIL`. O perfil incorpora metadados/classificações para recomputação, sem texto de caderno, chaves individuais ou respostas pessoais. Não alegue execução ou disponibilidade de arquivos/ferramentas que o host não oferece.
+
+A entrega de calibração informa **edição/caderno e origem, cobertura total/revisada/elegível, exclusões e divergências, distribuições descritivas e limites**. Hash e revisão declarada dão rastreabilidade, mas a CLI não confirma bytes remotos nem autenticidade documental. Domínio admitido não prova que o link contém o documento anunciado. Gabarito provisório/ausente exclui todos os itens das distribuições; anuladas, pendências e classificações incompletas ou divergentes sem resolução identificada também ficam excluídas. Preserve todas as revisões e a resolução escolhida, sem média automática ou preferência pela última revisão.
+
+Somente registro declarado oficial com itens elegíveis pode alimentar a comparação descritiva de formatos no auditor. Um registro sintético testa o mecanismo e não é referência empírica. Amostras pequenas e cobertura parcial permanecem visíveis, sem generalizar o perfil da edição à FGV/ENAM; percentuais não impõem quota nem certificam qualidade jurídica. O perfil é usado apenas quando fornecido/disponível na sessão, sem armazenamento ou recuperação automática de histórico.
+
+Sem corpus selecionado, fonte/hash/revisão documental completos ou itens elegíveis, declare **calibração empírica pendente** e prossiga pelos critérios jurídicos qualitativos do treino/simulado; não preencha percentuais fictícios. Sem gabarito completo no bloco novo, seu resultado continua parcial mesmo que haja comparação de formatos. Se a referência sugerir redução incompatível com AGENTS, exponha a divergência para decisão expressa do criador; mantenha as diretrizes até essa decisão. Gabarito, relatório privado e correção continuam separados da apresentação pré-tentativa.
+
 ## Insumo e núcleo jurídico
 
 Use exclusivamente o material jurídico delimitado pelo usuário ou o tema expressamente indicado. O material pode envolver lei, jurisprudência, doutrina ou a integração entre essas fontes. A fonte define a base de correção; não define uma categoria ou reduz a exigência da questão.

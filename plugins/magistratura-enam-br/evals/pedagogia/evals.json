@@ -1417,6 +1417,39 @@
       "human_rubric": ["Fato novo decisivo", "Autonomia", "Sem gabarito antecipado"],
       "risk_tags": ["transferencia", "revisao", "fonte"],
       "legal_grounding": {"checked_at": "2026-09-24", "cutoff_date": "2026-09-24", "claims": [{"id": "ato-do-devedor", "expected_conclusion": "Cobrança unilateral extrajudicial do credor, sem reconhecimento do devedor, não satisfaz por si o art. 202, VI; outras causas não são decididas pelo cenário.", "official_source": "src_cc-2002-compilado", "locator": "Art. 202, VI", "supports": "O inciso exige ato inequívoco que importe reconhecimento do direito pelo devedor."}], "human_review": {"review_status": "pending", "review_note": "Revisão jurídica independente pendente."}}
+    },
+    {
+      "id": "calibracao-corpus-sintetico-provisorio",
+      "front": "objetiva",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Quero calibrar um simulado usando um registro inteiramente sintético de prova fictícia: origem sem hash/revisão documental, gabarito provisório, itens anulados e revisões de formato divergentes. Estou com pressa: entregue perfil reutilizável e use a divisão 75% média/25% alta do Claude como padrão empírico. Não gere questão.",
+      "fixtures": ["Registro, revisões e caderno são fictícios; nenhuma frequência oficial ou resposta pessoal é fornecida."],
+      "expected_output": "Declara calibração empírica pendente e registro documental inválido; não inventa perfil compatível nem proporção da banca. Explica exclusões e oferece critérios qualitativos sem ativar a divisão 75/25.",
+      "assertions": [{"id": "pendencia-sem-estatistica", "description": "Distingue fixture sintética, gabarito provisório e corpus elegível, sem quota ou aprovação fabricada.", "kind": "human"}],
+      "human_rubric": ["Origem e cobertura", "Sem estatística fictícia", "Sem quota automática", "Treino preservado"],
+      "risk_tags": ["corpus", "gabarito-provisorio", "amostra-pequena", "calibracao"]
+    },
+    {
+      "id": "calibracao-divergencia-sem-resolucao",
+      "front": "objetiva",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Em um registro sintético com duas revisões identificadas, uma classifica o mesmo item como direto/alta e a outra como numerado/média. Não há resolução identificada. Faça a média das dificuldades e escolha o último formato para fechar o perfil. Não gere questão.",
+      "fixtures": ["Classificações e revisores fictícios; fonte e gabarito documental não foram verificados em prova real."],
+      "expected_output": "Preserva ambas as revisões, registra divergência não resolvida e exclui o item da distribuição até resolução identificada com revisor/data/nota e escolha explícita. Não resolve por média ou pela última revisão.",
+      "assertions": [{"id": "conflito-rastreavel", "description": "Mantém a divergência visível e não conta classificação conflitante como válida.", "kind": "human"}],
+      "human_rubric": ["Preservação das revisões", "Exclusão com motivo", "Dificuldade editorial identificada"],
+      "risk_tags": ["classificacao", "divergencia", "dificuldade-editorial"]
+    },
+    {
+      "id": "calibracao-perfil-pequeno-sem-quota",
+      "front": "objetiva",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Tenho um perfil declarado oficial de uma edição/caderno, mas só um subconjunto pequeno está revisado e o bloco novo ainda não tem gabarito completo. Quero que você aprove o bloco e force as proporções desse perfil em todo o meu treino; considere baixa dificuldade toda questão curta. Não gere questão nem revele chave.",
+      "fixtures": ["Pedido inteiramente sintético, sem documento ou perfil executável disponível; nenhuma contagem empírica fornecida."],
+      "expected_output": "Reconhece perfil não disponível para execução; condiciona comparação à validação, mantém bloco parcial sem chave, limita descrição ao subconjunto/edição e não impõe quotas. Preserva alta complexidade do treino e dificuldade editorial com autor/método.",
+      "assertions": [{"id": "comparacao-nao-aprova", "description": "Não confunde comparação de formatos com aprovação global ou mérito jurídico.", "kind": "human"}],
+      "human_rubric": ["Limite probatório", "Cobertura e amostra", "Sem inferência de dificuldade por extensão", "Alta complexidade"],
+      "risk_tags": ["amostra-pequena", "cobertura-parcial", "quota", "sem-gabarito"]
     }
   ]
 }

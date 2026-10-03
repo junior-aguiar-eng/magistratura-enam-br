@@ -20,7 +20,7 @@
 - Logs históricos permanecem legíveis e não são reescritos; a UI nunca é fonte de verdade de resultado.
 - Não adicionar API paga, biblioteca de UI ou backend de coleta sem necessidade demonstrada. SDK instalado já contém sendMessage, updateModelContext e eventos de contexto.
 - Atualizar README, CHANGELOG e CONTINUACAO nos commits que alterem comportamento. Regerar bundle somente a partir de fonte validada.
-- Plano aprovado em 2026-10-02. Tasks 1–5 executadas localmente; a task 5 permanece candidata pendente de revisão humana. O pedido vigente autoriza executar e commitar somente a task 6 na mesma branch. Tasks 7–8, push, reinstalação e publicação permanecem fora desta execução.
+- Plano aprovado em 2026-10-02. Tasks 1–6 executadas localmente; a task 5 permanece candidata pendente de revisão humana. O pedido vigente autoriza executar e commitar somente a task 7 na mesma branch. Task 8, push, reinstalação e publicação permanecem fora desta execução.
 
 ## Review Focus
 
@@ -149,12 +149,14 @@ Extender `QuestionHost` com `requestDisplayMode(mode: "inline" | "fullscreen"): 
 
 **Interfaces:** `validate_corpus(corpus: dict) -> None`; `build_calibration_profile(corpus: dict) -> dict`. Perfil inclui origem/hash/edição/tipo, quantidade total e revisada, distribuição de formatos, fonte do ponto e disciplina; dificuldade editorial informa autor/método. Perfil é consumido pelo auditor da tarefa 6 e pela sessão apenas quando fornecido/disponível.
 
-- [ ] Testar corpus sem fonte oficial, sem hash, gabarito provisório, questão anulada, revisão ausente e classificação não resolvida. Entradas incompletas/anuladas não alimentam distribuição de itens válidos; toda exclusão aparece na cobertura.
-- [ ] Confirmar RED; implementar schema e geração read-only. Não converter duração, extensão ou disciplina em dificuldade objetiva. Classificação manual exige revisor/data/nota; perfil não contém respostas pessoais.
-- [ ] Documentar coleta de corpus oficial como etapa própria. Versionar metadados e classificação, não republicar cadernos completos nem gerar números fictícios para preencher exemplo. Sem corpus disponível, entregar mecanismo validado e declarar perfil empírico pendente.
-- [ ] Calibrar bloco novo com corpus selecionado pelo usuário; variar demanda cognitiva sem enfraquecer distratores/âncoras. Preservar a exigência de alta complexidade do treino. Não usar a proporção 75/25 do Claude como default estatístico.
-- [ ] Rodar testes do corpus/auditor e revisar amostra rotulada. Divergência entre classificadores permanece registrada; não resolver por média automática.
-- [ ] Documentar o perfil comprovado ou a pendência; commitar separadamente do MCP.
+- [x] Testar corpus sem fonte oficial, sem hash, gabarito provisório, questão anulada, revisão ausente e classificação não resolvida. Entradas incompletas/anuladas não alimentam distribuição de itens válidos; toda exclusão aparece na cobertura.
+- [x] Confirmar RED; implementar schema e geração read-only. Não converter duração, extensão ou disciplina em dificuldade objetiva. Classificação manual exige revisor/data/nota; perfil não contém respostas pessoais.
+- [x] Documentar coleta de corpus oficial como etapa própria. Versionar metadados e classificação, não republicar cadernos completos nem gerar números fictícios para preencher exemplo. Sem corpus disponível, entregar mecanismo validado e declarar perfil empírico pendente.
+- [x] Disponibilizar calibração de bloco com corpus selecionado pelo usuário; comparação testada com fixtures sintéticas, aplicação empírica pendente por ausência de corpus selecionado. Variar demanda cognitiva sem enfraquecer distratores/âncoras. Preservar alta complexidade do treino, sem default estatístico 75/25.
+- [x] Rodar testes do corpus/auditor e revisar amostra rotulada sintética, sem aprovação jurídica humana. Divergência entre classificadores permanece registrada; não resolver por média automática.
+- [x] Documentar o perfil comprovado ou a pendência; commitar separadamente do MCP.
+
+**Registro da execução:** schema e APIs/CLI por leitura entregues com registro por edição/caderno, classificação e resolução identificadas, cobertura e perfil recomputável. Auditor task6 consome referência declarada oficial/elegível para comparação descritiva de formatos, sem quota; fixture sintética não ativa referência empírica. Gabarito provisório, anuladas e classificações pendentes não alimentam distribuição. 47 testes do corpus e 77 do auditor aprovados, 133 incluindo catálogo e 512 Python completos; Ruff/lock/42checks aprovados. Controle já recusava default empírico 75/25; candidata passou três cenários automatizados, sem comparação repetida ou homologação humana. Nenhum corpus oficial selecionado/coletado: perfil empírico permanece pendente conforme exceção prevista no brief/spec. Manifesto 0.7.5, sem alteração MCP/widget/AGENTS e sem operação remota.
 
 ## Task 8: Comparação, homologação e entrega
 
