@@ -24,7 +24,7 @@ async function hostMessage(data: unknown) {
   });
 }
 
-async function connectHost(legacy = false, initialQuestion?: Question, capabilities: Record<string, unknown> = {}) {
+async function connectHost(legacy = false, initialQuestion?: Question, capabilities: Record<string, unknown> = {}, hostContext: Record<string, unknown> = {}) {
   vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
   if (!legacy) window.openai = undefined;
   const post = vi.spyOn(window.parent, "postMessage").mockImplementation(() => {});
@@ -33,7 +33,7 @@ async function connectHost(legacy = false, initialQuestion?: Question, capabilit
   const initialize = post.mock.calls.find(([message]) => message.method === "ui/initialize")![0];
   await hostMessage({ jsonrpc: "2.0", id: initialize.id, result: {
     protocolVersion: "2026-01-26", hostInfo: { name: "test-host", version: "1.0" },
-    hostCapabilities: { serverTools: {}, ...capabilities }, hostContext: {},
+    hostCapabilities: { serverTools: {}, ...capabilities }, hostContext,
   } });
   await waitFor(() => expect(post).toHaveBeenCalledWith(expect.objectContaining({ method: "ui/notifications/initialized" }), "*"));
   return post;
@@ -393,4 +393,138 @@ test("duas instâncias mantêm pedidos vinculados às respectivas sessões", asy
   await waitFor(() => expect(sendFollowUpMessage).toHaveBeenCalledTimes(2));
   expect(sendFollowUpMessage.mock.calls[0][0].prompt).toContain(corrected.session_id);
   expect(sendFollowUpMessage.mock.calls[1][0].prompt).toContain(next.session_id);
+});
+
+test('restaura escolha antes de salvar e persiste somente snapshot visual', async () => {
+  const setWidgetState = vi.fn();
+  window.openai = { callTool: vi.fn().mockResolvedValue({ structuredContent: corrected }), widgetState: { schema_version: '1.0.0', session_id: ready.session_id, selected_option: 'A', expanded: { distractors: false, sources: false } }, setWidgetState };
+  render(<QuestionWidget initialQuestion={ready} />);
+  await waitFor(() => expect(screen.getByRole('radio', { name: /Alternativa A/ })).toBeEnabled());
+  expect(screen.getByRole('radio', { name: /Alternativa A/ })).toBeChecked();
+  expect(setWidgetState).not.toHaveBeenCalled();
+  await userEvent.click(screen.getByRole('radio', { name: /Alternativa B/ }));
+  expect(setWidgetState).toHaveBeenLastCalledWith({ schema_version: '1.0.0', session_id: ready.session_id, selected_option: 'B', expanded: { distractors: false, sources: false } });
+  await userEvent.click(screen.getByRole('button', { name: 'Responder' }));
+  await screen.findByText(/gabarito C/);
+  expect(setWidgetState.mock.calls.at(-1)![0]).not.toHaveProperty('selected_option');
+  const details = screen.getByText('Análise das demais alternativas').closest('details')!;
+  details.open = true;
+  fireEvent(details, new Event('toggle'));
+  expect(setWidgetState.mock.calls.at(-1)![0]).toEqual({ schema_version: '1.0.0', session_id: ready.session_id, expanded: { distractors: true, sources: false } });
+  expect(JSON.stringify(setWidgetState.mock.calls)).not.toMatch(/gabarito|correct_option|correction|fullscreen/);
+});
+
+test.each([ready, corrected, { ...ready, state: 'invalidated', invalidation_reason: 'Fonte superada' } as Question])('fullscreen e retorno preservam sessão em $state sem ferramentas', async initialQuestion => {
+  const callTool = vi.fn();
+  const requestDisplayMode = vi.fn().mockImplementation(async ({ mode }) => ({ mode }));
+  window.openai = { callTool, displayMode: 'inline', requestDisplayMode };
+  render(<QuestionWidget initialQuestion={initialQuestion} />);
+  const expand = await screen.findByRole('button', { name: 'Expandir para estudar' });
+  await waitFor(() => expect(expand).toBeEnabled());
+  if (initialQuestion.state === 'ready') await userEvent.click(screen.getByRole('radio', { name: /Alternativa B/ }));
+  await userEvent.click(expand);
+  await userEvent.click(await screen.findByRole('button', { name: 'Voltar ao chat' }));
+  expect(requestDisplayMode.mock.calls).toEqual([[{ mode: 'fullscreen' }], [{ mode: 'inline' }]]);
+  expect(callTool).not.toHaveBeenCalled();
+  expect(screen.getByText(initialQuestion.prompt)).toBeInTheDocument();
+  if (initialQuestion.state === 'ready') expect(screen.getByRole('radio', { name: /Alternativa B/ })).toBeChecked();
+});
+
+test('fullscreen recusado mantém modo real e apresenta erro acessível', async () => {
+  window.openai = { callTool: vi.fn(), displayMode: 'inline', requestDisplayMode: vi.fn().mockRejectedValue(new Error('Recusado')) };
+  render(<QuestionWidget initialQuestion={ready} />);
+  await userEvent.click(await screen.findByRole('button', { name: 'Expandir para estudar' }));
+  expect(await screen.findByText(/Não foi possível mudar a apresentação/)).toHaveAttribute('role', 'alert');
+  expect(screen.getByRole('button', { name: 'Expandir para estudar' })).toBeEnabled();
+});
+
+test('host sem fullscreen não mostra controle', async () => {
+  render(<QuestionWidget initialQuestion={ready} />);
+  await waitFor(() => expect(screen.getByRole('radio', { name: /Alternativa B/ })).toBeEnabled());
+  expect(screen.queryByRole('button', { name: /Expandir|Voltar ao chat/ })).not.toBeInTheDocument();
+});
+
+
+test('SDK recebe mudança externa de modo e mantém escolha sem tool RPC', async () => {
+  const post = await connectHost(false, ready, {}, { displayMode: 'inline', availableDisplayModes: ['inline', 'fullscreen'] });
+  const radio = screen.getByRole('radio', { name: /Alternativa D/ });
+  await waitFor(() => expect(radio).toBeEnabled());
+  await userEvent.click(radio);
+  await hostMessage({ jsonrpc: '2.0', method: 'ui/notifications/host-context-changed', params: { displayMode: 'fullscreen' } });
+  expect(screen.getByRole('button', { name: 'Voltar ao chat' })).toBeEnabled();
+  expect(screen.getByRole('main')).toHaveAttribute('data-display-mode', 'fullscreen');
+  expect(radio).toBeChecked();
+  expect(post.mock.calls.some(([m]) => ['ui/request-display-mode', 'tools/call'].includes(m.method))).toBe(false);
+});
+
+test('pedido pendente de fullscreen bloqueia clique duplo; confirmação inline não simula expansão', async () => {
+  let resolve!: (result: { mode: 'inline' }) => void;
+  const requestDisplayMode = vi.fn().mockImplementation(() => new Promise(done => { resolve = done; }));
+  window.openai = { callTool: vi.fn(), displayMode: 'inline', requestDisplayMode };
+  render(<QuestionWidget initialQuestion={ready} />);
+  const button = await screen.findByRole('button', { name: 'Expandir para estudar' });
+  await waitFor(() => expect(button).toBeEnabled());
+  fireEvent.click(button); fireEvent.click(button);
+  expect(button).toBeDisabled();
+  expect(requestDisplayMode).toHaveBeenCalledTimes(1);
+  await act(async () => resolve({ mode: 'inline' }));
+  expect(button).toBeEnabled();
+  expect(screen.getByRole('main')).toHaveAttribute('data-display-mode', 'inline');
+});
+
+test('nova sessão e invalidação limpam estado visual e snapshots privados nunca são restaurados', async () => {
+  const setWidgetState = vi.fn();
+  window.openai = { callTool: vi.fn(), setWidgetState, widgetState: { schema_version: '1.0.0', session_id: ready.session_id, selected_option: 'B', expanded: { distractors: true, sources: true }, correct_option: 'C' } };
+  render(<QuestionWidget initialQuestion={ready} />);
+  await waitFor(() => expect(screen.getByRole('radio', { name: /Alternativa B/ })).toBeEnabled());
+  expect(screen.getByRole('radio', { name: /Alternativa B/ })).not.toBeChecked();
+  await userEvent.click(screen.getByRole('radio', { name: /Alternativa B/ }));
+  const next = { ...ready, session_id: 'qsn_abcdef1234567890', prompt: 'Nova questão' };
+  await act(async () => window.dispatchEvent(new CustomEvent('openai:set_globals', { detail: { globals: { toolInput: { session_id: next.session_id }, toolOutput: next } } })));
+  expect(screen.getByRole('radio', { name: /Alternativa B/ })).not.toBeChecked();
+  await userEvent.click(screen.getByRole('radio', { name: /Alternativa A/ }));
+  await act(async () => window.dispatchEvent(new CustomEvent('openai:set_globals', { detail: { globals: { toolOutput: { ...next, state: 'invalidated', invalidation_reason: 'Fonte superada' } } } })));
+  expect(setWidgetState.mock.calls.at(-1)![0]).toEqual({ schema_version: '1.0.0', session_id: next.session_id, expanded: { distractors: false, sources: false } });
+  expect(screen.queryByText(/gabarito/i)).not.toBeInTheDocument();
+});
+
+test('painéis da correção sobrevivem à expansão e retorno; seleção vem do servidor', async () => {
+  const requestDisplayMode = vi.fn().mockImplementation(async ({ mode }) => ({ mode }));
+  const sources = [{ source_id: 'src_1', kind: 'official', title: 'Fonte extensa', accessed_at: '2026-10-03', role: 'correction', excerpt: 'Trecho longo' }];
+  window.openai = { callTool: vi.fn(), requestDisplayMode, displayMode: 'inline', widgetState: { schema_version: '1.0.0', session_id: ready.session_id, selected_option: 'A', expanded: { distractors: true, sources: true } } };
+  render(<QuestionWidget initialQuestion={{ ...corrected, sources }} />);
+  expect(screen.getByRole('radio', { name: /Alternativa B/ })).toBeChecked();
+  expect(screen.getByText('Fontes da correção').closest('details')).toHaveAttribute('open');
+  await userEvent.click(await screen.findByRole('button', { name: 'Expandir para estudar' }));
+  await userEvent.click(await screen.findByRole('button', { name: 'Voltar ao chat' }));
+  expect(screen.getByText('Análise das demais alternativas').closest('details')).toHaveAttribute('open');
+  expect(screen.getByText('Fontes da correção').closest('details')).toHaveAttribute('open');
+  expect(screen.getByText('Trecho longo')).toBeInTheDocument();
+});
+
+test('modos anunciados no bridge sem método de apresentação não oferecem controle', async () => {
+  window.openai = { callTool: vi.fn(), availableDisplayModes: ['inline', 'fullscreen'], displayMode: 'inline' };
+  render(<QuestionWidget initialQuestion={ready} />);
+  await waitFor(() => expect(screen.getByRole('radio', { name: /Alternativa A/ })).toBeEnabled());
+  expect(screen.queryByRole('button', { name: 'Expandir para estudar' })).not.toBeInTheDocument();
+});
+
+test('API de armazenamento indisponível não impede estudar', async () => {
+  window.openai = { callTool: vi.fn(), get widgetState() { throw new Error('Indisponível'); }, setWidgetState: () => { throw new Error('Indisponível'); } };
+  render(<QuestionWidget initialQuestion={ready} />);
+  await waitFor(() => expect(screen.getByRole('radio', { name: /Alternativa A/ })).toBeEnabled());
+  await userEvent.click(screen.getByRole('radio', { name: /Alternativa A/ }));
+  expect(screen.getByRole('radio', { name: /Alternativa A/ })).toBeChecked();
+});
+
+test('notificação externa legado muda controle sem pedido; tema não desfaz modos negociados', async () => {
+  const requestDisplayMode = vi.fn();
+  window.openai = { callTool: vi.fn(), requestDisplayMode, availableDisplayModes: ['inline'], displayMode: 'inline' };
+  render(<QuestionWidget initialQuestion={ready} />);
+  await waitFor(() => expect(screen.getByRole('radio', { name: /Alternativa A/ })).toBeEnabled());
+  await act(async () => window.dispatchEvent(new CustomEvent('openai:set_globals', { detail: { globals: { theme: 'dark' } } })));
+  expect(screen.queryByRole('button', { name: 'Expandir para estudar' })).not.toBeInTheDocument();
+  await act(async () => window.dispatchEvent(new CustomEvent('openai:set_globals', { detail: { globals: { displayMode: 'fullscreen', availableDisplayModes: ['inline', 'fullscreen'] } } })));
+  expect(screen.getByRole('button', { name: 'Voltar ao chat' })).toBeEnabled();
+  expect(requestDisplayMode).not.toHaveBeenCalled();
 });

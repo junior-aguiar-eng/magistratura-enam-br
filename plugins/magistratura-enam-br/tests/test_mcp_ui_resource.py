@@ -204,6 +204,7 @@ async def test_recurso_ui_e_autocontido(server):
 
     resource = result.contents[0]
     assert resource.mime_type == "text/html;profile=mcp-app"
+    assert resource.meta["openai/ui"]["availableDisplayModes"] == ["inline", "fullscreen"]
     assert resource.meta["ui"]["prefersBorder"] is True
     assert resource.meta["openai/widgetPrefersBorder"] is True
     assert resource.meta["openai/widgetDescription"] == (
@@ -224,6 +225,7 @@ async def test_recurso_ui_anterior_permanece_disponivel_durante_atualizacao(serv
         current = await client.read_resource(UI_URI)
         legacy = await client.read_resource(LEGACY_UI_URI)
 
+    assert legacy.contents[0].meta["openai/ui"]["availableDisplayModes"] == ["inline", "fullscreen"]
     assert legacy.contents[0].mime_type == current.contents[0].mime_type
     assert legacy.contents[0].text == current.contents[0].text
 

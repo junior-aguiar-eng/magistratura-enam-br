@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { readQuestion, type OptionId, type Question, type QuestionHost, type ToolResult } from "./contracts";
+import { readQuestion, type OptionId, type Question, type QuestionHost, type QuestionPresentation, type ToolResult } from "./contracts";
+import { restoreUiState, type QuestionUiState } from "./question-ui-state";
 import { createQuestionHost } from "./mcp-host";
 import { buildFollowUp, type FollowUpAction } from "./question-followup";
 
@@ -8,6 +9,13 @@ const followUpLabels: Record<FollowUpAction, string> = {
   deepen_distinction: "Aprofunde esta distinção",
   new_question: "Outra questão sobre este ponto",
 };
+
+function initialUiState(question?: Question) {
+  if (!question) return undefined;
+  let raw: unknown;
+  try { raw = window.openai?.widgetState; } catch { /* Storage is optional. */ }
+  return restoreUiState(raw, question);
+}
 
 function sourceUrl(url?: string) {
   if (!url) return undefined;
@@ -20,7 +28,13 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     if (!initialQuestion) return undefined;
     try { return readQuestion({ structuredContent: initialQuestion }); } catch { return undefined; }
   });
-  const [selected, setSelected] = useState<OptionId>();
+  const [ui, setUi] = useState<QuestionUiState | undefined>(() => initialUiState(question));
+  const uiRef = useRef(ui);
+  const selected = ui?.selected_option;
+  const [presentation, setPresentation] = useState<QuestionPresentation>({ displayMode: "inline", availableDisplayModes: [] });
+  const [displayPending, setDisplayPending] = useState(false);
+  const displayPendingRef = useRef(false);
+  const [displayError, setDisplayError] = useState(false);
   const [status, setStatus] = useState<"ready" | "sending" | "error">(initialQuestion && !question ? "error" : "ready");
   const resultRef = useRef<HTMLDivElement>(null);
   const hostRef = useRef<QuestionHost | null>(null);
@@ -41,11 +55,15 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     const rank = { ready: 0, answered: 1, invalidated: 2 };
     if (incoming.session_id === current?.session_id && rank[incoming.state] < rank[current.state]) return;
     if (incoming.session_id !== currentRef.current?.session_id) {
-      setSelected(undefined);
       setStatus("ready");
       setFollowUpState(undefined);
     }
     if (incoming.state === "invalidated" && current?.state !== "invalidated") setFollowUpState(undefined);
+    const snapshot = incoming.session_id === current?.session_id ? uiRef.current : hostRef.current?.readUiState();
+    const restored = restoreUiState(snapshot, incoming);
+    uiRef.current = restored;
+    setUi(restored);
+    if (current && (incoming.session_id !== current.session_id || incoming.state !== current.state)) hostRef.current?.saveUiState(restored);
     currentRef.current = incoming;
     if (incoming.state !== "ready") uncertainRef.current.delete(incoming.session_id);
     const blocked = uncertainRef.current.has(incoming.session_id);
@@ -60,7 +78,7 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     const host = createQuestionHost(result => {
       if (!activeRef.current) return;
       try { receiveResult(result); } catch { setStatus("error"); }
-    });
+    }, value => { if (activeRef.current) setPresentation(value); });
     hostRef.current = host;
     if (currentRef.current) host.bindSession(currentRef.current.session_id);
     host.connect().then(() => {
@@ -70,6 +88,34 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
   }, []);
 
   useEffect(() => { if (question?.state === "answered") resultRef.current?.focus(); }, [question?.session_id, question?.state]);
+
+  function changeUi(change: Partial<QuestionUiState>) {
+    const current = currentRef.current;
+    if (!current || !uiRef.current) return;
+    const next = restoreUiState({ ...uiRef.current, ...change }, current);
+    uiRef.current = next;
+    setUi(next);
+    hostRef.current?.saveUiState(next);
+  }
+
+  function togglePanel(panel: "distractors" | "sources", open: boolean, sessionId: string) {
+    if (currentRef.current?.session_id !== sessionId || currentRef.current.state !== "answered" || !uiRef.current || uiRef.current.expanded[panel] === open) return;
+    changeUi({ expanded: { ...uiRef.current.expanded, [panel]: open } });
+  }
+
+  async function changeDisplayMode() {
+    const host = hostRef.current;
+    if (!host || !connected || displayPendingRef.current) return;
+    displayPendingRef.current = true;
+    setDisplayPending(true);
+    setDisplayError(false);
+    try { await host.requestDisplayMode(presentation.displayMode === "fullscreen" ? "inline" : "fullscreen"); }
+    catch { if (activeRef.current && hostRef.current === host) setDisplayError(true); }
+    finally {
+      displayPendingRef.current = false;
+      if (activeRef.current && hostRef.current === host) setDisplayPending(false);
+    }
+  }
 
   if (!question) return <main className="shell" aria-live="polite">{connectionError || status === "error" ? "Não foi possível carregar a questão. Reabra o card ou continue pelo chat." : "Carregando questão…"}</main>;
   const answered = question.state === "answered";
@@ -138,7 +184,10 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     finally { sendingRef.current.delete(sessionId); }
   }
 
-  return <main className="shell">
+  const canExpand = presentation.availableDisplayModes.includes("inline") && presentation.availableDisplayModes.includes("fullscreen");
+  return <main className="shell" data-display-mode={presentation.displayMode}>
+    {canExpand && <div className="study-toolbar"><button className="display-toggle" disabled={!connected || displayPending} aria-busy={displayPending} onClick={() => void changeDisplayMode()}>{presentation.displayMode === "fullscreen" ? "Voltar ao chat" : "Expandir para estudar"}</button></div>}
+    {displayError && <p role="alert">Não foi possível mudar a apresentação. Você pode tentar novamente.</p>}
     <div className="accent" />
     <header>
       <span className="badge">Estudo Jurídico</span>
@@ -149,7 +198,7 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     {invalidated && <aside role="alert" className="caution"><strong>Questão invalidada.</strong><p>{question.invalidation_reason}</p><p>Esta questão não conta para seu desempenho.</p></aside>}
     <fieldset disabled={answered || invalidated || uncertain || status === "sending" || !connected}><legend className="sr-only">Alternativas</legend>
       {question.alternatives.map(option => <label key={option.id} className={`option ${selected === option.id ? "selected" : ""} ${answered && option.id === question.correct_option ? "correct" : ""} ${answered && option.id === question.selected_option && question.result === "incorrect" ? "incorrect" : ""}`}>
-        <input type="radio" name="answer" value={option.id} checked={answered ? question.selected_option === option.id : selected === option.id} onChange={() => setSelected(option.id)} />
+        <input type="radio" name="answer" value={option.id} checked={answered ? question.selected_option === option.id : selected === option.id} onChange={() => changeUi({ selected_option: option.id as OptionId })} />
         <span className="letter">{option.id}</span><span>{option.text}</span>
       </label>)}
     </fieldset>
@@ -159,10 +208,10 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     {answered && <section ref={resultRef} tabIndex={-1} className={`result ${question.result}`} aria-live="polite">
       <h2>{question.result === "correct" ? "Resposta correta" : `Resposta incorreta · gabarito ${question.correct_option}`}</h2>
       <p>{question.correction?.correct_rationale}</p>
-      {!!question.correction?.distractor_analysis.length && <details><summary>Análise das demais alternativas</summary>{question.correction.distractor_analysis.map(item => <p key={item.option}><strong>{item.option}:</strong> {item.analysis}</p>)}</details>}
+      {!!question.correction?.distractor_analysis.length && <details open={ui?.expanded.distractors ?? false} onToggle={event => togglePanel("distractors", event.currentTarget.open, question.session_id)}><summary>Análise das demais alternativas</summary>{question.correction.distractor_analysis.map(item => <p key={item.option}><strong>{item.option}:</strong> {item.analysis}</p>)}</details>}
       {!!question.correction?.exceptions.length && <div><h3>Exceções e limites</h3>{question.correction.exceptions.map((text, i) => <p key={i}>{text}</p>)}</div>}
       {!!question.correction?.traps.length && <div><h3>Armadilhas de prova</h3>{question.correction.traps.map((text, i) => <p key={i}>{text}</p>)}</div>}
-      {!!question.sources?.length && <details><summary>Fontes da correção</summary>{question.sources.map((source, i) => <div key={`${source.source_id}-${i}`}>
+      {!!question.sources?.length && <details open={ui?.expanded.sources ?? false} onToggle={event => togglePanel("sources", event.currentTarget.open, question.session_id)}><summary>Fontes da correção</summary>{question.sources.map((source, i) => <div key={`${source.source_id}-${i}`}>
         <p>{sourceUrl(source.url) ? <a href={sourceUrl(source.url)} target="_blank" rel="noreferrer noopener">{source.title}</a> : <strong>{source.title}</strong>}{source.relative_path && <> — {source.relative_path}</>}</p>
         {source.excerpt && <blockquote>{source.excerpt}</blockquote>}
         <small>Consulta: {source.accessed_at.slice(0, 10)}</small>

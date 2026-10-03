@@ -1,5 +1,14 @@
 # Continuação de manutenção
 
+## Incrementos MCP — task 4, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `9d65d2e`, por autorização específica. O snapshot visual versionado aceita somente sessão, escolha pendente A–E e abertura dos painéis; campos extras/inválidos e outra sessão são rejeitados. A escolha só é restaurada em ready; answered segue a resposta do servidor, e invalidated limpa o estado visual. Armazenamento OpenAI é opcional, inclusive com SDK para ferramentas; indisponibilidade conserva a interação React, sem localStorage ou memória entre sessões.
+
+O SDK anuncia inline/fullscreen e usa `requestDisplayMode`; o bridge legado detecta seu método antes de oferecer controle. Clique solicita expansão ou retorno, com trava enquanto pendente e falha acessível. Resposta com outro modo mantém esse modo; notificação externa mais recente vence ACK atrasado. Não há Fullscreen API do navegador, expansão automática ou chamada de ferramenta por troca de apresentação. Tema/variáveis são aplicados pelos helpers do SDK, com fallback CSS e restauração no fechamento; altura e safeAreaInsets reservam espaço para o host. Os recursos v2/v1 anunciam os modos também em `openai/ui`.
+
+Validação local: 377 testes Python e 91 web aprovados, TypeScript/build, Ruff/lockfile, 42 verificações de integração e auditoria npm sem vulnerabilidades. QA no navegador com host sintético: questões/correções longas, painéis expandidos até fontes, roundtrip ready/answered/invalidated, teclado/foco, claro/escuro, viewport 360 px e zoom 200% (separadamente), movimento reduzido sem transição e composer simulado acessível. Esse ensaio não comprova operação no ChatGPT real; a task 8 continua responsável pela homologação. Bundle regenerado; manifesto permanece 0.7.5, sem push/reinstalação/publicação nesta task. Nenhuma evidência de cache de host foi obtida: URIs preservadas e eventual revisão de URI depende da homologação.
+
+
 ## Incrementos MCP — task 3, 2026-10-03
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `1934373`, por autorização específica. `obter_questao` anuncia saída de sessão e acesso modelo/app sem template de UI; reutiliza a projeção atual do repositório, preservando arquivos e logs. O card consulta essa ferramenta antes de preparar a continuidade e a instrução canônica determina nova consulta pelo modelo antes de atender.

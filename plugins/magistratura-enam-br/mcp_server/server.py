@@ -236,6 +236,7 @@ def build_server(config: LibraryConfig) -> MCPServer:
                 "prefersBorder": True,
                 "csp": {"connectDomains": [], "resourceDomains": []},
             },
+            "openai/ui": {"availableDisplayModes": ["inline", "fullscreen"]},
             "openai/widgetPrefersBorder": True,
             "openai/widgetCSP": {
                 "connect_domains": [],
@@ -255,6 +256,7 @@ def build_server(config: LibraryConfig) -> MCPServer:
                 "csp": {"connectDomains": [], "resourceDomains": []},
             },
             "openai/widgetDescription": "Questão jurídica objetiva com correção após a tentativa.",
+            "openai/ui": {"availableDisplayModes": ["inline", "fullscreen"]},
             "openai/widgetPrefersBorder": True,
             "openai/widgetCSP": {
                 "connect_domains": [],

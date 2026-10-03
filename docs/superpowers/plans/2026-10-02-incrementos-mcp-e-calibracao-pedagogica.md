@@ -20,7 +20,7 @@
 - Logs históricos permanecem legíveis e não são reescritos; a UI nunca é fonte de verdade de resultado.
 - Não adicionar API paga, biblioteca de UI ou backend de coleta sem necessidade demonstrada. SDK instalado já contém sendMessage, updateModelContext e eventos de contexto.
 - Atualizar README, CHANGELOG e CONTINUACAO nos commits que alterem comportamento. Regerar bundle somente a partir de fonte validada.
-- Plano aprovado em 2026-10-02. Tasks 1–2 concluídas e revisadas; o pedido vigente autoriza executar e commitar somente a task 3 na mesma branch. Tasks 4–8, push, reinstalação e publicação permanecem fora desta execução.
+- Plano aprovado em 2026-10-02. Tasks 1–3 concluídas e revisadas; o pedido vigente autoriza executar e commitar somente a task 4 na mesma branch. Tasks 5–8, push, reinstalação e publicação permanecem fora desta execução.
 
 ## Review Focus
 
@@ -99,15 +99,17 @@ A e B podem ser integradas separadamente. Sequência recomendada: A → B → C.
 
 Extender `QuestionHost` com `requestDisplayMode(mode: "inline" | "fullscreen"): Promise<void>` e observação de modo confirmado pelo host. Negociar capacidade e modos disponíveis; usar `App.requestDisplayMode({ mode })` como caminho padrão e `window.openai.requestDisplayMode({ mode })` no bridge legado. `displayMode` pertence ao host, não ao snapshot persistido da questão. Nunca usar a Fullscreen API do navegador para substituir a apresentação controlada pelo ChatGPT.
 
-- [ ] Escrever casos de snapshot adulterado, outra sessão, campo privado, answered/invalidated e host sem persistência. Correção/gabarito nunca aparece no snapshot salvo; resultado efetivo do servidor vence seleção antiga.
-- [ ] Confirmar RED; implementar leitura validada e salvamento síncrono após mudança significativa, sem efeito que sobrescreva snapshot antes da restauração.
-- [ ] Acrescentar teste de mudança de tema e aplicação de `hostContext.styles.variables`; aplicar helpers do SDK quando presentes, mantendo fallback CSS. Registrar handler antes da conexão e remover ao fechar.
-- [ ] Escrever testes RED para **Expandir para estudar** → solicitação fullscreen e **Voltar ao chat** → inline; solicitação recusada ou modo diferente do pedido conserva apresentação real. Host sem suporte não oferece controle inoperante. Notificação de mudança externa atualiza o botão sem novo envio.
-- [ ] Implementar expansão por clique, com controle de solicitação pendente e erro acessível; adaptar layout ao modo efetivo. Preservar sessão, escolha, painéis, correção e proteção pré-tentativa ao entrar/sair. Não disparar mutações MCP nem abrir fullscreen automaticamente após resposta ou restauração.
-- [ ] Verificar teclado, foco, zoom 200%, viewport 360 px, temas claro/escuro e reduce-motion. Painéis expandidos não preservam conteúdo privado anterior.
-- [ ] Validar fullscreen com questão e correção longas: coluna de leitura confortável, rolagem completa de fontes/distratores e composer/áreas reservadas pelo host acessíveis. Testar expansão e retorno durante ready, answered e invalidated sem perda nem troca de sessão.
-- [ ] Rodar Vitest, `npm run lint`, `npm run build`; regenerar `web/dist/index.html`. Usar nova URI visual versionada em `mcp_server/resources.py` se o host mantiver cache, preservando aliases anteriores e seus testes.
-- [ ] Documentar que estado de widget não equivale a memória entre sessões; commitar.
+- [x] Escrever casos de snapshot adulterado, outra sessão, campo privado, answered/invalidated e host sem persistência. Correção/gabarito nunca aparece no snapshot salvo; resultado efetivo do servidor vence seleção antiga.
+- [x] Confirmar RED; implementar leitura validada e salvamento síncrono após mudança significativa, sem efeito que sobrescreva snapshot antes da restauração.
+- [x] Acrescentar teste de mudança de tema e aplicação de `hostContext.styles.variables`; aplicar helpers do SDK quando presentes, mantendo fallback CSS. Registrar handler antes da conexão e remover ao fechar.
+- [x] Escrever testes RED para **Expandir para estudar** → solicitação fullscreen e **Voltar ao chat** → inline; solicitação recusada ou modo diferente do pedido conserva apresentação real. Host sem suporte não oferece controle inoperante. Notificação de mudança externa atualiza o botão sem novo envio.
+- [x] Implementar expansão por clique, com controle de solicitação pendente e erro acessível; adaptar layout ao modo efetivo. Preservar sessão, escolha, painéis, correção e proteção pré-tentativa ao entrar/sair. Não disparar mutações MCP nem abrir fullscreen automaticamente após resposta ou restauração.
+- [x] Verificar teclado, foco, zoom 200%, viewport 360 px, temas claro/escuro e reduce-motion. Painéis expandidos não preservam conteúdo privado anterior.
+- [x] Validar fullscreen com questão e correção longas: coluna de leitura confortável, rolagem completa de fontes/distratores e composer/áreas reservadas pelo host acessíveis. Testar expansão e retorno durante ready, answered e invalidated sem perda nem troca de sessão.
+- [x] Rodar Vitest, `npm run lint`, `npm run build`; regenerar `web/dist/index.html`. Usar nova URI visual versionada em `mcp_server/resources.py` se o host mantiver cache, preservando aliases anteriores e seus testes.
+- [x] Documentar que estado de widget não equivale a memória entre sessões; commitar.
+
+**Registro da execução:** 377 testes Python e 91 web aprovados. Restauração validada, armazenamento opcional, tema/variáveis e negociação de fullscreen implementados sem mutação de ferramentas. QA visual usa navegador com host sintético: teclado, 360 px, zoom 200%, temas e movimento reduzido; longos painéis/fontes rolam sem bloquear o composer simulado. ChatGPT real permanece na task 8. `openai/ui.availableDisplayModes` é anunciado no conteúdo dos dois recursos, além da inicialização do SDK. Sem evidência de cache do host, URIs v2/v1 preservadas; reavaliar no host real.
 
 ## Task 5: Revisão ancorada, formatos e desenhos
 

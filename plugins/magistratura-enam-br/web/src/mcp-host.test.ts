@@ -16,7 +16,7 @@ beforeEach(() => {
 });
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
-async function sdkHost(legacy = false, serverTools = true, extraCapabilities: Record<string, unknown> = {}) {
+async function sdkHost(legacy = false, serverTools = true, extraCapabilities: Record<string, unknown> = {}, hostContext: Record<string, unknown> = {}) {
   const receive = vi.fn();
   const callTool = vi.fn().mockResolvedValue({ structuredContent: ready });
   if (legacy) window.openai = { callTool };
@@ -25,7 +25,7 @@ async function sdkHost(legacy = false, serverTools = true, extraCapabilities: Re
   const connected = host.connect();
   await waitFor(() => expect(post).toHaveBeenCalledWith(expect.objectContaining({ method: "ui/initialize" }), "*"));
   const initialize = post.mock.calls.find(([m]) => m.method === "ui/initialize")![0];
-  await message({ jsonrpc: "2.0", id: initialize.id, result: { protocolVersion: "2026-01-26", hostInfo: { name: "test", version: "1" }, hostCapabilities: { ...(serverTools ? { serverTools: {} } : {}), ...extraCapabilities }, hostContext: {} } });
+  await message({ jsonrpc: "2.0", id: initialize.id, result: { protocolVersion: "2026-01-26", hostInfo: { name: "test", version: "1" }, hostCapabilities: { ...(serverTools ? { serverTools: {} } : {}), ...extraCapabilities }, hostContext } });
   await connected;
   return { host, post, receive, callTool };
 }
@@ -219,4 +219,75 @@ test("retorno correlacionado de sessão antiga não alcança o consumidor", asyn
   await message({ jsonrpc: "2.0", id: request.id, result: { content: [], structuredContent: ready } });
   expect(await outcome).toBeInstanceOf(Error);
   host.close();
+});
+
+
+test('SDK anuncia modos, aplica tema e usa somente modo confirmado pelo host', async () => {
+  const { host, post } = await sdkHost(false, true, {}, { displayMode: 'inline', availableDisplayModes: ['inline', 'fullscreen'], theme: 'dark', styles: { variables: { '--color-text-primary': '#eeeeee' } } });
+  expect(post.mock.calls.find(([m]) => m.method === 'ui/initialize')![0].params.appCapabilities.availableDisplayModes).toEqual(['inline', 'fullscreen']);
+  expect(document.documentElement.style.colorScheme).toBe('dark');
+  expect(document.documentElement.style.getPropertyValue('--color-text-primary')).toBe('#eeeeee');
+  expect(host.presentation.displayMode).toBe('inline');
+  const expanding = host.requestDisplayMode('fullscreen');
+  await waitFor(() => expect(post.mock.calls.some(([m]) => m.method === 'ui/request-display-mode')).toBe(true));
+  const request = post.mock.calls.find(([m]) => m.method === 'ui/request-display-mode')![0];
+  await message({ jsonrpc: '2.0', id: request.id, result: { mode: 'inline' } });
+  await expanding;
+  expect(host.presentation.displayMode).toBe('inline');
+  await message({ jsonrpc: '2.0', method: 'ui/notifications/host-context-changed', params: { displayMode: 'fullscreen', theme: 'light' } });
+  expect(host.presentation.displayMode).toBe('fullscreen');
+  expect(document.documentElement.style.colorScheme).toBe('light');
+  expect(post.mock.calls.filter(([m]) => m.method === 'ui/request-display-mode')).toHaveLength(1);
+  host.close();
+  expect(document.documentElement.style.getPropertyValue('--color-text-primary')).toBe('');
+});
+
+test('notificação externa mais recente vence ACK atrasado de fullscreen', async () => {
+  const { host, post } = await sdkHost(false, true, {}, { displayMode: 'inline', availableDisplayModes: ['inline', 'fullscreen'] });
+  const pending = host.requestDisplayMode('fullscreen');
+  await waitFor(() => expect(post.mock.calls.some(([m]) => m.method === 'ui/request-display-mode')).toBe(true));
+  const request = post.mock.calls.find(([m]) => m.method === 'ui/request-display-mode')![0];
+  await message({ jsonrpc: '2.0', method: 'ui/notifications/host-context-changed', params: { displayMode: 'inline' } });
+  await message({ jsonrpc: '2.0', id: request.id, result: { mode: 'fullscreen' } });
+  await pending;
+  expect(host.presentation.displayMode).toBe('inline');
+  host.close();
+});
+
+test('sem modo fullscreen negociado não envia RPC de apresentação', async () => {
+  const { host, post } = await sdkHost();
+  await expect(host.requestDisplayMode('fullscreen')).rejects.toThrow();
+  expect(post.mock.calls.some(([m]) => m.method === 'ui/request-display-mode')).toBe(false);
+  host.close();
+});
+
+test('snapshot OpenAI continua opcional quando ferramentas usam SDK', async () => {
+  const { host, callTool, post } = await sdkHost(true);
+  const setWidgetState = vi.fn();
+  const state = { schema_version: '1.0.0' as const, session_id: ready.session_id, selected_option: 'B' as const, expanded: { distractors: false, sources: false } };
+  window.openai = { callTool, widgetState: state, setWidgetState };
+  host.bindSession(ready.session_id);
+  expect(host.readUiState()).toEqual(state);
+  host.saveUiState({ ...state, correct_option: 'C', displayMode: 'fullscreen' } as typeof state);
+  expect(setWidgetState).toHaveBeenCalledWith(state);
+  host.bindSession(next.session_id);
+  host.saveUiState(state);
+  expect(setWidgetState).toHaveBeenCalledTimes(1);
+  expect(callTool).not.toHaveBeenCalled();
+  expect(post.mock.calls.some(([m]) => m.method === 'tools/call')).toBe(false);
+  host.close();
+});
+
+test('fechamento durante fullscreen não aplica ACK nem tema posteriores', async () => {
+  const { host, post } = await sdkHost(false, true, {}, { displayMode: 'inline', availableDisplayModes: ['inline', 'fullscreen'], theme: 'dark' });
+  const pending = host.requestDisplayMode('fullscreen');
+  const rejected = expect(pending).rejects.toThrow();
+  await waitFor(() => expect(post.mock.calls.some(([m]) => m.method === 'ui/request-display-mode')).toBe(true));
+  const request = post.mock.calls.find(([m]) => m.method === 'ui/request-display-mode')![0];
+  host.close();
+  await message({ jsonrpc: '2.0', id: request.id, result: { mode: 'fullscreen' } });
+  await message({ jsonrpc: '2.0', method: 'ui/notifications/host-context-changed', params: { displayMode: 'fullscreen', theme: 'dark' } });
+  await rejected;
+  expect(host.presentation.displayMode).toBe('inline');
+  expect(document.documentElement.style.colorScheme).not.toBe('dark');
 });

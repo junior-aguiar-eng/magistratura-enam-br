@@ -1,5 +1,14 @@
 # Changelog
 
+## Não publicado — incrementos MCP, task 4
+
+- Restaura escolha pendente e abertura de painéis por snapshot visual com whitelist e vínculo de sessão; remove escolha respondida e limpa estado invalidado, sem persistir gabarito, correção, fontes ou modo de apresentação.
+- Integra armazenamento opcional OpenAI, mantendo estado React quando indisponível, sem alterar o transporte das ferramentas.
+- Adiciona fullscreen/retorno por clique no SDK MCP Apps e bridge legado, com modos negociados, bloqueio durante pedido, erro acessível e observação da apresentação confirmada pelo host.
+- Anuncia inline/fullscreen na inicialização e nos recursos atual/legado; mantém as URIs compatíveis.
+- Aplica tema e variáveis de estilo do host, respeita altura/áreas reservadas e oferece rolagem de conteúdo longo, foco visível e movimento reduzido.
+- Acrescenta regressões de restauração, troca de sessão, recusa, notificações externas e ACK atrasado; regenera o HTML autocontido.
+
 ## Não publicado — incrementos MCP, task 3
 
 - Adiciona `obter_questao` para consultar a projeção atual autorizada sem template de UI ou gravação; anuncia schema de sessão e visibilidade modelo/app.

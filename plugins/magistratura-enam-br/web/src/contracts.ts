@@ -1,3 +1,4 @@
+import type { QuestionUiState } from "./question-ui-state";
 import type { FollowUpContext } from "./question-followup";
 
 export type OptionId = "A" | "B" | "C" | "D" | "E";
@@ -16,7 +17,14 @@ export interface Question {
 
 export interface ToolResult { isError?: boolean; structuredContent?: unknown; structured_content?: unknown }
 
+export type DisplayMode = "inline" | "fullscreen" | "pip";
+export interface QuestionPresentation { displayMode: DisplayMode; availableDisplayModes: DisplayMode[] }
+
 export interface QuestionHost {
+  readonly presentation: QuestionPresentation;
+  readUiState(): unknown;
+  saveUiState(state: QuestionUiState): void;
+  requestDisplayMode(mode: "inline" | "fullscreen"): Promise<void>;
   readonly capabilities: { messages: boolean; context: boolean };
   bindSession(sessionId: string): void;
   connect(): Promise<void>;
@@ -87,6 +95,10 @@ declare global {
   interface Window {
     openai?: {
       toolOutput?: Question; toolInput?: unknown;
+      widgetState?: unknown; setWidgetState?: (state: QuestionUiState) => void;
+      theme?: "light" | "dark"; displayMode?: DisplayMode; availableDisplayModes?: DisplayMode[];
+      maxHeight?: number; safeArea?: unknown;
+      requestDisplayMode?: (args: { mode: "inline" | "fullscreen" }) => Promise<{ mode: DisplayMode } | void>;
       callTool?: (name: string, args: unknown) => Promise<ToolResult>;
       sendFollowUpMessage?: (args: { prompt: string }) => Promise<unknown>;
     };
