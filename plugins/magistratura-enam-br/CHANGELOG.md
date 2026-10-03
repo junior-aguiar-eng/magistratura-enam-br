@@ -6,6 +6,7 @@
 - Oferece ações de continuidade após tentativa, com explicação de erro somente em erro e apenas pedido de nova questão quando invalidada; revalida estado antes do envio.
 - Usa mensagens/contexto negociados no SDK e `sendFollowUpMessage` no bridge OpenAI, com texto copiável quando não há suporte a mensagens.
 - Envia contexto mínimo por sessão sem gabarito, correção ou diagnóstico; bloqueia cliques duplicados e impede que operações antigas atualizem outro card. Falha de mensagem permite tentativa explícita.
+- Verifica a sessão no adaptador antes de enviar mensagem, inclusive quando o host anuncia outra sessão e ainda não entregou seu resultado.
 - Atualiza instruções MCP para revalidação pelo modelo, acrescenta testes de consulta, capacidades e concorrência e regenera o bundle.
 
 ## Não publicado — incrementos MCP, task 2

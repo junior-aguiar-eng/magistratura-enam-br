@@ -154,8 +154,9 @@ export function createQuestionHost(onResult: (result: ToolResult) => void): Ques
       }
       return normalizeToolResult(result);
     },
-    async sendMessage(text) {
+    async sendMessage(text, sessionId) {
       if (closed || !transport || !capabilities.messages) throw new Error("Mensagens indisponíveis");
+      if (!SESSION_ID.test(sessionId) || (expectedSession && sessionId !== expectedSession)) throw new Error("Sessão divergente da entrada do host");
       if (transport === "sdk") {
         const result = await app.sendMessage({ role: "user", content: [{ type: "text", text }] }, { timeout: CALL_TIMEOUT });
         if (result.isError) throw new Error("Mensagem recusada pelo host");
@@ -163,7 +164,7 @@ export function createQuestionHost(onResult: (result: ToolResult) => void): Ques
         const result = await legacyCall(() => legacy!.sendFollowUpMessage!({ prompt: text }));
         if (result && typeof result === "object" && "isError" in result && result.isError) throw new Error("Mensagem recusada pelo host");
       }
-      if (closed) throw new Error("Host encerrado");
+      if (closed || (expectedSession && sessionId !== expectedSession)) throw new Error("Host encerrado ou sessão alterada");
     },
     async updateContext(context) {
       if (closed || transport !== "sdk" || !capabilities.context) throw new Error("Contexto indisponível");

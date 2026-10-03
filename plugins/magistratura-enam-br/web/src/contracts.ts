@@ -21,7 +21,7 @@ export interface QuestionHost {
   bindSession(sessionId: string): void;
   connect(): Promise<void>;
   callTool(name: string, args: Record<string, unknown>): Promise<ToolResult>;
-  sendMessage(text: string): Promise<void>;
+  sendMessage(text: string, sessionId: string): Promise<void>;
   updateContext(context: FollowUpContext): Promise<void>;
   close(): void;
 }

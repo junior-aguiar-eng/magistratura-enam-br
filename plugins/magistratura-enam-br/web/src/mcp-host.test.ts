@@ -53,7 +53,7 @@ test("SDK envia mensagem e substitui contexto por payload mínimo", async () => 
     await message({ jsonrpc: "2.0", id: request.id, result: {} });
     await updating;
   }
-  const sending = host.sendMessage("Pedido autossuficiente");
+  const sending = host.sendMessage("Pedido autossuficiente", ready.session_id);
   await waitFor(() => expect(post.mock.calls.some(([m]) => m.method === "ui/message")).toBe(true));
   const request = post.mock.calls.find(([m]) => m.method === "ui/message")![0];
   expect(request.params).toMatchObject({ role: "user", content: [{ type: "text", text: "Pedido autossuficiente" }] });
@@ -64,7 +64,7 @@ test("SDK envia mensagem e substitui contexto por payload mínimo", async () => 
 
 test("host sem capacidade não envia mensagem ou contexto", async () => {
   const { host, post } = await sdkHost();
-  await expect(host.sendMessage("Pedido")).rejects.toThrow();
+  await expect(host.sendMessage("Pedido", ready.session_id)).rejects.toThrow();
   expect(post.mock.calls.some(([m]) => m.method === "ui/message")).toBe(false);
   host.close();
 });

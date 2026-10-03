@@ -87,7 +87,9 @@ A e B podem ser integradas separadamente. Sequência recomendada: A → B → C.
 - [x] Testar duas instâncias de card, double-click e mudança de sessão durante envio. Atualizar contexto substituindo o anterior, sem acumular respostas. Nenhuma ação registra tentativa, altera perfil ou cria sessão automaticamente.
 - [x] Rodar testes Python de tools/transporte e Vitest de followup/widget; documentar o fluxo e commitar.
 
-**Registro da execução:** `obter_questao` fica disponível ao modelo/app para leitura antes do envio e revalidação pelo modelo. Foi necessário atualizar o teste anterior de visibilidade e acrescentar CSS mínimo para a nova seção. A consulta não rouba foco da ação: o efeito da correção depende de sessão/estado. Suíte completa: 377 testes Python e 56 web aprovados; TypeScript/build, Ruff, lockfile, integração, documentação estrita e auditoria npm sem vulnerabilidades aprovados. Nenhuma nova dependência ou alteração de logs. Homologação no ChatGPT real permanece pendente.
+**Registro da execução:** `obter_questao` fica disponível ao modelo/app para leitura antes do envio e revalidação pelo modelo. Foi necessário atualizar o teste anterior de visibilidade e acrescentar CSS mínimo para a nova seção. A consulta não rouba foco da ação: o efeito da correção depende de sessão/estado. Suíte completa: 377 testes Python e 57 web aprovados; TypeScript/build, Ruff, lockfile, integração, documentação estrita e auditoria npm sem vulnerabilidades aprovados. Nenhuma nova dependência ou alteração de logs. Homologação no ChatGPT real permanece pendente.
+
+**Encerramento da task 3:** revisão independente de `1934373..d79bd59` confirmou uma janela de envio antigo após `tool-input` de outra sessão, antes de seu `tool-result`. Reproduzido RED e corrigido com `sendMessage(text, sessionId)`, que verifica sessão no adaptador antes de despachar e após confirmar. Falha ordinária de contexto continua não bloqueando mensagem autossuficiente. Os 57 testes web passaram após a correção; nenhum achado crítico ou menor foi confirmado.
 
 ## Task 4: Estado visual, tema do host e fullscreen
 

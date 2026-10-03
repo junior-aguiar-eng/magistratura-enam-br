@@ -50,6 +50,8 @@ O SDK usa `App.updateModelContext` quando negociado e `App.sendMessage` para env
 
 Nenhuma ação envia gabarito, alternativa escolhida, correção ou diagnóstico de domínio no contexto do widget. Troca de sessão durante a consulta ou a confirmação do contexto impede envio do pedido anterior; conclusão de mensagem já enviada não altera o novo card. O bloqueio de envio é por sessão e instância, sem gravação automática ou nova questão gerada pelo botão.
 
+`QuestionHost.sendMessage(text, sessionId)` confere a sessão vinculada no adaptador antes do despacho e após a confirmação. Essa proteção considera `tool-input` mesmo quando o novo resultado ainda não foi entregue e a UI conserva a questão anterior. Falha ordinária de atualização do contexto permite continuar; troca de sessão impede o envio antigo.
+
 ## Fallback
 
 Sem MCP Apps, ou depois de uma chamada retornar erro explícito de indisponibilidade do servidor ou da interface, use fallback textual: informe brevemente a falha, envie apenas enunciado e alternativas, aguarde a resposta e só então apresente a correção canônica. O fallback textual não antecipa o gabarito, não simula persistência e não pode ser acionado apenas por suposição.

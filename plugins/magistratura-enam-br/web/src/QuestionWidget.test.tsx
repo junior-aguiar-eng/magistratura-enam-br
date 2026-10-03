@@ -366,6 +366,18 @@ test("mudança de sessão durante contexto impede envio do pedido anterior", asy
   expect(screen.queryByText(/Pedido enviado|Não foi possível enviar/)).not.toBeInTheDocument();
 });
 
+test("entrada de nova sessão sem resultado ainda impede mensagem da sessão anterior", async () => {
+  const post = await connectHost(false, corrected, { message: {}, updateModelContext: {} });
+  await userEvent.click(screen.getByRole("button", { name: "Explique meu erro" }));
+  const query = post.mock.calls.map(([m]) => m).find(m => m.method === "tools/call")!;
+  await hostMessage({ jsonrpc: "2.0", id: query.id, result: { content: [], structuredContent: corrected } });
+  const context = post.mock.calls.map(([m]) => m).find(m => m.method === "ui/update-model-context")!;
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-input", params: { arguments: { session_id: "qsn_abcdef1234567890" } } });
+  await hostMessage({ jsonrpc: "2.0", id: context.id, result: {} });
+  expect(post.mock.calls.some(([m]) => m.method === "ui/message")).toBe(false);
+  expect(screen.getByText(/Não foi possível enviar o pedido/)).toBeInTheDocument();
+});
+
 test("duas instâncias mantêm pedidos vinculados às respectivas sessões", async () => {
   const next = { ...corrected, session_id: "qsn_abcdef1234567890", prompt: "Segundo card." };
   const callTool = vi.fn().mockImplementation((_name, args) => Promise.resolve({ structuredContent: args.session_id === corrected.session_id ? corrected : next }));

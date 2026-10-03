@@ -102,7 +102,7 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
       if (!stillCurrent()) return;
       // State may change while context is being acknowledged by the host.
       const currentRequest = buildFollowUp(currentRef.current!, action);
-      await host.sendMessage(currentRequest.text);
+      await host.sendMessage(currentRequest.text, sessionId);
       if (stillCurrent()) setFollowUpState({ sessionId, status: "sent" });
     } catch {
       if (stillCurrent()) setFollowUpState({ sessionId, status: "error" });

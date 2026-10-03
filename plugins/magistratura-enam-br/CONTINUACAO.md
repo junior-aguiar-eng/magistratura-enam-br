@@ -8,7 +8,9 @@ Após tentativa, estão disponíveis explicação do erro (somente em erro), apr
 
 Trava por sessão/instância impede cliques duplicados; mudança de sessão durante consulta/contexto interrompe o pedido antigo. Falha de contexto não impede a mensagem autossuficiente, e falha de envio permite nova tentativa explícita. A leitura não refocaliza a correção já lida. CSS mínimo organiza botões responsivos e textarea sem nova biblioteca.
 
-Validação local: 377 testes Python e 56 web (16 do adaptador, 31 do widget, oito de followup e um build real), TypeScript, build, Ruff, lockfile, 42 checks de integração e MkDocs estrito aprovados; auditoria npm sem vulnerabilidades. A asserção anterior de visibilidade foi atualizada para a nova consulta sem expor template. Bundle regenerado da fonte canônica. Homologação visual e comportamento do modelo no ChatGPT real permanecem na task 8; fullscreen na task 4. Manifesto continua em 0.7.5; este ciclo não publica nem reinstala o plugin.
+Validação local: 377 testes Python e 57 web (16 do adaptador, 32 do widget, oito de followup e um build real), TypeScript, build, Ruff, lockfile, 42 checks de integração e MkDocs estrito aprovados; auditoria npm sem vulnerabilidades. A asserção anterior de visibilidade foi atualizada para a nova consulta sem expor template. Bundle regenerado da fonte canônica. Homologação visual e comportamento do modelo no ChatGPT real permanecem na task 8; fullscreen na task 4. Manifesto continua em 0.7.5; este ciclo não publica nem reinstala o plugin.
+
+Revisão independente de `1934373..d79bd59`: um achado importante, nenhum crítico ou menor. Entrada de outra sessão durante confirmação do contexto, sem resultado novo ainda, permitia enviar pedido antigo porque a UI aguardava o resultado para trocar seu estado. O caso foi reproduzido RED e corrigido: `sendMessage(text, sessionId)` verifica a sessão vinculada no adaptador imediatamente antes do despacho e após a confirmação. A suíte web completa passou com 57 testes e o bundle foi regenerado. Não houve segunda revisão independente após a correção.
 
 ## Incrementos MCP — task 2, 2026-10-02
 
