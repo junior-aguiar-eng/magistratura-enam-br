@@ -10,6 +10,8 @@ Validação: RED contratual com 11 falhas novas e oito testes anteriores aprovad
 
 AGENTS permanece sem novas diretrizes porque a aprovação humana não foi obtida, como permite o plano. Manifesto continua 0.7.5; tasks 6–8, push, reinstalação e publicação não integram esta autorização.
 
+Revisão independente automatizada de `d00540c..2980e16`: nenhum achado crítico, importante ou menor; hashes das 15 saídas/casos e das instruções conferidos. Sem segunda revisão. Gates gerais foram executados pelo implementador, sem repetição pelo revisor; MkDocs estrito também passou. Q12 após mudança de base e opt-in adaptativo nos formatos novos não tiveram captura. Identificação exata do modelo/contexto recebido, aprovação jurídica humana, Q13/Q17/matriz completa e comportamento no ChatGPT/MCP-only continuam não demonstrados. Auditor/corpus permanecem nas tasks 6–7; tasks 1–4 só foram examinadas nas interfaces afetadas.
+
 
 ## Incrementos MCP — task 4, 2026-10-03
 
