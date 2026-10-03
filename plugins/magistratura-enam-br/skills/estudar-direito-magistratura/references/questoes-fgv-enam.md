@@ -20,8 +20,20 @@ Não force caso concreto de padrão FGV/ENAM quando o material contiver apenas a
 
 Reproduza o nível de elaboração observado nas provas da FGV para ENAM, sem copiar enunciados ou alternativas. Escolha o formato que melhor cobre o núcleo:
 
-- **Caso concreto com alternativa única:** apresente fatos suficientes, normalmente em 6 a 14 linhas, e cobre consequência, competência, requisito, limite, remédio processual ou efeito jurídico. Inclua apenas dados que participem da solução.
-- **Afirmativas I, II e III:** use quando houver três proposições autônomas e materialmente relacionadas. Cada uma deve ser individualmente aferível; não use o formato apenas para aumentar artificialmente a dificuldade.
+- **`direto` — caso concreto com alternativa única:** apresente fatos suficientes, normalmente em 6 a 14 linhas, e cobre consequência, competência, requisito, limite, remédio processual ou efeito jurídico. Inclua apenas dados que participem da solução.
+- **`numerado` — afirmativas I, II e III:** use proposições autônomas e materialmente relacionadas, cada uma individualmente aferível; as alternativas indicam quais são corretas.
+- **`vf` — sequência de verdadeiro/falso:** delimite o suporte fático de cada assertiva e apresente cinco sequências distintas na ordem indicada. Não esconda condição decisiva nem torne falso um item apenas por detalhe alheio ao núcleo.
+- **`associacao` — associação de colunas:** use somente quando relacionar situações, categorias ou soluções trouxer classificação jurídica real. Identifique itens, ordem e regra de reutilização das opções; as cinco alternativas expressam mapeamentos completos e distintos. As soluções da segunda coluna devem ter densidade comparável e enfrentar os mesmos planos decisivos, sem reservar ressalva ou consequência completa à única solução correta.
+
+Todos os formatos preservam núcleo funcional, fatos suficientes, cinco alternativas A–E e chave única. Construa internamente o vetor de validade ou o mapeamento e confira cada combinação contra ele: rejeite duas alternativas com a mesma combinação, associação ambígua ou mais de uma escolha juridicamente defensável. Combinações curtas são aceitáveis quando a densidade está nas assertivas/colunas; não dispense a paridade jurídica dos componentes. Não use os formatos apenas para aumentar artificialmente a dificuldade.
+
+### Desenhos de construção
+
+- **`solucoes`:** alternativas oferecem soluções jurídicas completas concorrentes para a mesma controvérsia; cada erro corresponde a requisito, exceção, competência, efeito ou suporte fático identificado.
+- **`matriz`:** varie controladamente dois eixos juridicamente decisivos, como competência e efeitos, mantendo os demais fatos estáveis. Todas as opções devem resolver ambos os eixos; não faça a correta ser a única completa.
+- **`fundamento`:** mantenha a mesma conclusão aparente e varie fundamentos concorrentes. O comando cobra a combinação conclusão–fundamento juridicamente adequada; apoie o fundamento determinante no material/fonte delimitados, sem fabricar divergência ou deixar duas justificativas válidas.
+
+Esses desenhos são orientações de geração; não são evidência de desempenho ou domínio e não substituem a auditoria. Não imponha porcentagens nem variedade forçada em uma questão única. Distribuição de formatos em simulado depende de corpus disponível e revisado; sem ele, não atribua proporção empírica à FGV/ENAM.
 
 Evite questões de reconhecimento isolado. O enunciado deve obrigar o candidato a selecionar a norma aplicável, identificar o entendimento judicial ou doutrinário relevante e delimitar sua incidência nos fatos. Quando a jurisprudência for parte do núcleo, informe tribunal, natureza do entendimento e recorte jurídico apenas na medida necessária ao problema; não transforme o enunciado em citação de ementa.
 
@@ -70,7 +82,7 @@ Revise internamente se:
 
 1. a dificuldade decorre de articulação jurídica, e não de ambiguidade ou memória literal isolada;
 2. o gabarito está integralmente apoiado no material delimitado e em fonte oficial atual, quando necessária;
-3. a escolha do formato — caso concreto ou afirmativas — melhora a aferição do núcleo, em vez de apenas aumentar artificialmente a dificuldade;
+3. a escolha do formato — direto, numerado, V/F ou associação — melhora a aferição do núcleo, em vez de apenas aumentar artificialmente a dificuldade;
 4. não há elemento do enunciado que torne aplicável regra específica ignorada pelo gabarito ou pelos distratores;
 5. cada fato do enunciado tem função jurídica e a narrativa contém tensão suficiente sem prolixidade;
 6. o conjunto não contém distrator de negação frontal de premissa elementar nem correta isoladamente sofisticada;
@@ -91,6 +103,8 @@ Se a questão for válida, a correção completa é obrigatória tanto no acerto
 5. **Chave de prova:** encerre com a distinção ou armadilha realmente demonstrada pelo conjunto, especialmente entre institutos próximos. Não invente “pegadinha da banca”, intenção do examinador ou frequência de cobrança. Se afirmar recorrência em provas, apoie-a em levantamento verificável; sem ele, apresente apenas a distinção doutrinária ou jurisprudencial útil.
 
 Mantenha texto natural e proporcional à complexidade. Use subtítulos apenas quando ajudarem a leitura e evite fragmentar a correção em excesso. A densidade decorre do encadeamento entre fundamento, enunciado e vícios dos distratores, não do tamanho da resposta.
+
+Em numerado, V/F ou associação, explique cada assertiva e cada associação somente após a tentativa, antes de comparar as cinco combinações. Identifique validade, suporte fático e fundamento de cada componente; mostre por letra quais componentes tornam cada distrator incorreto. O acerto não dispensa essa análise individual. Mesmo com opt-in adaptativo válido, preserve a análise de todos os componentes e dos erros das combinações; reduza a extensão sem omitir o raciocínio.
 
 Quando houver prova, caderno comentado ou correção-modelo fornecidos pelo candidato, use-os como corpus de calibração: observe como o núcleo é cobrado, quão próximas são as alternativas e quais distinções a correção explicita. Se o candidato aprovar expressamente um exemplo, preserve sua arquitetura argumentativa nas correções seguintes, mas não copie frases nem reproduza imprecisões. Registre internamente os critérios estruturais observados na sessão e combine-os com esta sequência canônica.
 

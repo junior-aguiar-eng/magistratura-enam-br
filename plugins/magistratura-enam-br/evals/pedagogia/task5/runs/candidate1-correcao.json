@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-candidate1-correcao",
+    "executed_at": "2026-10-03T17:53:50.938140+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_candidate1",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-associacao-correcao",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Tentativa do candidato: C. Quero a correção completa, mesmo se acertei. Use somente o material enviado.",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato.",
+      "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "adequacao-ao-pedido",
+        "description": "A saída atende ao cenário e ao recorte.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ],
+    "legal_grounding": {
+      "checked_at": "2026-10-03",
+      "cutoff_date": "2026-10-03",
+      "claims": [
+        {
+          "id": "competencia-e-efeitos",
+          "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+          "official_source": "src_cpc-art64",
+          "locator": "CPC art.64 §§2º–4º",
+          "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+        }
+      ],
+      "human_review": {
+        "review_status": "pending",
+        "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+      }
+    },
+    "turns": [
+      "Use o material Markdown enviado agora, no modo acervo_exclusivo. Quero apenas uma questão FGV/ENAM de associação de colunas. Associe três situações processuais a soluções completas que combinem competência e efeitos de decisão já proferida. Os efeitos importam tanto quanto o destino dos autos. Não forneça gabarito, correção ou indicação de qual combinação resolve o caso.\n\nMaterial do candidato — recorte de estudo sintético, norma conferida no Planalto em 2026-10-03, CPC art. 64, §§ 2º–4º:\nApós ouvir a parte contrária, o juiz decide imediatamente a arguição de incompetência. Acolhida a arguição, remete os autos ao juízo competente. Salvo decisão judicial em sentido contrário, os efeitos da decisão do juízo incompetente permanecem até que o juízo competente profira outra, se for o caso. A distinção relevante é entre destino do processo e conservação dos efeitos; declaração de incompetência não equivale por si a perda automática desses efeitos.\n",
+      "Considerando exclusivamente o recorte do art. 64, §§ 2º–4º, do CPC contido no material Markdown fornecido, associe as situações da primeira coluna às soluções da segunda. Em todos os casos, a parte contrária foi ouvida antes da decisão sobre a arguição de incompetência, e o juízo B é o competente.\n\nColuna I — Situações processuais\n\nI. O juízo A concedeu uma medida que impôs obrigação à parte ré. Posteriormente, acolheu a arguição de incompetência e determinou a remessa ao juízo B, sem deliberar sobre os efeitos da medida. Antes da remessa efetiva, a parte ré pretende deixar de cumprir a obrigação exclusivamente em razão da declaração de incompetência.\n\nII. O juízo A concedeu a mesma espécie de medida. Ao acolher a arguição de incompetência e determinar a remessa ao juízo B, decidiu expressamente que os efeitos dessa medida cessariam imediatamente. Os autos ainda não chegaram ao destinatário, e a parte autora sustenta que a obrigação deve continuar sendo cumprida até nova decisão de B.\n\nIII. Após acolhimento da arguição de incompetência pelo juízo A, sem decisão contrária à conservação dos efeitos da medida anteriormente concedida, os autos foram remetidos ao juízo B. Este proferiu nova decisão que substituiu integralmente a medida por outra, de conteúdo incompatível com a anterior. A parte autora pretende continuar exigindo a obrigação originária até manifestação adicional de B sobre sua cessação.\n\nColuna II — Soluções\n\n1. Os autos devem seguir para o juízo B, e os efeitos da medida anterior cessam imediatamente, em cumprimento à decisão expressa que afastou sua conservação durante a transferência do processo.\n\n2. Os autos devem seguir para o juízo B, e os efeitos da medida anterior ficam suspensos durante a transferência, dependendo de ratificação expressa do destinatário para que a obrigação volte a ser exigível.\n\n3. Os autos devem seguir para o juízo B, e os efeitos da medida anterior permanecem enquanto não houver decisão judicial em sentido contrário ou nova decisão do competente que a substitua, sem cessação decorrente apenas da incompetência.\n\n4. O processo deve prosseguir no juízo B, e a substituição da medida faz cessar seus efeitos desde a declaração de incompetência de A, retirando a exigibilidade da obrigação também no intervalo anterior à nova decisão.\n\n5. O processo deve prosseguir no juízo B, e a obrigação passa a observar a nova decisão que substituiu a medida anterior, sem necessidade de pronunciamento adicional para afastar os efeitos incompatíveis da decisão substituída.\n\nCada solução pode ser utilizada uma vez, mais de uma vez ou nenhuma vez. Assinale a alternativa que apresenta a associação correta, na ordem I, II e III.\n\nA) 3 – 2 – 5.\n\nB) 2 – 1 – 5.\n\nC) 3 – 1 – 5.\n\nD) 3 – 1 – 4.\n\nE) 3 – 3 – 5.\n",
+      "Tentativa do candidato: C. Quero a correção completa, mesmo se acertei. Use somente o material enviado."
+    ]
+  },
+  "case_sha256": "255f3bc0ae61c81906e0745ef9651c5870a9b616dd2e9c04d9da5c6a73f8ea9e",
+  "output": "Sua resposta está correta. O gabarito é C: I–3, II–1 e III–5.\n\nO fundamento é o art. 64, §§ 2º–4º, do CPC, conforme o recorte fornecido por você. Depois de ouvir a parte contrária, o juiz decide a arguição; se a acolher, remete os autos ao juízo competente. Essa consequência relativa à competência não resolve, por si, a questão dos efeitos de uma decisão anteriormente proferida: eles permanecem, salvo decisão judicial em sentido contrário, até que o juízo competente profira outra, se for o caso.\n\nA conservação dos efeitos opera sem exigir ratificação do destinatário. Ao mesmo tempo, não é uma garantia de permanência até a chegada dos autos ou até um pronunciamento obrigatório do juízo competente: a própria regra admite decisão judicial que afaste essa conservação. A solução exige identificar, em cada situação, se houve somente declaração de incompetência, determinação expressa sobre os efeitos ou efetiva substituição da medida.\n\nNa situação I, a associação é com a solução 3. O juízo A acolheu a arguição e determinou a remessa a B, mas não deliberou sobre os efeitos da medida. A obrigação continua exigível enquanto não ocorrer decisão que afaste ou substitua esses efeitos. O dado decisivo é a ausência de pronunciamento sobre sua cessação: a declaração de incompetência, isoladamente, não autoriza a parte ré a deixar de cumprir a obrigação, nem a remessa efetiva constitui condição para conservar os efeitos.\n\nNa situação II, a associação é com a solução 1. A remessa a B continua sendo a consequência do acolhimento da arguição. Contudo, A também determinou expressamente a cessação imediata dos efeitos da medida. Incide, portanto, a ressalva à conservação prevista no material. A circunstância de os autos ainda não terem chegado a B não prolonga a obrigação: exigir uma decisão posterior do destinatário para dar eficácia à cessação desconsideraria a determinação já proferida.\n\nNa situação III, a associação é com a solução 5. O processo já está no juízo competente, que substituiu integralmente a medida anterior por outra incompatível. A nova decisão passa a reger a obrigação; não é necessário um segundo pronunciamento para afastar os efeitos incompatíveis da medida substituída. Isso também não permite concluir que a obrigação originária deixou de ser exigível desde a declaração de incompetência: no intervalo anterior à substituição, não houve decisão contrária à conservação de seus efeitos.\n\nExaminando cada alternativa:\n\n- A — 3–2–5: acerta I e III, mas erra II. A solução 2 condiciona a exigibilidade à ratificação de B e trata o intervalo de transferência como período de suspensão. O material não estabelece essa condição; em II, a cessação resulta da determinação expressa de A, e não de uma suspensão à espera de ratificação.\n- B — 2–1–5: acerta II e III, mas erra I. A solução 2 transforma a ausência de ratificação pelo juízo competente em impedimento à conservação dos efeitos. Em I, justamente porque não houve decisão em sentido contrário, a obrigação continua exigível durante a transferência.\n- C — 3–1–5: combina corretamente remessa e conservação em I, remessa e cessação expressamente determinada em II, e prosseguimento em B com aplicação da decisão substitutiva em III.\n- D — 3–1–4: acerta I e II, mas erra III. A solução 4 atribui à substituição um efeito retroativo desde a declaração de incompetência. Essa retroatividade não decorre do recorte fornecido nem foi determinada nos fatos narrados. Ela apagaria indevidamente o período em que os efeitos da medida anterior estavam conservados.\n- E — 3–3–5: acerta I e III, mas erra II. A solução 3 aplica a conservação sem reconhecer que, nessa situação, A já decidiu expressamente em sentido contrário. A regra de conservação não pode prevalecer sobre a exceção efetivamente acionada no caso.\n\nA distinção de prova é entre três eventos: declarar a incompetência determina o destino dos autos; decidir expressamente sobre os efeitos pode afastar sua conservação; substituir a medida no juízo competente faz a nova decisão reger a obrigação. Nenhum desses eventos autoriza presumir, por si, a eliminação retroativa dos efeitos anteriormente conservados.\n",
+  "output_sha256": "f05f6fdc9912426db298acf7d395bb739c5c22191c3cf9ff772c4d743a315b06",
+  "evaluation": {
+    "case_id": "task5-associacao-correcao",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "validacao-fixture-juridica",
+      "aplicacao-fundamentacao-juridica",
+      "adequacao-ao-pedido"
+    ]
+  }
+}

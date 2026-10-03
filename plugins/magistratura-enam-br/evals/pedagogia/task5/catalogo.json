@@ -1,0 +1,297 @@
+{
+  "schema_version": "1.1.0",
+  "baseline": "0.7.5",
+  "target": "0.7.5",
+  "evals": [
+    {
+      "id": "task5-associacao-matriz",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Use o material Markdown enviado agora, no modo acervo_exclusivo. Quero apenas uma questão FGV/ENAM de associação de colunas. Associe três situações processuais a soluções completas que combinem competência e efeitos de decisão já proferida. Os efeitos importam tanto quanto o destino dos autos. Não forneça gabarito, correção ou indicação de qual combinação resolve o caso.\n\nMaterial do candidato — recorte de estudo sintético, norma conferida no Planalto em 2026-10-03, CPC art. 64, §§ 2º–4º:\nApós ouvir a parte contrária, o juiz decide imediatamente a arguição de incompetência. Acolhida a arguição, remete os autos ao juízo competente. Salvo decisão judicial em sentido contrário, os efeitos da decisão do juízo incompetente permanecem até que o juízo competente profira outra, se for o caso. A distinção relevante é entre destino do processo e conservação dos efeitos; declaração de incompetência não equivale por si a perda automática desses efeitos.\n",
+      "source_policy": "acervo_exclusivo",
+      "fixtures": [
+        "Caso sintético, sem prova protegida ou resposta real de candidato.",
+        "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+      ],
+      "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+      "assertions": [
+        {
+          "id": "cinco-alternativas",
+          "description": "Exatamente cinco alternativas.",
+          "kind": "automatic",
+          "check": "option_count",
+          "expected": 5
+        },
+        {
+          "id": "encerra-em-e",
+          "description": "Termina na alternativa E.",
+          "kind": "automatic",
+          "check": "ends_after_option_e"
+        }
+      ],
+      "human_rubric": [
+        "suporte oficial/material",
+        "núcleo funcional",
+        "plausibilidade",
+        "unicidade",
+        "comparação dos distratores",
+        "limite de fonte"
+      ],
+      "risk_tags": [
+        "fundamento-sem-suporte",
+        "gabarito-ambiguo"
+      ],
+      "legal_grounding": {
+        "checked_at": "2026-10-03",
+        "cutoff_date": "2026-10-03",
+        "claims": [
+          {
+            "id": "competencia-e-efeitos",
+            "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+            "official_source": "src_cpc-art64",
+            "locator": "CPC art.64 §§2º–4º",
+            "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+          }
+        ],
+        "human_review": {
+          "review_status": "pending",
+          "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+        }
+      }
+    },
+    {
+      "id": "task5-associacao-correcao",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Tentativa do candidato: C. Quero a correção completa, mesmo se acertei. Use somente o material enviado.",
+      "source_policy": "acervo_exclusivo",
+      "fixtures": [
+        "Caso sintético, sem prova protegida ou resposta real de candidato.",
+        "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+      ],
+      "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+      "assertions": [
+        {
+          "id": "adequacao-ao-pedido",
+          "description": "A saída atende ao cenário e ao recorte.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "suporte oficial/material",
+        "núcleo funcional",
+        "plausibilidade",
+        "unicidade",
+        "comparação dos distratores",
+        "limite de fonte"
+      ],
+      "risk_tags": [
+        "fundamento-sem-suporte",
+        "gabarito-ambiguo"
+      ],
+      "legal_grounding": {
+        "checked_at": "2026-10-03",
+        "cutoff_date": "2026-10-03",
+        "claims": [
+          {
+            "id": "competencia-e-efeitos",
+            "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+            "official_source": "src_cpc-art64",
+            "locator": "CPC art.64 §§2º–4º",
+            "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+          }
+        ],
+        "human_review": {
+          "review_status": "pending",
+          "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+        }
+      },
+      "turns": [
+        "Use o material Markdown enviado agora, no modo acervo_exclusivo. Quero apenas uma questão FGV/ENAM de associação de colunas. Associe três situações processuais a soluções completas que combinem competência e efeitos de decisão já proferida. Os efeitos importam tanto quanto o destino dos autos. Não forneça gabarito, correção ou indicação de qual combinação resolve o caso.\n\nMaterial do candidato — recorte de estudo sintético, norma conferida no Planalto em 2026-10-03, CPC art. 64, §§ 2º–4º:\nApós ouvir a parte contrária, o juiz decide imediatamente a arguição de incompetência. Acolhida a arguição, remete os autos ao juízo competente. Salvo decisão judicial em sentido contrário, os efeitos da decisão do juízo incompetente permanecem até que o juízo competente profira outra, se for o caso. A distinção relevante é entre destino do processo e conservação dos efeitos; declaração de incompetência não equivale por si a perda automática desses efeitos.\n",
+        "Considerando exclusivamente o recorte do art. 64, §§ 2º–4º, do CPC contido no material Markdown fornecido, associe as situações da primeira coluna às soluções da segunda. Em todos os casos, a parte contrária foi ouvida antes da decisão sobre a arguição de incompetência, e o juízo B é o competente.\n\nColuna I — Situações processuais\n\nI. O juízo A concedeu uma medida que impôs obrigação à parte ré. Posteriormente, acolheu a arguição de incompetência e determinou a remessa ao juízo B, sem deliberar sobre os efeitos da medida. Antes da remessa efetiva, a parte ré pretende deixar de cumprir a obrigação exclusivamente em razão da declaração de incompetência.\n\nII. O juízo A concedeu a mesma espécie de medida. Ao acolher a arguição de incompetência e determinar a remessa ao juízo B, decidiu expressamente que os efeitos dessa medida cessariam imediatamente. Os autos ainda não chegaram ao destinatário, e a parte autora sustenta que a obrigação deve continuar sendo cumprida até nova decisão de B.\n\nIII. Após acolhimento da arguição de incompetência pelo juízo A, sem decisão contrária à conservação dos efeitos da medida anteriormente concedida, os autos foram remetidos ao juízo B. Este proferiu nova decisão que substituiu integralmente a medida por outra, de conteúdo incompatível com a anterior. A parte autora pretende continuar exigindo a obrigação originária até manifestação adicional de B sobre sua cessação.\n\nColuna II — Soluções\n\n1. Os autos devem seguir para o juízo B, e os efeitos da medida anterior cessam imediatamente, em cumprimento à decisão expressa que afastou sua conservação durante a transferência do processo.\n\n2. Os autos devem seguir para o juízo B, e os efeitos da medida anterior ficam suspensos durante a transferência, dependendo de ratificação expressa do destinatário para que a obrigação volte a ser exigível.\n\n3. Os autos devem seguir para o juízo B, e os efeitos da medida anterior permanecem enquanto não houver decisão judicial em sentido contrário ou nova decisão do competente que a substitua, sem cessação decorrente apenas da incompetência.\n\n4. O processo deve prosseguir no juízo B, e a substituição da medida faz cessar seus efeitos desde a declaração de incompetência de A, retirando a exigibilidade da obrigação também no intervalo anterior à nova decisão.\n\n5. O processo deve prosseguir no juízo B, e a obrigação passa a observar a nova decisão que substituiu a medida anterior, sem necessidade de pronunciamento adicional para afastar os efeitos incompatíveis da decisão substituída.\n\nCada solução pode ser utilizada uma vez, mais de uma vez ou nenhuma vez. Assinale a alternativa que apresenta a associação correta, na ordem I, II e III.\n\nA) 3 – 2 – 5.\n\nB) 2 – 1 – 5.\n\nC) 3 – 1 – 5.\n\nD) 3 – 1 – 4.\n\nE) 3 – 3 – 5.\n",
+        "Tentativa do candidato: C. Quero a correção completa, mesmo se acertei. Use somente o material enviado."
+      ]
+    },
+    {
+      "id": "task5-revisao-trecho",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Use apenas o material Markdown enviado agora, em acervo_exclusivo. Quero revisão por consolidação densa e dois flashcards, sem questão objetiva e sem calendário. Material enviado, seção 2 — competência e efeitos (recorte sintético CPC art.64 §§2º–4º): após ouvir a parte contrária, o juiz decide a arguição; acolhida a incompetência, remete os autos ao competente. Salvo decisão judicial em contrário, conservam-se os efeitos da decisão anterior até que o competente profira outra, se for o caso. O destino dos autos e a preservação dos efeitos são planos diferentes.",
+      "source_policy": "acervo_exclusivo",
+      "fixtures": [
+        "Caso sintético, sem prova protegida ou resposta real de candidato.",
+        "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+      ],
+      "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+      "assertions": [
+        {
+          "id": "adequacao-ao-pedido",
+          "description": "A saída atende ao cenário e ao recorte.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "suporte oficial/material",
+        "núcleo funcional",
+        "plausibilidade",
+        "unicidade",
+        "comparação dos distratores",
+        "limite de fonte"
+      ],
+      "risk_tags": [
+        "fundamento-sem-suporte",
+        "gabarito-ambiguo"
+      ],
+      "legal_grounding": {
+        "checked_at": "2026-10-03",
+        "cutoff_date": "2026-10-03",
+        "claims": [
+          {
+            "id": "competencia-e-efeitos",
+            "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+            "official_source": "src_cpc-art64",
+            "locator": "CPC art.64 §§2º–4º",
+            "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+          }
+        ],
+        "human_review": {
+          "review_status": "pending",
+          "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+        }
+      }
+    },
+    {
+      "id": "task5-revisao-inacessivel",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Revise a página da apostila que estudamos ontem em outra conversa. Continue do ponto onde paramos, no modo acervo_exclusivo. Contexto real desta sessão: nenhum arquivo anterior, checkpoint ou tema foi fornecido.",
+      "source_policy": "acervo_exclusivo",
+      "fixtures": [
+        "Caso sintético, sem prova protegida ou resposta real de candidato."
+      ],
+      "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+      "assertions": [
+        {
+          "id": "adequacao-ao-pedido",
+          "description": "A saída atende ao cenário e ao recorte.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "suporte oficial/material",
+        "núcleo funcional",
+        "plausibilidade",
+        "unicidade",
+        "comparação dos distratores",
+        "limite de fonte"
+      ],
+      "risk_tags": [
+        "fundamento-sem-suporte",
+        "gabarito-ambiguo"
+      ]
+    },
+    {
+      "id": "task5-vf",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Use só o material Markdown enviado agora, em acervo_exclusivo. Faça uma questão FGV/ENAM V/F, com três assertivas ligadas a situações processuais e cinco sequências A–E. Envie só enunciado e alternativas, sem gabarito ou correção. Material enviado — recorte sintético CPC art.64 §§2º–4º: após ouvir a parte contrária, o juiz decide a arguição; acolhida a incompetência, remete os autos ao competente. Salvo decisão judicial em contrário, conservam-se os efeitos da decisão anterior até que o competente profira outra, se for o caso. O destino dos autos e a preservação dos efeitos são planos diferentes.",
+      "source_policy": "acervo_exclusivo",
+      "fixtures": [
+        "Caso sintético, sem prova protegida ou resposta real de candidato.",
+        "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+      ],
+      "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+      "assertions": [
+        {
+          "id": "cinco-alternativas",
+          "description": "Exatamente cinco alternativas.",
+          "kind": "automatic",
+          "check": "option_count",
+          "expected": 5
+        },
+        {
+          "id": "encerra-em-e",
+          "description": "Termina na alternativa E.",
+          "kind": "automatic",
+          "check": "ends_after_option_e"
+        }
+      ],
+      "human_rubric": [
+        "suporte oficial/material",
+        "núcleo funcional",
+        "plausibilidade",
+        "unicidade",
+        "comparação dos distratores",
+        "limite de fonte"
+      ],
+      "risk_tags": [
+        "fundamento-sem-suporte",
+        "gabarito-ambiguo"
+      ],
+      "legal_grounding": {
+        "checked_at": "2026-10-03",
+        "cutoff_date": "2026-10-03",
+        "claims": [
+          {
+            "id": "competencia-e-efeitos",
+            "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+            "official_source": "src_cpc-art64",
+            "locator": "CPC art.64 §§2º–4º",
+            "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+          }
+        ],
+        "human_review": {
+          "review_status": "pending",
+          "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+        }
+      }
+    },
+    {
+      "id": "task5-vf-correcao",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Tentativa do candidato: C. Quero a correção completa, mesmo se acertei. Use somente o material enviado.",
+      "source_policy": "acervo_exclusivo",
+      "fixtures": [
+        "Caso sintético, sem prova protegida ou resposta real de candidato.",
+        "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+      ],
+      "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+      "assertions": [
+        {
+          "id": "adequacao-ao-pedido",
+          "description": "A saída atende ao cenário e ao recorte.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "suporte oficial/material",
+        "núcleo funcional",
+        "plausibilidade",
+        "unicidade",
+        "comparação dos distratores",
+        "limite de fonte"
+      ],
+      "risk_tags": [
+        "fundamento-sem-suporte",
+        "gabarito-ambiguo"
+      ],
+      "legal_grounding": {
+        "checked_at": "2026-10-03",
+        "cutoff_date": "2026-10-03",
+        "claims": [
+          {
+            "id": "competencia-e-efeitos",
+            "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+            "official_source": "src_cpc-art64",
+            "locator": "CPC art.64 §§2º–4º",
+            "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+          }
+        ],
+        "human_review": {
+          "review_status": "pending",
+          "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+        }
+      },
+      "turns": [
+        "Use só o material Markdown enviado agora, em acervo_exclusivo. Faça uma questão FGV/ENAM V/F, com três assertivas ligadas a situações processuais e cinco sequências A–E. Envie só enunciado e alternativas, sem gabarito ou correção. Material enviado — recorte sintético CPC art.64 §§2º–4º: após ouvir a parte contrária, o juiz decide a arguição; acolhida a incompetência, remete os autos ao competente. Salvo decisão judicial em contrário, conservam-se os efeitos da decisão anterior até que o competente profira outra, se for o caso. O destino dos autos e a preservação dos efeitos são planos diferentes.",
+        "Considerando exclusivamente o recorte do art. 64, §§ 2º a 4º, do CPC fornecido no material Markdown, examine as situações processuais abaixo e assinale V para as assertivas verdadeiras e F para as falsas.\n\nI. Após ouvir a parte contrária, o juiz acolheu a arguição de incompetência e decidiu conservar os efeitos de uma decisão anteriormente proferida. A parte beneficiada requereu que os autos permanecessem no juízo de origem enquanto esses efeitos subsistissem. Nesse caso, a conservação dos efeitos não impede a remessa dos autos ao juízo competente, ainda que este não tenha proferido decisão substitutiva.\n\nII. O juiz acolheu a arguição de incompetência após ouvir a parte contrária e remeteu os autos, sem decidir em contrário quanto aos efeitos de uma decisão anterior. Recebido o processo, o juízo competente ainda não se pronunciou. Nesse caso, a parte beneficiada somente poderá invocar os efeitos da decisão anterior depois de sua ratificação expressa pelo juízo destinatário.\n\nIII. Após ouvir a parte contrária, o juiz acolheu a incompetência e determinou a remessa dos autos, estabelecendo expressamente que os efeitos de uma decisão anterior cessariam com essa remessa. O juízo competente ainda não proferiu outra decisão. Nesse caso, a ausência de pronunciamento substitutivo não impede a cessação dos efeitos no momento determinado pelo juízo de origem.\n\nAs assertivas são, respectivamente:\n\nA) V – V – F.\nB) F – V – V.\nC) V – F – V.\nD) F – F – V.\nE) V – F – F.\n",
+        "Tentativa do candidato: C. Quero a correção completa, mesmo se acertei. Use somente o material enviado."
+      ]
+    }
+  ]
+}

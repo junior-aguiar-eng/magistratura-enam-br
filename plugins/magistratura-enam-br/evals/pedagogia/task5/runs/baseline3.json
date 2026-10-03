@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-baseline3",
+    "executed_at": "2026-10-03T17:47:23.453251+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_baseline3",
+    "round": 3,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-associacao-matriz",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Use o material Markdown enviado agora, no modo acervo_exclusivo. Quero apenas uma questão FGV/ENAM de associação de colunas. Associe três situações processuais a soluções completas que combinem competência e efeitos de decisão já proferida. Os efeitos importam tanto quanto o destino dos autos. Não forneça gabarito, correção ou indicação de qual combinação resolve o caso.\n\nMaterial do candidato — recorte de estudo sintético, norma conferida no Planalto em 2026-10-03, CPC art. 64, §§ 2º–4º:\nApós ouvir a parte contrária, o juiz decide imediatamente a arguição de incompetência. Acolhida a arguição, remete os autos ao juízo competente. Salvo decisão judicial em sentido contrário, os efeitos da decisão do juízo incompetente permanecem até que o juízo competente profira outra, se for o caso. A distinção relevante é entre destino do processo e conservação dos efeitos; declaração de incompetência não equivale por si a perda automática desses efeitos.\n",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato.",
+      "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "kind": "automatic",
+        "check": "option_count",
+        "expected": 5
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "kind": "automatic",
+        "check": "ends_after_option_e"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ],
+    "legal_grounding": {
+      "checked_at": "2026-10-03",
+      "cutoff_date": "2026-10-03",
+      "claims": [
+        {
+          "id": "competencia-e-efeitos",
+          "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+          "official_source": "src_cpc-art64",
+          "locator": "CPC art.64 §§2º–4º",
+          "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+        }
+      ],
+      "human_review": {
+        "review_status": "pending",
+        "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+      }
+    }
+  },
+  "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+  "output": "Com base exclusivamente no material fornecido sobre o art. 64, §§ 2º–4º, do CPC, associe as situações da Coluna I às soluções da Coluna II, considerando conjuntamente o destino dos autos e os efeitos da decisão anteriormente proferida. Cada situação corresponde a uma única solução; há soluções excedentes.\n\nColuna I — Situações processuais\n\nI. Após conceder tutela provisória, o juiz ouve a parte contrária e acolhe a arguição de incompetência, determinando a remessa dos autos. A decisão que reconhece a incompetência nada dispõe sobre os efeitos da tutela, e o juízo competente ainda não proferiu outra decisão a respeito.\n\nII. Após conceder tutela provisória, o juiz ouve a parte contrária e acolhe a arguição de incompetência. Na mesma decisão, determina a remessa dos autos e expressamente estabelece que os efeitos da tutela cessam de imediato. O juízo competente ainda não proferiu outra decisão a respeito.\n\nIII. Após fixar uma obrigação provisória de pagamento de R$ 20 mil, o juiz ouve a parte contrária e acolhe a arguição de incompetência, remetendo os autos sem dispor sobre os efeitos da decisão anterior. Recebido o processo, o juízo competente profere nova decisão que substitui integralmente aquela obrigação por pagamento de R$ 8 mil.\n\nColuna II — Soluções jurídicas\n\n1. Os autos devem seguir ao juízo competente, e os efeitos da decisão anterior permanecem enquanto esse juízo não proferir outra, se for o caso, diante da ausência de decisão judicial em sentido contrário.\n\n2. Os autos devem seguir ao juízo competente, e os efeitos da decisão anterior cessam imediatamente em razão da determinação judicial expressa, sem depender de nova decisão do juízo destinatário.\n\n3. Os autos devem permanecer no juízo de origem até que este ajuste o valor da obrigação, pois a competência para substituir a decisão acompanha o órgão que a proferiu, apesar do acolhimento da arguição.\n\n4. Os autos devem seguir ao juízo competente, e a obrigação passa a produzir os efeitos definidos pela decisão substitutiva desse juízo, deixando de prevalecer o valor fixado na decisão anterior.\n\n5. Os autos devem seguir ao juízo competente, e os efeitos da decisão anterior cessam pelo próprio acolhimento da arguição, independentemente de pronunciamento específico sobre sua conservação ou cessação.\n\nAssinale a alternativa que apresenta a associação correta, na ordem I, II e III.\n\nA) 5 – 2 – 4.\n\nB) 1 – 2 – 3.\n\nC) 1 – 2 – 4.\n\nD) 1 – 1 – 4.\n\nE) 1 – 2 – 1.\n",
+  "output_sha256": "70a46fa69c43c041b82603061ec8dab39d2d0768a8e4cf34e86ead8a3430424e",
+  "evaluation": {
+    "case_id": "task5-associacao-matriz",
+    "status": "revisao_humana_pendente",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "passed": true,
+        "evidence": "alternativas encontradas: 5; esperado: 5"
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "passed": true,
+        "evidence": "última linha é a alternativa E"
+      }
+    ],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "validacao-fixture-juridica",
+      "aplicacao-fundamentacao-juridica"
+    ]
+  }
+}

@@ -1,5 +1,16 @@
 # Continuação de manutenção
 
+## Incrementos MCP — task 5, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `d00540c`, por autorização específica. Revisão ancorada reutiliza o protocolo de acervo e conserva recuperação, consolidação e véspera; material anterior inacessível exige apenas recorte/checkpoint, sem memória fabricada. Notícia sem fundamentos não permite reconstruir ratio, modulação ou trânsito. Mudança de base é expressa e não suspende a política de fontes.
+
+Os formatos direto, numerado, V/F e associação e os desenhos soluções, matriz e fundamento preservam núcleo funcional, cinco alternativas, chave única, paridade e correção integral. Combinações exigem ordem/reutilização claras, sem duplicação; correção explica componentes e erros das quatro alternativas após tentativa, inclusive no acerto. `initialize.instructions` transmite o mínimo desses contratos; prompt/alternativas/correção existentes acomodam os formatos, sem migração ou campo novo.
+
+Validação: RED contratual com 11 falhas novas e oito testes anteriores aprovados, seguido de 19/19; suíte completa com 388 testes Python aprovados (68,72 s), Ruff, lockfile e 42 verificações de integração aprovados. Avaliação comportamental usa cinco sessões limpas anteriores e cinco candidatas para associação/matriz, correção após tentativa, revisão de trecho, material anterior inacessível e V/F. [Registros e rubrica posterior](evals/pedagogia/task5/README.md) preservam origem, instruções, hashes e pendência humana. O controle já gerava associações; a amostra não comprova superioridade geral nem representa homologação do modelo no ChatGPT.
+
+AGENTS permanece sem novas diretrizes porque a aprovação humana não foi obtida, como permite o plano. Manifesto continua 0.7.5; tasks 6–8, push, reinstalação e publicação não integram esta autorização.
+
+
 ## Incrementos MCP — task 4, 2026-10-03
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `9d65d2e`, por autorização específica. O snapshot visual versionado aceita somente sessão, escolha pendente A–E e abertura dos painéis; campos extras/inválidos e outra sessão são rejeitados. A escolha só é restaurada em ready; answered segue a resposta do servidor, e invalidated limpa o estado visual. Armazenamento OpenAI é opcional, inclusive com SDK para ferramentas; indisponibilidade conserva a interação React, sem localStorage ou memória entre sessões.

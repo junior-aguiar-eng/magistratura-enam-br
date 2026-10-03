@@ -119,12 +119,14 @@ Extender `QuestionHost` com `requestDisplayMode(mode: "inline" | "fullscreen"): 
 
 **Interfaces:** vocabulário de formato `direto | numerado | vf | associacao`, usado no auditor/corpus. Sem novo campo obrigatório na sessão MCP: formatos são expressos pelo prompt e cinco alternativas existentes. Desenhos `solucoes | matriz | fundamento` são orientações de geração, não evidências de desempenho.
 
-- [ ] Acrescentar cenários de revisão de trecho enviado agora, material anterior inacessível, nota/notícia sem fundamento, V/F e associação, matriz de competência/efeito e mesma conclusão com fundamento distinto. Assertivas recebem análise individual após tentativa; nenhuma combinação tem duas escolhas corretas.
-- [ ] Rodar testes contratuais existentes e novos; confirmar RED das novas instruções. Esses testes só demonstram vinculação/estrutura, não qualidade semântica.
-- [ ] Explicitar ancoragem nas instruções de revisão, reaproveitando protocolo de acervo. Incluir formatos e desenhos sem porcentagem fixa, sem variedade forçada numa questão única e sem reduzir correção após acerto.
-- [ ] Adicionar critérios humanos aos cenários: suporte oficial/material, núcleo funcional, plausibilidade, unicidade, comparação dos distratores e limite de fonte. Manter chave/rubrica fora da apresentação ao candidato.
-- [ ] Executar cenário pertinente em sessão limpa com saída capturada e rubrica posterior antes de aprovar mudança substancial. Se revisão humana estiver indisponível, registrar candidato pendente; não trocar por teste de strings.
-- [ ] Atualizar diretriz permanente em AGENTS apenas para comportamento aprovado e compatível com suas travas; atualizar docs e commitar.
+- [x] Acrescentar cenários de revisão de trecho enviado agora, material anterior inacessível, nota/notícia sem fundamento, V/F e associação, matriz de competência/efeito e mesma conclusão com fundamento distinto. Assertivas recebem análise individual após tentativa; nenhuma combinação tem duas escolhas corretas.
+- [x] Rodar testes contratuais existentes e novos; confirmar RED das novas instruções. Esses testes só demonstram vinculação/estrutura, não qualidade semântica.
+- [x] Explicitar ancoragem nas instruções de revisão, reaproveitando protocolo de acervo. Incluir formatos e desenhos sem porcentagem fixa, sem variedade forçada numa questão única e sem reduzir correção após acerto.
+- [x] Adicionar critérios humanos aos cenários: suporte oficial/material, núcleo funcional, plausibilidade, unicidade, comparação dos distratores e limite de fonte. Manter chave/rubrica fora da apresentação ao candidato.
+- [x] Executar cenário pertinente em sessão limpa com saída capturada e rubrica posterior antes de aprovar mudança substancial. Se revisão humana estiver indisponível, registrar candidato pendente; não trocar por teste de strings.
+- [x] Atualizar diretriz permanente em AGENTS apenas para comportamento aprovado e compatível com suas travas; atualizar docs e commitar.
+
+**Registro da execução:** candidata local com revisão ancorada, quatro formatos e três desenhos; 11 testes novos RED→GREEN e 388 testes Python aprovados. Cinco sessões limpas por variante, mais revisão, material inacessível, V/F e correções após tentativa: 15 capturas com hashes e rubrica posterior, todas pendentes de revisão humana. O controle já gerava associação; não foi demonstrada superioridade geral. AGENTS preservado até aprovação humana. Evidências em `plugins/magistratura-enam-br/evals/pedagogia/task5/`; Q13/Q17 não executados e cobertura de matriz parcial. Tasks 6–8 e operações remotas permanecem fora desta execução.
 
 ## Task 6: Auditor quantitativo de blocos
 

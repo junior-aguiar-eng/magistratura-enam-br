@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-inacessivel",
+    "executed_at": "2026-10-03T17:56:10.439430+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_inacessivel",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-revisao-inacessivel",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Revise a página da apostila que estudamos ontem em outra conversa. Continue do ponto onde paramos, no modo acervo_exclusivo. Contexto real desta sessão: nenhum arquivo anterior, checkpoint ou tema foi fornecido.",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "adequacao-ao-pedido",
+        "description": "A saída atende ao cenário e ao recorte.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ]
+  },
+  "case_sha256": "fa3a39e636db39a4160873d343ef2715bb2eb531eea1dba11cb2daef7bdc7117",
+  "output": "Boni, não tenho acesso à apostila nem ao ponto em que paramos na outra conversa. Vou manter o modo `acervo_exclusivo`, sem completar o conteúdo por memória geral ou pesquisa externa. Pode enviar a página ou o trecho a revisar, indicando onde paramos, ou um checkpoint que contenha esse recorte?\n",
+  "output_sha256": "6800d84f4bb7dc7f8a6f47cc6a7df01d364f7c79f7291ac36d9818351d4c09d3",
+  "evaluation": {
+    "case_id": "task5-revisao-inacessivel",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "adequacao-ao-pedido"
+    ]
+  }
+}

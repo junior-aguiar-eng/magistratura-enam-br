@@ -14,6 +14,8 @@ Plugin profissional para bacharéis em Direito voltado ao estudo de alta complex
 
 Cada skill lê `AGENTS.md` antes de atuar. As diretrizes preservam rigor jurídico, uso proporcional de fontes oficiais, estudo ativo e fronteiras claras entre curadoria, estudo, comparação e planejamento.
 
+A candidata local da task 5 explicita revisão ancorada no trecho acessível, formatos direto, numerado, V/F e associação e desenhos de soluções, matriz e fundamento. Mantém cinco alternativas, chave única e correção individual após tentativa, sem quotas de formato ou mudança do schema MCP. As [capturas e a avaliação posterior](evals/pedagogia/task5/README.md) permanecem pendentes de revisão jurídica humana; os testes locais não demonstram superioridade geral nem aprovam novas diretrizes permanentes.
+
 ## Questões interativas locais
 
 O plugin inclui um servidor MCP local e um widget moderno para questões objetivas. O modelo continua criando cada questão dinamicamente; a skill `estudar-direito-magistratura` define substância jurídica, dificuldade, cinco alternativas, gabarito único e correção integral. O MCP indexa Markdown autorizado, mantém o gabarito fora do navegador, renderiza a atividade e grava questões e tentativas na biblioteca local.

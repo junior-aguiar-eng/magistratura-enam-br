@@ -1,5 +1,13 @@
 # Changelog
 
+## Não publicado — incrementos MCP, task 5
+
+- Ancora revisão, distinções e flashcards no material acessível; solicita recorte anterior ausente e explicita limites de notícia sem fundamentos e do modo acervo exclusivo.
+- Define formatos `direto`, `numerado`, `vf` e `associacao`, com unicidade de combinações, ordem/reutilização explícitas e análise individual dos componentes após tentativa, inclusive no acerto.
+- Orienta construção por soluções, matriz de dois eixos ou mesma conclusão com fundamentos distintos, sem proporções empíricas inventadas ou variedade obrigatória numa questão única.
+- Transmite essas regras em `initialize.instructions` e conserva os campos existentes de sessão MCP.
+- Acrescenta contratos e cenários Q11–Q17; versiona capturas sintéticas e rubrica posterior como candidata pendente de revisão humana, sem promover novas orientações a AGENTS.
+
 ## Não publicado — incrementos MCP, task 4
 
 - Restaura escolha pendente e abertura de painéis por snapshot visual com whitelist e vínculo de sessão; remove escolha respondida e limpa estado invalidado, sem persistir gabarito, correção, fontes ou modo de apresentação.

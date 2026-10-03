@@ -12,6 +12,14 @@ Use um dos três formatos abaixo:
 
 Em consolidação densa, desenvolva dois ou três pontos conectados e acrescente autor, matriz teórica, controvérsia, precedente ou quadro comparativo somente quando produzirem ganho real. Feche com dois ou três flashcards de retenção, sem usá-los como substitutos da explicação. Não imponha diagnóstico longo, bateria de perguntas ou tabela. A forma serve à recuperação do conteúdo; não se torna objetivo autônomo.
 
+## Ancoragem no material disponível
+
+Reaproveite `../../../references/protocolo-uso-do-acervo.md`: classifique e leia somente o material realmente acessível. Para trecho enviado agora, extraia o critério decisório, a distinção e os flashcards desse recorte, com localização identificável; não converta o envio em resumo global nem acrescente fundamento que o trecho não sustente. Se houver PDF e Markdown equivalentes, preserve a preferência pelo Markdown e o PDF como plano B.
+
+Com material anterior inacessível, declare a ausência de acesso e peça somente o recorte necessário, o arquivo ou checkpoint que contenha o ponto de revisão. Não alegue lembrar páginas, conteúdo ou desempenho de outra sessão. Se o candidato optar expressamente por prosseguir sem esse material, declare a mudança de base e respeite a política de fontes: em `acervo_exclusivo`, não complete por memória geral nem pesquisa; solicite material suficiente ou a alteração expressa da política.
+
+Nota ou notícia de julgamento sem fundamentos permite revisar apenas o que efetivamente informa; não invente ratio decidendi, exceções, modulação ou trânsito. Para revisar esses elementos, obtenha a decisão/fundamentos quando a política autorizar ou peça o recorte faltante. Resumo e flashcards não podem transformar limite probatório em tese confirmada.
+
 ## Método de revisão
 
 1. delimite o recorte e o objetivo de revisão; se o pedido já os trouxer, comece sem pergunta preliminar;

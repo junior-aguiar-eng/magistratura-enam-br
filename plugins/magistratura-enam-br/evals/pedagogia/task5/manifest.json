@@ -1,0 +1,120 @@
+{
+  "baseline_commit": "d00540c07c8db1e0224aa3bded8de0401ba387af",
+  "candidate_base_commit": "d00540c07c8db1e0224aa3bded8de0401ba387af",
+  "candidate_state": "working tree; identidade pelos hashes das instruções",
+  "human_review_status": "pending",
+  "capture_timestamp_basis": "mtime do arquivo de saída salva, em UTC; não mede duração da execução",
+  "model_identification": "Identificador não exposto; mesma configuração herdada nos agentes comportamentais, sem override de modelo.",
+  "instruction_sha256": {
+    "baseline": {
+      "AGENTS.md": "dd492b13776a43af47e838d01e16def90a4a509646b87efd2c41e9fdcce923b6",
+      "skills/estudar-direito-magistratura/SKILL.md": "3ea15bd1d378998afeaeba98a9816b64d3878ba39f75d876eb65c68a8bd1ed8c",
+      "skills/estudar-direito-magistratura/references/questoes-fgv-enam.md": "d01b4792a424a8f58aa700419b210573d5b9c8db17d5b37a36ef6b96c0fccdae",
+      "references/protocolo-uso-do-acervo.md": "13af810d0b4fbc299c1bc21ebfc1721acdd9decd2d4ccdaea0818ae5f3739b89"
+    },
+    "candidate": {
+      "AGENTS.md": "dd492b13776a43af47e838d01e16def90a4a509646b87efd2c41e9fdcce923b6",
+      "skills/estudar-direito-magistratura/SKILL.md": "5c89322f3750f64f643d0efc77a01df4eba688ca4994a22ba5df4c882e3af829",
+      "skills/estudar-direito-magistratura/references/questoes-fgv-enam.md": "066e86c5509dcc122dcf44735ea8083631b3960b1634ac51aba487e9f4c89ed9",
+      "references/protocolo-uso-do-acervo.md": "13af810d0b4fbc299c1bc21ebfc1721acdd9decd2d4ccdaea0818ae5f3739b89"
+    },
+    "revision": {
+      "AGENTS.md": "dd492b13776a43af47e838d01e16def90a4a509646b87efd2c41e9fdcce923b6",
+      "skills/estudar-direito-magistratura/SKILL.md": "5c89322f3750f64f643d0efc77a01df4eba688ca4994a22ba5df4c882e3af829",
+      "references/protocolo-uso-do-acervo.md": "13af810d0b4fbc299c1bc21ebfc1721acdd9decd2d4ccdaea0818ae5f3739b89",
+      "skills/estudar-direito-magistratura/references/revisao.md": "51514deb4190399a41718df804cd80638859d949cea3d58c5c3f54439f98b539"
+    }
+  },
+  "runs": [
+    {
+      "path": "runs/baseline1.json",
+      "output_sha256": "fbe17b1a3ffe664e7b4974b217898c4363468fbaed473a0ef1c7e847c4e11e05",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/baseline2.json",
+      "output_sha256": "3ad8d723fc68f422eb8ce717a971e835528866b8d3d4f92e53446d33c5f6c494",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/baseline3.json",
+      "output_sha256": "70a46fa69c43c041b82603061ec8dab39d2d0768a8e4cf34e86ead8a3430424e",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/baseline4.json",
+      "output_sha256": "84b2c361f88749067bf7dfb14067882e93726155a8eb24194aaff56feb04d015",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/baseline5.json",
+      "output_sha256": "071e024f3b0439b2bdaa19307ba6c66cab0f8f869c3d0312a833e0e858c1a986",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/candidate1.json",
+      "output_sha256": "fb297972bd11440c54bfeec22504ee146365019d633f49be0dc58a2022254da3",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/candidate2.json",
+      "output_sha256": "c16c201d53fb87445fe3bc4c27b324fecce0f061a8d7e93049ea9426e504c9dd",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/candidate3.json",
+      "output_sha256": "1b0603a3262c158b8fa032005f4ed93504688f2d7b24114e14125fb4d9265289",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/candidate4.json",
+      "output_sha256": "e161f8c75bee19a472bad99b8f9d6ba4cd4e6703d8755ebafcb0a6e67b16b79d",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/candidate5.json",
+      "output_sha256": "af06d5b038981e159a54cbbd42bee48fa1fab2df1ee4d43977c1a9489cb0ca8a",
+      "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/candidate1-correcao.json",
+      "output_sha256": "f05f6fdc9912426db298acf7d395bb739c5c22191c3cf9ff772c4d743a315b06",
+      "case_sha256": "255f3bc0ae61c81906e0745ef9651c5870a9b616dd2e9c04d9da5c6a73f8ea9e",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/revisao.json",
+      "output_sha256": "a7300478600fff6e3e93327d382d01b18e73a3b1fd09ea50946ff3a31c160634",
+      "case_sha256": "14476ee45e5557eedad9c6862c0a0672e3add716e668b465044bbb8686975a10",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/inacessivel.json",
+      "output_sha256": "6800d84f4bb7dc7f8a6f47cc6a7df01d364f7c79f7291ac36d9818351d4c09d3",
+      "case_sha256": "fa3a39e636db39a4160873d343ef2715bb2eb531eea1dba11cb2daef7bdc7117",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/vf.json",
+      "output_sha256": "257f150ba5761644a933dbd60c98adcb43672ed46dd03d6e4e7eee0c9c43edbf",
+      "case_sha256": "5a7cdacb7bdd238dd4393cd54afa24c9639e3ffacf9a78d188555dbc0a78a3fc",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "path": "runs/vf-correcao.json",
+      "output_sha256": "004f44d36194852e15ac4cc82aa5cf90eb7fbbe5c5a0cfdd94e1be2a7d0d2e53",
+      "case_sha256": "8f4496d9b9f35bdf9027f8d09897bc3b2c8a3fdb487ada85fda2cc4633ed1c66",
+      "status": "revisao_humana_pendente"
+    }
+  ]
+}

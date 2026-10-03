@@ -70,3 +70,14 @@ def test_fluxo_interativo_nao_reduz_trava_canonica(texto):
     assert "questoes-fgv-enam.md" in integration
     assert "trava canônica" in integration
     assert "MCP Apps" in skill
+
+
+def test_mcp_preserva_analise_individual_das_combinacoes(texto):
+    integration = texto("references/questoes-interativas-mcp.md")
+    instructions = integration.split("<!-- mcp-instructions:start -->", 1)[1].split(
+        "<!-- mcp-instructions:end -->", 1
+    )[0]
+    assert "assertiva ou associação" in instructions
+    assert "combinação" in instructions
+    assert "mesmo em acerto" in instructions
+    assert "cinco alternativas A–E" in instructions

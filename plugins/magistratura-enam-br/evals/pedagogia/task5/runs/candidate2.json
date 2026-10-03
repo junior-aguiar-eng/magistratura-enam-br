@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-candidate2",
+    "executed_at": "2026-10-03T17:52:38.509214+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_candidate2",
+    "round": 2,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-associacao-matriz",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Use o material Markdown enviado agora, no modo acervo_exclusivo. Quero apenas uma questão FGV/ENAM de associação de colunas. Associe três situações processuais a soluções completas que combinem competência e efeitos de decisão já proferida. Os efeitos importam tanto quanto o destino dos autos. Não forneça gabarito, correção ou indicação de qual combinação resolve o caso.\n\nMaterial do candidato — recorte de estudo sintético, norma conferida no Planalto em 2026-10-03, CPC art. 64, §§ 2º–4º:\nApós ouvir a parte contrária, o juiz decide imediatamente a arguição de incompetência. Acolhida a arguição, remete os autos ao juízo competente. Salvo decisão judicial em sentido contrário, os efeitos da decisão do juízo incompetente permanecem até que o juízo competente profira outra, se for o caso. A distinção relevante é entre destino do processo e conservação dos efeitos; declaração de incompetência não equivale por si a perda automática desses efeitos.\n",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato.",
+      "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "kind": "automatic",
+        "check": "option_count",
+        "expected": 5
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "kind": "automatic",
+        "check": "ends_after_option_e"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ],
+    "legal_grounding": {
+      "checked_at": "2026-10-03",
+      "cutoff_date": "2026-10-03",
+      "claims": [
+        {
+          "id": "competencia-e-efeitos",
+          "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+          "official_source": "src_cpc-art64",
+          "locator": "CPC art.64 §§2º–4º",
+          "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+        }
+      ],
+      "human_review": {
+        "review_status": "pending",
+        "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+      }
+    }
+  },
+  "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+  "output": "Com base exclusivamente no material fornecido sobre o art. 64, §§ 2º–4º, do CPC, associe as situações processuais da primeira coluna às soluções da segunda. Em todas as hipóteses, a parte contrária foi ouvida antes da decisão sobre a incompetência. Considere os efeitos da medida anteriormente deferida no momento descrito, sem pressupor decisões além das indicadas.\n\nColuna I — Situações processuais\n\nI. O juízo Alfa havia determinado que o réu se abstivesse de realizar determinada cobrança. Posteriormente, acolheu a arguição de incompetência e identificou Beta como juízo competente, sem se pronunciar sobre os efeitos da medida anterior. Os autos ainda aguardam remessa, e o réu pretende retomar a cobrança desde logo, invocando a declaração de incompetência.\n\nII. O juízo Alfa havia imposto ao réu a mesma abstenção. Ao acolher a arguição de incompetência e identificar Beta como juízo competente, decidiu expressamente que os efeitos da medida cessariam de imediato. Os autos ainda aguardam remessa, e o autor sustenta que a medida deve continuar produzindo efeitos até que Beta profira nova decisão.\n\nIII. Após acolher a arguição de incompetência, Alfa remeteu os autos a Beta sem afastar os efeitos da medida que vedava a cobrança. Ao receber o processo, Beta proferiu nova decisão, substituindo a medida anterior por outra que permite a cobrança de parte dos valores e mantém a vedação quanto ao restante. O autor pretende conservar a proibição integral até uma ratificação específica da decisão de Alfa.\n\nColuna II — Soluções jurídicas\n\n1. O processo prossegue perante Beta, e os efeitos da medida passam a observar a decisão substitutiva que ele já proferiu: a vedação subsiste apenas quanto aos valores nela abrangidos, sem depender de ratificação específica da decisão anterior.\n\n2. Os autos devem ser remetidos a Beta, e a medida anterior continua produzindo efeitos durante essa transferência, sem necessidade de ratificação prévia; na ausência de decisão em sentido contrário, essa conservação se estende até outra decisão do juízo competente, se for o caso.\n\n3. Os autos devem ser remetidos a Beta, e os efeitos da medida anterior cessam nos termos da determinação expressa de Alfa; a transferência da competência não exige aguardar nova decisão de Beta para que opere a cessação já determinada.\n\nCada solução deve ser utilizada uma única vez. Assinale a alternativa que apresenta a associação correta, na ordem I, II e III.\n\nA) I–1; II–3; III–2.\n\nB) I–2; II–1; III–3.\n\nC) I–3; II–2; III–1.\n\nD) I–2; II–3; III–1.\n\nE) I–3; II–1; III–2.\n",
+  "output_sha256": "c16c201d53fb87445fe3bc4c27b324fecce0f061a8d7e93049ea9426e504c9dd",
+  "evaluation": {
+    "case_id": "task5-associacao-matriz",
+    "status": "revisao_humana_pendente",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "passed": true,
+        "evidence": "alternativas encontradas: 5; esperado: 5"
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "passed": true,
+        "evidence": "última linha é a alternativa E"
+      }
+    ],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "validacao-fixture-juridica",
+      "aplicacao-fundamentacao-juridica"
+    ]
+  }
+}

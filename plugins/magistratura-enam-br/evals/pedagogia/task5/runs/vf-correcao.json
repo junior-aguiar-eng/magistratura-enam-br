@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-vf-correcao",
+    "executed_at": "2026-10-03T17:58:53.449850+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_vf",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-vf-correcao",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Tentativa do candidato: C. Quero a correção completa, mesmo se acertei. Use somente o material enviado.",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato.",
+      "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "adequacao-ao-pedido",
+        "description": "A saída atende ao cenário e ao recorte.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ],
+    "legal_grounding": {
+      "checked_at": "2026-10-03",
+      "cutoff_date": "2026-10-03",
+      "claims": [
+        {
+          "id": "competencia-e-efeitos",
+          "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+          "official_source": "src_cpc-art64",
+          "locator": "CPC art.64 §§2º–4º",
+          "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+        }
+      ],
+      "human_review": {
+        "review_status": "pending",
+        "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+      }
+    },
+    "turns": [
+      "Use só o material Markdown enviado agora, em acervo_exclusivo. Faça uma questão FGV/ENAM V/F, com três assertivas ligadas a situações processuais e cinco sequências A–E. Envie só enunciado e alternativas, sem gabarito ou correção. Material enviado — recorte sintético CPC art.64 §§2º–4º: após ouvir a parte contrária, o juiz decide a arguição; acolhida a incompetência, remete os autos ao competente. Salvo decisão judicial em contrário, conservam-se os efeitos da decisão anterior até que o competente profira outra, se for o caso. O destino dos autos e a preservação dos efeitos são planos diferentes.",
+      "Considerando exclusivamente o recorte do art. 64, §§ 2º a 4º, do CPC fornecido no material Markdown, examine as situações processuais abaixo e assinale V para as assertivas verdadeiras e F para as falsas.\n\nI. Após ouvir a parte contrária, o juiz acolheu a arguição de incompetência e decidiu conservar os efeitos de uma decisão anteriormente proferida. A parte beneficiada requereu que os autos permanecessem no juízo de origem enquanto esses efeitos subsistissem. Nesse caso, a conservação dos efeitos não impede a remessa dos autos ao juízo competente, ainda que este não tenha proferido decisão substitutiva.\n\nII. O juiz acolheu a arguição de incompetência após ouvir a parte contrária e remeteu os autos, sem decidir em contrário quanto aos efeitos de uma decisão anterior. Recebido o processo, o juízo competente ainda não se pronunciou. Nesse caso, a parte beneficiada somente poderá invocar os efeitos da decisão anterior depois de sua ratificação expressa pelo juízo destinatário.\n\nIII. Após ouvir a parte contrária, o juiz acolheu a incompetência e determinou a remessa dos autos, estabelecendo expressamente que os efeitos de uma decisão anterior cessariam com essa remessa. O juízo competente ainda não proferiu outra decisão. Nesse caso, a ausência de pronunciamento substitutivo não impede a cessação dos efeitos no momento determinado pelo juízo de origem.\n\nAs assertivas são, respectivamente:\n\nA) V – V – F.\nB) F – V – V.\nC) V – F – V.\nD) F – F – V.\nE) V – F – F.\n",
+      "Tentativa do candidato: C. Quero a correção completa, mesmo se acertei. Use somente o material enviado."
+    ]
+  },
+  "case_sha256": "8f4496d9b9f35bdf9027f8d09897bc3b2c8a3fdb487ada85fda2cc4633ed1c66",
+  "output": "Você acertou. O gabarito é C: V – F – V.\n\nO fundamento é o recorte do art. 64, §§ 2º a 4º, do CPC fornecido no material: depois de ouvir a parte contrária, o juiz decide a arguição; acolhida a incompetência, remete os autos ao juízo competente. A remessa e os efeitos da decisão anterior têm regimes distintos. Como regra, esses efeitos se conservam até que o juízo competente profira outra decisão, se for o caso; uma decisão judicial em contrário pode afastar essa conservação. A correção se limita a esse material, sem validação externa de sua atualização.\n\nI — Verdadeira. A arguição foi decidida após a oitiva da parte contrária, e a incompetência foi acolhida: esses fatos determinam a remessa ao juízo competente. A decisão de conservar os efeitos do pronunciamento anterior não autoriza manter o processo no juízo de origem. O pedido da parte beneficiada confunde a continuidade dos efeitos com a permanência dos autos. A ausência de decisão substitutiva explica a subsistência dos efeitos, mas não suspende a consequência processual do acolhimento da incompetência.\n\nII — Falsa. Os dados decisivos são a ausência de decisão em contrário e a inexistência de novo pronunciamento do juízo competente. Nessa situação, aplica-se a conservação dos efeitos prevista no material. A assertiva acrescenta uma condição inexistente no recorte: ratificação expressa pelo juízo destinatário. Esse juízo pode proferir outra decisão, se for o caso, mas seu silêncio não impede a parte de invocar os efeitos que continuam conservados. O erro está em transformar a conservação que opera como regra em eficácia dependente de confirmação posterior.\n\nIII — Verdadeira. Aqui existe o elemento ausente na situação II: o juiz decidiu expressamente em contrário à conservação dos efeitos e fixou sua cessação no momento da remessa. Incide, portanto, a ressalva do material. A inexistência de decisão substitutiva do juízo competente não obriga a conservar os efeitos até seu pronunciamento, porque a própria regra admite decisão judicial em contrário. A cessação decorre dessa determinação expressa, e não da remessa considerada isoladamente.\n\nExaminando as cinco alternativas:\n\n- A) V – V – F: acerta I, mas trata como necessária a ratificação expressa em II e desconsidera a decisão em contrário em III.\n- B) F – V – V: acerta III, mas nega a remessa apesar da conservação dos efeitos em I e exige ratificação expressa em II.\n- C) V – F – V: aplica a remessa em I, rejeita a exigência de ratificação em II e reconhece a ressalva judicial em III.\n- D) F – F – V: acerta II e III, mas considera falsa a independência entre remessa dos autos e conservação dos efeitos demonstrada em I.\n- E) V – F – F: acerta I e II, mas considera falsa a aplicação da decisão judicial em contrário em III.\n\nA distinção decisiva é esta: o acolhimento da incompetência determina o destino dos autos; a regra de conservação e sua ressalva determinam os efeitos da decisão anterior. Conservar efeitos não retém os autos, remeter os autos não faz cessar esses efeitos por si só e a ausência de decisão substitutiva não neutraliza uma determinação judicial expressa em contrário.\n",
+  "output_sha256": "004f44d36194852e15ac4cc82aa5cf90eb7fbbe5c5a0cfdd94e1be2a7d0d2e53",
+  "evaluation": {
+    "case_id": "task5-vf-correcao",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "validacao-fixture-juridica",
+      "aplicacao-fundamentacao-juridica",
+      "adequacao-ao-pedido"
+    ]
+  }
+}
