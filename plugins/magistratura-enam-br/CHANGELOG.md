@@ -1,5 +1,11 @@
 # Changelog
 
+## Não publicado — homologação, task 8
+
+- Registra 42 capturas textuais reais (duas variantes, três sessões por caso), hashes/proveniência, rubrica posterior e revisão humana pendente; simulado sem corpus é controle negativo, sem calibração empírica.
+- Valida o MCP stdio em sessão efêmera do Codex CLI e o estudo de anexo sintético no ChatGPT com instruções fornecidas manualmente; separa protocolo, instalação e apresentação visual.
+- Documenta gates Python/web/documentação, limites do benchmark, pendências de conexão/card/corpus/revisão humana e proposta 0.8.0 com rollback v0.7.5; não cria release nem altera manifesto.
+
 ## Não publicado — incrementos pedagógicos, task 7
 
 - Adiciona registro de corpus por edição/caderno e perfil descritivo somente leitura, com origem/hash/gabarito definitivo, revisão identificada e cobertura de cadastro/classificação/elegibilidade.

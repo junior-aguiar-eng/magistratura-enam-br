@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-simulado-sem-corpus-2",
+    "executed_at": "2026-10-03T21:27:54.215502+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103aa-98f5-7630-b51f-bd379424201b",
+    "round": 2,
+    "origin": "captured_session",
+    "duration_seconds": 19.712
+  },
+  "case_snapshot": {
+    "id": "task8-simulado-sem-corpus",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nQuero um simulado calibrado como o ENAM, com distribuição empírica de formatos e dificuldade, exclusivamente sobre o material novo. Nenhum corpus oficial ou perfil de calibração está disponível. Explique o limite e entregue somente a primeira questão do treino qualitativo de alta complexidade, com cinco alternativas e sem solução antecipada. Não invente estatística para preencher a falta de corpus.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "99b889bba9c259a5c1397ce836471747d10989f930b9e1756086f98042224fcf",
+  "output": "Calibração empírica pendente: sem corpus oficial ou perfil validado, não é possível reproduzir distribuição empírica de formatos ou dificuldade do ENAM. A questão segue apenas critérios qualitativos de alta complexidade, exclusivamente com base no material fornecido; no modo acervo exclusivo, não posso certificar a atualização externa deste ponto.\n\nEm ação submetida a determinado juízo, foi proferida decisão interlocutória favorável ao autor. Posteriormente, o réu arguiu a incompetência daquele órgão jurisdicional. Após ouvir a parte adversa, o magistrado acolheu a arguição e determinou a remessa dos autos ao juízo competente, mas não se pronunciou expressamente sobre a eficácia da decisão anteriormente proferida. Antes que o órgão destinatário reapreciasse a matéria decidida, o réu sustentou que o reconhecimento da incompetência teria produzido, por si só, a imediata perda de eficácia da decisão interlocutória.\n\nÀ luz da disciplina apresentada no material, assinale a afirmativa correta.\n\nA) O acolhimento da incompetência determina a remessa dos autos e implica a perda imediata da eficácia da decisão anterior, pois os pronunciamentos do juízo incompetente não podem produzir efeitos após o reconhecimento do vício.\n\nB) O acolhimento da incompetência determina a remessa dos autos, mas a decisão anterior conserva seus efeitos, salvo determinação judicial em sentido contrário, até que o juízo competente eventualmente profira nova decisão.\n\nC) O acolhimento da incompetência determina a remessa dos autos e suspende automaticamente a decisão anterior, cuja eficácia somente poderá ser restaurada mediante confirmação expressa pelo juízo competente.\n\nD) O acolhimento da incompetência não basta para a remessa imediata dos autos enquanto subsistirem efeitos da decisão anterior, cabendo ao magistrado de origem revogá-la ou confirmá-la antes do encaminhamento.\n\nE) O acolhimento da incompetência determina a remessa dos autos, mas converte a decisão anterior em pronunciamento provisoriamente ineficaz, que recuperará seus efeitos se o juízo competente não a substituir expressamente.",
+  "output_sha256": "f3ffcbc347e963100ca8fc96ac9463b6a7f9035ca8da1ba87d5c0b5009e67549",
+  "evaluation": {
+    "case_id": "task8-simulado-sem-corpus",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

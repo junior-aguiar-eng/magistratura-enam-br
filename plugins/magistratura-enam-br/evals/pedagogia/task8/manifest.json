@@ -1,0 +1,585 @@
+{
+  "baseline_ref": "8b245f10bce3aa85fa41c2b114a46fcdc9251342",
+  "candidate_ref": "8ac72de1fd0aa2343f1b08bb467a61b8a198eacc",
+  "material_sha256": "0e5e11a594b433971c28714edf0a21b2a4dcd6714e008664b5240877f93b8e1c",
+  "client": "Codex CLI 0.148.0",
+  "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+  "reasoning_effort": "none (CLI default)",
+  "source_policy": "acervo_exclusivo",
+  "capabilities": "text, supplied readable material; no MCP or web in comparison",
+  "instruction_delivery": "Frozen file contents embedded in prompt; no installation; rubric excluded from model input",
+  "empirical_simulado": "pending: no official corpus selected; captured negative control only",
+  "correction_context": "Same authored question and explicit A/E attempts supplied in fresh sessions, not persisted host state",
+  "snapshots": {
+    "baseline": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "dd492b13776a43af47e838d01e16def90a4a509646b87efd2c41e9fdcce923b6"
+      },
+      {
+        "path": "skills/estudar-direito-magistratura/SKILL.md",
+        "sha256": "3ea15bd1d378998afeaeba98a9816b64d3878ba39f75d876eb65c68a8bd1ed8c"
+      },
+      {
+        "path": "skills/estudar-direito-magistratura/references/questoes-fgv-enam.md",
+        "sha256": "d01b4792a424a8f58aa700419b210573d5b9c8db17d5b37a36ef6b96c0fccdae"
+      },
+      {
+        "path": "skills/estudar-direito-magistratura/references/revisao.md",
+        "sha256": "8f4a098b12934c8e4ef8e0d10fb8153d0e187af7a2588025fa3df32559783be6"
+      },
+      {
+        "path": "skills/estudar-direito-magistratura/references/ambientacao-e-calibracao.md",
+        "sha256": "187ce3d8b9a0a5056f5300df0b25a397923c9f80e11ec6480f6e06009c72ce6d"
+      },
+      {
+        "path": "references/politica-fontes-juridicas.md",
+        "sha256": "30f3a88e8fcb98f92635a7244bd833f2d4e7cf9a11f5855b3c2ee5b59342cfa9"
+      },
+      {
+        "path": "references/protocolo-uso-do-acervo.md",
+        "sha256": "13af810d0b4fbc299c1bc21ebfc1721acdd9decd2d4ccdaea0818ae5f3739b89"
+      }
+    ],
+    "candidate": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "dd492b13776a43af47e838d01e16def90a4a509646b87efd2c41e9fdcce923b6"
+      },
+      {
+        "path": "skills/estudar-direito-magistratura/SKILL.md",
+        "sha256": "5c89322f3750f64f643d0efc77a01df4eba688ca4994a22ba5df4c882e3af829"
+      },
+      {
+        "path": "skills/estudar-direito-magistratura/references/questoes-fgv-enam.md",
+        "sha256": "19e3913bc192a68e6f7009b7a36b7298cdc2579d540db98abb257d40ac602f1a"
+      },
+      {
+        "path": "skills/estudar-direito-magistratura/references/revisao.md",
+        "sha256": "51514deb4190399a41718df804cd80638859d949cea3d58c5c3f54439f98b539"
+      },
+      {
+        "path": "skills/estudar-direito-magistratura/references/ambientacao-e-calibracao.md",
+        "sha256": "187ce3d8b9a0a5056f5300df0b25a397923c9f80e11ec6480f6e06009c72ce6d"
+      },
+      {
+        "path": "references/politica-fontes-juridicas.md",
+        "sha256": "30f3a88e8fcb98f92635a7244bd833f2d4e7cf9a11f5855b3c2ee5b59342cfa9"
+      },
+      {
+        "path": "references/protocolo-uso-do-acervo.md",
+        "sha256": "13af810d0b4fbc299c1bc21ebfc1721acdd9decd2d4ccdaea0818ae5f3739b89"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "run_id": "baseline-task8-associacao-1",
+      "variant": "baseline",
+      "case_id": "task8-associacao",
+      "session_id": "01a103a9-3d42-7793-bfc8-e4ea48c20ba1",
+      "round": 1,
+      "prompt_sha256": "381c89dcef00aa61a8ca2523d618a563dd5310d5d375c212ae2db9b91f1685f6",
+      "output_sha256": "fcca4c979c8e5e266c4b21e676de99eea40b3dcba49c77ad7c19a2da926838bc",
+      "case_sha256": "70ddd002ef13b68c2dc340834c90508d117c89027a401aa9b150eadc26756cf3",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-associacao-2",
+      "variant": "baseline",
+      "case_id": "task8-associacao",
+      "session_id": "01a103a9-4c37-70d2-8629-1b9e86234d9d",
+      "round": 2,
+      "prompt_sha256": "381c89dcef00aa61a8ca2523d618a563dd5310d5d375c212ae2db9b91f1685f6",
+      "output_sha256": "c873a6daf28be7f25ebbd92511976c37106fba663aa52325a3066cf12a737199",
+      "case_sha256": "70ddd002ef13b68c2dc340834c90508d117c89027a401aa9b150eadc26756cf3",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-associacao-3",
+      "variant": "baseline",
+      "case_id": "task8-associacao",
+      "session_id": "01a103a9-9c0e-7091-af7c-cc9bafd161a5",
+      "round": 3,
+      "prompt_sha256": "381c89dcef00aa61a8ca2523d618a563dd5310d5d375c212ae2db9b91f1685f6",
+      "output_sha256": "9bdb57e3f6fb9045c2ca4d8263d80d51a2d9bcee597571c6efb91864145ed027",
+      "case_sha256": "70ddd002ef13b68c2dc340834c90508d117c89027a401aa9b150eadc26756cf3",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-correcao-acerto-1",
+      "variant": "baseline",
+      "case_id": "task8-correcao-acerto",
+      "session_id": "01a103aa-e613-7530-9d40-396f5a978c03",
+      "round": 1,
+      "prompt_sha256": "73d751f6ab97ade8f5ebd504c58e6d7017cfdc8d82e69b46ed2e4fa97f205113",
+      "output_sha256": "92502e36c63be165be0027d22cda79510ae7eb1ad103f51884dadbb201cf31d5",
+      "case_sha256": "7b3cba11144ef7cf8d2978f0b94b427880a47314572c5665ee9327fbca443c64",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-correcao-acerto-2",
+      "variant": "baseline",
+      "case_id": "task8-correcao-acerto",
+      "session_id": "01a103ab-02ec-7570-9ac6-ef0276bf48cf",
+      "round": 2,
+      "prompt_sha256": "73d751f6ab97ade8f5ebd504c58e6d7017cfdc8d82e69b46ed2e4fa97f205113",
+      "output_sha256": "bd44ec02d1d912338eacc3535d8492e496f28f92709f0ace625d20e76f26bd64",
+      "case_sha256": "7b3cba11144ef7cf8d2978f0b94b427880a47314572c5665ee9327fbca443c64",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-correcao-acerto-3",
+      "variant": "baseline",
+      "case_id": "task8-correcao-acerto",
+      "session_id": "01a103ab-4a0e-7432-85ae-a209e8db0ac3",
+      "round": 3,
+      "prompt_sha256": "73d751f6ab97ade8f5ebd504c58e6d7017cfdc8d82e69b46ed2e4fa97f205113",
+      "output_sha256": "ed7e77746796de6d6871d371db10a4853926211dc11f01c421866ca0db666500",
+      "case_sha256": "7b3cba11144ef7cf8d2978f0b94b427880a47314572c5665ee9327fbca443c64",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-correcao-erro-1",
+      "variant": "baseline",
+      "case_id": "task8-correcao-erro",
+      "session_id": "01a103ab-8dbe-7ac3-8f47-665747cadfa2",
+      "round": 1,
+      "prompt_sha256": "d86eb5fec9a77d6124522c01a9bc7a38fce87b0b44ee0af95cacf4a345bc399b",
+      "output_sha256": "81d8afe10162d1a26aa4f7b2ccd42ffb8a496b0d53f4409600cf6d2f1bd9af83",
+      "case_sha256": "200ddc5f4b0b54bef08c82cbc841523507da0ecf4aa3a05bf11d2048dbd7fd88",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-correcao-erro-2",
+      "variant": "baseline",
+      "case_id": "task8-correcao-erro",
+      "session_id": "01a103ab-be29-7580-ab78-ac5f91706acf",
+      "round": 2,
+      "prompt_sha256": "d86eb5fec9a77d6124522c01a9bc7a38fce87b0b44ee0af95cacf4a345bc399b",
+      "output_sha256": "7f7fe4a62e4f9f7aca5c5d1c9b059897e92162b5f80bcb07915cf71f43aa2f21",
+      "case_sha256": "200ddc5f4b0b54bef08c82cbc841523507da0ecf4aa3a05bf11d2048dbd7fd88",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-correcao-erro-3",
+      "variant": "baseline",
+      "case_id": "task8-correcao-erro",
+      "session_id": "01a103ab-f6cd-7192-9b69-39bb76fb5a93",
+      "round": 3,
+      "prompt_sha256": "d86eb5fec9a77d6124522c01a9bc7a38fce87b0b44ee0af95cacf4a345bc399b",
+      "output_sha256": "2faaffb0238bceb9a6e8e6bbd59aab53a0f54e85369b65c29411db6f112fb902",
+      "case_sha256": "200ddc5f4b0b54bef08c82cbc841523507da0ecf4aa3a05bf11d2048dbd7fd88",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-direta-1",
+      "variant": "baseline",
+      "case_id": "task8-direta",
+      "session_id": "01a103a8-3061-78f0-a5a0-3c3ff9d739ec",
+      "round": 1,
+      "prompt_sha256": "fa33354749486e9b111c236eb6763e9e6c98655365bc8abf20e973c207b571c7",
+      "output_sha256": "49c4da96c17e35e94345692fb2fc8fd07e05377caa96a202b425a7b8bc3136ae",
+      "case_sha256": "09a65d8757b371f7b5e84998bd068642cae225f78fa95cae1bc2dc33ac73f166",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-direta-2",
+      "variant": "baseline",
+      "case_id": "task8-direta",
+      "session_id": "01a103a8-303d-7df0-a3f3-d4a017f7faa5",
+      "round": 2,
+      "prompt_sha256": "fa33354749486e9b111c236eb6763e9e6c98655365bc8abf20e973c207b571c7",
+      "output_sha256": "5deb53f0eb3c5274ad0d53e2dfc7d40717fe3846d591a9faad20b727dd6aaa28",
+      "case_sha256": "09a65d8757b371f7b5e84998bd068642cae225f78fa95cae1bc2dc33ac73f166",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-direta-3",
+      "variant": "baseline",
+      "case_id": "task8-direta",
+      "session_id": "01a103a8-6f6a-7282-acd7-5ba0fea85ac7",
+      "round": 3,
+      "prompt_sha256": "fa33354749486e9b111c236eb6763e9e6c98655365bc8abf20e973c207b571c7",
+      "output_sha256": "a774c8ed9c1595130cffa923723572f53b814895ecae8190dbe435abb434ee31",
+      "case_sha256": "09a65d8757b371f7b5e84998bd068642cae225f78fa95cae1bc2dc33ac73f166",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-revisao-1",
+      "variant": "baseline",
+      "case_id": "task8-revisao",
+      "session_id": "01a103a9-e06a-7ca0-a0f8-96c681920784",
+      "round": 1,
+      "prompt_sha256": "28be33ec9f6fbf9e2030f67a13bca2bbd70852d3138b9aeacd8bbcbd7dbad2b1",
+      "output_sha256": "e70e5bcfbb475614347b9a76dd1885b968ae87ddd5933c4b7e6623cbec2deee8",
+      "case_sha256": "d67475a0b20117c95cc278ce26088a1b58fddfbdd04f1a37cb2f90cbdee282e7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-revisao-2",
+      "variant": "baseline",
+      "case_id": "task8-revisao",
+      "session_id": "01a103aa-01cd-7073-88ae-b593fcec44f0",
+      "round": 2,
+      "prompt_sha256": "28be33ec9f6fbf9e2030f67a13bca2bbd70852d3138b9aeacd8bbcbd7dbad2b1",
+      "output_sha256": "99006db57601e000349046f3274cac481001ac29dc1e3ce7dc9b88122cd45c6e",
+      "case_sha256": "d67475a0b20117c95cc278ce26088a1b58fddfbdd04f1a37cb2f90cbdee282e7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-revisao-3",
+      "variant": "baseline",
+      "case_id": "task8-revisao",
+      "session_id": "01a103aa-1faa-78d2-aa06-173f529e5832",
+      "round": 3,
+      "prompt_sha256": "28be33ec9f6fbf9e2030f67a13bca2bbd70852d3138b9aeacd8bbcbd7dbad2b1",
+      "output_sha256": "292a938770bd87d9637541e51a6e8ecf681ba198d20d7141bcf1a5b627b7f0b2",
+      "case_sha256": "d67475a0b20117c95cc278ce26088a1b58fddfbdd04f1a37cb2f90cbdee282e7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-simulado-sem-corpus-1",
+      "variant": "baseline",
+      "case_id": "task8-simulado-sem-corpus",
+      "session_id": "01a103aa-4ee8-7263-91fb-0748915084b9",
+      "round": 1,
+      "prompt_sha256": "657035112738f534b817dd714d7e78157121ef8f9f74ad9392d396723a496011",
+      "output_sha256": "e833051e9a062af73f42f74b5d472c5b60eb59b354820211ee6c5a97a4db268d",
+      "case_sha256": "99b889bba9c259a5c1397ce836471747d10989f930b9e1756086f98042224fcf",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-simulado-sem-corpus-2",
+      "variant": "baseline",
+      "case_id": "task8-simulado-sem-corpus",
+      "session_id": "01a103aa-6de1-7442-b2d4-e623ea9bb566",
+      "round": 2,
+      "prompt_sha256": "657035112738f534b817dd714d7e78157121ef8f9f74ad9392d396723a496011",
+      "output_sha256": "f819fa85102defb80c02fd8d0b2b48c46097c8f2fb78f9708eaf60b24958d716",
+      "case_sha256": "99b889bba9c259a5c1397ce836471747d10989f930b9e1756086f98042224fcf",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-simulado-sem-corpus-3",
+      "variant": "baseline",
+      "case_id": "task8-simulado-sem-corpus",
+      "session_id": "01a103aa-9ddd-7d91-b850-ad6f366a4336",
+      "round": 3,
+      "prompt_sha256": "657035112738f534b817dd714d7e78157121ef8f9f74ad9392d396723a496011",
+      "output_sha256": "5ac8a5a2f331bd19c4cce5ab83c3c914bca720570557fb2c829853a408a82b63",
+      "case_sha256": "99b889bba9c259a5c1397ce836471747d10989f930b9e1756086f98042224fcf",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-vf-1",
+      "variant": "baseline",
+      "case_id": "task8-vf",
+      "session_id": "01a103a8-a87e-77d0-a990-9ac29cdee175",
+      "round": 1,
+      "prompt_sha256": "d1d9c31d0aec4b345706099775d6684e984e43931608439c863721a4bfb10042",
+      "output_sha256": "6dbdbd4a53ae8679990cba39a75afc5a020e1de5a2fa42e59eab63c33f7e9b2f",
+      "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-vf-2",
+      "variant": "baseline",
+      "case_id": "task8-vf",
+      "session_id": "01a103a8-c665-78f2-8260-422d6326a156",
+      "round": 2,
+      "prompt_sha256": "d1d9c31d0aec4b345706099775d6684e984e43931608439c863721a4bfb10042",
+      "output_sha256": "5337da48e605ae77af5fce9088908184d6f8429a86d192810b7d41da67f099ea",
+      "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "baseline-task8-vf-3",
+      "variant": "baseline",
+      "case_id": "task8-vf",
+      "session_id": "01a103a8-f8db-7302-9459-50cbbcccf112",
+      "round": 3,
+      "prompt_sha256": "d1d9c31d0aec4b345706099775d6684e984e43931608439c863721a4bfb10042",
+      "output_sha256": "d20399eea0eb182bbcdf0eaa304322f9c7756957e4b2b4dd78e25b6144b3de05",
+      "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-associacao-1",
+      "variant": "candidate",
+      "case_id": "task8-associacao",
+      "session_id": "01a103a9-439b-75f0-88c0-c4459775bddd",
+      "round": 1,
+      "prompt_sha256": "e21debac18a09807a19213217f51ab38f84048647b00c19d352baa8cb1ba16ff",
+      "output_sha256": "92b9b96122d89d6d0bd6c7d682e41c61f3298adeb0a1a4cd032c282bdf5f88a4",
+      "case_sha256": "70ddd002ef13b68c2dc340834c90508d117c89027a401aa9b150eadc26756cf3",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-associacao-2",
+      "variant": "candidate",
+      "case_id": "task8-associacao",
+      "session_id": "01a103a9-96b0-71a1-9218-6ebcf3b3c527",
+      "round": 2,
+      "prompt_sha256": "e21debac18a09807a19213217f51ab38f84048647b00c19d352baa8cb1ba16ff",
+      "output_sha256": "16f25c919b34254fd2cadb7634c287f5515510faf3001348b8880c2e8e48e4e0",
+      "case_sha256": "70ddd002ef13b68c2dc340834c90508d117c89027a401aa9b150eadc26756cf3",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-associacao-3",
+      "variant": "candidate",
+      "case_id": "task8-associacao",
+      "session_id": "01a103a9-a2b8-7141-8603-c271c5c7c4ef",
+      "round": 3,
+      "prompt_sha256": "e21debac18a09807a19213217f51ab38f84048647b00c19d352baa8cb1ba16ff",
+      "output_sha256": "363c55f12a167746f7bc80060bd45962b2bb64ea3f88998811ddfbde50b9911b",
+      "case_sha256": "70ddd002ef13b68c2dc340834c90508d117c89027a401aa9b150eadc26756cf3",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-correcao-acerto-1",
+      "variant": "candidate",
+      "case_id": "task8-correcao-acerto",
+      "session_id": "01a103aa-f36d-7a03-a3ec-5174f31b2b64",
+      "round": 1,
+      "prompt_sha256": "9484ff3ce0d688d6d64ad73bcec2b0e376678ccee30dce459f428739fe951a6e",
+      "output_sha256": "58611c7e5d15a3848d6c1d70eb65d6eefcdc7bd74d25e410d865735c02420e9d",
+      "case_sha256": "7b3cba11144ef7cf8d2978f0b94b427880a47314572c5665ee9327fbca443c64",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-correcao-acerto-2",
+      "variant": "candidate",
+      "case_id": "task8-correcao-acerto",
+      "session_id": "01a103ab-2d89-7b50-932e-825eae2f4fe5",
+      "round": 2,
+      "prompt_sha256": "9484ff3ce0d688d6d64ad73bcec2b0e376678ccee30dce459f428739fe951a6e",
+      "output_sha256": "026c5bcbabbdc87139259348efddff19f111f833d85d8b96060d197fcbe3978e",
+      "case_sha256": "7b3cba11144ef7cf8d2978f0b94b427880a47314572c5665ee9327fbca443c64",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-correcao-acerto-3",
+      "variant": "candidate",
+      "case_id": "task8-correcao-acerto",
+      "session_id": "01a103ab-6e05-7d60-877e-55243f001da2",
+      "round": 3,
+      "prompt_sha256": "9484ff3ce0d688d6d64ad73bcec2b0e376678ccee30dce459f428739fe951a6e",
+      "output_sha256": "2485a915da0ba919a89b43800a6c0ca9c06387405e719320e0e60f4684ba021f",
+      "case_sha256": "7b3cba11144ef7cf8d2978f0b94b427880a47314572c5665ee9327fbca443c64",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-correcao-erro-1",
+      "variant": "candidate",
+      "case_id": "task8-correcao-erro",
+      "session_id": "01a103ab-b451-7e90-bd2f-42a82f477111",
+      "round": 1,
+      "prompt_sha256": "7930e2fd0f906d828be09f8e25358e9fa5824fe37b86cbf3dcace7fa47cd3a4f",
+      "output_sha256": "b80cd49a7b6c24943e18aa5893a9c5715cdff4d7067b2777da8c411a56fec024",
+      "case_sha256": "200ddc5f4b0b54bef08c82cbc841523507da0ecf4aa3a05bf11d2048dbd7fd88",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-correcao-erro-2",
+      "variant": "candidate",
+      "case_id": "task8-correcao-erro",
+      "session_id": "01a103ab-c50a-7b03-8961-196e3f91d86c",
+      "round": 2,
+      "prompt_sha256": "7930e2fd0f906d828be09f8e25358e9fa5824fe37b86cbf3dcace7fa47cd3a4f",
+      "output_sha256": "20f42737bb06952efacab337d4a953b49fe1f4579ef33e3dd1be78803c89382b",
+      "case_sha256": "200ddc5f4b0b54bef08c82cbc841523507da0ecf4aa3a05bf11d2048dbd7fd88",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-correcao-erro-3",
+      "variant": "candidate",
+      "case_id": "task8-correcao-erro",
+      "session_id": "01a103ac-1304-79d2-ba6e-b42eabda7529",
+      "round": 3,
+      "prompt_sha256": "7930e2fd0f906d828be09f8e25358e9fa5824fe37b86cbf3dcace7fa47cd3a4f",
+      "output_sha256": "53623cd3c63aecebfca0671a8773ba2cff656014526e65e98d45e875bdf45563",
+      "case_sha256": "200ddc5f4b0b54bef08c82cbc841523507da0ecf4aa3a05bf11d2048dbd7fd88",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-direta-1",
+      "variant": "candidate",
+      "case_id": "task8-direta",
+      "session_id": "01a103a8-302d-74b1-a66a-c8ca1bd86a17",
+      "round": 1,
+      "prompt_sha256": "bead0d2fd33f9a8abfe3b10669c4e03dd74b971bd0564e02d3f922e8419a9649",
+      "output_sha256": "50bd39cc7f8ccb1fde49f1a4a63cf025aa060f099a99219c1996c6fc97ff53fd",
+      "case_sha256": "09a65d8757b371f7b5e84998bd068642cae225f78fa95cae1bc2dc33ac73f166",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-direta-2",
+      "variant": "candidate",
+      "case_id": "task8-direta",
+      "session_id": "01a103a8-6e2f-75b3-b3f5-591240836144",
+      "round": 2,
+      "prompt_sha256": "bead0d2fd33f9a8abfe3b10669c4e03dd74b971bd0564e02d3f922e8419a9649",
+      "output_sha256": "cb3acd3b3697b8b3b43051c397924f3b38f6642ec195fb72c62c6e1c38e498c6",
+      "case_sha256": "09a65d8757b371f7b5e84998bd068642cae225f78fa95cae1bc2dc33ac73f166",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-direta-3",
+      "variant": "candidate",
+      "case_id": "task8-direta",
+      "session_id": "01a103a8-75f7-7f71-91ad-aa0339ce432c",
+      "round": 3,
+      "prompt_sha256": "bead0d2fd33f9a8abfe3b10669c4e03dd74b971bd0564e02d3f922e8419a9649",
+      "output_sha256": "fe06a1813457a34627ee8bd215fc5c1f2cfbae5efb3578c2cb0e7be31b9f95c1",
+      "case_sha256": "09a65d8757b371f7b5e84998bd068642cae225f78fa95cae1bc2dc33ac73f166",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-revisao-1",
+      "variant": "candidate",
+      "case_id": "task8-revisao",
+      "session_id": "01a103a9-e39a-7532-8717-154bb1c1ab49",
+      "round": 1,
+      "prompt_sha256": "349ddc6a2cf72814852335a85481a673b454e2693d75be02f0de380fbf49c690",
+      "output_sha256": "6373ddbc4caa85c258ec3f2a01777cefc8f40c79201c1fa600d84dd13559982a",
+      "case_sha256": "d67475a0b20117c95cc278ce26088a1b58fddfbdd04f1a37cb2f90cbdee282e7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-revisao-2",
+      "variant": "candidate",
+      "case_id": "task8-revisao",
+      "session_id": "01a103aa-17ff-79d2-97c7-bc50ca24e973",
+      "round": 2,
+      "prompt_sha256": "349ddc6a2cf72814852335a85481a673b454e2693d75be02f0de380fbf49c690",
+      "output_sha256": "95340df55637c7cf0fff3d375a22df4490f56f10e4747de9fda512d3e6e77ed5",
+      "case_sha256": "d67475a0b20117c95cc278ce26088a1b58fddfbdd04f1a37cb2f90cbdee282e7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-revisao-3",
+      "variant": "candidate",
+      "case_id": "task8-revisao",
+      "session_id": "01a103aa-3c53-7e30-81a0-20ffa9c5345d",
+      "round": 3,
+      "prompt_sha256": "349ddc6a2cf72814852335a85481a673b454e2693d75be02f0de380fbf49c690",
+      "output_sha256": "4112a73e9920c15940ae97bde0252753c2b0a1f3b2d21944eb73bbd88c2dbf5d",
+      "case_sha256": "d67475a0b20117c95cc278ce26088a1b58fddfbdd04f1a37cb2f90cbdee282e7",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-simulado-sem-corpus-1",
+      "variant": "candidate",
+      "case_id": "task8-simulado-sem-corpus",
+      "session_id": "01a103aa-59f6-7791-827b-49c172ee328d",
+      "round": 1,
+      "prompt_sha256": "644d17adbdb84fe9ec84e18c0489870aef86654458a3b0173f558f01d288aac8",
+      "output_sha256": "40649f28d0ebe63882153be3cd7a395d1386a9757121855014a66e6e49eae1a0",
+      "case_sha256": "99b889bba9c259a5c1397ce836471747d10989f930b9e1756086f98042224fcf",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-simulado-sem-corpus-2",
+      "variant": "candidate",
+      "case_id": "task8-simulado-sem-corpus",
+      "session_id": "01a103aa-98f5-7630-b51f-bd379424201b",
+      "round": 2,
+      "prompt_sha256": "644d17adbdb84fe9ec84e18c0489870aef86654458a3b0173f558f01d288aac8",
+      "output_sha256": "f3ffcbc347e963100ca8fc96ac9463b6a7f9035ca8da1ba87d5c0b5009e67549",
+      "case_sha256": "99b889bba9c259a5c1397ce836471747d10989f930b9e1756086f98042224fcf",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-simulado-sem-corpus-3",
+      "variant": "candidate",
+      "case_id": "task8-simulado-sem-corpus",
+      "session_id": "01a103aa-aecf-7ed0-88ec-af3cf7d4c868",
+      "round": 3,
+      "prompt_sha256": "644d17adbdb84fe9ec84e18c0489870aef86654458a3b0173f558f01d288aac8",
+      "output_sha256": "ef99f3530297b6fe0777a8de854164391884174a47dbab81a1af6cdc7e1a8f9c",
+      "case_sha256": "99b889bba9c259a5c1397ce836471747d10989f930b9e1756086f98042224fcf",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-vf-1",
+      "variant": "candidate",
+      "case_id": "task8-vf",
+      "session_id": "01a103a8-beeb-7110-b236-a6e6263c2104",
+      "round": 1,
+      "prompt_sha256": "59d11d6007bd665b1f495a8ab8e23582ef8ccd7066b89ab7ec17c89f946114d0",
+      "output_sha256": "73063df30efa3add19f55fd75bee11917b95ec52b3223a2058b927ba32fc2d90",
+      "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-vf-2",
+      "variant": "candidate",
+      "case_id": "task8-vf",
+      "session_id": "01a103a8-f83f-7b52-addc-e938f1615912",
+      "round": 2,
+      "prompt_sha256": "59d11d6007bd665b1f495a8ab8e23582ef8ccd7066b89ab7ec17c89f946114d0",
+      "output_sha256": "68f3199b226679e11496a1f262ca8430bdf549ae336e34ec2dd75ca5e3a73610",
+      "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-vf-3",
+      "variant": "candidate",
+      "case_id": "task8-vf",
+      "session_id": "01a103a9-02df-78d0-81ab-250da69fe4e9",
+      "round": 3,
+      "prompt_sha256": "59d11d6007bd665b1f495a8ab8e23582ef8ccd7066b89ab7ec17c89f946114d0",
+      "output_sha256": "2e6b2ab2e17f7b4e0afd5fbad16f8b3a5bd4e234fe91b321dbd1adddabe476a7",
+      "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+      "status": "revisao_humana_pendente"
+    }
+  ],
+  "failures": [],
+  "variability": {
+    "baseline": {
+      "task8-direta": 3,
+      "task8-vf": 3,
+      "task8-associacao": 3,
+      "task8-revisao": 3,
+      "task8-simulado-sem-corpus": 3,
+      "task8-correcao-acerto": 3,
+      "task8-correcao-erro": 3
+    },
+    "candidate": {
+      "task8-direta": 3,
+      "task8-vf": 3,
+      "task8-associacao": 3,
+      "task8-revisao": 3,
+      "task8-simulado-sem-corpus": 3,
+      "task8-correcao-acerto": 3,
+      "task8-correcao-erro": 3
+    }
+  },
+  "common_context_limits": "CLI still loads its shared installed-skill catalog and inherited user/project guidance. No tool execution observed. Frozen files were supplied as prompt instructions; installed-plugin discovery and exact internal revision were not isolated or demonstrated.",
+  "supplementary_runs": [
+    {
+      "run_id": "candidate-task8-anexo-ilegivel-1",
+      "variant": "candidate",
+      "case_id": "task8-anexo-ilegivel",
+      "session_id": "01a103b7-4393-7a30-8edd-976d460e865b",
+      "round": 1,
+      "prompt_sha256": "69d1a1ae25bda040569700c7a96b300ac78c91a2798d0401b178c187cc2bcc98",
+      "output_sha256": "64c87e09f72c1d0e4897f827e95704a08370f3cdaa55e84201b4c6592cf43315",
+      "case_sha256": "397f1bf9d537300a8f4e52758b8b3ef91c71aec8ca8622bdfa57da74c8fdd7b6",
+      "status": "revisao_humana_pendente"
+    },
+    {
+      "run_id": "candidate-task8-noticia-sem-fundamentos-1",
+      "variant": "candidate",
+      "case_id": "task8-noticia-sem-fundamentos",
+      "session_id": "01a103b7-454b-7410-8c76-1ff644950928",
+      "round": 1,
+      "prompt_sha256": "4af443b402d3aef7aa8b94e26b4371e1afbf7454bd4f43a2a87d1045293c3be1",
+      "output_sha256": "33e1720ca1fba065f0e148d7de7ec9cdfca3b53c1c3c56d986685637071e738c",
+      "case_sha256": "48a6fd734ceff381e8e3c064c18d800cbef5c5da111ec4d8f36ee40a401fd182",
+      "status": "revisao_humana_pendente"
+    }
+  ]
+}

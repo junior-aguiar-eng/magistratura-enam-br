@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "baseline-task8-correcao-erro-2",
+    "executed_at": "2026-10-03T21:29:08.911797+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103ab-be29-7580-ab78-ac5f91706acf",
+    "round": 2,
+    "origin": "captured_session",
+    "duration_seconds": 22.086
+  },
+  "case_snapshot": {
+    "id": "task8-correcao-erro",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nContexto didático fornecido integralmente nesta sessão nova; não é retomada técnica de outra sessão. A questão já foi apresentada e minha tentativa foi E. Corrija integralmente, inclusive as alternativas erradas, com base no material.\n\nQuestão de controle autoral: O juízo deferiu medida incidental e depois acolheu a incompetência, após ouvir a parte contrária. Não houve decisão que retirasse a eficácia da medida nem novo pronunciamento do juízo competente. Conforme exclusivamente o material, qual consequência se aplica?\nA) Os autos seguem ao juízo competente, conservando-se os efeitos da medida até eventual decisão substitutiva, ressalvada determinação judicial contrária.\nB) O acolhimento mantém os autos na origem e conserva automaticamente os efeitos sem possibilidade de revisão.\nC) Os autos seguem ao juízo competente e os efeitos da medida cessam automaticamente pelo reconhecimento da incompetência.\nD) Os autos seguem ao juízo competente, mas a conservação dos efeitos depende de ratificação expressa anterior ao encaminhamento.\nE) A incompetência determina extinção do processo e perda automática dos efeitos da medida.\n\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "200ddc5f4b0b54bef08c82cbc841523507da0ecf4aa3a05bf11d2048dbd7fd88",
+  "output": "Sua resposta está incorreta. Gabarito: **A**.\n\nO material distingue dois efeitos do acolhimento da incompetência:\n\n1. **Destino processual:** os autos são remetidos ao juízo competente.\n2. **Eficácia da decisão anterior:** os efeitos da medida incidental são conservados, salvo decisão judicial em sentido contrário, até eventual pronunciamento substitutivo do juízo competente.\n\nNo caso, não houve decisão retirando a eficácia da medida nem novo pronunciamento do juízo competente. Portanto, o reconhecimento da incompetência não extingue o processo nem desfaz automaticamente a medida anteriormente deferida.\n\n**A) Correta.** Reproduz integralmente a disciplina apresentada: remessa dos autos ao juízo competente e conservação dos efeitos da medida até eventual decisão substitutiva, ressalvada determinação judicial contrária.\n\n**B) Incorreta.** O acolhimento da incompetência não mantém os autos no juízo de origem; impõe seu encaminhamento ao juízo competente. Além disso, a conservação dos efeitos não é irrevisível: pode haver determinação judicial em sentido contrário ou decisão substitutiva do juízo competente.\n\n**C) Incorreta.** Acerta quanto à remessa dos autos, mas erra ao atribuir ao reconhecimento da incompetência a cessação automática dos efeitos da medida. O material estabelece precisamente o contrário: a eficácia é conservada, salvo decisão judicial contrária.\n\n**D) Incorreta.** Não se exige ratificação expressa anterior ao encaminhamento. A conservação dos efeitos decorre da própria disciplina legal indicada no material; eventual pronunciamento posterior pode afastá-los ou substituí-los.\n\n**E) Incorreta.** O acolhimento da incompetência determina a remessa dos autos, não a extinção do processo. Também não produz perda automática dos efeitos da medida anteriormente deferida. A alternativa confunde incompetência do órgão julgador com extinção processual e invalidação automática dos atos decisórios.\n\nA chave da questão é separar **competência para prosseguir no processo** de **eficácia provisoriamente conservada das decisões já proferidas**. A primeira provoca a remessa; a segunda somente é afastada por determinação judicial contrária ou por eventual decisão substitutiva do juízo competente.\n\n**Base utilizada:** exclusivamente o material didático fornecido, especialmente sua síntese do art. 64, §§ 2º–4º, do CPC. No modo acervo exclusivo, não certifico externamente a atualização do ponto.",
+  "output_sha256": "7f7fe4a62e4f9f7aca5c5d1c9b059897e92162b5f80bcb07915cf71f43aa2f21",
+  "evaluation": {
+    "case_id": "task8-correcao-erro",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

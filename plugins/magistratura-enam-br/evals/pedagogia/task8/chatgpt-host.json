@@ -1,0 +1,34 @@
+{
+  "executed_at": "2026-10-03",
+  "client": "ChatGPT web via Edge/CUA; app build and internal model revision not exposed",
+  "model_selector": "Média",
+  "mode": "temporary chat; manual candidate instruction attachment, not installed candidate",
+  "candidate_ref": "8ac72de1fd0aa2343f1b08bb467a61b8a198eacc",
+  "attachments": ["material.md", "candidate-instructions.md (seven frozen instruction files)"],
+  "attachment_test": {
+    "requested": "Review newly uploaded synthetic material exclusively; no MCP/plugins/web, no memory write; one recovery question without answer",
+    "observed": "Upload completed; response cited material.md twice, distinguished process destination from decision effects and ended with recovery question",
+    "captured_excerpt": "Pergunta de recuperação: reconhecida a incompetência do juízo após já ter sido proferida uma decisão no processo, quais são, separadamente, as consequências quanto aos autos e quanto à eficácia dessa decisão?",
+    "status": "technical attachment/text scenario observed; human legal review pending"
+  },
+  "native_search_test": {
+    "requested": "Change to complete legal research, native web search only; identify STF/STJ decisions and official dates/links; do not claim today; one A-E question if supported",
+    "observed_identifiers": ["STF RE 1362742, Tema 1258", "STJ REsp 2222626/RS, Tema 1419"],
+    "observed": "Response provided official links, distinguished judgment/publication dates, reported possible STJ page currency conflict and generated five alternatives from STF case without explicit answer",
+    "stf_source": "https://portal.stf.jus.br/processos/detalhe.asp?incidente=6317237",
+    "stf_independent_check": "Direct browser page confirmed judgment entry 08/09/2026, virtual session 28/08/2026 to 04/09/2026, and stated thesis. Automated web fetch returned 403; browser read succeeded.",
+    "stj_source": "https://scon.stj.jus.br/SCON/pesquisar.jsp?b=ACOR&fr=veja&i=1&livre=%28%27RESP%27+INPATH%28CLAS%29+AND+%272222626%27+INPATH%28NUM%29%29+OR+%28%28%27REsp+2222626%27%29+INPATH%28SUCE%29%29&thesaurus=JURIDICO",
+    "stj_independent_check": "Automatic challenge completed without manual action. Legacy deep link opened an empty search form; one search in visible UI for REsp 2222626 returned two records. Confirmed REsp judgment 20/08/2026, DJEN 27/08/2026, Tema 1419 and relator; distinct March entry is the affectation. SCON version 5.1.23 dated 30/09/2026.",
+    "pre_attempt_issue": "Response stated the STF thesis before displaying the question, anticipating its decisive rule despite not printing an explicit answer letter. Search availability and source support do not approve protection of the attempt.",
+    "status": "search and official identifiers/dates observed and independently checked; pre-attempt protection not approved; human question review pending"
+  },
+  "installed_plugin_observation": {
+    "visible_name": "estudo-juridico-magistratura-br",
+    "visible_version": "1.0.0",
+    "visible_developer": "Claude plugin",
+    "visible_capabilities": "One cloud skill; candidate magistratura MCP connection not found in inspected installed-plugin list/detail"
+  },
+  "real_card_gate": "pending: candidate connection not present; no fullscreen/card/permissions test claimed",
+  "human_review": "pending; automated observation is not human approval",
+  "limitations": ["temporary chat may inherit shared account instructions/memory", "candidate was supplied manually, not installed", "two scenarios share the same temporary chat and are not clean comparison sessions", "no claim that dates identify judgments made today"]
+}

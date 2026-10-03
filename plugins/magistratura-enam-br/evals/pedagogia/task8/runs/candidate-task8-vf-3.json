@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-vf-3",
+    "executed_at": "2026-10-03T21:26:10.275686+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103a9-02df-78d0-81ab-250da69fe4e9",
+    "round": 3,
+    "origin": "captured_session",
+    "duration_seconds": 18.764
+  },
+  "case_snapshot": {
+    "id": "task8-vf",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato V/F, com três assertivas e cinco sequências A–E, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+  "output": "Em ação submetida ao procedimento comum, o réu arguiu a incompetência do juízo e a parte autora foi regularmente ouvida. Antes do exame da arguição, o magistrado havia proferido decisão interlocutória cujos efeitos ainda se projetavam sobre a relação processual. Ao acolher a incompetência, determinou a remessa dos autos ao órgão reputado competente, sem se pronunciar expressamente sobre a eficácia da decisão anterior.\n\nÀ luz do art. 64, §§ 2º a 4º, do Código de Processo Civil, analise as assertivas a seguir.\n\nI. Ouvida a parte adversa, a arguição deve ser imediatamente decidida; sendo acolhida, os autos serão remetidos ao juízo competente, sem que o reconhecimento da incompetência imponha, por si só, a extinção do processo.\n\nII. A remessa dos autos decorrente do acolhimento da incompetência produz, como consequência necessária, a cessação imediata dos efeitos da decisão anteriormente proferida, cabendo ao juízo competente, se entender adequado, restaurá-los.\n\nIII. Como não houve determinação judicial em sentido contrário, os efeitos da decisão proferida pelo juízo incompetente são conservados até que outra decisão seja proferida, se for o caso, pelo juízo competente.\n\nAssinale a sequência correta.\n\nA) V – V – F  \nB) V – F – V  \nC) F – V – V  \nD) F – F – V  \nE) V – F – F",
+  "output_sha256": "2e6b2ab2e17f7b4e0afd5fbad16f8b3a5bd4e234fe91b321dbd1adddabe476a7",
+  "evaluation": {
+    "case_id": "task8-vf",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

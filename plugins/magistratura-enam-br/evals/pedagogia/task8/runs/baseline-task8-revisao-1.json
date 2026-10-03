@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "baseline-task8-revisao-1",
+    "executed_at": "2026-10-03T21:27:06.984627+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103a9-e06a-7ca0-a0f8-96c681920784",
+    "round": 1,
+    "origin": "captured_session",
+    "duration_seconds": 16.17
+  },
+  "case_snapshot": {
+    "id": "task8-revisao",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nEstude e faça uma revisão ativa compacta do material que enviei agora, explicitando a distinção decisiva e uma pergunta de recuperação, sem antecipar a resposta dessa pergunta. Não recorra a material anterior ou a outras fontes.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "d67475a0b20117c95cc278ce26088a1b58fddfbdd04f1a37cb2f90cbdee282e7",
+  "output": "O art. 64, §§ 2º–4º, do CPC separa duas consequências do acolhimento da incompetência:\n\n- **Destino dos autos:** o processo é remetido ao juízo competente.\n- **Eficácia das decisões anteriores:** não cessa automaticamente. As decisões proferidas pelo juízo incompetente conservam seus efeitos, salvo decisão judicial em sentido contrário, até que o juízo competente profira outra decisão, se for o caso.\n\nA distinção decisiva é entre **competência para prosseguir no processo** e **preservação provisória da eficácia decisória**. O reconhecimento da incompetência desloca o processo, mas não produz, por si só, invalidação global dos atos nem cassação automática das decisões já proferidas. Também não se deve confundir conservação dos efeitos com confirmação definitiva da decisão: o juízo competente poderá substituí-la, e pode haver determinação judicial em sentido contrário à manutenção.\n\n**Pergunta de recuperação:** acolhida a incompetência depois de concedida medida urgente, quais são as consequências distintas quanto à tramitação do processo e à eficácia dessa medida antes de pronunciamento do juízo competente?",
+  "output_sha256": "e70e5bcfbb475614347b9a76dd1885b968ae87ddd5933c4b7e6623cbec2deee8",
+  "evaluation": {
+    "case_id": "task8-revisao",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

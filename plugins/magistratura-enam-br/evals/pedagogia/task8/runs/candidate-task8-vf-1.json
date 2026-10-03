@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-vf-1",
+    "executed_at": "2026-10-03T21:25:52.824284+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103a8-beeb-7110-b236-a6e6263c2104",
+    "round": 1,
+    "origin": "captured_session",
+    "duration_seconds": 14.703
+  },
+  "case_snapshot": {
+    "id": "task8-vf",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato V/F, com três assertivas e cinco sequências A–E, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+  "output": "Em ação submetida a determinado juízo, o réu arguiu sua incompetência. Após a manifestação da parte adversa, o magistrado acolheu a alegação, determinou a remessa dos autos ao juízo competente e nada dispôs sobre os efeitos de decisão anteriormente proferida. À luz do art. 64, §§ 2º a 4º, do Código de Processo Civil, analise as assertivas:\n\nI. Encerrada a manifestação da parte adversa, a arguição deve ser imediatamente decidida, e seu acolhimento impõe a remessa dos autos ao juízo reconhecido como competente.\n\nII. Como a decisão que acolheu a incompetência foi omissa quanto à eficácia do pronunciamento anterior, este conserva seus efeitos até que outra decisão seja eventualmente proferida pelo juízo competente.\n\nIII. O reconhecimento da incompetência acarreta, por si só, a perda imediata da eficácia das decisões anteriormente proferidas, embora o juízo competente possa posteriormente restaurá-la.\n\nAssinale a sequência correta:\n\nA) V – V – F  \nB) V – F – V  \nC) F – V – F  \nD) F – F – V  \nE) V – F – F",
+  "output_sha256": "73063df30efa3add19f55fd75bee11917b95ec52b3223a2058b927ba32fc2d90",
+  "evaluation": {
+    "case_id": "task8-vf",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

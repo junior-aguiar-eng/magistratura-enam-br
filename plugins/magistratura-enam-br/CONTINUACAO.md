@@ -1,5 +1,37 @@
 # Continuação de manutenção
 
+## Homologação dos incrementos — task 8, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de
+`8ac72de`. Relatório canônico em
+`docs/superpowers/audits/2026-10-02-validacao-incrementos-mcp-calibracao.md`;
+capturas em `evals/pedagogia/task8/`. Gates locais: 520 Python, 94 web,
+Ruff/lock/integração, npm audit zero vulnerabilidades, lint/build e
+Zensical/MkDocs estrito aprovados. Falha HTTP inicial intermitente foi
+registrada; teste isolado e suíte completa subsequente passaram sem mudança.
+
+Foram capturadas 42 sessões novas da CLI 0.148.0, com modelo observado
+gpt-5.6-sol e fontes/configuração iguais para controle `8b245f1` e candidata
+`8ac72de`. Snapshots foram enviados no prompt, sem reinstalar versões;
+catálogo de skills/contexto herdado não isolados. Três hashes distintos por
+caso/variante não provam ganho pedagógico. Todas as saídas aguardam revisão
+humana; AGENTS não recebe promoção de novas orientações. Sem corpus oficial,
+simulado empiricamente calibrado continua pendente, e seis capturas testam
+somente a ressalva. Correções usam questão de controle fixa em sessão nova.
+
+Codex CLI executou stdio real com biblioteca temporária isolada, criação,
+renderização, tentativa, consulta e invalidação; primeira criação rejeitada
+por cinco distratores foi corrigida antes de persistir. Nenhum card foi
+aberto pela CLI. ChatGPT autenticado recebeu anexo sintético e instruções
+manuais, produzindo revisão com referência ao arquivo e recuperação sem
+resposta antecipada. Isso não comprova instalação/conexão MCP candidata.
+
+ChatGPT MCP-only/card/fullscreen/permissões/mobile reais, corpus e revisão
+humana permanecem pendentes com motivos registrados. Proposta 0.8.0 para
+A+B, manifesto ainda 0.7.5. Esta task autoriza commits locais; push/CI
+remoto/merge/tag/release/reinstalação dependem de autorização específica de
+entrega. Referência de rollback v0.7.5, sem apagar dados de estudo.
+
 ## Incrementos pedagógicos — task 7, 2026-10-03
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `235c4f0`, por autorização específica. `modelos/pedagogia/exam-corpus.schema.json` e `scripts/calibrar_provas.py` definem registro por edição/caderno e perfil descritivo recomputável. CLI e APIs apenas leem metadados/classificações; não coletam cadernos, conferem bytes remotos, indexam biblioteca ou gravam atividade. Hash e revisão documental declarada não provam autenticidade por si.

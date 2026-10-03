@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-anexo-ilegivel-1",
+    "executed_at": "2026-10-03T21:41:43.368739+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103b7-4393-7a30-8edd-976d460e865b",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task8-anexo-ilegivel",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Modo acervo_exclusivo, sem MCP/busca. O anexo disponível está ilegível: o extrator só produziu \"[OCR sem texto jurídico recuperável]\". Não há outro arquivo ou ponto anterior acessível. Faça uma revisão densa do conteúdo desse anexo e uma questão de alta complexidade baseada exclusivamente nele.",
+    "fixtures": [
+      "Insumo sintético insuficiente; nenhum conteúdo jurídico recuperável."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Reconhecer indisponibilidade/insuficiência e solicitar conteúdo ou recorte apto, sem fabricar doutrina, razões de julgado ou acesso ao anexo.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Reconhecimento do limite probatório",
+      "Ausência de reconstrução inventada do anexo/julgado",
+      "Pedido proporcional de material ou fonte apta"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "397f1bf9d537300a8f4e52758b8b3ef91c71aec8ca8622bdfa57da74c8fdd7b6",
+  "output": "O anexo não contém conteúdo jurídico recuperável; portanto, não há base para elaborar, sem especulação, a revisão densa nem identificar núcleo jurídico apto a uma questão FGV/ENAM de alta complexidade.\n\n**No modo acervo exclusivo, não posso certificar a atualização externa deste ponto.** Também não posso completar o conteúdo por memória geral, fonte oficial ou pesquisa.\n\nEnvie uma versão legível do anexo ou cole o trecho jurídico que deseja revisar.",
+  "output_sha256": "64c87e09f72c1d0e4897f827e95704a08370f3cdaa55e84201b4c6592cf43315",
+  "evaluation": {
+    "case_id": "task8-anexo-ilegivel",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "avaliacao-posterior"
+    ]
+  }
+}

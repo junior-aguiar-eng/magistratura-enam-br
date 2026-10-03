@@ -20,7 +20,7 @@
 - Logs históricos permanecem legíveis e não são reescritos; a UI nunca é fonte de verdade de resultado.
 - Não adicionar API paga, biblioteca de UI ou backend de coleta sem necessidade demonstrada. SDK instalado já contém sendMessage, updateModelContext e eventos de contexto.
 - Atualizar README, CHANGELOG e CONTINUACAO nos commits que alterem comportamento. Regerar bundle somente a partir de fonte validada.
-- Plano aprovado em 2026-10-02. Tasks 1–7 executadas localmente; as orientações pedagógicas permanecem candidatas pendentes de revisão humana, e o perfil empírico continua pendente. O pedido vigente autoriza executar e commitar somente a task 7 na mesma branch. Task 8, push, reinstalação e publicação permanecem fora desta execução.
+- Plano aprovado em 2026-10-02. Tasks 1–7 implementadas localmente e task 8 em encerramento de validação. O pedido vigente autoriza executar e commitar a task 8 na mesma branch. Orientações pedagógicas, perfil empírico e apresentação do card no ChatGPT permanecem com gates pendentes. Push, reinstalação e publicação exigem a autorização específica de entrega prevista na task 8.
 
 ## Review Focus
 
@@ -164,13 +164,29 @@ Extender `QuestionHost` com `requestDisplayMode(mode: "inline" | "fullscreen"): 
 
 - [ ] Capturar antes/depois: questão direta, V/F, associação, revisão de material novo e simulado calibrado. Três sessões limpas por caso/versão, mesmo modelo/cliente e fontes. Usar snapshot de baseline separado, sem instalar versão antiga sobre a instalação ativa; base já capturada pode ser usada se metadados comprovarem equivalência.
 - [ ] Aplicar rubrica posterior: suporte jurídico, unicidade, qualidade dos distratores, correção após acerto/erro, ancoragem e ausência de gabarito antes da tentativa. Identificar revisor; usar hashes e registrar variabilidade. Não afirmar ganho de qualidade sem comparação efetivamente revisada.
-- [ ] Rodar gate Python completo: `uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests -q --basetemp=.pytest-incrementos-final`; Ruff, `uv lock --check` e `scripts/verificar_integracao.py` sem erros.
-- [ ] Rodar `npm ci`, `npm audit --audit-level=moderate`, `npm test -- --run`, `npm run lint`, `npm run build`. Verificar bundle distribuível sem caches/ambientes. Se dependências mudarem, executar auditoria Python do lockfile.
-- [ ] Construir Zensical e MkDocs estrito conforme workflow atual.
+- [x] Rodar gate Python completo: `uv run python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests -q --basetemp=.pytest-incrementos-final`; Ruff, `uv lock --check` e `scripts/verificar_integracao.py` sem erros.
+- [x] Rodar `npm ci`, `npm audit --audit-level=moderate`, `npm test -- --run`, `npm run lint`, `npm run build`. Verificar bundle distribuível sem caches/ambientes. Se dependências mudarem, executar auditoria Python do lockfile.
+- [x] Construir Zensical e MkDocs estrito conforme workflow atual.
 - [ ] Homologar chat sem MCP com anexo legível; pesquisa STF/STJ por cliente com busca; Codex stdio; ChatGPT MCP-only por conexão real; card com resposta, invalidação, botão pós-resposta, reconstrução visual, troca de tema, fullscreen/retorno e permissão negada. Conferir expansão com conteúdo longo, modo recusado e apresentação móvel. Registrar versão do cliente, capacidades e resultado; testes simulados não marcam esse gate como aprovado.
-- [ ] Se host/conta/revisor estiver indisponível, entregar código validado com esse gate pendente e motivo concreto. Não inventar disponibilidade nem marcar cenário como realizado.
+- [x] Se host/conta/revisor estiver indisponível, entregar código validado com esse gate pendente e motivo concreto. Não inventar disponibilidade nem marcar cenário como realizado.
 - [ ] Revisar diff completo, documentar achados e corrigir regressões. Propor versão 0.8.0 para conjunto A+B; se frentes forem publicadas separadamente, decidir versão pelo diff efetivo. Uma versão futura aqui é proposta, não release criada.
 - [ ] Após autorização específica de entrega, executar commit/push/CI/merge/tag/release/reinstalação e comparar cache com árvore publicada. Snapshot atual 0.7.5 permanece referência de rollback; publicação não equivale a homologação humana.
+
+**Registro da task 8:** 42 capturas comparativas reais por CLI (sete casos,
+duas variantes, três sessões) e dois controles candidatos suplementares;
+MCP stdio real em biblioteca sintética e ensaio de anexo/busca no ChatGPT
+com instruções manuais. Controle `8b245f1`, candidata funcional `8ac72de`,
+modelo observado gpt-5.6-sol/CLI 0.148.0, hashes e rubrica posterior, sem
+aprovação humana. Simulado sem corpus é controle negativo; captura empírica,
+revisão humana e card/fullscreen/permissões/mobile da candidata instalada
+permanecem pendentes. No ensaio de busca, tese apareceu antes da questão,
+antecipando sua solução; esse cenário não foi aprovado. Gates locais
+520 Python/94 web/Ruff/lock/integração/npm audit0/lint/build e dois geradores
+documentais aprovados. Relatório e motivos em
+[validação dos incrementos](../audits/2026-10-02-validacao-incrementos-mcp-calibracao.md).
+Os itens pendentes acima são evidências de homologação ainda abertas,
+não tarefas de implementação fingidamente concluídas. Proposta 0.8.0,
+manifesto 0.7.5; revisão integral da branch em encerramento.
 
 ## Fora da primeira entrega
 

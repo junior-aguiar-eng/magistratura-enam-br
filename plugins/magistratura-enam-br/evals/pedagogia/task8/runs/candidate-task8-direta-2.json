@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-direta-2",
+    "executed_at": "2026-10-03T21:25:32.173554+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103a8-6e2f-75b3-b3f5-591240836144",
+    "round": 2,
+    "origin": "captured_session",
+    "duration_seconds": 22.525
+  },
+  "case_snapshot": {
+    "id": "task8-direta",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato direto, com cinco alternativas A–E, apenas enunciado e alternativas, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "09a65d8757b371f7b5e84998bd068642cae225f78fa95cae1bc2dc33ac73f166",
+  "output": "Em ação submetida ao procedimento comum, o juízo deferiu tutela provisória antes da citação, impondo ao réu obrigação de fazer. Citado, o réu arguiu incompetência na contestação e requereu, além da remessa dos autos, a imediata cessação da medida. Após ouvir o autor, o magistrado acolheu a arguição e determinou o encaminhamento do processo ao juízo competente, sem dispor especificamente sobre a eficácia da tutela concedida. Antes de qualquer pronunciamento do juízo destinatário, o réu deixou de cumprir a obrigação, sustentando que o reconhecimento da incompetência invalidara automaticamente a decisão anterior. À luz do art. 64, §§ 2º a 4º, do Código de Processo Civil, assinale a afirmativa correta.\n\nA) O acolhimento da incompetência impõe a remessa dos autos e retira, por força de lei, a eficácia da tutela anteriormente concedida, ainda que o magistrado não tenha feito ressalva expressa, cabendo ao juízo competente decidir se restabelece seus efeitos.\n\nB) A tutela conserva seus efeitos até que o juízo competente profira nova decisão, se for o caso, pois o acolhimento da incompetência determina a remessa dos autos, mas não acarreta, sem decisão judicial em sentido contrário, a automática perda de eficácia do pronunciamento anterior.\n\nC) A tutela conserva seus efeitos definitivamente, porque a decisão proferida antes da arguição de incompetência não pode ser revista pelo juízo competente, ao qual cabe apenas prosseguir no processo a partir dos atos já praticados.\n\nD) A tutela perde eficácia somente com a efetiva distribuição dos autos ao juízo competente, pois, embora o acolhimento da incompetência não invalide imediatamente os atos anteriores, a competência superveniente do juízo destinatário extingue seus efeitos independentemente de nova decisão.\n\nE) A tutela conserva seus efeitos apenas durante o prazo para impugnação da decisão que acolheu a incompetência, pois a remessa dos autos, uma vez consumada, torna ineficaz o pronunciamento do juízo de origem, salvo ratificação expressa pelo juízo competente.",
+  "output_sha256": "cb3acd3b3697b8b3b43051c397924f3b38f6642ec195fb72c62c6e1c38e498c6",
+  "evaluation": {
+    "case_id": "task8-direta",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

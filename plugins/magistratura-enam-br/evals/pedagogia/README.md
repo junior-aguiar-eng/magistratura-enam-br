@@ -61,3 +61,12 @@ Relatórios com chave são **privados de autoria/avaliação**. Não contêm enu
 Avisos agregados de extensão/absolutos surgem somente com **ao menos oito itens elegíveis e frequência estritamente superior a 75%**. O limiar é heurística editorial do projeto, não estatística oficial da FGV/ENAM. Três ou mais letras iguais consecutivas geram aviso; item sem chave válida interrompe a sequência. Esses padrões não invalidam questão nem alteram sua ordem.
 
 `--perfil` aceita objeto JSON por leitura. Dict arbitrário permanece `profile_not_validated`. A task 7 acrescenta [registro/perfil de corpus](calibracao-enam/README.md) recomputável: registro declarado oficial com itens elegíveis pode alimentar comparação descritiva de formatos, sem quota, certificação de fidelidade ao ENAM ou mudança da chave. Perfil reconhecido inconsistente é erro; fixture sintética não se torna referência empírica. Fundamentação, fontes, plausibilidade dos distratores e unicidade jurídica sempre exigem revisão humana posterior.
+
+## Comparação da task 8
+
+As [42 capturas da task 8](task8/README.md) usam duas variantes congeladas,
+três sessões por caso, modelo/cliente/fontes comuns e rubrica posterior.
+Cada captura conserva caso e saída com hashes, sem aprovação humana.
+O caso de simulado sem corpus é controle negativo; não comprova calibração
+empírica. MCP stdio real, anexo no ChatGPT e testes do widget têm escopos
+separados; ausência de conexão candidata deixa card/fullscreen pendentes.
