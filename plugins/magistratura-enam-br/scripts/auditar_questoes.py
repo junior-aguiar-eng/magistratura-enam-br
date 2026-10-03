@@ -233,15 +233,30 @@ def _issue(code: str, message: str, identifier: str | None = None) -> dict:
 
 
 def _leaks(text: str) -> bool:
-    text = _normal(_plain(text))
-    return bool(
-        re.search(
-            r"\b(?:gabarito|resposta(?: correta)?|alternativa correta|solucao)\s*(?::|=|e\s+)\s*"
-            r"(?:(?:letra|alternativa)\s+[a-e]\b|[a-e]\b(?![ \t]+\w))",
-            text,
-        )
-        or re.search(r"[✓✔✅]|\((?:correta|gabarito)\)", text)
+    # Preserve letter case: lowercase a/e may be an article or conjunction.
+    text = "".join(
+        char
+        for char in unicodedata.normalize("NFKD", _plain(text))
+        if not unicodedata.combining(char)
     )
+    for marker in re.finditer(
+        r"\b(?:gabarito|resposta(?: correta)?|alternativa correta|solucao)\s*(?::|=|e\s+)\s*"
+        r"(?:(?:letra|alternativa)\s+(?P<label>[a-e])\b|(?P<bare>[a-e])\b"
+        r"(?:[ \t]+(?P<following>\w+))?)",
+        text,
+        re.IGNORECASE,
+    ):
+        letter = marker.group("bare")
+        following = (marker.group("following") or "").casefold()
+        if (
+            marker.group("label")
+            or letter.isupper()
+            or letter.casefold() not in {"a", "e"}
+            or not following
+            or following in {"porque", "pois", "porquanto"}
+        ):
+            return True
+    return bool(re.search(r"[✓✔✅]|\((?:correta|gabarito)\)", text, re.IGNORECASE))
 
 
 def _absolute_counts(text: str) -> dict[str, int]:

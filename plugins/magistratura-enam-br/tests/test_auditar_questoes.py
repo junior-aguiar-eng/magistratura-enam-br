@@ -510,3 +510,42 @@ def test_letra_explicita_antes_de_pontuacao_continua_detectada(auditor, marker):
     question = questao(auditor)
     question.prompt = marker
     assert "answer_leak" in codes(auditor.audit_question_block([question]))
+
+
+@pytest.mark.parametrize("letter", list("ABCDEabcde"))
+@pytest.mark.parametrize(
+    "prefix", ["Gabarito:", "A alternativa correta é", "Resposta correta:", "Solução:"]
+)
+@pytest.mark.parametrize("position", ["body", "title"])
+def test_letra_com_justificativa_sem_pontuacao_e_vazamento(
+    auditor, letter, prefix, position
+):
+    marker = f"{prefix} {letter} porque satisfaz os requisitos."
+    text = (
+        bloco().replace("Tema sintético", marker)
+        if position == "title"
+        else bloco() + "\n" + marker
+    )
+    if position == "title":
+        with pytest.raises(ValueError, match="Marcador explícito de solução no cabeçalho"):
+            auditor.parse_question_block(text, format="markdown")
+        return
+    result = auditor.audit_question_block(
+        auditor.parse_question_block(text, format="markdown"), {"1": "C"}
+    )
+    assert "answer_leak" in codes(result)
+    assert result["status"] == "reprovado_estruturalmente"
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Resposta: a anulação do ato administrativo.",
+        "Solução: a revisão do cadastro.",
+        "Assinale a alternativa correta e explique sua fundamentação.",
+    ],
+)
+def test_artigo_e_conjuncao_com_marcadores_preservam_a_estrutura(auditor, text):
+    question = questao(auditor)
+    question.prompt = text
+    assert not auditor.audit_question_block([question], {"q1": "C"})["errors"]
