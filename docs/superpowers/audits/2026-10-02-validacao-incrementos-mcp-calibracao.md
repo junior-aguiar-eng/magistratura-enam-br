@@ -3,7 +3,8 @@
 Execução: 2026-10-03. Branch `codex/incrementos-mcp-calibracao`, controle
 `8b245f10bce3aa85fa41c2b114a46fcdc9251342`, candidata funcional
 `8ac72de1fd0aa2343f1b08bb467a61b8a198eacc`. Task 8 acrescenta evidências
-e documentação; não muda dependências ou comportamento do servidor/widget.
+e documentação; a revisão final também corrigiu a detecção de marcadores
+explícitos de gabarito no auditor. Dependências e servidor/widget não mudaram.
 
 ## Resultado e gates
 
@@ -14,7 +15,7 @@ afirmar que a qualidade jurídica melhorou.
 
 | Gate | Resultado | Evidência e limite |
 |---|---|---|
-| Python completo | 520 aprovados, 66,21 s | Diretórios do plano; repetição final após falha intermitente inicial |
+| Python completo | 603 aprovados, 79,74 s após o fix final | Inclui 83 novos casos; suítes anteriores de 520 também aprovadas após falha intermitente inicial |
 | Ruff | Aprovado | Sem erros |
 | `uv lock --check` | Aprovado | 81 pacotes resolvidos; lock sem alteração |
 | Integração | Aprovada | 42 verificações; antes das capturas, 53 JSON e 103 Python; evidências novas validadas novamente |
@@ -34,12 +35,17 @@ isoladamente (5,63 s); nova suíte completa passou (66,21 s). O teste espera
 até dez segundos pela abertura da porta e descarta stderr do servidor.
 A inicialização concorrente é hipótese, não causa confirmada; não houve
 alteração de timeout ou relaxamento da asserção para produzir aprovação.
+O fechamento via `task-done` repetiu a suíte com 520 aprovações em 122,74 s.
+A correção da revisão final em `c94832e` foi seguida pela suíte completa:
+603 aprovações em 79,74 s, Ruff e lock sem erros e integração aprovada
+com 42 verificações, 100 JSON e 103 Python.
 
 Comandos executados a partir da raiz, respeitando o cwd de `uv --directory`:
 
 ```powershell
 uv sync --directory plugins/magistratura-enam-br --all-groups
 uv run --directory plugins/magistratura-enam-br python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests -q --basetemp=.pytest-task8-final-recheck
+uv run --directory plugins/magistratura-enam-br python -m pytest tests skills/planejar-jurisprudencia/tests skills/comparar-materiais-enam/tests skills/curar-informativos-stf-stj/tests -q --basetemp=.pytest-task8-final-fix
 uv run --directory plugins/magistratura-enam-br ruff check .
 uv lock --directory plugins/magistratura-enam-br --check
 uv run --directory plugins/magistratura-enam-br python scripts/verificar_integracao.py
@@ -51,6 +57,13 @@ No diretório `plugins/magistratura-enam-br/web`, foram executados `npm ci`,
 `npm audit --audit-level=moderate`, `npm test -- --run`, `npm run lint` e
 `npm run build`. A task não altera dependências Python; nova auditoria do
 lockfile Python não foi exigida. Bundle recompilado sem diferença no Git.
+
+A conferência de `git archive 5af73ef plugins/magistratura-enam-br` encontrou
+499 entradas, 8.021.691 bytes e nenhum ambiente, cache, bytecode ou `.env`.
+`web/dist` contém apenas `index.html`; seu SHA-256 é
+`fd7e8bb250ee51e24f04b761dfe8905759d812f43f1d0995df6728ccba10b864`,
+igual ao arquivo versionado e ao build local. Isso verifica o pacote
+derivado do Git, sem criar release nem provar o cache de instalação.
 
 ## Comparação pedagógica
 
@@ -161,6 +174,37 @@ MCP Events, upload dentro do card, OCR e monitoramento continuam fora do escopo.
 
 ## Revisão integral da branch
 
-Revisão independente do intervalo `8b245f1..HEAD` será registrada após
-conclusão dos gates e documentação. Os achados e decisões finais serão
-incluídos neste relatório antes do encerramento da task.
+Revisão independente do intervalo `8b245f1..5af73ef`, abrangendo todas as
+tasks: **zero Critical, um Important e nenhum Minor novo**. O revisor
+conferiu os 44 registros, hashes, snapshots, prompts e cabeçalhos sem
+divergência; também reproduziu a falha abaixo em memória, sem alterar a árvore.
+
+**Important aceito e corrigido:** `_leaks` ignorava uma letra seguida de
+palavra, aprovando `Gabarito: C porque satisfaz os requisitos.` e
+`A alternativa correta é C porque satisfaz os requisitos.`. A correção
+preserva caixa para distinguir letras de artigos/conjunções, reconhece
+rótulos explícitos e justificativas causais; continua uma heurística
+estrutural, sem pretensão de detectar todo vazamento indireto.
+
+TDD: 80 casos de letras A–E, maiúsculas/minúsculas, quatro marcadores e
+corpo/cabeçalho falharam antes da correção; três controles linguísticos
+passaram. Após o fix, o teste de cabeçalho foi alinhado ao contrato existente
+de rejeição no parser, e os **160 testes do auditor passaram**. Controles
+de artigo/conjunção e marcadores antes de pontuação foram preservados.
+Fix commitado em `c94832e`, com **603 testes Python completos aprovados**.
+Nenhuma segunda revisão foi solicitada; a verificação do fix é por regressão.
+
+O revisor não julgou mérito jurídico/ganho pedagógico, representatividade
+do corpus, autenticidade documental/identidade real de revisores, UI/host
+real, correção dos problemas comportamentais observados ou generalização
+para instalação isolada e outros modelos. Não reexecutou as suítes/builds
+completos e não tratou entrega remota como realizada. Essas fronteiras
+permanecem explícitas; os gates técnicos foram executados pelo implementador.
+
+**Minor anterior mantido:** assertivas arábicas sem a palavra `afirmativas`
+podem ser classificadas como formato direto. Conferência da distribuição
+e formato JSON explícito continuam necessários; não houve correção cosmética
+adicional nem promoção desse achado a certificação jurídica.
+
+Decisões de todas as tasks, com seus custos e achado adiado, preservadas em
+[decisões e achados do plano](2026-10-03-decisoes-incrementos.md).

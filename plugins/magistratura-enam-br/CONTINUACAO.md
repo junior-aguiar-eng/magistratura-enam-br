@@ -5,7 +5,7 @@
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de
 `8ac72de`. Relatório canônico em
 `docs/superpowers/audits/2026-10-02-validacao-incrementos-mcp-calibracao.md`;
-capturas em `evals/pedagogia/task8/`. Gates locais: 520 Python, 94 web,
+capturas em `evals/pedagogia/task8/`. Gates locais: 603 Python, 94 web,
 Ruff/lock/integração, npm audit zero vulnerabilidades, lint/build e
 Zensical/MkDocs estrito aprovados. Falha HTTP inicial intermitente foi
 registrada; teste isolado e suíte completa subsequente passaram sem mudança.
@@ -31,6 +31,16 @@ humana permanecem pendentes com motivos registrados. Proposta 0.8.0 para
 A+B, manifesto ainda 0.7.5. Esta task autoriza commits locais; push/CI
 remoto/merge/tag/release/reinstalação dependem de autorização específica de
 entrega. Referência de rollback v0.7.5, sem apagar dados de estudo.
+
+Revisão integral independente `8b245f1..5af73ef`: nenhum Critical, um
+Important corrigido em `c94832e` e nenhum Minor novo. O auditor aceitava
+`Gabarito: C porque...`; 80 regressões reproduziram a falha, e agora
+160 testes específicos/603 completos passam, preservando artigos/conjunções.
+Achado arábico anterior permanece adiado. Decisões históricas preservadas
+em `docs/superpowers/audits/2026-10-03-decisoes-incrementos.md`.
+No ensaio de busca, a tese foi apresentada antes da questão; na amostra
+de associação, a regra de reutilização não foi explicitada. São gates
+pedagógicos não aprovados, sem alegação de correção por revisão de código.
 
 ## Incrementos pedagógicos — task 7, 2026-10-03
 

@@ -169,7 +169,7 @@ Extender `QuestionHost` com `requestDisplayMode(mode: "inline" | "fullscreen"): 
 - [x] Construir Zensical e MkDocs estrito conforme workflow atual.
 - [ ] Homologar chat sem MCP com anexo legível; pesquisa STF/STJ por cliente com busca; Codex stdio; ChatGPT MCP-only por conexão real; card com resposta, invalidação, botão pós-resposta, reconstrução visual, troca de tema, fullscreen/retorno e permissão negada. Conferir expansão com conteúdo longo, modo recusado e apresentação móvel. Registrar versão do cliente, capacidades e resultado; testes simulados não marcam esse gate como aprovado.
 - [x] Se host/conta/revisor estiver indisponível, entregar código validado com esse gate pendente e motivo concreto. Não inventar disponibilidade nem marcar cenário como realizado.
-- [ ] Revisar diff completo, documentar achados e corrigir regressões. Propor versão 0.8.0 para conjunto A+B; se frentes forem publicadas separadamente, decidir versão pelo diff efetivo. Uma versão futura aqui é proposta, não release criada.
+- [x] Revisar diff completo, documentar achados e corrigir regressões. Propor versão 0.8.0 para conjunto A+B; se frentes forem publicadas separadamente, decidir versão pelo diff efetivo. Uma versão futura aqui é proposta, não release criada.
 - [ ] Após autorização específica de entrega, executar commit/push/CI/merge/tag/release/reinstalação e comparar cache com árvore publicada. Snapshot atual 0.7.5 permanece referência de rollback; publicação não equivale a homologação humana.
 
 **Registro da task 8:** 42 capturas comparativas reais por CLI (sete casos,
@@ -181,12 +181,17 @@ aprovação humana. Simulado sem corpus é controle negativo; captura empírica,
 revisão humana e card/fullscreen/permissões/mobile da candidata instalada
 permanecem pendentes. No ensaio de busca, tese apareceu antes da questão,
 antecipando sua solução; esse cenário não foi aprovado. Gates locais
-520 Python/94 web/Ruff/lock/integração/npm audit0/lint/build e dois geradores
+603 Python/94 web/Ruff/lock/integração/npm audit0/lint/build e dois geradores
 documentais aprovados. Relatório e motivos em
 [validação dos incrementos](../audits/2026-10-02-validacao-incrementos-mcp-calibracao.md).
 Os itens pendentes acima são evidências de homologação ainda abertas,
 não tarefas de implementação fingidamente concluídas. Proposta 0.8.0,
-manifesto 0.7.5; revisão integral da branch em encerramento.
+manifesto 0.7.5. Revisão integral `8b245f1..5af73ef`: zero críticos, um
+importante corrigido em `c94832e` por regressões RED→GREEN, nenhum menor
+novo. O auditor reconhece letra seguida de justificativa, preservando
+artigos/conjunções; 160 testes específicos e 603 completos passaram.
+Classificação arábica anterior permanece adiada, com formato JSON explícito.
+Execução local encerrada; homologação e entrega mantêm os gates pendentes.
 
 ## Fora da primeira entrega
 
