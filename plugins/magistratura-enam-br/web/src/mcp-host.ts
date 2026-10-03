@@ -115,7 +115,7 @@ export function createQuestionHost(onResult: (result: ToolResult) => void): Ques
     if (legacy?.toolOutput) receiveResult({ structuredContent: legacy.toolOutput });
   }
 
-  async function legacyCall(name: string, args: Record<string, unknown>) {
+  async function legacyCall<T>(operation: () => Promise<T>) {
     let timer: ReturnType<typeof setTimeout> | undefined;
     let rejectPending: (error: Error) => void = () => {};
     const cancelled = new Promise<never>((_, reject) => {
@@ -124,7 +124,7 @@ export function createQuestionHost(onResult: (result: ToolResult) => void): Ques
       timer = setTimeout(() => reject(new Error("Tempo de resposta excedido")), CALL_TIMEOUT);
     });
     try {
-      return await Promise.race([legacy!.callTool!(name, args), cancelled]);
+      return await Promise.race([operation(), cancelled]);
     } finally {
       clearTimeout(timer);
       pendingLegacy.delete(rejectPending);
@@ -147,12 +147,30 @@ export function createQuestionHost(onResult: (result: ToolResult) => void): Ques
       // through a different bridge, including on timeout or transport errors.
       const result = transport === "sdk"
         ? await app.callServerTool({ name, arguments: args }, { timeout: CALL_TIMEOUT })
-        : await legacyCall(name, args);
+        : await legacyCall(() => legacy!.callTool!(name, args));
       if (closed) throw new Error("Host encerrado");
       if (typeof args.session_id === "string" && expectedSession && args.session_id !== expectedSession) {
         throw new Error("Resultado de sessão anterior");
       }
       return normalizeToolResult(result);
+    },
+    async sendMessage(text) {
+      if (closed || !transport || !capabilities.messages) throw new Error("Mensagens indisponíveis");
+      if (transport === "sdk") {
+        const result = await app.sendMessage({ role: "user", content: [{ type: "text", text }] }, { timeout: CALL_TIMEOUT });
+        if (result.isError) throw new Error("Mensagem recusada pelo host");
+      } else {
+        const result = await legacyCall(() => legacy!.sendFollowUpMessage!({ prompt: text }));
+        if (result && typeof result === "object" && "isError" in result && result.isError) throw new Error("Mensagem recusada pelo host");
+      }
+      if (closed) throw new Error("Host encerrado");
+    },
+    async updateContext(context) {
+      if (closed || transport !== "sdk" || !capabilities.context) throw new Error("Contexto indisponível");
+      if (expectedSession && context.session_id !== expectedSession) throw new Error("Sessão divergente");
+      const { schema_version, session_id, action, subject, topic, state } = context;
+      await app.updateModelContext({ structuredContent: { schema_version, session_id, action, subject, topic, state } }, { timeout: CALL_TIMEOUT });
+      if (closed || (expectedSession && session_id !== expectedSession)) throw new Error("Sessão alterada");
     },
     close() {
       if (closed) return;

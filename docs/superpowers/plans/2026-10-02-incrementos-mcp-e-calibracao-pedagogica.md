@@ -20,7 +20,7 @@
 - Logs históricos permanecem legíveis e não são reescritos; a UI nunca é fonte de verdade de resultado.
 - Não adicionar API paga, biblioteca de UI ou backend de coleta sem necessidade demonstrada. SDK instalado já contém sendMessage, updateModelContext e eventos de contexto.
 - Atualizar README, CHANGELOG e CONTINUACAO nos commits que alterem comportamento. Regerar bundle somente a partir de fonte validada.
-- Plano aprovado em 2026-10-02. Task 1 concluída e revisada; o pedido vigente autoriza executar e commitar somente a task 2 na mesma branch. Tasks 3–8, push, reinstalação e publicação permanecem fora desta execução.
+- Plano aprovado em 2026-10-02. Tasks 1–2 concluídas e revisadas; o pedido vigente autoriza executar e commitar somente a task 3 na mesma branch. Tasks 4–8, push, reinstalação e publicação permanecem fora desta execução.
 
 ## Review Focus
 
@@ -80,12 +80,14 @@ A e B podem ser integradas separadamente. Sequência recomendada: A → B → C.
 
 **Interfaces:** ferramenta `obter_questao(session_id: str)` retorna `QuestionRepository.get_session(session_id)` em modo read-only, sem template de UI. `FollowUpAction = explain_error | deepen_distinction | new_question`; `FollowUpContext = { schema_version: "1.0.0", session_id, action, subject, topic, state }`; `buildFollowUp(question: Question, action: FollowUpAction): { text: string; context: FollowUpContext }`.
 
-- [ ] Escrever testes: pronta não libera correção em obter_questao; respondida devolve correção; invalidada devolve estado público e motivo; consulta não muda logs. Ações indisponíveis pré-tentativa; explain_error somente em erro; invalidada permite apenas new_question com aviso.
-- [ ] Confirmar RED para a consulta e para os botões.
-- [ ] Implementar consulta com annotations de leitura e saída tipada da tarefa 1. Construir mensagens curtas citando session_id e ação; servidor revalida estado antes do aprofundamento. Mensagem não inclui resposta privada nem inventa diagnóstico de erro.
-- [ ] Implementar `App.sendMessage` e `App.updateModelContext` se negociados; usar `sendFollowUpMessage` quando somente bridge OpenAI estiver disponível. Sem suporte, mostrar texto copiável. Atualização de contexto não impede o texto autossuficiente de ser enviado, mas falha de mensagem exibe erro e permite tentativa explícita.
-- [ ] Testar duas instâncias de card, double-click e mudança de sessão durante envio. Atualizar contexto substituindo o anterior, sem acumular respostas. Nenhuma ação registra tentativa, altera perfil ou cria sessão automaticamente.
-- [ ] Rodar testes Python de tools/transporte e Vitest de followup/widget; documentar o fluxo e commitar.
+- [x] Escrever testes: pronta não libera correção em obter_questao; respondida devolve correção; invalidada devolve estado público e motivo; consulta não muda logs. Ações indisponíveis pré-tentativa; explain_error somente em erro; invalidada permite apenas new_question com aviso.
+- [x] Confirmar RED para a consulta e para os botões.
+- [x] Implementar consulta com annotations de leitura e saída tipada da tarefa 1. Construir mensagens curtas citando session_id e ação; servidor revalida estado antes do aprofundamento. Mensagem não inclui resposta privada nem inventa diagnóstico de erro.
+- [x] Implementar `App.sendMessage` e `App.updateModelContext` se negociados; usar `sendFollowUpMessage` quando somente bridge OpenAI estiver disponível. Sem suporte, mostrar texto copiável. Atualização de contexto não impede o texto autossuficiente de ser enviado, mas falha de mensagem exibe erro e permite tentativa explícita.
+- [x] Testar duas instâncias de card, double-click e mudança de sessão durante envio. Atualizar contexto substituindo o anterior, sem acumular respostas. Nenhuma ação registra tentativa, altera perfil ou cria sessão automaticamente.
+- [x] Rodar testes Python de tools/transporte e Vitest de followup/widget; documentar o fluxo e commitar.
+
+**Registro da execução:** `obter_questao` fica disponível ao modelo/app para leitura antes do envio e revalidação pelo modelo. Foi necessário atualizar o teste anterior de visibilidade e acrescentar CSS mínimo para a nova seção. A consulta não rouba foco da ação: o efeito da correção depende de sessão/estado. Suíte completa: 377 testes Python e 56 web aprovados; TypeScript/build, Ruff, lockfile, integração, documentação estrita e auditoria npm sem vulnerabilidades aprovados. Nenhuma nova dependência ou alteração de logs. Homologação no ChatGPT real permanece pendente.
 
 ## Task 4: Estado visual, tema do host e fullscreen
 

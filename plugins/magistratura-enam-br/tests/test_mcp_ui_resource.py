@@ -78,7 +78,7 @@ async def test_visibilidade_resposta_modelo_e_app(server):
     async with Client(server) as client:
         tools = (await client.list_tools()).tools
     by_name = {tool.name: tool for tool in tools}
-    for name in ("renderizar_questao", "responder_questao"):
+    for name in ("renderizar_questao", "responder_questao", "obter_questao"):
         assert by_name[name].meta["ui"]["visibility"] == ["model", "app"]
     assert "resourceUri" not in by_name["responder_questao"].meta["ui"]
     assert by_name["responder_questao"].annotations.read_only_hint is False
@@ -87,7 +87,7 @@ async def test_visibilidade_resposta_modelo_e_app(server):
     for name, tool in by_name.items():
         assert tool.annotations.open_world_hint is False
         assert tool.annotations.destructive_hint is False
-        if name not in ("renderizar_questao", "responder_questao"):
+        if name not in ("renderizar_questao", "responder_questao", "obter_questao"):
             assert tool.meta["ui"]["visibility"] == ["model"]
 
 

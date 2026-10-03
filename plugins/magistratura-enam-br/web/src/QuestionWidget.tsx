@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { readQuestion, type OptionId, type Question, type QuestionHost, type ToolResult } from "./contracts";
 import { createQuestionHost } from "./mcp-host";
+import { buildFollowUp, type FollowUpAction } from "./question-followup";
+
+const followUpLabels: Record<FollowUpAction, string> = {
+  explain_error: "Explique meu erro",
+  deepen_distinction: "Aprofunde esta distinção",
+  new_question: "Outra questão sobre este ponto",
+};
 
 function sourceUrl(url?: string) {
   if (!url) return undefined;
@@ -24,6 +31,8 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
   const [uncertain, setUncertain] = useState(false);
   const uncertainRef = useRef(new Set<string>());
   const [connectionError, setConnectionError] = useState(false);
+  const followUpPending = useRef(new Set<string>());
+  const [followUpState, setFollowUpState] = useState<{ sessionId: string; status: "sending" | "sent" | "copy" | "error"; text?: string }>();
 
   function receiveResult(result: ToolResult) {
     if (!activeRef.current) return;
@@ -34,7 +43,9 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     if (incoming.session_id !== currentRef.current?.session_id) {
       setSelected(undefined);
       setStatus("ready");
+      setFollowUpState(undefined);
     }
+    if (incoming.state === "invalidated" && current?.state !== "invalidated") setFollowUpState(undefined);
     currentRef.current = incoming;
     if (incoming.state !== "ready") uncertainRef.current.delete(incoming.session_id);
     const blocked = uncertainRef.current.has(incoming.session_id);
@@ -58,11 +69,45 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
     return () => { activeRef.current = false; hostRef.current = null; host.close(); };
   }, []);
 
-  useEffect(() => { if (question?.state === "answered") resultRef.current?.focus(); }, [question]);
+  useEffect(() => { if (question?.state === "answered") resultRef.current?.focus(); }, [question?.session_id, question?.state]);
 
   if (!question) return <main className="shell" aria-live="polite">{connectionError || status === "error" ? "Não foi possível carregar a questão. Reabra o card ou continue pelo chat." : "Carregando questão…"}</main>;
   const answered = question.state === "answered";
   const invalidated = question.state === "invalidated";
+  const actions: FollowUpAction[] = invalidated ? ["new_question"] : answered
+    ? [...(question.result === "incorrect" ? ["explain_error" as const] : []), "deepen_distinction", "new_question"] : [];
+  const followUp = followUpState?.sessionId === question.session_id ? followUpState : undefined;
+
+  async function requestFollowUp(action: FollowUpAction) {
+    const host = hostRef.current;
+    if (!question || !host || !connected || followUpPending.current.has(question.session_id)) return;
+    const sessionId = question.session_id;
+    const stillCurrent = () => activeRef.current && hostRef.current === host && currentRef.current?.session_id === sessionId;
+    followUpPending.current.add(sessionId);
+    setFollowUpState({ sessionId, status: "sending" });
+    try {
+      const snapshot = await host.callTool("obter_questao", { session_id: sessionId });
+      if (!stillCurrent()) return;
+      const latest = readQuestion(snapshot);
+      if (latest.session_id !== sessionId || latest.state === "ready") throw new Error("Estado não confirmado");
+      receiveResult(snapshot);
+      const request = buildFollowUp(currentRef.current!, action);
+      if (!host.capabilities.messages) {
+        setFollowUpState({ sessionId, status: "copy", text: request.text });
+        return;
+      }
+      if (host.capabilities.context) {
+        try { await host.updateContext(request.context); } catch { /* The message carries its own session and action. */ }
+      }
+      if (!stillCurrent()) return;
+      // State may change while context is being acknowledged by the host.
+      const currentRequest = buildFollowUp(currentRef.current!, action);
+      await host.sendMessage(currentRequest.text);
+      if (stillCurrent()) setFollowUpState({ sessionId, status: "sent" });
+    } catch {
+      if (stillCurrent()) setFollowUpState({ sessionId, status: "error" });
+    } finally { followUpPending.current.delete(sessionId); }
+  }
 
   async function answer() {
     if (!selected || question?.state !== "ready" || sendingRef.current.has(question.session_id) || uncertainRef.current.has(question.session_id) || !connected || !hostRef.current) return;
@@ -122,6 +167,12 @@ export function QuestionWidget({ initialQuestion = window.openai?.toolOutput }: 
         {source.excerpt && <blockquote>{source.excerpt}</blockquote>}
         <small>Consulta: {source.accessed_at.slice(0, 10)}</small>
       </div>)}</details>}
+    </section>}
+    {actions.length > 0 && <section aria-label="Continuar o estudo" className="followup">
+      <div className="followup-actions">{actions.map(action => <button key={action} disabled={!connected || followUp?.status === "sending"} onClick={() => void requestFollowUp(action)}>{followUpLabels[action]}</button>)}</div>
+      <p role="status">{followUp?.status === "sending" ? "Preparando pedido…" : followUp?.status === "sent" ? "Pedido enviado ao chat." : followUp?.status === "copy" ? "Copie este pedido e envie no chat." : ""}</p>
+      {followUp?.status === "error" && <p role="alert">Não foi possível enviar o pedido. Você pode tentar novamente.</p>}
+      {followUp?.status === "copy" && <textarea aria-label="Pedido para copiar no chat" readOnly rows={5} value={followUp.text} onFocus={event => event.target.select()} />}
     </section>}
   </main>;
 }

@@ -110,6 +110,10 @@ async def test_config_bundled_inicia_servidor_stdio_real(tmp_path):
         diagnostic = await client.call_tool("diagnosticar_acervo", {})
         assert not diagnostic.is_error
         assert diagnostic.structured_content["index_status"] == "missing"
+        assert "obter_questao" in {tool.name for tool in tools.tools}
+        missing = await client.call_tool("obter_questao", {"session_id": "qsn_0123456789abcdef"})
+        assert missing.is_error
+        assert "correct_option" not in str(missing)
 
     by_name = {tool.name: tool for tool in tools.tools}
     assert "renderizar_questao" in by_name

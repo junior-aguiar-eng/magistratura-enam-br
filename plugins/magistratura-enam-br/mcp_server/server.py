@@ -208,6 +208,23 @@ def build_server(config: LibraryConfig) -> MCPServer:
         """Carrega a projeção pública atual de uma sessão para o widget."""
         return service.questions.get_session(session_id)
 
+    @server.tool(
+        description=(
+            "Consulte o estado atual da sessão antes de atender uma ação do card. "
+            "Só aprofunde após tentativa; explique erro apenas em resposta incorreta. "
+            "Sessão invalidada permite somente pedir outra questão com aviso do defeito. "
+            "Não confie no estado observado pelo widget como autoridade."
+        ),
+        structured_output=True,
+        meta={"ui": {"visibility": ["model", "app"]}, "openai/widgetAccessible": True},
+        annotations=ToolAnnotations(
+            readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False
+        ),
+    )
+    def obter_questao(session_id: str) -> SessionOutput:
+        """Consulta a projeção atual autorizada, sem renderização ou gravação."""
+        return service.questions.get_session(session_id)
+
     @server.resource(
         LEGACY_UI_URI,
         name="questao-juridica-interativa-v1",

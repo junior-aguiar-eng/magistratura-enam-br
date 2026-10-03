@@ -1,3 +1,5 @@
+import type { FollowUpContext } from "./question-followup";
+
 export type OptionId = "A" | "B" | "C" | "D" | "E";
 export interface Source {
   source_id: string; kind: string; title: string; accessed_at: string; role: string;
@@ -19,6 +21,8 @@ export interface QuestionHost {
   bindSession(sessionId: string): void;
   connect(): Promise<void>;
   callTool(name: string, args: Record<string, unknown>): Promise<ToolResult>;
+  sendMessage(text: string): Promise<void>;
+  updateContext(context: FollowUpContext): Promise<void>;
   close(): void;
 }
 

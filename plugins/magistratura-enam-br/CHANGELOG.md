@@ -1,5 +1,13 @@
 # Changelog
 
+## Não publicado — incrementos MCP, task 3
+
+- Adiciona `obter_questao` para consultar a projeção atual autorizada sem template de UI ou gravação; anuncia schema de sessão e visibilidade modelo/app.
+- Oferece ações de continuidade após tentativa, com explicação de erro somente em erro e apenas pedido de nova questão quando invalidada; revalida estado antes do envio.
+- Usa mensagens/contexto negociados no SDK e `sendFollowUpMessage` no bridge OpenAI, com texto copiável quando não há suporte a mensagens.
+- Envia contexto mínimo por sessão sem gabarito, correção ou diagnóstico; bloqueia cliques duplicados e impede que operações antigas atualizem outro card. Falha de mensagem permite tentativa explícita.
+- Atualiza instruções MCP para revalidação pelo modelo, acrescenta testes de consulta, capacidades e concorrência e regenera o bundle.
+
 ## Não publicado — incrementos MCP, task 2
 
 - Centraliza negociação e lifecycle em `mcp-host.ts`, com preferência pelo SDK MCP Apps, fallback OpenAI anterior ao envio e transporte fixo por instância.

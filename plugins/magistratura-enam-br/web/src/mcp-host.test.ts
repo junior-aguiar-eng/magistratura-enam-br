@@ -16,7 +16,7 @@ beforeEach(() => {
 });
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
-async function sdkHost(legacy = false, serverTools = true) {
+async function sdkHost(legacy = false, serverTools = true, extraCapabilities: Record<string, unknown> = {}) {
   const receive = vi.fn();
   const callTool = vi.fn().mockResolvedValue({ structuredContent: ready });
   if (legacy) window.openai = { callTool };
@@ -25,7 +25,7 @@ async function sdkHost(legacy = false, serverTools = true) {
   const connected = host.connect();
   await waitFor(() => expect(post).toHaveBeenCalledWith(expect.objectContaining({ method: "ui/initialize" }), "*"));
   const initialize = post.mock.calls.find(([m]) => m.method === "ui/initialize")![0];
-  await message({ jsonrpc: "2.0", id: initialize.id, result: { protocolVersion: "2026-01-26", hostInfo: { name: "test", version: "1" }, hostCapabilities: serverTools ? { serverTools: {} } : {}, hostContext: {} } });
+  await message({ jsonrpc: "2.0", id: initialize.id, result: { protocolVersion: "2026-01-26", hostInfo: { name: "test", version: "1" }, hostCapabilities: { ...(serverTools ? { serverTools: {} } : {}), ...extraCapabilities }, hostContext: {} } });
   await connected;
   return { host, post, receive, callTool };
 }
@@ -38,6 +38,34 @@ test.each([false, true])("SDK real recebe prioridade com bridge legado=%s", asyn
   await message({ jsonrpc: "2.0", id: request.id, result: { content: [], structuredContent: ready, _meta: { secret: "hidden" } } });
   expect(await pending).toEqual({ structuredContent: ready });
   expect(callTool).not.toHaveBeenCalled();
+  host.close();
+});
+
+test("SDK envia mensagem e substitui contexto por payload mínimo", async () => {
+  const { host, post } = await sdkHost(true, true, { message: {}, updateModelContext: {} });
+  host.bindSession(ready.session_id);
+  const context = { schema_version: "1.0.0" as const, session_id: ready.session_id, action: "new_question" as const, subject: ready.subject, topic: ready.topic, state: "answered" as const };
+  for (const action of ["new_question", "deepen_distinction"] as const) {
+    const updating = host.updateContext({ ...context, action });
+    await waitFor(() => expect(post.mock.calls.map(([m]) => m).filter(m => m.method === "ui/update-model-context")).toHaveLength(action === "new_question" ? 1 : 2));
+    const request = post.mock.calls.map(([m]) => m).filter(m => m.method === "ui/update-model-context").at(-1)!;
+    expect(request.params.structuredContent).toEqual({ ...context, action });
+    await message({ jsonrpc: "2.0", id: request.id, result: {} });
+    await updating;
+  }
+  const sending = host.sendMessage("Pedido autossuficiente");
+  await waitFor(() => expect(post.mock.calls.some(([m]) => m.method === "ui/message")).toBe(true));
+  const request = post.mock.calls.find(([m]) => m.method === "ui/message")![0];
+  expect(request.params).toMatchObject({ role: "user", content: [{ type: "text", text: "Pedido autossuficiente" }] });
+  await message({ jsonrpc: "2.0", id: request.id, result: { isError: true } });
+  await expect(sending).rejects.toThrow();
+  host.close();
+});
+
+test("host sem capacidade não envia mensagem ou contexto", async () => {
+  const { host, post } = await sdkHost();
+  await expect(host.sendMessage("Pedido")).rejects.toThrow();
+  expect(post.mock.calls.some(([m]) => m.method === "ui/message")).toBe(false);
   host.close();
 });
 

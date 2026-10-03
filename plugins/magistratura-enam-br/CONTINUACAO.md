@@ -1,5 +1,15 @@
 # Continuação de manutenção
 
+## Incrementos MCP — task 3, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `1934373`, por autorização específica. `obter_questao` anuncia saída de sessão e acesso modelo/app sem template de UI; reutiliza a projeção atual do repositório, preservando arquivos e logs. O card consulta essa ferramenta antes de preparar a continuidade e a instrução canônica determina nova consulta pelo modelo antes de atender.
+
+Após tentativa, estão disponíveis explicação do erro (somente em erro), aprofundamento da distinção e pedido de outra questão. Invalidação mantém apenas o último pedido, com aviso. O SDK usa mensagens/contexto negociados; OpenAI usa `sendFollowUpMessage`. Ausência de mensagens oferece texto selecionável. O contexto contém apenas versão, sessão, ação, disciplina, tema e estado; cada atualização substitui a anterior. Nenhuma ação gera questão, registra tentativa ou modifica perfil automaticamente.
+
+Trava por sessão/instância impede cliques duplicados; mudança de sessão durante consulta/contexto interrompe o pedido antigo. Falha de contexto não impede a mensagem autossuficiente, e falha de envio permite nova tentativa explícita. A leitura não refocaliza a correção já lida. CSS mínimo organiza botões responsivos e textarea sem nova biblioteca.
+
+Validação local: 377 testes Python e 56 web (16 do adaptador, 31 do widget, oito de followup e um build real), TypeScript, build, Ruff, lockfile, 42 checks de integração e MkDocs estrito aprovados; auditoria npm sem vulnerabilidades. A asserção anterior de visibilidade foi atualizada para a nova consulta sem expor template. Bundle regenerado da fonte canônica. Homologação visual e comportamento do modelo no ChatGPT real permanecem na task 8; fullscreen na task 4. Manifesto continua em 0.7.5; este ciclo não publica nem reinstala o plugin.
+
 ## Incrementos MCP — task 2, 2026-10-02
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `04c1be8`, por pedido específico do usuário. `QuestionHost` concentra conexão, chamadas e fechamento; `bindSession` ancora a questão inicial e a entrada completa do host. O widget usa um único transporte, trava submissão e incerteza por sessão e reconcilia falhas por `renderizar_questao`, sem nova mutação automática. A entrada do host não é conteúdo renderizável, e projeção pública não aceita campos de tentativa.

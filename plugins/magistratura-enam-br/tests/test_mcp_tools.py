@@ -87,6 +87,48 @@ async def test_criacao_mcp_gera_id_e_nao_devolve_gabarito(services):
 
 
 @pytest.mark.anyio
+@pytest.mark.parametrize("state", ["ready", "answered", "invalidated"])
+async def test_obter_questao_revalida_estado_sem_gravar_ou_reabrir_card(services, state):
+    server, raiz = services
+    question = copy.deepcopy(sessao())
+    for field in ("schema_version", "projection", "session_id", "state", "created_at"):
+        question.pop(field)
+    async with Client(server) as client:
+        created = await client.call_tool("criar_sessao_questao", {"questao": question})
+        session_id = created.structured_content["session_id"]
+        if state != "ready":
+            await client.call_tool("responder_questao", {"session_id": session_id, "alternativa": "B"})
+        if state == "invalidated":
+            await client.call_tool("invalidar_questao", {"session_id": session_id, "motivo": "Duas respostas defensáveis"})
+        def snapshot():
+            return {str(p.relative_to(raiz)): (p.read_bytes(), p.stat().st_mtime_ns)
+                    for p in raiz.rglob("*") if p.is_file()}
+        before = snapshot()
+        result = await client.call_tool("obter_questao", {"session_id": session_id})
+        assert not result.is_error
+        assert snapshot() == before
+        payload = result.structured_content
+        assert payload["session_id"] == session_id
+        assert payload["state"] == state
+        if state == "answered":
+            assert payload["projection"] == "corrected"
+            assert payload["correct_option"] == "C"
+            assert payload["correction"]["correct_rationale"]
+        else:
+            assert payload["projection"] == "public"
+            assert not {"correct_option", "correction", "selected_option", "result"} & payload.keys()
+        if state == "invalidated":
+            assert payload["invalidation_reason"] == "Duas respostas defensáveis"
+        tools = {t.name: t for t in (await client.list_tools()).tools}
+        query = tools["obter_questao"]
+        assert query.annotations.read_only_hint is True
+        assert query.annotations.destructive_hint is False
+        assert query.meta["ui"] == {"visibility": ["model", "app"]}
+        assert "openai/outputTemplate" not in query.meta
+        assert query.output_schema == tools["renderizar_questao"].output_schema
+
+
+@pytest.mark.anyio
 async def test_resposta_e_historico_funcionam_por_cliente_mcp(services):
     server, _ = services
     question = copy.deepcopy(sessao())

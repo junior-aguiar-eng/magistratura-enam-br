@@ -17,6 +17,8 @@ Com as ferramentas disponíveis e consentimento para a gravação local, gere in
 
 Se detectar defeito jurídico, chame invalidar_questao com motivo explícito, inclusive após resposta; explique o defeito e preserve logs, sem defender artificialmente o gabarito. Leitura e diagnóstico não autorizam indexação, gravação, migração, perfil ou tarefas agendadas. A indexação requer confirmar_gravacao_local=true e a configuração deve autorizar escrita; não presuma consentimento pela presença de ferramenta.
 
+Ao receber uma ação de continuidade do card, consulte obter_questao com o session_id informado e revalide o estado atual antes de atender; o contexto observado pelo app não tem autoridade sobre o servidor. Só aprofunde distinção após tentativa; explique erro apenas quando a sessão respondida registra resultado incorrect, sem inventar diagnóstico de domínio. Sessão invalidada permite somente solicitar outra questão com aviso do defeito; não reutilize seu gabarito. A consulta é somente de leitura, não reabre card nem registra tentativa. As ações pedem continuidade ao modelo, sem criar questão ou alterar perfil automaticamente.
+
 Sem MCP ou interface disponível, ou após erro explícito de indisponibilidade, use fallback textual: informe a limitação, apresente só enunciado e alternativas, aguarde a tentativa e então corrija integralmente. Não simule persistência. Falha após envio de resposta não autoriza repeti-la por outro transporte: consulte renderizar_questao para reconciliar o estado antes de nova ação.
 <!-- mcp-instructions:end -->
 
@@ -39,6 +41,14 @@ O widget negocia uma única conexão pelo adaptador `web/src/mcp-host.ts`: tenta
 Resultado inválido da sessão ativa e `ontoolcancelled` encerram o carregamento com aviso de falha, sem apresentar o payload recusado ou reenviar ferramenta. Resultado identificável de sessão antiga é descartado antes da validação.
 
 Uma resposta pendente bloqueia nova submissão da mesma sessão. Quando não é possível confirmar o resultado, o card bloqueia a repetição e consulta `renderizar_questao` pelo mesmo transporte, somente para leitura. Resposta ou invalidação confirmada reconcilia a tela; snapshot ainda pronto não comprova que uma mutação pendente jamais será efetivada. Nesse caso, mantenha o aviso e aguarde atualização ou reabra para consultar o estado, sem reenviar automaticamente. Fechar o card remove listeners, observer, frame de resize e chamadas pendentes. Testes com SDK real e host simulado não substituem homologação visual no ChatGPT.
+
+## Continuidade entre card e conversa
+
+Após tentativa, o card oferece **Explique meu erro** somente em erro, **Aprofunde esta distinção** e **Outra questão sobre este ponto**. Uma sessão invalidada oferece apenas o último pedido e informa o defeito. Cada clique consulta `obter_questao` antes do envio; essa ferramenta reutiliza a projeção autorizada de `QuestionRepository.get_session`, sem template de UI nem escrita em sessão, tentativa, perfil ou logs.
+
+O SDK usa `App.updateModelContext` quando negociado e `App.sendMessage` para enviar o pedido como mensagem do usuário. O contexto substitui o anterior e contém somente versão, sessão, ação, disciplina, tema e estado observado. A mensagem é autossuficiente e instrui o modelo a consultar novamente o estado no servidor. Falha de contexto não impede o envio; recusa ou falha de mensagem não anuncia sucesso e admite nova tentativa explícita. Bridge OpenAI usa `sendFollowUpMessage`; sem capacidade de mensagens, o card apresenta texto selecionável para copiar no chat.
+
+Nenhuma ação envia gabarito, alternativa escolhida, correção ou diagnóstico de domínio no contexto do widget. Troca de sessão durante a consulta ou a confirmação do contexto impede envio do pedido anterior; conclusão de mensagem já enviada não altera o novo card. O bloqueio de envio é por sessão e instância, sem gravação automática ou nova questão gerada pelo botão.
 
 ## Fallback
 
