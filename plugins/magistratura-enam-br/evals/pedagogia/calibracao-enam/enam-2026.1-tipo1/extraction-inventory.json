@@ -1,0 +1,722 @@
+[
+  {
+    "id": "1",
+    "page": 3,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "e56668f4168082c5255d4956424516d77d001778d4eaffb019fa66c4fbd8184c"
+  },
+  {
+    "id": "2",
+    "page": 3,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "76331ce1c6c581b6bd3dbdee7a47e4bf4a036309394951472ab18bb1b02a0600"
+  },
+  {
+    "id": "3",
+    "page": 3,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "bad977c5af94c14116424bbd953931f88edd35acdb6d866560ba2037d9ad7541"
+  },
+  {
+    "id": "4",
+    "page": 3,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "dce8387ee7f5e428ea7f2caa276b6d20b0ff9fdb887b56c74755f08087f1676b"
+  },
+  {
+    "id": "5",
+    "page": 4,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "eae07ec901240ddc6944f86a357e50a017051d2caa279c52a8c006f3e8d480ce"
+  },
+  {
+    "id": "6",
+    "page": 4,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "242f643236faf287870366f59736fe990fc837894a2bb62171f00c2b5631b6ca"
+  },
+  {
+    "id": "7",
+    "page": 4,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "722f9e804cebf6ee89598f91822f96cd310f16b2109aff52ef6bbaa24f764364"
+  },
+  {
+    "id": "8",
+    "page": 5,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "37b8497117f01c019a9feddc698511e155aa624af78376ef543626bf69615400"
+  },
+  {
+    "id": "9",
+    "page": 5,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "263f7106be50c097d88b20da75f49e2e88d95bed5e625049b51a6602abac9d00"
+  },
+  {
+    "id": "10",
+    "page": 5,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "fc45d7409a6ef69e49adbf746d99cbb43dd19988e3d412283a2af00adf65bacc"
+  },
+  {
+    "id": "11",
+    "page": 5,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "4b781a1cf5a695d29e18670001b4c08c56f1bf653b27ff452f6cf9b5095f1b56"
+  },
+  {
+    "id": "12",
+    "page": 6,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "d79da25c84110d9bbdff0bed8611b41f16a73a64e914572d9ed8aff6479712e2"
+  },
+  {
+    "id": "13",
+    "page": 6,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "b3980617958a8c73f2299830ea87ab1e7bff6ff2da0e94cbdbfb24e51b9db837"
+  },
+  {
+    "id": "14",
+    "page": 7,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "2f035f8ce51d9f2be80766d4a71b5759bbd0aee0fea58a3ed351c0a4199393ee"
+  },
+  {
+    "id": "15",
+    "page": 7,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "0745abe1d5aa33876fde0f2026a07da340c4ac58a4ca3fbffefed78a03601569"
+  },
+  {
+    "id": "16",
+    "page": 7,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Constitucional",
+    "extracted_text_sha256": "0465167957e7faae008db9b4893867863d62aca31e02a1a01dccc89acdf0fba9"
+  },
+  {
+    "id": "17",
+    "page": 7,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "924127fc98bdea21ce2f18166dff91e324a6e25e778ff7b902124ad680ba50cf"
+  },
+  {
+    "id": "18",
+    "page": 8,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "vf",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "231636048439428deb82d08811762ba54a097a423ed1347e5d35e6bc4b14f665"
+  },
+  {
+    "id": "19",
+    "page": 8,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "aca34f29ab891aec18014b0847e880dff44bf6988c7cb4d083b75f2a17e9e2cc"
+  },
+  {
+    "id": "20",
+    "page": 9,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "f3a8fd0d46511ce0f077f8eef00b883067a32261d306c76f10c17f7af07f284f"
+  },
+  {
+    "id": "21",
+    "page": 9,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "1a718e3da1a997ef92405fd68b4df48558bc3017498e4c50616861ef076c438e"
+  },
+  {
+    "id": "22",
+    "page": 10,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "3811c00473caaef72ae1eda89eb853234e9bad03069e0d5298855a917c5fd221"
+  },
+  {
+    "id": "23",
+    "page": 10,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "d58d7fcbdfbd3cd2efbcbde7e9c4b93bb00e1f9826ea8f0c2959cc1a491e5c34"
+  },
+  {
+    "id": "24",
+    "page": 11,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "d538caae2c0211f9338b0c8c2205a8f88b848f4a09fcfbb0456aa8176e2f8946"
+  },
+  {
+    "id": "25",
+    "page": 11,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "ec416f97fb492dac42dbc742aed41344fa7624a36a1bd11b2128ca005c956299"
+  },
+  {
+    "id": "26",
+    "page": 12,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Administrativo",
+    "extracted_text_sha256": "2e2baf24c58587a3e00bddbcee1b3ab04641aad446893666c25353bb5d032ff6"
+  },
+  {
+    "id": "27",
+    "page": 12,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Noções Gerais De Direito E Formação",
+    "extracted_text_sha256": "3833893e8f358f4cbdd5645b85b6c0c86b86fbd1da2b83d16120bd76187bc588"
+  },
+  {
+    "id": "28",
+    "page": 12,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Noções Gerais De Direito E Formação",
+    "extracted_text_sha256": "5143d2b9002343f618d0ca647b1339c83dcd37ba391ed8a184b1e9a52434fa15"
+  },
+  {
+    "id": "29",
+    "page": 13,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Noções Gerais De Direito E Formação",
+    "extracted_text_sha256": "e0570d9842b84cb0d13398d6cd1663af4f6b7bfa03376ef6ef66477f8f4a17fb"
+  },
+  {
+    "id": "30",
+    "page": 13,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Noções Gerais De Direito E Formação",
+    "extracted_text_sha256": "8b1eed171f81c714a1ca29c17a7e085984db202988f0ee8f42d2f5b7433f862c"
+  },
+  {
+    "id": "31",
+    "page": 13,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Noções Gerais De Direito E Formação",
+    "extracted_text_sha256": "342aad8e90c9f1adc592c5445f6e4a39f5db4c552700683370cc6973571c4a8f"
+  },
+  {
+    "id": "32",
+    "page": 14,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Noções Gerais De Direito E Formação",
+    "extracted_text_sha256": "e1a1c4e1e7a30d659d209e311f9ac9985f5d873711375ae04373f588119caf89"
+  },
+  {
+    "id": "33",
+    "page": 14,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direitos Humanos",
+    "extracted_text_sha256": "2a81d88c44189257c146859b14e08ab01119be492c9db53f7c073467a52fd34d"
+  },
+  {
+    "id": "34",
+    "page": 14,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direitos Humanos",
+    "extracted_text_sha256": "b972f0845ab9cb42c7d944e9451e0ed001b7952133c65ffba9757453753f564c"
+  },
+  {
+    "id": "35",
+    "page": 15,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direitos Humanos",
+    "extracted_text_sha256": "1de44b37ce479e25b9bb58a091ad52f5a0696638d5b0048b4835cffc5e1b80ba"
+  },
+  {
+    "id": "36",
+    "page": 15,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direitos Humanos",
+    "extracted_text_sha256": "03e047ae1562a175526a2b8e18a12d3913345bbc6d30c089c804b0f5b414122b"
+  },
+  {
+    "id": "37",
+    "page": 16,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direitos Humanos",
+    "extracted_text_sha256": "aa233a70e61d00518355ffe5c7d4386ec9bcd5f76310e80e07c92c92d5832cf3"
+  },
+  {
+    "id": "38",
+    "page": 16,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direitos Humanos",
+    "extracted_text_sha256": "e67581a27ffaae59585bbffb487dcb2e987f074cf2eae24137f383c8164c8f10"
+  },
+  {
+    "id": "39",
+    "page": 17,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "4a9f03b4d21810c48b917acb37fa81d564c8def1ba5ad4fa6e55be511454c9a4"
+  },
+  {
+    "id": "40",
+    "page": 17,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "f4116478d1cbe73b2fcb97929434b72877bf7d1b3178242ce4be33845e7830e1"
+  },
+  {
+    "id": "41",
+    "page": 17,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "6f69c330225cb3d9d3bc262e5c02cab8e43b91930f4c5f4cad5411ceb1e23122"
+  },
+  {
+    "id": "42",
+    "page": 17,
+    "column": 2,
+    "status": "anulada",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "54ffe1c36cd4e304a80e501435256abc86d6e17272d72357a35ff24209757dd8"
+  },
+  {
+    "id": "43",
+    "page": 18,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "ed2abed42d371b94ad51a362dd94ac32f1fd755883568c43f723d4e56ab9ed11"
+  },
+  {
+    "id": "44",
+    "page": 18,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "997a78471d7e6ef0b0ae8d2b86d66b3fd9735a179973bfacf219adda62f14bd4"
+  },
+  {
+    "id": "45",
+    "page": 18,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "5b45aa7039d1bcdf9ae76f86889c259f05098898121313f41076946f672861b9"
+  },
+  {
+    "id": "46",
+    "page": 18,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "d00fcef1e227207ad5b4b0e42a9b1a31826d75c1aa87966848865cc82ce49668"
+  },
+  {
+    "id": "47",
+    "page": 19,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "3b9c7e2e0ff62aecfb320537624399e741fdb3f0abb770b29a31531bd484f91e"
+  },
+  {
+    "id": "48",
+    "page": 19,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "8ac416f0a2af256f3e388f4509b40ba2298610daab174cb29c831fd772fcb862"
+  },
+  {
+    "id": "49",
+    "page": 20,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "0ef7619ba77f55e54617fc32b9aa74b21b1daa1c2401e303d162c619b7010dcd"
+  },
+  {
+    "id": "50",
+    "page": 20,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Processual Civil",
+    "extracted_text_sha256": "260ea11ba094036319fcb761167f9a603a495131d09a68585f3407fab22a14b0"
+  },
+  {
+    "id": "51",
+    "page": 20,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "be845895fd8140ff729967763111b1511e53448dbf0f0a6a72511188768edaf9"
+  },
+  {
+    "id": "52",
+    "page": 21,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "31459cdada84fe206c11760c834b5c581577edcb9a705b848b1a009205d477ff"
+  },
+  {
+    "id": "53",
+    "page": 21,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "6b8bd9da73c00571a86a30d55942c36cda83f4189ae3488f63cc21e140589cc1"
+  },
+  {
+    "id": "54",
+    "page": 22,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "2939b71e27a8e858668410007e241c38862e0e15ef9100ca10217e9d7b071010"
+  },
+  {
+    "id": "55",
+    "page": 22,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "93e4f9d47be0b1683da81f78b3f0a828ffb07f062bbfdc18dcb8e6940125c7d7"
+  },
+  {
+    "id": "56",
+    "page": 22,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "3912fcac5c92bd986cad717bf87e43e68175241cf856d873b796c15ff57d0ad2"
+  },
+  {
+    "id": "57",
+    "page": 22,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "badb2f9fcef229ced27e8d3d0b28fa78e4a2ee3d278327c6e9405bb18862b29a"
+  },
+  {
+    "id": "58",
+    "page": 23,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "d9ca2571b2da3f0bfb93f30f3642c599044458eed6628cf0bb3ad75f164e6a92"
+  },
+  {
+    "id": "59",
+    "page": 23,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "ddbb82d59c7433789140299ea3c7b6d34ccb21aeb3668bf0dfa223e19e515fc8"
+  },
+  {
+    "id": "60",
+    "page": 24,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "695b33e95d88cf7fc0d874e8a75b8183e3843dd6a01a0f8d7d48a7a45098ed2c"
+  },
+  {
+    "id": "61",
+    "page": 24,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "0c547b990e6af48b3a77b02276d810c1514a216000fe8e47f3de573c74ed8bbb"
+  },
+  {
+    "id": "62",
+    "page": 25,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Civil",
+    "extracted_text_sha256": "1375f32bae392071731b6a8f80bfd4f54dc1929d2de2cfb10aaebbac0a75f096"
+  },
+  {
+    "id": "63",
+    "page": 25,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Empresarial",
+    "extracted_text_sha256": "965fd6f950dab6321def24cf8f8f3c42eba6174df715ca68712ffb62614a4190"
+  },
+  {
+    "id": "64",
+    "page": 25,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "numerado",
+    "draft_discipline": "Direito Empresarial",
+    "extracted_text_sha256": "75c064d7445a32a1f2525e6fb34e1637e6f576e8d036acc04cd4accc2f62dcf8"
+  },
+  {
+    "id": "65",
+    "page": 26,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Empresarial",
+    "extracted_text_sha256": "2dc39b6d2c2fcb69ac8ad98e51daada41f50e26de7c2b8be60d65cc2e1110d28"
+  },
+  {
+    "id": "66",
+    "page": 26,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Empresarial",
+    "extracted_text_sha256": "3b265a491e379a3c87f0ac5ee6876aa2fa4b2744895a4e7b310bdbf536e9efdd"
+  },
+  {
+    "id": "67",
+    "page": 26,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Empresarial",
+    "extracted_text_sha256": "c1c0774bb73fb130c69a04a91d08864d8144e64afad670e8fe99d5666260c5a7"
+  },
+  {
+    "id": "68",
+    "page": 27,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Empresarial",
+    "extracted_text_sha256": "0b004dc7b7f1edd09d69e1657c11d14d3cbc16720426128c502a23fc1aa16016"
+  },
+  {
+    "id": "69",
+    "page": 27,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "ab010ca6368efe34783aec4c6e1d728b4d963a1ed6e54b593bf39553370ab215"
+  },
+  {
+    "id": "70",
+    "page": 27,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "85dfef83e68e14b9dd7f672dbfda71947f8666cefbac3ed3cae51e171f57fec7"
+  },
+  {
+    "id": "71",
+    "page": 28,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "5b92698a424b1049381eb510be3cb3a42561c0cb10a5a4c1ea4ada983f804436"
+  },
+  {
+    "id": "72",
+    "page": 28,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "abc9b6b1402492a206e12aa0e2cc1d0adad7a096398dce5250443ac5044227c9"
+  },
+  {
+    "id": "73",
+    "page": 28,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "ce6faa6e47a0563db18ffdab1e65d7b7091cecb7370367fb511b78fd7022d03b"
+  },
+  {
+    "id": "74",
+    "page": 28,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "5946ae76c60ddca423db0f384fff04ed624a6cc4c5ee805e8fa6df4768c6c6ef"
+  },
+  {
+    "id": "75",
+    "page": 29,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "f9fbf4709da6bdaf8a748e246e18b7b4dfe372796d2728d9819c1481c13f708b"
+  },
+  {
+    "id": "76",
+    "page": 29,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "68b87c987abc4de486ddef90fff45ab32785df8a63457281026620610ea4c1e8"
+  },
+  {
+    "id": "77",
+    "page": 30,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "cb81b6f84e99beb1417812e2b5a2dd0221b53f3a202bd3a163ddb0c3a959736a"
+  },
+  {
+    "id": "78",
+    "page": 30,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "542c8328e8f8eb6bbc8c5716d86506665e67a519050f15a86b52551a4b918fe4"
+  },
+  {
+    "id": "79",
+    "page": 30,
+    "column": 2,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "964447613ffa3305077e81fa5ed17cbb6ed2b3ecf8207fb0a11a179166def158"
+  },
+  {
+    "id": "80",
+    "page": 31,
+    "column": 1,
+    "status": "valida",
+    "draft_format": "direto",
+    "draft_discipline": "Direito Penal",
+    "extracted_text_sha256": "051433c49715b03c06444b7602400e989ad2a3b4bbff1a194a11489b1e2261b5"
+  }
+]

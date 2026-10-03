@@ -1,0 +1,1785 @@
+{
+  "schema_version": "1.0.0",
+  "kind": "exam_calibration_profile",
+  "status": "sem_calibracao",
+  "empirical_reference_available": false,
+  "verification_basis": "declared_document_review",
+  "corpus_sha256": "e1e8b2bb2f6ca5a64e51af31165b8b4aa152c81eba1da62b17052757fd5e6896",
+  "origin": {
+    "corpus_id": "enam-2026.1-tipo1",
+    "evidence_kind": "official",
+    "edition": "ENAM 2026.1 — Tipo 1",
+    "exam_type": "enam",
+    "date": "2026-06-07",
+    "official_source": {
+      "url": "https://conhecimento.fgv.br/sites/default/files/concursos/magistratura-cns001-tipo-1.pdf",
+      "sha256": "31a6228c7f2ec52358fffb1f6add267ed075ead17d5c3ad37a500d465d084aa4",
+      "accessed_at": "2026-10-03"
+    },
+    "document_review": {
+      "reviewer": "Codex — verificação automatizada documental",
+      "date": "2026-10-03",
+      "note": "URLs vinculadas pela página oficial FGV; bytes PDF baixados e hashes calculados; capa/tipo/data/80 itens e gabarito definitivo conferidos. Extração automatizada não é revisão jurídica humana."
+    },
+    "answer_key": {
+      "status": "definitivo",
+      "url": "https://conhecimento.fgv.br/sites/default/files/concursos/enam-exame-nacional-de-magistratura-2026.1.pdf",
+      "sha256": "81c1cbfbcab8df8d6ba0cd2f1ac2950b16cefe6147ed6490af8799b14dbfbba7"
+    }
+  },
+  "coverage": {
+    "expected": 80,
+    "registered": 80,
+    "reviewed": 0,
+    "eligible": 0,
+    "excluded": 80,
+    "missing": 0
+  },
+  "distributions": {
+    "formats": {
+      "sample_size": 0,
+      "denominator": 0,
+      "counts": {
+        "direto": 0,
+        "numerado": 0,
+        "vf": 0,
+        "associacao": 0
+      }
+    },
+    "disciplines": {
+      "sample_size": 0,
+      "denominator": 0,
+      "counts": {}
+    },
+    "point_sources": {
+      "sample_size": 0,
+      "denominator": 0,
+      "counts": {}
+    },
+    "difficulty": {
+      "sample_size": 0,
+      "denominator": 0,
+      "counts": {}
+    }
+  },
+  "difficulty_estimates": [],
+  "exclusions": [
+    {
+      "question_id": "1",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "2",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "3",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "4",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "5",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "6",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "7",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "8",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "9",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "10",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "11",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "12",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "13",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "14",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "15",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "16",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "17",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "18",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "19",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "20",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "21",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "22",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "23",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "24",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "25",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "26",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "27",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "28",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "29",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "30",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "31",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "32",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "33",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "34",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "35",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "36",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "37",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "38",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "39",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "40",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "41",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "42",
+      "reasons": [
+        "classification_incomplete",
+        "question_annulled"
+      ]
+    },
+    {
+      "question_id": "43",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "44",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "45",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "46",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "47",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "48",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "49",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "50",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "51",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "52",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "53",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "54",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "55",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "56",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "57",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "58",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "59",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "60",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "61",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "62",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "63",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "64",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "65",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "66",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "67",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "68",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "69",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "70",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "71",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "72",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "73",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "74",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "75",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "76",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "77",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "78",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "79",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    },
+    {
+      "question_id": "80",
+      "reasons": [
+        "classification_incomplete"
+      ]
+    }
+  ],
+  "warnings": [
+    "small_sample_no_generalization"
+  ],
+  "not_checked": [
+    "document_bytes_not_verified",
+    "juridical_merit",
+    "representativeness",
+    "difficulty_not_official",
+    "accuracy_not_measured"
+  ],
+  "corpus": {
+    "schema_version": "1.0.0",
+    "corpus_id": "enam-2026.1-tipo1",
+    "evidence_kind": "official",
+    "edition": "ENAM 2026.1 — Tipo 1",
+    "exam_type": "enam",
+    "date": "2026-06-07",
+    "expected_questions": 80,
+    "official_source": {
+      "url": "https://conhecimento.fgv.br/sites/default/files/concursos/magistratura-cns001-tipo-1.pdf",
+      "sha256": "31a6228c7f2ec52358fffb1f6add267ed075ead17d5c3ad37a500d465d084aa4",
+      "accessed_at": "2026-10-03"
+    },
+    "document_review": {
+      "reviewer": "Codex — verificação automatizada documental",
+      "date": "2026-10-03",
+      "note": "URLs vinculadas pela página oficial FGV; bytes PDF baixados e hashes calculados; capa/tipo/data/80 itens e gabarito definitivo conferidos. Extração automatizada não é revisão jurídica humana."
+    },
+    "answer_key": {
+      "status": "definitivo",
+      "url": "https://conhecimento.fgv.br/sites/default/files/concursos/enam-exame-nacional-de-magistratura-2026.1.pdf",
+      "sha256": "81c1cbfbcab8df8d6ba0cd2f1ac2950b16cefe6147ed6490af8799b14dbfbba7"
+    },
+    "questions": [
+      {
+        "id": "1",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-1",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 3, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-2",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 3, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-3",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 3, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-4",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 3, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-5",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 4, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-6",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 4, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-7",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 4, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-8",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 5, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-9",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 5, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-10",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 5, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-11",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 5, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-12",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 6, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "13",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-13",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 6, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-14",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 7, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "15",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-15",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 7, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "16",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-16",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 7, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Constitucional",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "17",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-17",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 7, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "18",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-18",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 8, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "vf",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "19",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-19",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 8, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "20",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-20",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 9, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "21",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-21",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 9, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "22",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-22",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 10, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "23",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-23",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 10, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "24",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-24",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 11, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "25",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-25",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 11, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "26",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-26",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 12, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Administrativo",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "27",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-27",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 12, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Noções Gerais De Direito E Formação",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "28",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-28",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 12, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Noções Gerais De Direito E Formação",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "29",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-29",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 13, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Noções Gerais De Direito E Formação",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "30",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-30",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 13, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Noções Gerais De Direito E Formação",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "31",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-31",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 13, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Noções Gerais De Direito E Formação",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "32",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-32",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 14, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Noções Gerais De Direito E Formação",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "33",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-33",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 14, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direitos Humanos",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "34",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-34",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 14, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direitos Humanos",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "35",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-35",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 15, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direitos Humanos",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "36",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-36",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 15, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direitos Humanos",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "37",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-37",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 16, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direitos Humanos",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "38",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-38",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 16, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direitos Humanos",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "39",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-39",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 17, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "40",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-40",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 17, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "41",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-41",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 17, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "42",
+        "status": "anulada",
+        "reviews": [
+          {
+            "id": "draft-42",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 17, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "43",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-43",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 18, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "44",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-44",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 18, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "45",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-45",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 18, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "46",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-46",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 18, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "47",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-47",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 19, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "48",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-48",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 19, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "49",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-49",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 20, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "50",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-50",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 20, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Processual Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "51",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-51",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 20, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "52",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-52",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 21, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "53",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-53",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 21, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "54",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-54",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 22, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "55",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-55",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 22, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "56",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-56",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 22, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "57",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-57",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 22, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "58",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-58",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 23, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "59",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-59",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 23, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "60",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-60",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 24, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "61",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-61",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 24, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "62",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-62",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 25, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Civil",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "63",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-63",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 25, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Empresarial",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "64",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-64",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 25, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "numerado",
+            "discipline": "Direito Empresarial",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "65",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-65",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 26, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Empresarial",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "66",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-66",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 26, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Empresarial",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "67",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-67",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 26, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Empresarial",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "68",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-68",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 27, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Empresarial",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "69",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-69",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 27, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "70",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-70",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 27, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "71",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-71",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 28, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "72",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-72",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 28, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "73",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-73",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 28, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "74",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-74",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 28, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "75",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-75",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 29, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "76",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-76",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 29, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "77",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-77",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 30, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "78",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-78",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 30, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "79",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-79",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 30, coluna 2. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      },
+      {
+        "id": "80",
+        "status": "valida",
+        "reviews": [
+          {
+            "id": "draft-80",
+            "reviewer": "Codex — rascunho automatizado, não humano",
+            "date": "2026-10-03",
+            "note": "Página 31, coluna 1. Formato por heurística; disciplina por cabeçalho. Origem do ponto/dificuldade e classificação final aguardam revisão humana, portanto item não elegível.",
+            "format": "direto",
+            "discipline": "Direito Penal",
+            "point_source": null
+          }
+        ]
+      }
+    ]
+  }
+}
