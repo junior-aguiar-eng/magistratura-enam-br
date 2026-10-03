@@ -208,3 +208,9 @@ adicional nem promoção desse achado a certificação jurídica.
 
 Decisões de todas as tasks, com seus custos e achado adiado, preservadas em
 [decisões e achados do plano](2026-10-03-decisoes-incrementos.md).
+
+A limpeza recursiva do workspace temporário deste plano foi rejeitada
+pela política automática de autorização (`blocked by policy`), apesar
+da conferência do caminho interno e das decisões preservadas. O diretório
+`.superpowers/sdd/2026-10-02-incrementos-mcp-e-calibracao-pedagogica`
+permanece no checkout, sem arquivos rastreados. Nenhum contorno foi tentado.
