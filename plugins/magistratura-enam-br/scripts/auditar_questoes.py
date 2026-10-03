@@ -63,7 +63,7 @@ def _infer_format(
     if re.search(r"\bv\s*[/–—-]\s*f\b|verdadeir[oa].*fals[oa]|assinale\s+v\b", text):
         return "vf"
     if (
-        len(re.findall(r"(?m)^\s*(?:I|II|III|IV)[.)]\s", prompt)) >= 2
+        len(re.findall(r"(?m)^\s*(?:I|II|III|IV|[1-9]\d{0,2})[.)]\s", prompt)) >= 2
         or "afirmativas" in text
     ):
         return "numerado"

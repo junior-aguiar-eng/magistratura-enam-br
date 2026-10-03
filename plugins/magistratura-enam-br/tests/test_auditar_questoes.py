@@ -549,3 +549,21 @@ def test_artigo_e_conjuncao_com_marcadores_preservam_a_estrutura(auditor, text):
     question = questao(auditor)
     question.prompt = text
     assert not auditor.audit_question_block([question], {"q1": "C"})["errors"]
+
+
+@pytest.mark.parametrize("separator", [".", ")"])
+def test_assertivas_arabicas_sem_palavra_afirmativas_sao_numeradas(auditor, separator):
+    prompt = (
+        f"Examine as proposições:\n1{separator} Primeiro requisito.\n"
+        f"continuação.\n2{separator} Segunda consequência.\nQuais estão corretas?"
+    )
+    question = auditor.parse_question_block(bloco(prompt=prompt), format="markdown")[0]
+    assert question.format == "numerado"
+    assert question.prompt == prompt
+
+
+@pytest.mark.parametrize(
+    "prompt", ["1. Um único fato.\nAssinale a correta.", "2025. Um fato.\n2026. Outro fato."]
+)
+def test_marcador_isolado_e_anos_nao_sao_assertivas_arabicas(auditor, prompt):
+    assert auditor.parse_question_block(bloco(prompt=prompt), format="markdown")[0].format == "direto"

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-release08-associacao-reutilizacao-3",
+    "executed_at": "2026-10-03T22:24:20.366126+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (default, internal revision not exposed)",
+    "client": "Codex CLI 0.148.0 / ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103dd-e893-7c30-9d91-069b50c8da0c",
+    "round": 3,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "release08-associacao-reutilizacao",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Modo acervo_exclusivo. Transforme o material abaixo em uma questão difícil de associação de colunas, com cinco alternativas.\n\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no CPC, art. 64, §§2º–4º."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Associação com regra pública de reutilização compatível com os vínculos e combinações.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Ausência de fundamento determinante exposto antes da tentativa",
+      "Regra de reutilização visível quando aplicável",
+      "Unicidade e suporte jurídico; revisão humana necessária"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "6cd21bff6b9d3d08deb3df2bf2c0d2c072731c491e4e569941f4020b3166f5cb",
+  "output": "Em quatro processos, a parte ré arguiu a incompetência do juízo. Considere que, em todos eles, havia decisão anteriormente proferida e que ainda não sobreveio pronunciamento do órgão reputado competente.\n\nAssocie cada situação da primeira coluna à consequência jurídica correspondente da segunda coluna. **Cada opção da segunda coluna deve ser usada uma única vez.**\n\n**Primeira coluna**\n\n1. O magistrado acolheu a arguição, determinou a remessa dos autos e nada dispôs sobre a eficácia da decisão anterior.\n\n2. O magistrado, antes de ouvir a parte adversa, acolheu a arguição, determinou a remessa dos autos e declarou cessados os efeitos da decisão anterior.\n\n3. Após ouvir a parte adversa, o magistrado rejeitou a arguição e determinou o prosseguimento do processo no próprio juízo.\n\n4. Após ouvir a parte adversa, o magistrado acolheu a arguição, determinou a remessa dos autos e estabeleceu expressamente que a decisão anterior não produziria mais efeitos.\n\n**Segunda coluna**\n\nI. O procedimento observado é compatível com a disciplina da arguição; como não houve acolhimento, não se impõe o encaminhamento dos autos ao juízo indicado.\n\nII. O encaminhamento dos autos decorre do acolhimento, mas, ausente determinação judicial contrária, a decisão anterior conserva seus efeitos até eventual nova decisão do órgão competente.\n\nIII. Embora o acolhimento produza o encaminhamento dos autos e a cessação dos efeitos possa decorrer de determinação judicial expressa, não foi observada a prévia oitiva da parte adversa.\n\nIV. O encaminhamento dos autos e a cessação dos efeitos da decisão anterior possuem fundamentos distintos: o primeiro resulta do acolhimento, enquanto a segunda decorre da determinação judicial expressa.\n\nA) 1–II; 2–III; 3–I; 4–IV.  \nB) 1–IV; 2–II; 3–I; 4–III.  \nC) 1–II; 2–IV; 3–III; 4–I.  \nD) 1–III; 2–I; 3–IV; 4–II.  \nE) 1–I; 2–III; 3–II; 4–IV.",
+  "output_sha256": "d3f035c3f32fe6294c4e6e52175dbc2c281d98812b26f25555defaa3a80ba95d",
+  "evaluation": {
+    "case_id": "release08-associacao-reutilizacao",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "avaliacao-posterior"
+    ]
+  }
+}

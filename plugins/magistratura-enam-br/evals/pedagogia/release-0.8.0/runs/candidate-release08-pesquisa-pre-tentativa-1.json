@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-release08-pesquisa-pre-tentativa-1",
+    "executed_at": "2026-10-03T22:23:03.267668+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (default, internal revision not exposed)",
+    "client": "Codex CLI 0.148.0 / ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103dc-de19-7f63-b534-b75d3ea90af5",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "release08-pesquisa-pre-tentativa",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Em pesquisa_juridica_completa, use a evidência oficial já consultada abaixo para elaborar uma questão difícil. Quero estudar por uma questão esse ponto. A busca já foi realizada: a fonte é o CPC, art. 64, §§ 2º–4º, no Planalto; acesso em 2026-10-03.\n\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no CPC, art. 64, §§2º–4º."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Questão sem exposição prévia da regra determinante; base e fundamentos reservados à correção.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Ausência de fundamento determinante exposto antes da tentativa",
+      "Regra de reutilização visível quando aplicável",
+      "Unicidade e suporte jurídico; revisão humana necessária"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "d207f17676799752caaa1e2d2ce6898889db9763cd36ad4c0318bf3144b5681c",
+  "output": "Em ação de obrigação de fazer, o juízo deferiu tutela provisória para determinar o fornecimento imediato de tratamento médico. Na contestação, a parte ré arguiu incompetência do órgão jurisdicional. Após ouvir a parte autora, o magistrado acolheu a arguição, mas não se pronunciou especificamente sobre a eficácia da tutela anteriormente concedida. Remetidos os autos ao juízo reconhecido como competente, este ainda não proferiu nova decisão acerca da medida. À luz do Código de Processo Civil, assinale a afirmativa correta.\n\nA) O acolhimento da incompetência impõe a remessa dos autos e acarreta, por força de lei, a cessação imediata da tutela concedida, pois decisão proferida por juízo incompetente não pode conservar eficácia após o reconhecimento do vício.\n\nB) O magistrado que acolheu a incompetência deveria ter revogado expressamente a tutela antes da remessa, porque somente o juízo que proferiu a decisão pode retirar-lhe a eficácia, vedada sua reapreciação pelo órgão competente.\n\nC) A tutela conserva seus efeitos até que outra decisão seja proferida pelo juízo competente, pois o reconhecimento da incompetência e a remessa dos autos não lhe retiram automaticamente a eficácia, ressalvada decisão judicial em sentido contrário.\n\nD) A tutela conserva seus efeitos definitivamente, porque o acolhimento da incompetência transfere o processo sem permitir ao juízo competente modificar decisão já estabilizada pelo silêncio do magistrado que determinou a remessa.\n\nE) A tutela fica suspensa desde o acolhimento da incompetência e volta a produzir efeitos com o recebimento dos autos pelo juízo competente, salvo se este, antes da redistribuição, determinar sua revogação.",
+  "output_sha256": "1a59abf1aa5a0017a0eac3f569868e864df6e47be91b9ff481cf594d11179b90",
+  "evaluation": {
+    "case_id": "release08-pesquisa-pre-tentativa",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "avaliacao-posterior"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-release08-associacao-reutilizacao-1",
+    "executed_at": "2026-10-03T22:23:53.490622+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (default, internal revision not exposed)",
+    "client": "Codex CLI 0.148.0 / ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103dd-6ec9-7853-8359-3b9eeb02696e",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "release08-associacao-reutilizacao",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Modo acervo_exclusivo. Transforme o material abaixo em uma questão difícil de associação de colunas, com cinco alternativas.\n\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no CPC, art. 64, §§2º–4º."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Associação com regra pública de reutilização compatível com os vínculos e combinações.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Ausência de fundamento determinante exposto antes da tentativa",
+      "Regra de reutilização visível quando aplicável",
+      "Unicidade e suporte jurídico; revisão humana necessária"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "6cd21bff6b9d3d08deb3df2bf2c0d2c072731c491e4e569941f4020b3166f5cb",
+  "output": "Em quatro processos, a incompetência foi arguida e a parte adversa regularmente ouvida. Associe cada situação da primeira coluna à consequência jurídica correspondente da segunda coluna, conforme o art. 64, §§ 2º–4º, do CPC.\n\n**Primeira coluna**\n\n1. O juízo acolhe a arguição e determina a remessa dos autos, sem se pronunciar especificamente sobre a tutela provisória anteriormente concedida.\n\n2. O juízo acolhe a arguição, determina a remessa e expressamente afasta, desde logo, os efeitos de decisão interlocutória anteriormente proferida.\n\n3. O juízo acolhe a arguição e remete os autos. Posteriormente, o juízo competente profere nova decisão, incompatível com a anterior, que até então vinha produzindo efeitos.\n\n4. O juízo acolhe a arguição e determina a remessa. Uma das partes sustenta que o reconhecimento da incompetência tornou automaticamente inválidos e ineficazes todos os atos decisórios anteriormente praticados.\n\n**Segunda coluna**\n\nI. A remessa é devida, mas a alegação de perda automática e indistinta da eficácia dos atos decisórios não decorre do reconhecimento da incompetência.\n\nII. A remessa é devida, e a decisão anterior conserva seus efeitos até que outra seja proferida pelo juízo competente.\n\nIII. A remessa é devida, e a determinação judicial contrária impede a conservação dos efeitos da decisão anterior, independentemente de prévia substituição pelo juízo competente.\n\nIV. A remessa é devida, tendo a decisão anterior conservado seus efeitos apenas até a superveniência da nova decisão do juízo competente.\n\nCada opção da segunda coluna deve ser usada uma única vez.\n\nA) 1–II; 2–III; 3–IV; 4–I.  \nB) 1–IV; 2–III; 3–II; 4–I.  \nC) 1–II; 2–IV; 3–III; 4–I.  \nD) 1–III; 2–II; 3–IV; 4–I.  \nE) 1–II; 2–III; 3–I; 4–IV.",
+  "output_sha256": "94d367c71f53cc68c17e8eb1fa52af367e0383334cec9d88960fbed6fef25b7e",
+  "evaluation": {
+    "case_id": "release08-associacao-reutilizacao",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "avaliacao-posterior"
+    ]
+  }
+}
