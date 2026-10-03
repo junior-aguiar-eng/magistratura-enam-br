@@ -36,6 +36,8 @@ O widget negocia uma única conexão pelo adaptador `web/src/mcp-host.ts`: tenta
 
 `ontoolinput` vincula somente argumentos completos de renderização com `session_id`. Entrada privada, parcial ou resultado de sessão anterior não vira conteúdo público. Apenas resultado validado libera apresentação/correção, e a normalização descarta `_meta` e conteúdo auxiliar do envelope. Sessões respondidas ou invalidadas não regridem para prontas por notificação atrasada.
 
+Resultado inválido da sessão ativa e `ontoolcancelled` encerram o carregamento com aviso de falha, sem apresentar o payload recusado ou reenviar ferramenta. Resultado identificável de sessão antiga é descartado antes da validação.
+
 Uma resposta pendente bloqueia nova submissão da mesma sessão. Quando não é possível confirmar o resultado, o card bloqueia a repetição e consulta `renderizar_questao` pelo mesmo transporte, somente para leitura. Resposta ou invalidação confirmada reconcilia a tela; snapshot ainda pronto não comprova que uma mutação pendente jamais será efetivada. Nesse caso, mantenha o aviso e aguarde atualização ou reabra para consultar o estado, sem reenviar automaticamente. Fechar o card remove listeners, observer, frame de resize e chamadas pendentes. Testes com SDK real e host simulado não substituem homologação visual no ChatGPT.
 
 ## Fallback

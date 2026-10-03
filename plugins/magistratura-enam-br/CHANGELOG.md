@@ -6,6 +6,7 @@
 - Separa entrada de renderização e resultado validado, descarta `_meta` e preserva sessão/estado diante de notificações e respostas atrasadas.
 - Consulta o estado por leitura após falha de confirmação, bloqueando repetição incerta e impedindo reenvio de mutação por outro transporte.
 - Remove listeners, observer, frame e chamadas pendentes no fechamento; preserva resize e chamadas correlacionadas com progresso de aprovação.
+- Encerra carregamento com aviso de falha quando o host cancela a execução ou entrega resultado inválido, sem revelar o payload recusado.
 - Amplia o Vitest para arquivos `.ts` e `.tsx`, acrescenta cenários com SDK real e host simulado e regenera o bundle distribuído.
 - Substitui `vite-plugin-singlefile`, cuja cadeia contém `braces` vulnerável sem versão corrigida, por um empacotador Vite restrito ao HTML do widget; testa JS/CSS/assets incorporados e escape de delimitadores HTML.
 

@@ -72,6 +72,8 @@ A e B podem ser integradas separadamente. Sequência recomendada: A → B → C.
 
 **Registro da execução:** `bindSession` ancora também a questão inicial. A incerteza de confirmação bloqueia repetição por sessão; consulta pronta não autoriza reenvio. Vitest passa a descobrir `.ts` além de `.tsx`. O gate obrigatório de auditoria encontrou uma cadeia vulnerável sem versão corrigida em `vite-plugin-singlefile`; um plugin Vite limitado ao único HTML substitui esse empacotador, com teste de incorporação e escape de JS/CSS/assets. Não foi acrescentada biblioteca de UI ou dependência de runtime. Métodos de mensagens/contexto e fullscreen permanecem nas tasks 3 e 4.
 
+**Encerramento da task 2:** 37 testes web e 374 Python aprovados; TypeScript, build, auditoria npm sem vulnerabilidades, Ruff, lockfile, integração e MkDocs estrito aprovados. A revisão independente de `04c1be8..cce81f5` confirmou dois achados importantes de carregamento indefinido. Resultado malformado e cancelamento foram reproduzidos RED e corrigidos, com suíte web integral verde e bundle regenerado; resultados de sessão antiga permanecem descartados. Não houve achado crítico ou menor confirmado. Homologação no ChatGPT real continua na task 8.
+
 ## Task 3: Continuidade entre card e conversa
 
 **Files:** modificar `mcp_server/server.py`, `web/src/QuestionWidget.tsx`, `web/src/contracts.ts`, `web/src/mcp-host.ts`; criar `web/src/question-followup.ts`, `web/src/question-followup.test.ts`; ampliar `tests/test_mcp_tools.py`, `tests/test_mcp_transport.py` e `web/src/QuestionWidget.test.tsx`.

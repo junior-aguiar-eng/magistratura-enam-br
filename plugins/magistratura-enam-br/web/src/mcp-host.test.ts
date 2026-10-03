@@ -80,6 +80,7 @@ test("notificação atrasada não troca a sessão atual", async () => {
   await message({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: ready } });
   await message({ jsonrpc: "2.0", method: "ui/notifications/tool-input", params: { arguments: { session_id: next.session_id } } });
   await message({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: ready } });
+  await message({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: { session_id: ready.session_id, projection: "private" } } });
   expect(receive).toHaveBeenCalledTimes(1);
   await message({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: next } });
   expect(receive).toHaveBeenLastCalledWith({ structuredContent: next });

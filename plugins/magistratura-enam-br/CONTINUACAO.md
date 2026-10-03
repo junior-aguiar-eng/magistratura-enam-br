@@ -4,11 +4,13 @@
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `04c1be8`, por pedido específico do usuário. `QuestionHost` concentra conexão, chamadas e fechamento; `bindSession` ancora a questão inicial e a entrada completa do host. O widget usa um único transporte, trava submissão e incerteza por sessão e reconcilia falhas por `renderizar_questao`, sem nova mutação automática. A entrada do host não é conteúdo renderizável, e projeção pública não aceita campos de tentativa.
 
-Vitest inclui agora testes `.ts` previstos no plano. Validação: 35 testes web (14 do adaptador, 20 do widget e um build real), 374 testes Python, TypeScript, build, Ruff, lockfile, 42 verificações de integração e MkDocs estrito aprovados. O bundle `web/dist/index.html` foi regenerado da fonte canônica. Os avisos de comentários PURE da dependência Zod permanecem não impeditivos.
+Vitest inclui agora testes `.ts` previstos no plano. Validação: 37 testes web (14 do adaptador, 22 do widget e um build real), 374 testes Python, TypeScript, build, Ruff, lockfile, 42 verificações de integração e MkDocs estrito aprovados. O bundle `web/dist/index.html` foi regenerado da fonte canônica. Os avisos de comentários PURE da dependência Zod permanecem não impeditivos.
 
 O gate de auditoria npm identificou `braces` vulnerável sem versão corrigida na cadeia de `vite-plugin-singlefile`. Esse empacotador foi substituído por um plugin Vite restrito ao único HTML do widget, sem seleção por glob; o teste compila JS/CSS/SVG e valida incorporação e escape de delimitadores HTML. `npm audit --audit-level=moderate` passou sem vulnerabilidades após a remoção. `@types/jsdom` serve somente à tipagem do teste de build.
 
 As capacidades de mensagens/contexto são expostas para a task 3; seus métodos e ações ainda não foram implementados. Fullscreen permanece na task 4. Nenhum acervo pessoal ou log foi alterado; release/reinstalação e homologação no ChatGPT não integram esta task.
+
+Revisão independente de `04c1be8..cce81f5` identificou dois achados importantes: resultado malformado e cancelamento pelo host mantinham carregamento indefinido. Em 2026-10-03, ambos foram reproduzidos com testes RED e corrigidos: o adaptador comunica falha sem propagar payload privado, descarta resultados identificáveis de sessão antiga antes de validá-los e trata `ontoolcancelled`. Os 37 testes passaram após a correção, com novo build do bundle. Nenhum achado crítico ou menor foi confirmado; não houve segunda revisão independente após a correção.
 
 ## Incrementos MCP — task 1, 2026-10-02
 

@@ -87,6 +87,24 @@ test("carrega a questão pelo formato de resultado do bridge MCP Apps", async ()
   expect(screen.getByText(ready.prompt)).toBeInTheDocument();
 });
 
+test("resultado malformado encerra carregamento sem revelar dados privados", async () => {
+  await connectHost();
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: {
+    structuredContent: { session_id: ready.session_id, projection: "private", correct_option: "C" },
+  } });
+  expect(await screen.findByText(/Não foi possível carregar a questão/)).toBeInTheDocument();
+  expect(screen.queryByText("Carregando questão…")).not.toBeInTheDocument();
+  expect(screen.queryByText(/gabarito/i)).not.toBeInTheDocument();
+});
+
+test("cancelamento pelo host encerra carregamento sem chamar ferramenta", async () => {
+  const post = await connectHost();
+  await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-cancelled", params: { reason: "Permissão recusada" } });
+  expect(await screen.findByText(/Não foi possível carregar a questão/)).toBeInTheDocument();
+  expect(screen.queryByText("Carregando questão…")).not.toBeInTheDocument();
+  expect(post.mock.calls.some(([message]) => message.method === "tools/call")).toBe(false);
+});
+
 test("MCP Apps aguarda resposta correlacionada e trata retorno tools/call", async () => {
   const post = await connectHost();
   await hostMessage({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: { structuredContent: ready } });

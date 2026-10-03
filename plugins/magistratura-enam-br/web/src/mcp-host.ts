@@ -39,10 +39,13 @@ export function createQuestionHost(onResult: (result: ToolResult) => void): Ques
   function receiveResult(raw: unknown) {
     if (closed) return;
     let result: ToolResult;
-    try { result = normalizeToolResult(raw); } catch { return; }
+    try { result = normalizeToolResult(raw); } catch { onResult({ isError: true }); return; }
+    const value = result.structuredContent;
+    const sessionId = value && typeof value === "object" ? (value as Record<string, unknown>).session_id : undefined;
+    if (typeof sessionId === "string" && (retired.has(sessionId) || (expectedSession && sessionId !== expectedSession))) return;
     if (result.isError) { onResult(result); return; }
     let incoming: Question;
-    try { incoming = readQuestion(result); } catch { return; }
+    try { incoming = readQuestion(result); } catch { onResult({ isError: true }); return; }
     if (retired.has(incoming.session_id) || (expectedSession && incoming.session_id !== expectedSession)) return;
     if (delivered && rank[incoming.state] < rank[delivered.state]) return;
     bindSession(incoming.session_id);
@@ -52,6 +55,7 @@ export function createQuestionHost(onResult: (result: ToolResult) => void): Ques
 
   app.ontoolinput = params => { if (sdkActive && !closed) receiveInput(params.arguments); };
   app.ontoolresult = params => { if (sdkActive && !closed) receiveResult(params); };
+  app.ontoolcancelled = () => { if (sdkActive && !closed) onResult({ isError: true }); };
 
   function receiveGlobals(event: Event) {
     if (closed || transport !== "openai") return;
