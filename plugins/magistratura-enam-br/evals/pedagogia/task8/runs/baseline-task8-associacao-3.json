@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "baseline-task8-associacao-3",
+    "executed_at": "2026-10-03T21:26:49.481764+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103a9-9c0e-7091-af7c-cc9bafd161a5",
+    "round": 3,
+    "origin": "captured_session",
+    "duration_seconds": 17.499
+  },
+  "case_snapshot": {
+    "id": "task8-associacao",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato associação entre três situações e suas consequências, com cinco combinações A–E, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "70ddd002ef13b68c2dc340834c90508d117c89027a401aa9b150eadc26756cf3",
+  "output": "Em três processos distintos, a incompetência foi arguida e a parte adversa foi previamente ouvida:\n\nI. No primeiro, o magistrado rejeitou a arguição e manteve decisão provisória anteriormente proferida.\n\nII. No segundo, o magistrado acolheu a arguição, sem dispor sobre a eficácia da decisão provisória anterior.\n\nIII. No terceiro, o magistrado acolheu a arguição e determinou expressamente que a decisão provisória anterior não conservasse seus efeitos.\n\nAssocie cada situação à respectiva consequência:\n\n1. Os autos são encaminhados ao juízo competente, e a decisão anterior conserva seus efeitos até eventual nova decisão desse órgão.\n\n2. Os autos permanecem no juízo de origem em razão da rejeição da arguição, sem alteração da decisão anterior decorrente do regime aplicável ao reconhecimento da incompetência.\n\n3. Os autos são encaminhados ao juízo competente, mas a decisão anterior não conserva seus efeitos, em razão da determinação judicial expressa em sentido contrário.\n\nA associação correta é:\n\nA) I–1; II–2; III–3.\n\nB) I–2; II–1; III–3.\n\nC) I–2; II–3; III–1.\n\nD) I–3; II–1; III–2.\n\nE) I–3; II–2; III–1.",
+  "output_sha256": "9bdb57e3f6fb9045c2ca4d8263d80d51a2d9bcee597571c6efb91864145ed027",
+  "evaluation": {
+    "case_id": "task8-associacao",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

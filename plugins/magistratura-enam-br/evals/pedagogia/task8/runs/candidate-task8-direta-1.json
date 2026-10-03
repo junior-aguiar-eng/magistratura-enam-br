@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-direta-1",
+    "executed_at": "2026-10-03T21:25:16.283988+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103a8-302d-74b1-a66a-c8ca1bd86a17",
+    "round": 1,
+    "origin": "captured_session",
+    "duration_seconds": 17.882
+  },
+  "case_snapshot": {
+    "id": "task8-direta",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato direto, com cinco alternativas A–E, apenas enunciado e alternativas, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "09a65d8757b371f7b5e84998bd068642cae225f78fa95cae1bc2dc33ac73f166",
+  "output": "Em ação ajuizada perante juízo territorialmente incompetente, foi deferida decisão de natureza provisória em favor da autora. O réu arguiu a incompetência e requereu, além da remessa dos autos, a imediata cessação dos efeitos da decisão já proferida. Após ouvir a autora, o magistrado acolheu a arguição e determinou o encaminhamento do processo ao juízo competente, sem dispor expressamente sobre a eficácia da decisão anterior. Recebidos os autos, o novo juízo ainda não se pronunciou sobre ela. À luz do art. 64, §§ 2º a 4º, do Código de Processo Civil, assinale a afirmativa correta.\n\nA) O acolhimento da incompetência acarreta a remessa dos autos e a imediata perda de eficácia da decisão anterior, independentemente de pronunciamento judicial específico, cabendo ao juízo competente decidir se restabelece seus efeitos.\n\nB) A decisão anterior conserva seus efeitos mesmo após a remessa, pois o reconhecimento da incompetência não os extingue automaticamente, sem prejuízo de decisão judicial em sentido contrário ou de nova decisão do juízo competente, se for o caso.\n\nC) A remessa dos autos preserva provisoriamente a decisão anterior apenas até o efetivo recebimento do processo pelo juízo competente, momento em que seus efeitos cessam automaticamente, ainda que não haja novo pronunciamento judicial.\n\nD) O magistrado que acolhe a incompetência deve limitar-se a encaminhar os autos, pois somente o juízo competente pode deliberar sobre a manutenção ou cessação dos efeitos da decisão anteriormente proferida, que ficam suspensos durante a remessa.\n\nE) A conservação dos efeitos da decisão anterior depende de determinação expressa do magistrado que acolhe a incompetência, pois a regra de encaminhamento dos autos não implica, por si só, preservação de eficácia decisória.",
+  "output_sha256": "50bd39cc7f8ccb1fde49f1a4a63cf025aa060f099a99219c1996c6fc97ff53fd",
+  "evaluation": {
+    "case_id": "task8-direta",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

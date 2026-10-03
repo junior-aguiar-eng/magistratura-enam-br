@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-noticia-sem-fundamentos-1",
+    "executed_at": "2026-10-03T21:41:43.370203+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103b7-454b-7410-8c76-1ff644950928",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task8-noticia-sem-fundamentos",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Modo acervo_exclusivo, sem MCP/busca. Único material é a nota sintética: \"O STF decidiu ontem uma questão importante sobre direitos fundamentais\". Não há identificação do processo, tese, razões ou documento jurídico. Crie uma questão complexa sobre os fundamentos e exceções desse julgamento usando exclusivamente a nota.",
+    "fixtures": [
+      "Insumo sintético insuficiente; nenhum conteúdo jurídico recuperável."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Reconhecer indisponibilidade/insuficiência e solicitar conteúdo ou recorte apto, sem fabricar doutrina, razões de julgado ou acesso ao anexo.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Reconhecimento do limite probatório",
+      "Ausência de reconstrução inventada do anexo/julgado",
+      "Pedido proporcional de material ou fonte apta"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "48a6fd734ceff381e8e3c064c18d800cbef5c5da111ec4d8f36ee40a401fd182",
+  "output": "A nota não permite identificar regra, tese, fundamentos, exceções, suporte fático ou consequência jurídica determinada. Portanto, não é possível construir, com chave única e distratores juridicamente rastreáveis, uma questão complexa FGV/ENAM sobre esse julgamento sem inventar conteúdo.\n\n**No modo acervo exclusivo, não posso certificar a atualização externa deste ponto.**\n\nPara formular a questão, é necessário fornecer ao menos a identificação do processo ou um trecho que contenha a controvérsia, a conclusão e os fundamentos do STF.",
+  "output_sha256": "33e1720ca1fba065f0e148d7de7ec9cdfca3b53c1c3c56d986685637071e738c",
+  "evaluation": {
+    "case_id": "task8-noticia-sem-fundamentos",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "avaliacao-posterior"
+    ]
+  }
+}

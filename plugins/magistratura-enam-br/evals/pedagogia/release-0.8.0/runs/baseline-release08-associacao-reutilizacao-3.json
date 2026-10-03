@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "baseline-release08-associacao-reutilizacao-3",
+    "executed_at": "2026-10-03T22:24:10.655188+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (default, internal revision not exposed)",
+    "client": "Codex CLI 0.148.0 / ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103dd-dfa7-7b20-97ab-2cd504d44fe6",
+    "round": 3,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "release08-associacao-reutilizacao",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Modo acervo_exclusivo. Transforme o material abaixo em uma questão difícil de associação de colunas, com cinco alternativas.\n\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no CPC, art. 64, §§2º–4º."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Associação com regra pública de reutilização compatível com os vínculos e combinações.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Ausência de fundamento determinante exposto antes da tentativa",
+      "Regra de reutilização visível quando aplicável",
+      "Unicidade e suporte jurídico; revisão humana necessária"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "6cd21bff6b9d3d08deb3df2bf2c0d2c072731c491e4e569941f4020b3166f5cb",
+  "output": "Considere as situações processuais da **Coluna I** e associe-as às consequências jurídicas da **Coluna II**, conforme o art. 64, §§ 2º a 4º, do Código de Processo Civil. Cada consequência deverá ser utilizada uma única vez.\n\n**Coluna I**\n\n1. Após ouvir a parte adversa, o magistrado rejeita a arguição de incompetência.  \n2. O magistrado acolhe a arguição e determina a remessa dos autos, mas nada dispõe sobre os efeitos de tutela anteriormente concedida.  \n3. O magistrado acolhe a arguição, determina a remessa dos autos e ordena expressamente a cessação imediata dos efeitos de decisão anteriormente proferida.  \n4. Após a remessa, o juízo competente profere nova decisão sobre a matéria que havia sido objeto do pronunciamento anterior.\n\n**Coluna II**\n\n( ) A nova decisão passa a reger a matéria, sem que o reconhecimento da incompetência autorize concluir pela invalidação automática de todos os atos anteriores.  \n( ) O processo não é remetido com fundamento nessa arguição, pois a providência de encaminhamento decorre de seu acolhimento.  \n( ) Os autos são encaminhados ao juízo competente, mas a decisão anterior conserva seus efeitos até eventual pronunciamento substitutivo, ressalvada determinação judicial em sentido contrário.  \n( ) Os autos são encaminhados ao juízo competente e os efeitos da decisão anterior deixam de subsistir por força de determinação judicial expressa, não pelo simples reconhecimento da incompetência.\n\nAssinale a alternativa que apresenta a sequência correta, na ordem da **Coluna I**.\n\nA) 2 – 3 – 4 – 1  \nB) 2 – 4 – 3 – 1  \nC) 3 – 2 – 4 – 1  \nD) 3 – 2 – 1 – 4  \nE) 4 – 2 – 3 – 1",
+  "output_sha256": "514fb46e7134aba36715931e1014534de04042ce41a068aea2e2135a4ae0cc89",
+  "evaluation": {
+    "case_id": "release08-associacao-reutilizacao",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "avaliacao-posterior"
+    ]
+  }
+}

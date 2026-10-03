@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-vf-2",
+    "executed_at": "2026-10-03T21:26:07.530983+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103a8-f83f-7b52-addc-e938f1615912",
+    "round": 2,
+    "origin": "captured_session",
+    "duration_seconds": 19.281
+  },
+  "case_snapshot": {
+    "id": "task8-vf",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato V/F, com três assertivas e cinco sequências A–E, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "063f5b3f7e1a26a8dfd611ebef21dc22570a49afafc80241443fdba8be5dc3a9",
+  "output": "Um magistrado deferiu medida de urgência e, posteriormente, após arguição de incompetência pelo réu e oitiva da parte adversa, reconheceu-se incompetente. Na decisão, determinou a remessa dos autos ao juízo competente, mas nada dispôs sobre a eficácia da medida anteriormente concedida. Antes de qualquer pronunciamento do juízo destinatário, analise as assertivas:\n\nI. O acolhimento da arguição impõe o encaminhamento dos autos ao juízo competente, sem que o reconhecimento da incompetência produza, por si só, a extinção do processo ou a invalidação automática dos atos já praticados.\n\nII. Como a decisão que reconheceu a incompetência silenciou sobre a medida de urgência, seus efeitos cessam com a remessa dos autos, somente podendo ser restaurados mediante decisão expressa do juízo competente.\n\nIII. A preservação dos efeitos da medida anterior não impede decisão judicial em sentido contrário nem eventual substituição pelo juízo competente, pois o destino dos autos e a eficácia das decisões pretéritas submetem-se a regimes distintos.\n\nAssinale a sequência correta:\n\nA) V – V – F  \nB) F – V – V  \nC) V – F – V  \nD) V – F – F  \nE) F – F – V",
+  "output_sha256": "68f3199b226679e11496a1f262ca8430bdf549ae336e34ec2dd75ca5e3a73610",
+  "evaluation": {
+    "case_id": "task8-vf",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

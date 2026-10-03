@@ -1,5 +1,169 @@
 # Continuação de manutenção
 
+## Resolução de pendências e entrega 0.8.0 — 2026-10-03
+
+Push, release e reinstalação autorizados pelo usuário, assim como resolução
+das pendências. Manifesto, projeto e lockfile passam a 0.8.0. Os registros
+das tasks abaixo permanecem históricos; não descrevem o estado atual da
+autorização nem da aquisição documental.
+
+Corrigidas instruções conflitantes de pesquisa/proteção pré-tentativa e
+omissão da regra pública de reutilização. Doze novas capturas reais,
+controle `c6dbd85` e candidata congelada por conteúdo/hash, estão em
+`evals/pedagogia/release-0.8.0/`. Ambas as variantes preservaram a tentativa
+nas três sessões com fonte fornecida; candidata declarou uso único nas
+três associações e controle omitiu em uma. Não reproduz a busca web real
+nem demonstra ganho geral. Todos os registros aguardam revisão humana.
+
+O achado de marcadores arábicos foi reproduzido em dois casos RED e
+corrigido; controles de anos/marcador único passaram. Suíte com 607 testes
+Python aprovada antes do bump. Verificação de integração após o bump:
+versão 0.8.0, 42 checks, 116 JSON e 103 Python aprovados.
+
+Corpus oficial ENAM 2026.1 Tipo 1 adquirido da FGV: 80 IDs confrontados
+com gabarito definitivo, questão 42 anulada, URLs/bytes/hashes registrados.
+PDFs e textos integrais ficam fora da distribuição. Sugestões automáticas
+de classificação não são revisão humana; perfil com zero elegíveis e
+`sem_calibracao`. Pacote concreto de revisão disponível em
+`evals/pedagogia/release-0.8.0/revisao-humana.md`.
+
+Servidor de homologação preparado em loopback com biblioteca sintética.
+Novo Secure MCP Tunnel e conexão ChatGPT aguardam a confirmação específica
+de concessão de acesso remoto; o túnel e o acervo pessoais não foram
+modificados. Card/fullscreen no host real, revisão humana e calibração
+aprovada permanecem pendentes. Estado remoto e instalação devem ser
+conferidos após publicação; não se presume entrega por bump local.
+
+## Homologação dos incrementos — task 8, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de
+`8ac72de`. Relatório canônico em
+`docs/superpowers/audits/2026-10-02-validacao-incrementos-mcp-calibracao.md`;
+capturas em `evals/pedagogia/task8/`. Gates locais: 603 Python, 94 web,
+Ruff/lock/integração, npm audit zero vulnerabilidades, lint/build e
+Zensical/MkDocs estrito aprovados. Falha HTTP inicial intermitente foi
+registrada; teste isolado e suíte completa subsequente passaram sem mudança.
+
+Foram capturadas 42 sessões novas da CLI 0.148.0, com modelo observado
+gpt-5.6-sol e fontes/configuração iguais para controle `8b245f1` e candidata
+`8ac72de`. Snapshots foram enviados no prompt, sem reinstalar versões;
+catálogo de skills/contexto herdado não isolados. Três hashes distintos por
+caso/variante não provam ganho pedagógico. Todas as saídas aguardam revisão
+humana; AGENTS não recebe promoção de novas orientações. Sem corpus oficial,
+simulado empiricamente calibrado continua pendente, e seis capturas testam
+somente a ressalva. Correções usam questão de controle fixa em sessão nova.
+
+Codex CLI executou stdio real com biblioteca temporária isolada, criação,
+renderização, tentativa, consulta e invalidação; primeira criação rejeitada
+por cinco distratores foi corrigida antes de persistir. Nenhum card foi
+aberto pela CLI. ChatGPT autenticado recebeu anexo sintético e instruções
+manuais, produzindo revisão com referência ao arquivo e recuperação sem
+resposta antecipada. Isso não comprova instalação/conexão MCP candidata.
+
+ChatGPT MCP-only/card/fullscreen/permissões/mobile reais, corpus e revisão
+humana permanecem pendentes com motivos registrados. Proposta 0.8.0 para
+A+B, manifesto ainda 0.7.5. Esta task autoriza commits locais; push/CI
+remoto/merge/tag/release/reinstalação dependem de autorização específica de
+entrega. Referência de rollback v0.7.5, sem apagar dados de estudo.
+
+Revisão integral independente `8b245f1..5af73ef`: nenhum Critical, um
+Important corrigido em `c94832e` e nenhum Minor novo. O auditor aceitava
+`Gabarito: C porque...`; 80 regressões reproduziram a falha, e agora
+160 testes específicos/603 completos passam, preservando artigos/conjunções.
+Achado arábico anterior permanece adiado. Decisões históricas preservadas
+em `docs/superpowers/audits/2026-10-03-decisoes-incrementos.md`.
+No ensaio de busca, a tese foi apresentada antes da questão; na amostra
+de associação, a regra de reutilização não foi explicitada. São gates
+pedagógicos não aprovados, sem alegação de correção por revisão de código.
+
+## Incrementos pedagógicos — task 7, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `235c4f0`, por autorização específica. `modelos/pedagogia/exam-corpus.schema.json` e `scripts/calibrar_provas.py` definem registro por edição/caderno e perfil descritivo recomputável. CLI e APIs apenas leem metadados/classificações; não coletam cadernos, conferem bytes remotos, indexam biblioteca ou gravam atividade. Hash e revisão documental declarada não provam autenticidade por si.
+
+Cobertura distingue total esperado, cadastro, classificação revisada, elegíveis, exclusões e faltantes. Gabarito provisório/ausente exclui todos os itens; anuladas, pendências, revisão ausente, classificação incompleta e divergência sem resolução também não entram nas distribuições. Todas as revisões e resolução identificada permanecem rastreáveis, sem média ou última revisão automática. Dificuldade é estimativa editorial com autor/método; não se infere de extensão/duração/disciplina nem representa taxa de acerto.
+
+Auditor task6 e schema de relatório foram ampliados para consumir perfil task7, uma integração necessária além dos arquivos novos listados no brief. Perfil inclui o corpus de metadados para recomputação integral; inconsistente é recusado. Somente referência declarada oficial com item elegível permite comparação descritiva dos formatos, sem quotas, certificação jurídica ou generalização. Fixture sintética não se torna referência empírica. Bloco sem chave completa continua parcial.
+
+Nenhum corpus oficial foi selecionado/coletado; [contrato e procedimento próprios](evals/pedagogia/calibracao-enam/README.md) registram **perfil empírico pendente**. A amostra rotulada dos testes é sintética, não caderno real ou aprovação humana. Orientação de treino/simulado e três cenários do catálogo preservam alta complexidade, decisão expressa diante de divergência com AGENTS, correção integral e proteção pré-tentativa. AGENTS e instruções MCP permanecem inalterados; as orientações novas continuam candidatas sem homologação humana/host real.
+
+Validação: 43 falhas RED confirmadas após contrato inicial, seguidas de 120 corpus/auditor aprovados; duas regressões RED de contagens adulteradas por tipo corrigidas por recomputação canônica. Agora 47 testes do corpus, 124 corpus/auditor e 133 com catálogo aprovados; suíte completa com 512 Python aprovados (63,65 s), Ruff/lock/42checks aprovados. Controle comportamental já recusava proporção empírica 75/25, mas não possuía contrato executável; candidata recusou perfil fabricado, média/última revisão e aprovação/quota sem evidência em três cenários, após emissão. Isso não é benchmark repetido no mesmo modelo/cliente nem aprovação jurídica humana.
+
+Manifesto mantido em 0.7.5; task8, push, reinstalação e publicação permanecem pendentes. O achado menor da task6 sobre numeração arábica permanece registrado, sem ampliação incidental desta task.
+
+Revisão independente automatizada de `235c4f0..eb4ca69`: nenhum achado crítico ou menor, um importante — padrões de ID/hash aceitavam quebra de linha final, inflando identidade/cobertura e admitindo hash inválido. Oito regressões falharam antes da correção e passaram após uma passagem; schema exige fim real de string e hash de 64 caracteres. Agora 55 corpus/132 corpus+auditor/141 com catálogo e suíte completa com 520 Python (60,72 s) aprovados, além de Ruff/lock/42checks e MkDocs estrito; sem segunda revisão. O revisor não repetiu os gates gerais; autenticidade documental e identidade dos revisores, representatividade real, qualidade jurídica das classificações e homologação humana/hosts permanecem fora da comprovação automatizada.
+
+## Incrementos MCP — task 6, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `f94142d`, por autorização específica. `scripts/auditar_questoes.py` oferece dataclass, parser Markdown/JSON, auditor e CLI de leitura; não grava, reordena alternativas ou registra atividade. O parser conserva duplicatas e exige bloco interpretável; o auditor confronta IDs/A–E e chaves, detecta solução explícita e separa erros, avisos e checagens omitidas. O schema do relatório impede aprovação com erro ou cobertura explicitamente incompleta.
+
+Métricas de tamanho/formatos independem de chave; padrões de chave usam só questões elegíveis e informam numerador/denominador. Chave como única mais longa e correta sem absolutos diante de quatro distratores com absolutos produzem aviso somente com pelo menos oito itens e frequência superior a 75%; três letras consecutivas iguais são aviso, não reprovação jurídica. Relatório não devolve textos ou gabaritos individuais, mas continua privado de autoria porque distribuições podem revelar a resposta em amostras pequenas.
+
+Dois contratos locais foram explicitados: `correct_option` opcional na dataclass, oculto do repr, permite confrontar chave já existente em projeção privada/corrigida sem mudar o MCP; `--perfil` é recebido e marcado não validado, sem ativar quotas ou certificação de corpus. Comparação empírica depende da task 7.
+
+Validação: 52 testes novos inicialmente RED, seguidos de refinamentos RED→GREEN de status/cabeçalhos/seções, V/F e marcadores simples de solução. A revisão independente identificou três achados importantes: marcador no título descartado, artigos/conjunções confundidos com letra de resposta e seção de correção estilizada incorporada à alternativa E. Sete regressões falharam antes da correção e passaram após uma única passagem de correções; 77 testes do auditor e suíte completa com 465 testes Python aprovados (73,56 s). Ruff, lockfile, 42 verificações de integração e MkDocs estrito aprovados. Os testes da CLI verificam entradas byte a byte e ausência de arquivos novos no destino; fixtures são sintéticas, sem caderno protegido ou desempenho real.
+
+Nenhum achado crítico. Um achado menor permanece registrado: assertivas com numeração arábica, sem “afirmativas”, podem ser classificadas como diretas; a classificação JSON explícita é alternativa de autoria, e a distribuição automática precisa conferência. Não houve segunda revisão independente após a correção. O revisor reproduziu os achados em memória, sem repetir os gates gerais. Mérito jurídico, corpus/gabarito definitivo, comparação empírica e homologação em clientes reais permanecem fora desta comprovação. Um smoke em memória das 11 questões capturadas da task 5 reconheceu dez associações e um V/F, sem erros estruturais, com cobertura 0/11 e checagem parcial.
+
+Manifesto permanece 0.7.5. Não há migração de sessão, alteração do widget, indexação ou ativação do script na instalação. Publicação/reinstalação e tasks 7–8 permanecem pendentes; a task 5 continua candidata sem aprovação jurídica humana.
+
+## Incrementos MCP — task 5, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `d00540c`, por autorização específica. Revisão ancorada reutiliza o protocolo de acervo e conserva recuperação, consolidação e véspera; material anterior inacessível exige apenas recorte/checkpoint, sem memória fabricada. Notícia sem fundamentos não permite reconstruir ratio, modulação ou trânsito. Mudança de base é expressa e não suspende a política de fontes.
+
+Os formatos direto, numerado, V/F e associação e os desenhos soluções, matriz e fundamento preservam núcleo funcional, cinco alternativas, chave única, paridade e correção integral. Combinações exigem ordem/reutilização claras, sem duplicação; correção explica componentes e erros das quatro alternativas após tentativa, inclusive no acerto. `initialize.instructions` transmite o mínimo desses contratos; prompt/alternativas/correção existentes acomodam os formatos, sem migração ou campo novo.
+
+Validação: RED contratual com 11 falhas novas e oito testes anteriores aprovados, seguido de 19/19; suíte completa com 388 testes Python aprovados (68,72 s), Ruff, lockfile e 42 verificações de integração aprovados. Avaliação comportamental usa cinco sessões limpas anteriores e cinco candidatas para associação/matriz, correção após tentativa, revisão de trecho, material anterior inacessível e V/F. [Registros e rubrica posterior](evals/pedagogia/task5/README.md) preservam origem, instruções, hashes e pendência humana. O controle já gerava associações; a amostra não comprova superioridade geral nem representa homologação do modelo no ChatGPT.
+
+AGENTS permanece sem novas diretrizes porque a aprovação humana não foi obtida, como permite o plano. Manifesto continua 0.7.5; tasks 6–8, push, reinstalação e publicação não integram esta autorização.
+
+Revisão independente automatizada de `d00540c..2980e16`: nenhum achado crítico, importante ou menor; hashes das 15 saídas/casos e das instruções conferidos. Sem segunda revisão. Gates gerais foram executados pelo implementador, sem repetição pelo revisor; MkDocs estrito também passou. Q12 após mudança de base e opt-in adaptativo nos formatos novos não tiveram captura. Identificação exata do modelo/contexto recebido, aprovação jurídica humana, Q13/Q17/matriz completa e comportamento no ChatGPT/MCP-only continuam não demonstrados. Auditor/corpus permanecem nas tasks 6–7; tasks 1–4 só foram examinadas nas interfaces afetadas.
+
+
+## Incrementos MCP — task 4, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `9d65d2e`, por autorização específica. O snapshot visual versionado aceita somente sessão, escolha pendente A–E e abertura dos painéis; campos extras/inválidos e outra sessão são rejeitados. A escolha só é restaurada em ready; answered segue a resposta do servidor, e invalidated limpa o estado visual. Armazenamento OpenAI é opcional, inclusive com SDK para ferramentas; indisponibilidade conserva a interação React, sem localStorage ou memória entre sessões.
+
+O SDK anuncia inline/fullscreen e usa `requestDisplayMode`; o bridge legado detecta seu método antes de oferecer controle. Clique solicita expansão ou retorno, com trava enquanto pendente e falha acessível. Resposta com outro modo mantém esse modo; notificação externa mais recente vence ACK atrasado. Não há Fullscreen API do navegador, expansão automática ou chamada de ferramenta por troca de apresentação. Tema/variáveis são aplicados pelos helpers do SDK, com fallback CSS e restauração no fechamento; altura e safeAreaInsets reservam espaço para o host. Os recursos v2/v1 anunciam os modos também em `openai/ui`.
+
+Validação local: 377 testes Python e 94 web aprovados, TypeScript/build, Ruff/lockfile, 42 verificações de integração e auditoria npm sem vulnerabilidades. QA no navegador com host sintético: questões/correções longas, painéis expandidos até fontes, roundtrip ready/answered/invalidated, teclado/foco, claro/escuro, viewport 360 px e zoom 200% (separadamente), movimento reduzido sem transição e composer simulado acessível. Esse ensaio não comprova operação no ChatGPT real; a task 8 continua responsável pela homologação. Bundle regenerado; manifesto permanece 0.7.5, sem push/reinstalação/publicação nesta task. Nenhuma evidência de cache de host foi obtida: URIs preservadas e eventual revisão de URI depende da homologação.
+
+
+Revisão independente de `9d65d2e..b366a2c`: dois achados importantes, nenhum crítico ou menor. O retorno desaparecia quando o host permitia somente inline durante fullscreen; nova dimensão sem limite de altura preservava o limite anterior. Ambos foram reproduzidos em três testes RED e corrigidos em uma única passagem: o controle considera o destino permitido, e dimensão explicitamente recebida sem altura remove a variável, enquanto notificação sem dimensões preserva o valor. A suíte web completa passou com 94 testes; TypeScript/build foram repetidos e o bundle regenerado. Não houve segunda revisão independente após as correções.
+
+## Incrementos MCP — task 3, 2026-10-03
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `1934373`, por autorização específica. `obter_questao` anuncia saída de sessão e acesso modelo/app sem template de UI; reutiliza a projeção atual do repositório, preservando arquivos e logs. O card consulta essa ferramenta antes de preparar a continuidade e a instrução canônica determina nova consulta pelo modelo antes de atender.
+
+Após tentativa, estão disponíveis explicação do erro (somente em erro), aprofundamento da distinção e pedido de outra questão. Invalidação mantém apenas o último pedido, com aviso. O SDK usa mensagens/contexto negociados; OpenAI usa `sendFollowUpMessage`. Ausência de mensagens oferece texto selecionável. O contexto contém apenas versão, sessão, ação, disciplina, tema e estado; cada atualização substitui a anterior. Nenhuma ação gera questão, registra tentativa ou modifica perfil automaticamente.
+
+Trava por sessão/instância impede cliques duplicados; mudança de sessão durante consulta/contexto interrompe o pedido antigo. Falha de contexto não impede a mensagem autossuficiente, e falha de envio permite nova tentativa explícita. A leitura não refocaliza a correção já lida. CSS mínimo organiza botões responsivos e textarea sem nova biblioteca.
+
+Validação local: 377 testes Python e 57 web (16 do adaptador, 32 do widget, oito de followup e um build real), TypeScript, build, Ruff, lockfile, 42 checks de integração e MkDocs estrito aprovados; auditoria npm sem vulnerabilidades. A asserção anterior de visibilidade foi atualizada para a nova consulta sem expor template. Bundle regenerado da fonte canônica. Homologação visual e comportamento do modelo no ChatGPT real permanecem na task 8; fullscreen na task 4. Manifesto continua em 0.7.5; este ciclo não publica nem reinstala o plugin.
+
+Revisão independente de `1934373..d79bd59`: um achado importante, nenhum crítico ou menor. Entrada de outra sessão durante confirmação do contexto, sem resultado novo ainda, permitia enviar pedido antigo porque a UI aguardava o resultado para trocar seu estado. O caso foi reproduzido RED e corrigido: `sendMessage(text, sessionId)` verifica a sessão vinculada no adaptador imediatamente antes do despacho e após a confirmação. A suíte web completa passou com 57 testes e o bundle foi regenerado. Não houve segunda revisão independente após a correção.
+
+## Incrementos MCP — task 2, 2026-10-02
+
+Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `04c1be8`, por pedido específico do usuário. `QuestionHost` concentra conexão, chamadas e fechamento; `bindSession` ancora a questão inicial e a entrada completa do host. O widget usa um único transporte, trava submissão e incerteza por sessão e reconcilia falhas por `renderizar_questao`, sem nova mutação automática. A entrada do host não é conteúdo renderizável, e projeção pública não aceita campos de tentativa.
+
+Vitest inclui agora testes `.ts` previstos no plano. Validação: 37 testes web (14 do adaptador, 22 do widget e um build real), 374 testes Python, TypeScript, build, Ruff, lockfile, 42 verificações de integração e MkDocs estrito aprovados. O bundle `web/dist/index.html` foi regenerado da fonte canônica. Os avisos de comentários PURE da dependência Zod permanecem não impeditivos.
+
+O gate de auditoria npm identificou `braces` vulnerável sem versão corrigida na cadeia de `vite-plugin-singlefile`. Esse empacotador foi substituído por um plugin Vite restrito ao único HTML do widget, sem seleção por glob; o teste compila JS/CSS/SVG e valida incorporação e escape de delimitadores HTML. `npm audit --audit-level=moderate` passou sem vulnerabilidades após a remoção. `@types/jsdom` serve somente à tipagem do teste de build.
+
+As capacidades de mensagens/contexto são expostas para a task 3; seus métodos e ações ainda não foram implementados. Fullscreen permanece na task 4. Nenhum acervo pessoal ou log foi alterado; release/reinstalação e homologação no ChatGPT não integram esta task.
+
+Revisão independente de `04c1be8..cce81f5` identificou dois achados importantes: resultado malformado e cancelamento pelo host mantinham carregamento indefinido. Em 2026-10-03, ambos foram reproduzidos com testes RED e corrigidos: o adaptador comunica falha sem propagar payload privado, descarta resultados identificáveis de sessão antiga antes de validá-los e trata `ontoolcancelled`. Os 37 testes passaram após a correção, com novo build do bundle. Nenhum achado crítico ou menor foi confirmado; não houve segunda revisão independente após a correção.
+
+## Incrementos MCP — task 1, 2026-10-02
+
+Plano/spec aprovados e versionados na branch `codex/incrementos-mcp-calibracao`, a partir de `main` em `8b245f1`. O pedido vigente executa somente a task 1; tasks 2–8 permanecem pendentes, incluindo fullscreen na task 4. Manifesto e pacote continuam em 0.7.5; esta alteração ainda não constitui release ou reinstalação.
+
+`mcp_server/instructions.py` extrai um bloco único de `references/questoes-interativas-mcp.md`; o SDK o anuncia em `initialize.instructions`. `mcp_server/outputs.py` deriva o schema público/corrigido da sessão canônica, expande referências locais para o registro Pydantic e valida a projeção na saída. Demais saídas usam TypedDict. Não houve atualização de dependências, alteração de logs ou regeneração de widget. Visibilidade de renderização/resposta inclui modelo e app; ferramentas de gestão ficam para o modelo.
+
+Validação: 374 testes Python aprovados (62,56 s), Ruff, lockfile e 42 verificações de integração aprovadas. Discovery e chamadas reais por cliente MCP, `stdio` e HTTP local usam apenas biblioteca sintética. A saída pública também rejeita campos de tentativa para evitar revelação indireta da chave. A inicialização foi verificada no protocolo; aplicação dessas instruções pelo modelo e homologação visual no ChatGPT são limites distintos.
+
+Revisão independente do intervalo `8b245f1..b062ce0` aprovada, sem achados críticos, importantes ou menores. O revisor verificou adicionalmente, com cliente MCP real, que retorno privado inválido gera erro sem conteúdo privado no envelope e que sessões corrigidas históricas continuam legíveis. As tasks posteriores e a homologação no ChatGPT permanecem pendentes conforme o plano.
+
 ## Release 0.7.5 — 2026-10-02
 
 Versão 0.7.5 sincronizada no manifesto e no ambiente Python. O usuário autorizou commit, push, reinstalação e publicação em 2026-10-02. As correções foram integradas com os três commits novos de main; a publicação exige os gates desta árvore final. O repositório remoto foi confirmado público. Nenhuma tarefa agendada ou indexação pessoal é ativada pela release.

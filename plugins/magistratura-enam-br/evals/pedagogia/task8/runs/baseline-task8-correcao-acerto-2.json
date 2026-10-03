@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "baseline-task8-correcao-acerto-2",
+    "executed_at": "2026-10-03T21:28:21.337742+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103ab-02ec-7570-9ac6-ef0276bf48cf",
+    "round": 2,
+    "origin": "captured_session",
+    "duration_seconds": 27.295
+  },
+  "case_snapshot": {
+    "id": "task8-correcao-acerto",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nContexto didático fornecido integralmente nesta sessão nova; não é retomada técnica de outra sessão. A questão já foi apresentada e minha tentativa foi A. Corrija integralmente, inclusive as alternativas erradas, com base no material.\n\nQuestão de controle autoral: O juízo deferiu medida incidental e depois acolheu a incompetência, após ouvir a parte contrária. Não houve decisão que retirasse a eficácia da medida nem novo pronunciamento do juízo competente. Conforme exclusivamente o material, qual consequência se aplica?\nA) Os autos seguem ao juízo competente, conservando-se os efeitos da medida até eventual decisão substitutiva, ressalvada determinação judicial contrária.\nB) O acolhimento mantém os autos na origem e conserva automaticamente os efeitos sem possibilidade de revisão.\nC) Os autos seguem ao juízo competente e os efeitos da medida cessam automaticamente pelo reconhecimento da incompetência.\nD) Os autos seguem ao juízo competente, mas a conservação dos efeitos depende de ratificação expressa anterior ao encaminhamento.\nE) A incompetência determina extinção do processo e perda automática dos efeitos da medida.\n\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "7b3cba11144ef7cf8d2978f0b94b427880a47314572c5665ee9327fbca443c64",
+  "output": "Sua resposta está correta. Gabarito: **A**.\n\nO art. 64, §§ 2º a 4º, do CPC, conforme o material fornecido, distingue duas consequências do acolhimento da incompetência:\n\n1. os autos são remetidos ao juízo competente;\n2. a decisão anteriormente proferida conserva seus efeitos até eventual decisão substitutiva do juízo competente, salvo determinação judicial em sentido contrário.\n\nNo caso, a medida incidental já havia sido deferida. Como não houve decisão retirando-lhe a eficácia nem novo pronunciamento do juízo competente, seus efeitos permanecem durante a remessa. O reconhecimento da incompetência não produz, por si só, invalidação automática da decisão anterior.\n\n- **A — correta.** Reúne adequadamente o encaminhamento dos autos e a conservação provisória dos efeitos, ressalvando decisão judicial contrária.\n- **B — incorreta.** Acolhida a incompetência, os autos não permanecem no juízo de origem. Além disso, a eficácia não é irrevisável: pode haver determinação contrária ou decisão substitutiva do juízo competente.\n- **C — incorreta.** Confunde reconhecimento da incompetência com perda automática da eficácia. O material afirma precisamente o contrário.\n- **D — incorreta.** A conservação dos efeitos não depende de ratificação expressa anterior à remessa. Ela decorre da regra legal, enquanto não houver decisão em sentido contrário ou pronunciamento substitutivo.\n- **E — incorreta.** O acolhimento da incompetência determina a remessa, não a extinção do processo. Também não acarreta perda automática dos efeitos da medida.\n\n**Chave de prova:** não confundir o destino processual dos autos com a eficácia dos atos já praticados. A incompetência provoca a remessa; não implica nulidade ou ineficácia automática da decisão anterior.\n\nBase exclusiva: material didático fornecido, fundado no art. 64, §§ 2º–4º, do CPC. No modo acervo exclusivo, não posso certificar a atualização externa deste ponto.",
+  "output_sha256": "bd44ec02d1d912338eacc3535d8492e496f28f92709f0ace625d20e76f26bd64",
+  "evaluation": {
+    "case_id": "task8-correcao-acerto",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

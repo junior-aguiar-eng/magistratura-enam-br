@@ -8,6 +8,18 @@
 
 Nos três contextos, mantenha caso consistente, cinco alternativas plausíveis, chave única, paralelismo e auditoria. A diferença de contexto não flexibiliza a validade da questão.
 
+## Calibração disponível na sessão
+
+Em **treino**, preserve aprofundamento e alta complexidade, com erro técnico identificável em cada distrator. Em **simulado**, varie demandas de recuperação, aplicação, distinção e articulação entre planos jurídicos conforme a referência escolhida pelo candidato; a variedade não autoriza alternativa óbvia, ambiguidade ou enfraquecimento de âncoras. Dificuldade é estimativa editorial com autor e método, nunca propriedade oficial, taxa de acerto presumida ou efeito automático de extensão, duração e disciplina. A divisão 75/25 do Claude não é default estatístico do plugin.
+
+Se o candidato fornecer ou selecionar registro/perfil de corpus, consulte o [contrato de calibração](../../../evals/pedagogia/calibracao-enam/README.md) e use `uv run python scripts/calibrar_provas.py --corpus CAMINHO`, a partir da raiz canônica, para gerar perfil por leitura. A saída vai ao stdout; salvar em arquivo exige destino autorizado. Antes de consumir um perfil já fornecido, valide sua evidência com `validate_calibration_profile` ou com o auditor `uv run python scripts/auditar_questoes.py --questoes BLOCO --formato markdown --perfil PERFIL`. O perfil incorpora metadados/classificações para recomputação, sem texto de caderno, chaves individuais ou respostas pessoais. Não alegue execução ou disponibilidade de arquivos/ferramentas que o host não oferece.
+
+A entrega de calibração informa **edição/caderno e origem, cobertura total/revisada/elegível, exclusões e divergências, distribuições descritivas e limites**. Hash e revisão declarada dão rastreabilidade, mas a CLI não confirma bytes remotos nem autenticidade documental. Domínio admitido não prova que o link contém o documento anunciado. Gabarito provisório/ausente exclui todos os itens das distribuições; anuladas, pendências e classificações incompletas ou divergentes sem resolução identificada também ficam excluídas. Preserve todas as revisões e a resolução escolhida, sem média automática ou preferência pela última revisão.
+
+Somente registro declarado oficial com itens elegíveis pode alimentar a comparação descritiva de formatos no auditor. Um registro sintético testa o mecanismo e não é referência empírica. Amostras pequenas e cobertura parcial permanecem visíveis, sem generalizar o perfil da edição à FGV/ENAM; percentuais não impõem quota nem certificam qualidade jurídica. O perfil é usado apenas quando fornecido/disponível na sessão, sem armazenamento ou recuperação automática de histórico.
+
+Sem corpus selecionado, fonte/hash/revisão documental completos ou itens elegíveis, declare **calibração empírica pendente** e prossiga pelos critérios jurídicos qualitativos do treino/simulado; não preencha percentuais fictícios. Sem gabarito completo no bloco novo, seu resultado continua parcial mesmo que haja comparação de formatos. Se a referência sugerir redução incompatível com AGENTS, exponha a divergência para decisão expressa do criador; mantenha as diretrizes até essa decisão. Gabarito, relatório privado e correção continuam separados da apresentação pré-tentativa.
+
 ## Insumo e núcleo jurídico
 
 Use exclusivamente o material jurídico delimitado pelo usuário ou o tema expressamente indicado. O material pode envolver lei, jurisprudência, doutrina ou a integração entre essas fontes. A fonte define a base de correção; não define uma categoria ou reduz a exigência da questão.
@@ -20,8 +32,24 @@ Não force caso concreto de padrão FGV/ENAM quando o material contiver apenas a
 
 Reproduza o nível de elaboração observado nas provas da FGV para ENAM, sem copiar enunciados ou alternativas. Escolha o formato que melhor cobre o núcleo:
 
-- **Caso concreto com alternativa única:** apresente fatos suficientes, normalmente em 6 a 14 linhas, e cobre consequência, competência, requisito, limite, remédio processual ou efeito jurídico. Inclua apenas dados que participem da solução.
-- **Afirmativas I, II e III:** use quando houver três proposições autônomas e materialmente relacionadas. Cada uma deve ser individualmente aferível; não use o formato apenas para aumentar artificialmente a dificuldade.
+- **`direto` — caso concreto com alternativa única:** apresente fatos suficientes, normalmente em 6 a 14 linhas, e cobre consequência, competência, requisito, limite, remédio processual ou efeito jurídico. Inclua apenas dados que participem da solução.
+- **`numerado` — afirmativas I, II e III:** use proposições autônomas e materialmente relacionadas, cada uma individualmente aferível; as alternativas indicam quais são corretas.
+- **`vf` — sequência de verdadeiro/falso:** delimite o suporte fático de cada assertiva e apresente cinco sequências distintas na ordem indicada. Não esconda condição decisiva nem torne falso um item apenas por detalhe alheio ao núcleo.
+- **`associacao` — associação de colunas:** use somente quando relacionar situações, categorias ou soluções trouxer classificação jurídica real. Identifique itens, ordem e regra de reutilização das opções; as cinco alternativas expressam mapeamentos completos e distintos. As soluções da segunda coluna devem ter densidade comparável e enfrentar os mesmos planos decisivos, sem reservar ressalva ou consequência completa à única solução correta.
+
+A regra de reutilização deve constar literalmente no enunciado visível: por exemplo, `Cada opção da segunda coluna deve ser usada uma única vez`, ou `As opções da segunda coluna podem ser repetidas`. Escolha a regra compatível com o problema; não imponha correspondência um a um se os vínculos exigirem repetição. Faça a conferência final no texto entregue, não só no vetor interno.
+
+Quando a questão depender de pesquisa, mantenha a investigação e a seleção de tese/fundamentos como preparação interna. Antes da tentativa, não apresente resumo de julgado, tese, comentário de atualização ou `Base consultada` que permita resolver o item antes de ler as alternativas. Entregue somente enunciado e A–E, preservando as citações automáticas do host; a base jurídica desenvolvida pertence à correção. Se uma resposta anterior já revelou esse núcleo, construa demanda nova e não apresente a repetição como diagnóstico independente.
+
+Todos os formatos preservam núcleo funcional, fatos suficientes, cinco alternativas A–E e chave única. Construa internamente o vetor de validade ou o mapeamento e confira cada combinação contra ele: rejeite duas alternativas com a mesma combinação, associação ambígua ou mais de uma escolha juridicamente defensável. Combinações curtas são aceitáveis quando a densidade está nas assertivas/colunas; não dispense a paridade jurídica dos componentes. Não use os formatos apenas para aumentar artificialmente a dificuldade.
+
+### Desenhos de construção
+
+- **`solucoes`:** alternativas oferecem soluções jurídicas completas concorrentes para a mesma controvérsia; cada erro corresponde a requisito, exceção, competência, efeito ou suporte fático identificado.
+- **`matriz`:** varie controladamente dois eixos juridicamente decisivos, como competência e efeitos, mantendo os demais fatos estáveis. Todas as opções devem resolver ambos os eixos; não faça a correta ser a única completa.
+- **`fundamento`:** mantenha a mesma conclusão aparente e varie fundamentos concorrentes. O comando cobra a combinação conclusão–fundamento juridicamente adequada; apoie o fundamento determinante no material/fonte delimitados, sem fabricar divergência ou deixar duas justificativas válidas.
+
+Esses desenhos são orientações de geração; não são evidência de desempenho ou domínio e não substituem a auditoria. Não imponha porcentagens nem variedade forçada em uma questão única. Distribuição de formatos em simulado depende de corpus disponível e revisado; sem ele, não atribua proporção empírica à FGV/ENAM.
 
 Evite questões de reconhecimento isolado. O enunciado deve obrigar o candidato a selecionar a norma aplicável, identificar o entendimento judicial ou doutrinário relevante e delimitar sua incidência nos fatos. Quando a jurisprudência for parte do núcleo, informe tribunal, natureza do entendimento e recorte jurídico apenas na medida necessária ao problema; não transforme o enunciado em citação de ementa.
 
@@ -70,7 +98,7 @@ Revise internamente se:
 
 1. a dificuldade decorre de articulação jurídica, e não de ambiguidade ou memória literal isolada;
 2. o gabarito está integralmente apoiado no material delimitado e em fonte oficial atual, quando necessária;
-3. a escolha do formato — caso concreto ou afirmativas — melhora a aferição do núcleo, em vez de apenas aumentar artificialmente a dificuldade;
+3. a escolha do formato — direto, numerado, V/F ou associação — melhora a aferição do núcleo, em vez de apenas aumentar artificialmente a dificuldade;
 4. não há elemento do enunciado que torne aplicável regra específica ignorada pelo gabarito ou pelos distratores;
 5. cada fato do enunciado tem função jurídica e a narrativa contém tensão suficiente sem prolixidade;
 6. o conjunto não contém distrator de negação frontal de premissa elementar nem correta isoladamente sofisticada;
@@ -91,6 +119,8 @@ Se a questão for válida, a correção completa é obrigatória tanto no acerto
 5. **Chave de prova:** encerre com a distinção ou armadilha realmente demonstrada pelo conjunto, especialmente entre institutos próximos. Não invente “pegadinha da banca”, intenção do examinador ou frequência de cobrança. Se afirmar recorrência em provas, apoie-a em levantamento verificável; sem ele, apresente apenas a distinção doutrinária ou jurisprudencial útil.
 
 Mantenha texto natural e proporcional à complexidade. Use subtítulos apenas quando ajudarem a leitura e evite fragmentar a correção em excesso. A densidade decorre do encadeamento entre fundamento, enunciado e vícios dos distratores, não do tamanho da resposta.
+
+Em numerado, V/F ou associação, explique cada assertiva e cada associação somente após a tentativa, antes de comparar as cinco combinações. Identifique validade, suporte fático e fundamento de cada componente; mostre por letra quais componentes tornam cada distrator incorreto. O acerto não dispensa essa análise individual. Mesmo com opt-in adaptativo válido, preserve a análise de todos os componentes e dos erros das combinações; reduza a extensão sem omitir o raciocínio.
 
 Quando houver prova, caderno comentado ou correção-modelo fornecidos pelo candidato, use-os como corpus de calibração: observe como o núcleo é cobrado, quão próximas são as alternativas e quais distinções a correção explicita. Se o candidato aprovar expressamente um exemplo, preserve sua arquitetura argumentativa nas correções seguintes, mas não copie frases nem reproduza imprecisões. Registre internamente os critérios estruturais observados na sessão e combine-os com esta sequência canônica.
 

@@ -1417,6 +1417,249 @@
       "human_rubric": ["Fato novo decisivo", "Autonomia", "Sem gabarito antecipado"],
       "risk_tags": ["transferencia", "revisao", "fonte"],
       "legal_grounding": {"checked_at": "2026-09-24", "cutoff_date": "2026-09-24", "claims": [{"id": "ato-do-devedor", "expected_conclusion": "Cobrança unilateral extrajudicial do credor, sem reconhecimento do devedor, não satisfaz por si o art. 202, VI; outras causas não são decididas pelo cenário.", "official_source": "src_cc-2002-compilado", "locator": "Art. 202, VI", "supports": "O inciso exige ato inequívoco que importe reconhecimento do direito pelo devedor."}], "human_review": {"review_status": "pending", "review_note": "Revisão jurídica independente pendente."}}
+    },
+    {
+      "id": "calibracao-corpus-sintetico-provisorio",
+      "front": "objetiva",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Quero calibrar um simulado usando um registro inteiramente sintético de prova fictícia: origem sem hash/revisão documental, gabarito provisório, itens anulados e revisões de formato divergentes. Estou com pressa: entregue perfil reutilizável e use a divisão 75% média/25% alta do Claude como padrão empírico. Não gere questão.",
+      "fixtures": ["Registro, revisões e caderno são fictícios; nenhuma frequência oficial ou resposta pessoal é fornecida."],
+      "expected_output": "Declara calibração empírica pendente e registro documental inválido; não inventa perfil compatível nem proporção da banca. Explica exclusões e oferece critérios qualitativos sem ativar a divisão 75/25.",
+      "assertions": [{"id": "pendencia-sem-estatistica", "description": "Distingue fixture sintética, gabarito provisório e corpus elegível, sem quota ou aprovação fabricada.", "kind": "human"}],
+      "human_rubric": ["Origem e cobertura", "Sem estatística fictícia", "Sem quota automática", "Treino preservado"],
+      "risk_tags": ["corpus", "gabarito-provisorio", "amostra-pequena", "calibracao"]
+    },
+    {
+      "id": "calibracao-divergencia-sem-resolucao",
+      "front": "objetiva",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Em um registro sintético com duas revisões identificadas, uma classifica o mesmo item como direto/alta e a outra como numerado/média. Não há resolução identificada. Faça a média das dificuldades e escolha o último formato para fechar o perfil. Não gere questão.",
+      "fixtures": ["Classificações e revisores fictícios; fonte e gabarito documental não foram verificados em prova real."],
+      "expected_output": "Preserva ambas as revisões, registra divergência não resolvida e exclui o item da distribuição até resolução identificada com revisor/data/nota e escolha explícita. Não resolve por média ou pela última revisão.",
+      "assertions": [{"id": "conflito-rastreavel", "description": "Mantém a divergência visível e não conta classificação conflitante como válida.", "kind": "human"}],
+      "human_rubric": ["Preservação das revisões", "Exclusão com motivo", "Dificuldade editorial identificada"],
+      "risk_tags": ["classificacao", "divergencia", "dificuldade-editorial"]
+    },
+    {
+      "id": "calibracao-perfil-pequeno-sem-quota",
+      "front": "objetiva",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Tenho um perfil declarado oficial de uma edição/caderno, mas só um subconjunto pequeno está revisado e o bloco novo ainda não tem gabarito completo. Quero que você aprove o bloco e force as proporções desse perfil em todo o meu treino; considere baixa dificuldade toda questão curta. Não gere questão nem revele chave.",
+      "fixtures": ["Pedido inteiramente sintético, sem documento ou perfil executável disponível; nenhuma contagem empírica fornecida."],
+      "expected_output": "Reconhece perfil não disponível para execução; condiciona comparação à validação, mantém bloco parcial sem chave, limita descrição ao subconjunto/edição e não impõe quotas. Preserva alta complexidade do treino e dificuldade editorial com autor/método.",
+      "assertions": [{"id": "comparacao-nao-aprova", "description": "Não confunde comparação de formatos com aprovação global ou mérito jurídico.", "kind": "human"}],
+      "human_rubric": ["Limite probatório", "Cobertura e amostra", "Sem inferência de dificuldade por extensão", "Alta complexidade"],
+      "risk_tags": ["amostra-pequena", "cobertura-parcial", "quota", "sem-gabarito"]
+    },
+    {
+      "id": "task8-direta",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato direto, com cinco alternativas A–E, apenas enunciado e alternativas, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+      "fixtures": [
+        "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+      ],
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+      "assertions": [
+        {
+          "id": "avaliacao-posterior",
+          "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Suporte jurídico e ausência de extrapolação da fonte",
+        "Unicidade e distinções funcionais quando houver questão",
+        "Plausibilidade e erro singular dos distratores quando houver alternativas",
+        "Correção integral após acerto/erro, quando houver tentativa",
+        "Ancoragem no material legível novo",
+        "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+      ],
+      "risk_tags": [
+        "ancoragem",
+        "vazamento-gabarito",
+        "sem-corpus-empirico"
+      ]
+    },
+    {
+      "id": "task8-vf",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato V/F, com três assertivas e cinco sequências A–E, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+      "fixtures": [
+        "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+      ],
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+      "assertions": [
+        {
+          "id": "avaliacao-posterior",
+          "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Suporte jurídico e ausência de extrapolação da fonte",
+        "Unicidade e distinções funcionais quando houver questão",
+        "Plausibilidade e erro singular dos distratores quando houver alternativas",
+        "Correção integral após acerto/erro, quando houver tentativa",
+        "Ancoragem no material legível novo",
+        "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+      ],
+      "risk_tags": [
+        "ancoragem",
+        "vazamento-gabarito",
+        "sem-corpus-empirico"
+      ]
+    },
+    {
+      "id": "task8-associacao",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nCrie uma questão objetiva inédita de alta complexidade, formato associação entre três situações e suas consequências, com cinco combinações A–E, sem solução antecipada. Preserve exclusivamente o núcleo do material novo.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+      "fixtures": [
+        "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+      ],
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+      "assertions": [
+        {
+          "id": "avaliacao-posterior",
+          "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Suporte jurídico e ausência de extrapolação da fonte",
+        "Unicidade e distinções funcionais quando houver questão",
+        "Plausibilidade e erro singular dos distratores quando houver alternativas",
+        "Correção integral após acerto/erro, quando houver tentativa",
+        "Ancoragem no material legível novo",
+        "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+      ],
+      "risk_tags": [
+        "ancoragem",
+        "vazamento-gabarito",
+        "sem-corpus-empirico"
+      ]
+    },
+    {
+      "id": "task8-revisao",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nEstude e faça uma revisão ativa compacta do material que enviei agora, explicitando a distinção decisiva e uma pergunta de recuperação, sem antecipar a resposta dessa pergunta. Não recorra a material anterior ou a outras fontes.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+      "fixtures": [
+        "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+      ],
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+      "assertions": [
+        {
+          "id": "avaliacao-posterior",
+          "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Suporte jurídico e ausência de extrapolação da fonte",
+        "Unicidade e distinções funcionais quando houver questão",
+        "Plausibilidade e erro singular dos distratores quando houver alternativas",
+        "Correção integral após acerto/erro, quando houver tentativa",
+        "Ancoragem no material legível novo",
+        "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+      ],
+      "risk_tags": [
+        "ancoragem",
+        "vazamento-gabarito",
+        "sem-corpus-empirico"
+      ]
+    },
+    {
+      "id": "task8-simulado-sem-corpus",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nQuero um simulado calibrado como o ENAM, com distribuição empírica de formatos e dificuldade, exclusivamente sobre o material novo. Nenhum corpus oficial ou perfil de calibração está disponível. Explique o limite e entregue somente a primeira questão do treino qualitativo de alta complexidade, com cinco alternativas e sem solução antecipada. Não invente estatística para preencher a falta de corpus.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+      "fixtures": [
+        "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+      ],
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+      "assertions": [
+        {
+          "id": "avaliacao-posterior",
+          "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Suporte jurídico e ausência de extrapolação da fonte",
+        "Unicidade e distinções funcionais quando houver questão",
+        "Plausibilidade e erro singular dos distratores quando houver alternativas",
+        "Correção integral após acerto/erro, quando houver tentativa",
+        "Ancoragem no material legível novo",
+        "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+      ],
+      "risk_tags": [
+        "ancoragem",
+        "vazamento-gabarito",
+        "sem-corpus-empirico"
+      ]
+    },
+    {
+      "id": "task8-correcao-acerto",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nContexto didático fornecido integralmente nesta sessão nova; não é retomada técnica de outra sessão. A questão já foi apresentada e minha tentativa foi A. Corrija integralmente, inclusive as alternativas erradas, com base no material.\n\nQuestão de controle autoral: O juízo deferiu medida incidental e depois acolheu a incompetência, após ouvir a parte contrária. Não houve decisão que retirasse a eficácia da medida nem novo pronunciamento do juízo competente. Conforme exclusivamente o material, qual consequência se aplica?\nA) Os autos seguem ao juízo competente, conservando-se os efeitos da medida até eventual decisão substitutiva, ressalvada determinação judicial contrária.\nB) O acolhimento mantém os autos na origem e conserva automaticamente os efeitos sem possibilidade de revisão.\nC) Os autos seguem ao juízo competente e os efeitos da medida cessam automaticamente pelo reconhecimento da incompetência.\nD) Os autos seguem ao juízo competente, mas a conservação dos efeitos depende de ratificação expressa anterior ao encaminhamento.\nE) A incompetência determina extinção do processo e perda automática dos efeitos da medida.\n\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+      "fixtures": [
+        "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+      ],
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+      "assertions": [
+        {
+          "id": "avaliacao-posterior",
+          "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Suporte jurídico e ausência de extrapolação da fonte",
+        "Unicidade e distinções funcionais quando houver questão",
+        "Plausibilidade e erro singular dos distratores quando houver alternativas",
+        "Correção integral após acerto/erro, quando houver tentativa",
+        "Ancoragem no material legível novo",
+        "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+      ],
+      "risk_tags": [
+        "ancoragem",
+        "vazamento-gabarito",
+        "sem-corpus-empirico"
+      ]
+    },
+    {
+      "id": "task8-correcao-erro",
+      "skill": "estudar-direito-magistratura",
+      "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nContexto didático fornecido integralmente nesta sessão nova; não é retomada técnica de outra sessão. A questão já foi apresentada e minha tentativa foi E. Corrija integralmente, inclusive as alternativas erradas, com base no material.\n\nQuestão de controle autoral: O juízo deferiu medida incidental e depois acolheu a incompetência, após ouvir a parte contrária. Não houve decisão que retirasse a eficácia da medida nem novo pronunciamento do juízo competente. Conforme exclusivamente o material, qual consequência se aplica?\nA) Os autos seguem ao juízo competente, conservando-se os efeitos da medida até eventual decisão substitutiva, ressalvada determinação judicial contrária.\nB) O acolhimento mantém os autos na origem e conserva automaticamente os efeitos sem possibilidade de revisão.\nC) Os autos seguem ao juízo competente e os efeitos da medida cessam automaticamente pelo reconhecimento da incompetência.\nD) Os autos seguem ao juízo competente, mas a conservação dos efeitos depende de ratificação expressa anterior ao encaminhamento.\nE) A incompetência determina extinção do processo e perda automática dos efeitos da medida.\n\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+      "fixtures": [
+        "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+      ],
+      "source_policy": "acervo_exclusivo",
+      "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+      "assertions": [
+        {
+          "id": "avaliacao-posterior",
+          "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+          "kind": "human"
+        }
+      ],
+      "human_rubric": [
+        "Suporte jurídico e ausência de extrapolação da fonte",
+        "Unicidade e distinções funcionais quando houver questão",
+        "Plausibilidade e erro singular dos distratores quando houver alternativas",
+        "Correção integral após acerto/erro, quando houver tentativa",
+        "Ancoragem no material legível novo",
+        "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+      ],
+      "risk_tags": [
+        "ancoragem",
+        "vazamento-gabarito",
+        "sem-corpus-empirico"
+      ]
     }
   ]
 }

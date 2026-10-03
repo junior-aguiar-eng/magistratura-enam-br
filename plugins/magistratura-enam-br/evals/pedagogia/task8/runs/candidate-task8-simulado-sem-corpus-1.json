@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "candidate-task8-simulado-sem-corpus-1",
+    "executed_at": "2026-10-03T21:27:38.091518+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (CLI default; revision not exposed)",
+    "client": "Codex CLI 0.148.0 / exec --ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103aa-59f6-7791-827b-49c172ee328d",
+    "round": 1,
+    "origin": "captured_session",
+    "duration_seconds": 16.12
+  },
+  "case_snapshot": {
+    "id": "task8-simulado-sem-corpus",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Política acervo_exclusivo; cliente textual sem MCP.\n\nQuero um simulado calibrado como o ENAM, com distribuição empírica de formatos e dificuldade, exclusivamente sobre o material novo. Nenhum corpus oficial ou perfil de calibração está disponível. Explique o limite e entregue somente a primeira questão do treino qualitativo de alta complexidade, com cinco alternativas e sem solução antecipada. Não invente estatística para preencher a falta de corpus.\n\nMaterial legível enviado nesta mensagem:\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no art. 64, §§ 2º–4º, do CPC; sem corpus de prova."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Atender ao formato e recorte com ancoragem no material; cenário sem corpus preserva limite empírico; correções só depois da tentativa explícita.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Suporte jurídico e ausência de extrapolação da fonte",
+      "Unicidade e distinções funcionais quando houver questão",
+      "Plausibilidade e erro singular dos distratores quando houver alternativas",
+      "Correção integral após acerto/erro, quando houver tentativa",
+      "Ancoragem no material legível novo",
+      "Ausência de solução antes da tentativa; ressalva empírica sem corpus"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "99b889bba9c259a5c1397ce836471747d10989f930b9e1756086f98042224fcf",
+  "output": "A calibração empírica está pendente: sem corpus oficial ou perfil validado, não é possível atribuir distribuição de formatos ou dificuldade representativa do ENAM. A questão abaixo segue apenas critérios jurídicos qualitativos de alta complexidade e o material fornecido, cuja atualização externa não posso certificar no modo acervo exclusivo.\n\nDurante o processamento de ação indenizatória, o juízo originário deferiu tutela provisória destinada a preservar determinado bem. Posteriormente, o réu arguiu a incompetência desse juízo e requereu tanto a remessa dos autos quanto a imediata cessação da tutela. Após ouvir o autor, o magistrado acolheu a arguição, determinou o encaminhamento do processo ao órgão competente e não se pronunciou especificamente sobre a eficácia da decisão anteriormente proferida. Antes de qualquer nova decisão do juízo destinatário, o réu sustentou que o reconhecimento da incompetência teria invalidado automaticamente a tutela.\n\nÀ luz da disciplina apresentada no material, assinale a afirmativa correta.\n\nA) O acolhimento da incompetência impõe a remessa dos autos, mas também retira automaticamente a eficácia das decisões anteriores, pois a conservação de seus efeitos dependeria de confirmação expressa do juízo competente.\n\nB) O acolhimento da incompetência determina o encaminhamento do processo ao juízo competente, enquanto a tutela anteriormente concedida conserva seus efeitos, salvo determinação judicial contrária, até que outra decisão seja eventualmente proferida pelo órgão destinatário.\n\nC) O reconhecimento da incompetência não autoriza a remessa imediata dos autos, pois o juízo originário deve antes revogar ou confirmar expressamente cada decisão anteriormente proferida, sob pena de indefinição quanto aos seus efeitos.\n\nD) A ausência de pronunciamento específico sobre a tutela faz cessar sua eficácia no momento do reconhecimento da incompetência, embora os demais atos processuais permaneçam válidos até revisão pelo juízo competente.\n\nE) A remessa dos autos e a preservação da tutela dependem de deliberações expressas e autônomas do juízo originário, de modo que o silêncio quanto aos efeitos da decisão impede tanto sua conservação quanto sua substituição posterior.",
+  "output_sha256": "40649f28d0ebe63882153be3cd7a395d1386a9757121855014a66e6e49eae1a0",
+  "evaluation": {
+    "case_id": "task8-simulado-sem-corpus",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "avaliacao-posterior"
+    ]
+  }
+}

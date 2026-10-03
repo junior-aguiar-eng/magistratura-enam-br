@@ -1,5 +1,80 @@
 # Changelog
 
+## [0.8.0] — 2026-10-03
+
+- Corrige a classificação de assertivas com marcadores arábicos, sem confundir anos ou um único marcador com formato numerado.
+- Explicita a precedência da proteção pré-tentativa sobre síntese e `Base consultada`; exige regra pública de reutilização nas associações.
+- Registra 12 capturas comparativas adicionais; a candidata explicitou reutilização em três associações. Controle e candidata passaram no cenário de fonte fornecida, sem demonstração de superioridade geral ou reprodução de busca web real.
+- Adquire e cadastra 80 itens do ENAM 2026.1 Tipo 1 a partir do caderno e gabarito definitivo oficiais; exclui a questão 42 anulada. Classificações são rascunhos: zero itens elegíveis até revisão identificada e preenchimento das fontes jurídicas.
+- Consolida os incrementos abaixo; revisão humana do benchmark e homologação visual no ChatGPT continuam gates separados da entrega da versão.
+
+### Homologação, task 8
+
+- Registra 42 capturas textuais reais (duas variantes, três sessões por caso), hashes/proveniência, rubrica posterior e revisão humana pendente; simulado sem corpus é controle negativo, sem calibração empírica.
+- Valida o MCP stdio em sessão efêmera do Codex CLI e o estudo de anexo sintético no ChatGPT com instruções fornecidas manualmente; separa protocolo, instalação e apresentação visual.
+- Documenta gates Python/web/documentação, limites do benchmark e pendências de conexão/card/corpus/revisão humana; a proposta registrada na task foi consolidada nesta versão, com rollback v0.7.5.
+- Corrige a aprovação indevida de gabarito explícito com letra seguida de justificativa no corpo/cabeçalho; preserva controles de artigos/conjunções e acrescenta regressões da revisão integral.
+
+### Incrementos pedagógicos, task 7
+
+- Adiciona registro de corpus por edição/caderno e perfil descritivo somente leitura, com origem/hash/gabarito definitivo, revisão identificada e cobertura de cadastro/classificação/elegibilidade.
+- Exclui anuladas, pendências, gabarito não definitivo e classificações incompletas/divergentes sem resolução; preserva revisões e dificuldade editorial com autor/método, sem inferir acertos.
+- Integra perfil recomputável ao auditor para comparação descritiva de formatos; rejeita inconsistência, distingue fixtures sintéticas e mantém resultado parcial sem chave completa no bloco.
+- Documenta coleta oficial própria e perfil empírico pendente; amplia cenários e orientação de treino/simulado sem quotas, divisão 75/25 ou redução do padrão canônico.
+- Recusa quebra de linha final em identidades de corpus/questão/revisão e exige hashes com exatamente 64 caracteres, impedindo contagem duplicada por identidade visual ambígua.
+
+### Incrementos MCP, task 6
+
+- Adiciona auditor somente leitura de Markdown/JSON com preservação de duplicatas, validação de IDs/A–E, confronto de gabaritos e detecção de solução explícita.
+- Separa erro estrutural, aviso editorial e checagem parcial; ausência de chave não recebe aprovação global. O schema rejeita status incompatível com erros ou cobertura explicitamente incompleta.
+- Mede formatos, letras, extensão e absolutos com cobertura/denominador; padrões agregados exigem oito itens elegíveis e frequência superior a 75%, sem certificação jurídica ou quota empírica.
+- Acrescenta CLI e regressões de arquivo vazio, formatos multilinha, Markdown estilizado, chaves contraditórias e preservação byte a byte das entradas; documenta privacidade dos relatórios e perfil ainda não validado.
+- Recusa solução explícita no título e seções de correção estilizadas após alternativas; evita confundir artigos/conjunções com a letra de resposta em frases naturais.
+
+### Incrementos MCP, task 5
+
+- Ancora revisão, distinções e flashcards no material acessível; solicita recorte anterior ausente e explicita limites de notícia sem fundamentos e do modo acervo exclusivo.
+- Define formatos `direto`, `numerado`, `vf` e `associacao`, com unicidade de combinações, ordem/reutilização explícitas e análise individual dos componentes após tentativa, inclusive no acerto.
+- Orienta construção por soluções, matriz de dois eixos ou mesma conclusão com fundamentos distintos, sem proporções empíricas inventadas ou variedade obrigatória numa questão única.
+- Transmite essas regras em `initialize.instructions` e conserva os campos existentes de sessão MCP.
+- Acrescenta contratos e cenários Q11–Q17; versiona capturas sintéticas e rubrica posterior como candidata pendente de revisão humana, sem promover novas orientações a AGENTS.
+
+### Incrementos MCP, task 4
+
+- Restaura escolha pendente e abertura de painéis por snapshot visual com whitelist e vínculo de sessão; remove escolha respondida e limpa estado invalidado, sem persistir gabarito, correção, fontes ou modo de apresentação.
+- Integra armazenamento opcional OpenAI, mantendo estado React quando indisponível, sem alterar o transporte das ferramentas.
+- Adiciona fullscreen/retorno por clique no SDK MCP Apps e bridge legado, com modos negociados, bloqueio durante pedido, erro acessível e observação da apresentação confirmada pelo host.
+- Anuncia inline/fullscreen na inicialização e nos recursos atual/legado; mantém as URIs compatíveis.
+- Aplica tema e variáveis de estilo do host, respeita altura/áreas reservadas e oferece rolagem de conteúdo longo, foco visível e movimento reduzido.
+- Acrescenta regressões de restauração, troca de sessão, recusa, notificações externas e ACK atrasado; regenera o HTML autocontido.
+- Mantém retorno ao chat quando o host deixa somente inline disponível durante fullscreen e remove limite de altura anterior quando novas dimensões não o restringem.
+
+### Incrementos MCP, task 3
+
+- Adiciona `obter_questao` para consultar a projeção atual autorizada sem template de UI ou gravação; anuncia schema de sessão e visibilidade modelo/app.
+- Oferece ações de continuidade após tentativa, com explicação de erro somente em erro e apenas pedido de nova questão quando invalidada; revalida estado antes do envio.
+- Usa mensagens/contexto negociados no SDK e `sendFollowUpMessage` no bridge OpenAI, com texto copiável quando não há suporte a mensagens.
+- Envia contexto mínimo por sessão sem gabarito, correção ou diagnóstico; bloqueia cliques duplicados e impede que operações antigas atualizem outro card. Falha de mensagem permite tentativa explícita.
+- Verifica a sessão no adaptador antes de enviar mensagem, inclusive quando o host anuncia outra sessão e ainda não entregou seu resultado.
+- Atualiza instruções MCP para revalidação pelo modelo, acrescenta testes de consulta, capacidades e concorrência e regenera o bundle.
+
+### Incrementos MCP, task 2
+
+- Centraliza negociação e lifecycle em `mcp-host.ts`, com preferência pelo SDK MCP Apps, fallback OpenAI anterior ao envio e transporte fixo por instância.
+- Separa entrada de renderização e resultado validado, descarta `_meta` e preserva sessão/estado diante de notificações e respostas atrasadas.
+- Consulta o estado por leitura após falha de confirmação, bloqueando repetição incerta e impedindo reenvio de mutação por outro transporte.
+- Remove listeners, observer, frame e chamadas pendentes no fechamento; preserva resize e chamadas correlacionadas com progresso de aprovação.
+- Encerra carregamento com aviso de falha quando o host cancela a execução ou entrega resultado inválido, sem revelar o payload recusado.
+- Amplia o Vitest para arquivos `.ts` e `.tsx`, acrescenta cenários com SDK real e host simulado e regenera o bundle distribuído.
+- Substitui `vite-plugin-singlefile`, cuja cadeia contém `braces` vulnerável sem versão corrigida, por um empacotador Vite restrito ao HTML do widget; testa JS/CSS/assets incorporados e escape de delimitadores HTML.
+
+### Incrementos MCP, task 1
+
+- Transmite instruções gerais em `initialize`, extraídas de bloco único na referência canônica; bloco ausente, vazio ou incompleto impede inicialização silenciosa sem orientações.
+- Explicita `ui.visibility`: renderização e resposta para modelo/app, demais ferramentas para modelo, preservando annotations e o bridge legado.
+- Publica schemas específicos nas oito ferramentas pelo SDK instalado, sem atualização de dependências ou alteração dos envelopes. Sessões derivam do contrato canônico e excluem a projeção privada; a correção continua condicionada à tentativa.
+- Acrescenta regressões de discovery e chamadas MCP reais com biblioteca sintética, incluindo consentimento de indexação e ciclo de criação, resposta e invalidação.
+
 ## [0.7.5] — 2026-10-02
 
 - Atualiza PyJWT para 2.15.1, pypdf para 6.19.0 e urllib3 para 2.8.0 no lockfile para tratar os alertas de dependências identificados durante a publicação.

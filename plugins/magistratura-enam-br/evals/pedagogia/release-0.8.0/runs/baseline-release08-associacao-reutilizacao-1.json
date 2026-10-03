@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "baseline-release08-associacao-reutilizacao-1",
+    "executed_at": "2026-10-03T22:23:52.722423+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (default, internal revision not exposed)",
+    "client": "Codex CLI 0.148.0 / ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103dd-6c5f-7280-bdc3-a4b44bae0ac8",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "release08-associacao-reutilizacao",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Modo acervo_exclusivo. Transforme o material abaixo em uma questão difícil de associação de colunas, com cinco alternativas.\n\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no CPC, art. 64, §§2º–4º."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Associação com regra pública de reutilização compatível com os vínculos e combinações.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Ausência de fundamento determinante exposto antes da tentativa",
+      "Regra de reutilização visível quando aplicável",
+      "Unicidade e suporte jurídico; revisão humana necessária"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "6cd21bff6b9d3d08deb3df2bf2c0d2c072731c491e4e569941f4020b3166f5cb",
+  "output": "Considere as situações processuais da Coluna I e associe-as às respectivas consequências jurídicas da Coluna II, à luz do art. 64, §§ 2º a 4º, do Código de Processo Civil.\n\n**Coluna I**\n\n1. A parte ré arguiu a incompetência do juízo, mas a parte adversa ainda não foi ouvida.\n\n2. Após o contraditório, a incompetência foi reconhecida. Antes da remessa, o juízo havia proferido decisão interlocutória e, ao acolher a arguição, nada dispôs sobre a eficácia desse pronunciamento.\n\n3. Após o contraditório, a incompetência foi reconhecida, e o magistrado determinou expressamente que a decisão anteriormente proferida não conservasse seus efeitos.\n\n4. Recebidos os autos, o juízo competente proferiu nova decisão sobre a matéria anteriormente decidida pelo juízo incompetente.\n\n**Coluna II**\n\nI. O processo deve ser encaminhado ao juízo competente, sem que a remessa implique, por si só, a eliminação dos efeitos da decisão anterior, os quais subsistem até eventual novo pronunciamento do órgão competente.\n\nII. A eficácia da decisão anterior não permanece amparada pela regra legal de conservação, pois houve determinação judicial expressa em sentido contrário, embora o acolhimento da incompetência continue impondo a remessa dos autos.\n\nIII. A nova decisão do juízo competente passa a disciplinar a matéria decidida, encerrando, quanto a ela, a conservação provisória dos efeitos do pronunciamento anterior.\n\nIV. O magistrado deve assegurar a manifestação da parte adversa antes de resolver imediatamente a arguição, não decorrendo da simples suscitação o encaminhamento automático dos autos.\n\nAssinale a alternativa que apresenta a associação correta.\n\nA) 1–IV; 2–I; 3–II; 4–III.\n\nB) 1–IV; 2–II; 3–I; 4–III.\n\nC) 1–I; 2–IV; 3–II; 4–III.\n\nD) 1–IV; 2–III; 3–II; 4–I.\n\nE) 1–II; 2–I; 3–IV; 4–III.",
+  "output_sha256": "537a1fb774645501df52e8dc603d1b428e7d239ebe345cda42c768436f06ff3e",
+  "evaluation": {
+    "case_id": "release08-associacao-reutilizacao",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "avaliacao-posterior"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-revisao",
+    "executed_at": "2026-10-03T17:57:02.909820+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_revisao",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-revisao-trecho",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Use apenas o material Markdown enviado agora, em acervo_exclusivo. Quero revisão por consolidação densa e dois flashcards, sem questão objetiva e sem calendário. Material enviado, seção 2 — competência e efeitos (recorte sintético CPC art.64 §§2º–4º): após ouvir a parte contrária, o juiz decide a arguição; acolhida a incompetência, remete os autos ao competente. Salvo decisão judicial em contrário, conservam-se os efeitos da decisão anterior até que o competente profira outra, se for o caso. O destino dos autos e a preservação dos efeitos são planos diferentes.",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato.",
+      "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "adequacao-ao-pedido",
+        "description": "A saída atende ao cenário e ao recorte.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ],
+    "legal_grounding": {
+      "checked_at": "2026-10-03",
+      "cutoff_date": "2026-10-03",
+      "claims": [
+        {
+          "id": "competencia-e-efeitos",
+          "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+          "official_source": "src_cpc-art64",
+          "locator": "CPC art.64 §§2º–4º",
+          "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+        }
+      ],
+      "human_review": {
+        "review_status": "pending",
+        "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+      }
+    }
+  },
+  "case_sha256": "14476ee45e5557eedad9c6862c0a0672e3add716e668b465044bbb8686975a10",
+  "output": "Base: material do candidato em Markdown, seção 2 — competência e efeitos, recorte sintético do CPC, art. 64, §§ 2º–4º. A revisão fica restrita a esse trecho. No modo acervo exclusivo, não posso certificar a atualização externa deste ponto.\n\nO primeiro encadeamento é procedimental: **ouvir a parte contrária → decidir a arguição → remeter os autos ao juízo competente, se acolhida a incompetência**. A oitiva antecede a decisão; a remessa é consequência do acolhimento. Isso resolve o destino do processo, mas ainda não responde ao que acontece com os efeitos da decisão anteriormente proferida.\n\nNo plano dos efeitos, o critério é outro: **a conservação é a regra, ressalvada decisão judicial em contrário**. Assim, o reconhecimento da incompetência e a remessa dos autos não bastam, por si, para fazer cessar os efeitos da decisão anterior. A ressalva impede tratar essa conservação como absoluta: o próprio recorte admite decisão judicial que determine solução diferente. É preciso, portanto, verificar separadamente se houve acolhimento da arguição e se houve pronunciamento contrário à preservação dos efeitos.\n\nA conservação também tem um horizonte: os efeitos permanecem até que o juízo competente profira outra decisão, **se for o caso**. Essa expressão não permite pressupor que a remessa imponha automaticamente uma nova decisão sobre o ponto. Por exemplo, se os autos forem remetidos e não houver decisão judicial em contrário nem outra decisão do competente, o recorte sustenta a manutenção dos efeitos anteriores. A distinção a reter é entre **quem deve receber os autos** e **quais efeitos continuam operantes**; a armadilha é deduzir a cessação automática dos efeitos apenas da mudança de juízo.\n\n**Flashcard 1**\n\n**Frente:** Qual é a sequência para decidir a arguição de incompetência e qual consequência decorre de seu acolhimento?\n\n**Verso:** Ouvir a parte contrária, decidir a arguição e, se acolhida, remeter os autos ao juízo competente. A remessa define o destino dos autos; isoladamente, não determina a cessação dos efeitos da decisão anterior.\n\n**Flashcard 2**\n\n**Frente:** Acolhida a incompetência, qual é a regra sobre os efeitos da decisão anterior, sua ressalva e seu limite?\n\n**Verso:** Conservam-se os efeitos, salvo decisão judicial em contrário, até que o juízo competente profira outra decisão, se for o caso. A conservação não é absoluta, e a remessa não equivale à substituição automática da decisão anterior.\n",
+  "output_sha256": "a7300478600fff6e3e93327d382d01b18e73a3b1fd09ea50946ff3a31c160634",
+  "evaluation": {
+    "case_id": "task5-revisao-trecho",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "validacao-fixture-juridica",
+      "aplicacao-fundamentacao-juridica",
+      "adequacao-ao-pedido"
+    ]
+  }
+}

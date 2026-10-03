@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-vf",
+    "executed_at": "2026-10-03T17:57:03.733010+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_vf",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-vf",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Use só o material Markdown enviado agora, em acervo_exclusivo. Faça uma questão FGV/ENAM V/F, com três assertivas ligadas a situações processuais e cinco sequências A–E. Envie só enunciado e alternativas, sem gabarito ou correção. Material enviado — recorte sintético CPC art.64 §§2º–4º: após ouvir a parte contrária, o juiz decide a arguição; acolhida a incompetência, remete os autos ao competente. Salvo decisão judicial em contrário, conservam-se os efeitos da decisão anterior até que o competente profira outra, se for o caso. O destino dos autos e a preservação dos efeitos são planos diferentes.",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato.",
+      "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "kind": "automatic",
+        "check": "option_count",
+        "expected": 5
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "kind": "automatic",
+        "check": "ends_after_option_e"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ],
+    "legal_grounding": {
+      "checked_at": "2026-10-03",
+      "cutoff_date": "2026-10-03",
+      "claims": [
+        {
+          "id": "competencia-e-efeitos",
+          "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+          "official_source": "src_cpc-art64",
+          "locator": "CPC art.64 §§2º–4º",
+          "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+        }
+      ],
+      "human_review": {
+        "review_status": "pending",
+        "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+      }
+    }
+  },
+  "case_sha256": "5a7cdacb7bdd238dd4393cd54afa24c9639e3ffacf9a78d188555dbc0a78a3fc",
+  "output": "Considerando exclusivamente o recorte do art. 64, §§ 2º a 4º, do CPC fornecido no material Markdown, examine as situações processuais abaixo e assinale V para as assertivas verdadeiras e F para as falsas.\n\nI. Após ouvir a parte contrária, o juiz acolheu a arguição de incompetência e decidiu conservar os efeitos de uma decisão anteriormente proferida. A parte beneficiada requereu que os autos permanecessem no juízo de origem enquanto esses efeitos subsistissem. Nesse caso, a conservação dos efeitos não impede a remessa dos autos ao juízo competente, ainda que este não tenha proferido decisão substitutiva.\n\nII. O juiz acolheu a arguição de incompetência após ouvir a parte contrária e remeteu os autos, sem decidir em contrário quanto aos efeitos de uma decisão anterior. Recebido o processo, o juízo competente ainda não se pronunciou. Nesse caso, a parte beneficiada somente poderá invocar os efeitos da decisão anterior depois de sua ratificação expressa pelo juízo destinatário.\n\nIII. Após ouvir a parte contrária, o juiz acolheu a incompetência e determinou a remessa dos autos, estabelecendo expressamente que os efeitos de uma decisão anterior cessariam com essa remessa. O juízo competente ainda não proferiu outra decisão. Nesse caso, a ausência de pronunciamento substitutivo não impede a cessação dos efeitos no momento determinado pelo juízo de origem.\n\nAs assertivas são, respectivamente:\n\nA) V – V – F.\nB) F – V – V.\nC) V – F – V.\nD) F – F – V.\nE) V – F – F.\n",
+  "output_sha256": "257f150ba5761644a933dbd60c98adcb43672ed46dd03d6e4e7eee0c9c43edbf",
+  "evaluation": {
+    "case_id": "task5-vf",
+    "status": "revisao_humana_pendente",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "passed": true,
+        "evidence": "alternativas encontradas: 5; esperado: 5"
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "passed": true,
+        "evidence": "última linha é a alternativa E"
+      }
+    ],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "validacao-fixture-juridica",
+      "aplicacao-fundamentacao-juridica"
+    ]
+  }
+}

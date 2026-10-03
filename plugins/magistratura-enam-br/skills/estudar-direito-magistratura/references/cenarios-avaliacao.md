@@ -53,3 +53,53 @@ Solicite feedback adaptativo, mas forneça letra simples ou baixa confiança. Ex
 ## Q10 — Questão inválida em modo adaptativo
 
 Forneça questão ambígua e peça correção adaptativa. Aceite somente se a invalidade for reconhecida antes de qualquer avaliação do candidato.
+
+## Protocolo dos cenários novos
+
+Separe o pedido e o material da rubrica: não forneça a rubrica, a chave ou os vícios esperados ao agente que produzirá a resposta. Capture a saída antes de avaliá-la; na correção, envie uma tentativa observável em seguida. Registre versão/commit das instruções, pedido/material, modelo e cliente quando identificáveis, sessão limpa, rodada, texto e hashes. Sem identificador de modelo exposto, registre essa ausência; não invente precisão.
+
+A revisão humana posterior deve identificar revisor, data, saída/hash e decisão por critério: **suporte oficial/material**, **núcleo funcional**, **plausibilidade**, **unicidade**, **comparação dos distratores** e **limite de fonte**. Para revisão de conteúdo, os critérios de distratores/unicidade só incidem quando houver questão; marque explicitamente a inaplicabilidade, sem convertê-la em aprovação. Reprove fundamento sem suporte, fato ornamental, duas soluções defensáveis, classificação artificial, pista pré-tentativa ou redução da correção por acerto.
+
+Testes de strings demonstram vinculação/estrutura; juízo do modelo é avaliação automatizada, não revisão jurídica humana. Sem revisão humana identificada, registre **candidata pendente de revisão humana**, inclusive com testes verdes. Não promova orientação nova a AGENTS como comportamento aprovado. Um caso sintético isolado não demonstra superioridade geral, fidelidade estatística à FGV nem transferência/retenção do candidato.
+
+## Q11 — Revisão de trecho enviado agora
+
+**Pedido:** forneça trecho Markdown identificado que contenha regra, exceção e efeito; peça consolidação e flashcards exclusivamente desse recorte, sem questão objetiva.
+
+**Rubrica posterior:** síntese, distinções e cartões devem ser rastreáveis ao trecho disponível. Reprove resumo global não solicitado, complemento disfarçado, omissão de limite determinante ou pergunta de ambientação dispensável. Preserve consolidação densa e separação de calendário.
+
+## Q12 — Material anterior inacessível
+
+**Pedido:** em sessão sem material/checkpoint, peça revisão da página estudada em outra conversa. Depois, se necessário, escolha explicitamente outra base sem mudar silenciosamente a política de fontes.
+
+**Rubrica posterior:** declare a ausência e solicite somente o recorte necessário. Reprove memória fabricada ou escolha unilateral de conteúdo. Se o candidato optar por prosseguir, identifique mudança de base; em acervo_exclusivo não complete por pesquisa ou memória geral sem mudança expressa da política.
+
+## Q13 — Nota sem fundamentos
+
+**Pedido:** forneça notícia identificada que informe só o resultado de julgamento e peça revisão da ratio, exceções e efeitos temporais no modo acervo_exclusivo.
+
+**Rubrica posterior:** não transforme resultado em fundamento determinante, precedente vinculante, modulação ou trânsito confirmado. Peça a decisão/recorte faltante ou delimite o que a notícia sustenta. Não crie questão cuja chave dependa dos fundamentos ausentes.
+
+## Q14 — Sequência V/F
+
+**Pedido:** forneça regra, condição e exceção em material suficiente; peça uma questão V/F com três assertivas funcionalmente relacionadas e alternativas A–E. Após capturar, envie tentativa e peça correção, sem opt-in adaptativo.
+
+**Rubrica posterior:** ordem explícita, cinco sequências distintas e uma única defensável. Confira cada assertiva no suporte delimitado. A correção deve explicar individualmente as três assertivas e os erros das quatro combinações distratoras mesmo após acerto; não atribua erro/domínio apenas à letra escolhida.
+
+## Q15 — Associação de colunas
+
+**Pedido:** forneça material que permita relacionar situações a soluções ou categorias jurídicas; peça uma questão de associação de três itens com alternativas A–E. Depois de capturar, envie tentativa e solicite correção.
+
+**Rubrica posterior:** a classificação tem utilidade jurídica; itens, ordem e regra de reutilização estão claros, mapeamentos não duplicados e nenhuma situação admite duas soluções no comando. Confira paridade dos componentes e chave única; correção explica cada associação e cada combinação incorreta, sem antecipação.
+
+## Q16 — Matriz de competência e efeitos
+
+**Pedido:** forneça regra processual que diferencie competência e efeitos de decisão já proferida; peça questão que cobre ambos os eixos, sem indicar qual solução deve prevalecer.
+
+**Rubrica posterior:** fatos suficientes, variação controlada e todas as alternativas resolvem competência e efeitos. Reprove correta como única solução completa, alteração simultânea de fato irrelevante, perda automática de efeito não prevista na fonte ou matriz com duas combinações válidas.
+
+## Q17 — Mesma conclusão, fundamentos distintos
+
+**Pedido:** forneça material com fundamento determinante e institutos próximos; peça questão em que as alternativas cheguem à mesma conclusão aparente por fundamentos diferentes. O comando deve cobrar conclusão e fundamento.
+
+**Rubrica posterior:** a fonte permite distinguir os fundamentos, apenas uma combinação os aplica corretamente e os demais erram por vício nomeável. Reprove divergência fabricada, dois fundamentos juridicamente suficientes ou comando que cobre apenas a conclusão, tornando todas as alternativas corretas.

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "baseline-release08-pesquisa-pre-tentativa-1",
+    "executed_at": "2026-10-03T22:23:09.364725+00:00",
+    "plugin_version": "0.7.5",
+    "model": "gpt-5.6-sol (default, internal revision not exposed)",
+    "client": "Codex CLI 0.148.0 / ephemeral / readonly / ignore-user-config",
+    "session_id": "01a103dc-de00-7561-817a-fcb1c0133d2e",
+    "round": 1,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "release08-pesquisa-pre-tentativa",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Em pesquisa_juridica_completa, use a evidência oficial já consultada abaixo para elaborar uma questão difícil. Quero estudar por uma questão esse ponto. A busca já foi realizada: a fonte é o CPC, art. 64, §§ 2º–4º, no Planalto; acesso em 2026-10-03.\n\n# Material didático novo — competência e efeitos da decisão\n\nSíntese autoral para validação, sem dados pessoais. Base: CPC, art. 64, §§ 2º–4º, conferido no Planalto em 2026-10-03.\nApós ouvir a parte adversa, o magistrado resolve imediatamente a arguição de incompetência. Se a acolher, encaminha o processo ao juízo competente.\nA incompetência reconhecida não extingue automaticamente os efeitos da decisão anterior: eles permanecem, ressalvada determinação judicial contrária, até eventual nova decisão do órgão competente.\nÉ necessário distinguir o destino dos autos da eficácia da decisão. O encaminhamento decorre do acolhimento; a perda da eficácia depende da ressalva judicial ou da substituição, quando cabível. Não se deduz invalidação automática de todos os atos.\n\nFonte oficial: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm (art. 64, §§ 2º–4º).\nNão contém julgados, corpus de prova, classificação de dificuldade ou perfil de desempenho.\n",
+    "fixtures": [
+      "task8/material.md: síntese autoral conferida no CPC, art. 64, §§2º–4º."
+    ],
+    "source_policy": "acervo_exclusivo",
+    "expected_output": "Questão sem exposição prévia da regra determinante; base e fundamentos reservados à correção.",
+    "assertions": [
+      {
+        "id": "avaliacao-posterior",
+        "description": "Revisão semântica posterior identificada; testes de marcadores não certificam qualidade jurídica.",
+        "kind": "human"
+      }
+    ],
+    "human_rubric": [
+      "Ausência de fundamento determinante exposto antes da tentativa",
+      "Regra de reutilização visível quando aplicável",
+      "Unicidade e suporte jurídico; revisão humana necessária"
+    ],
+    "risk_tags": [
+      "ancoragem",
+      "vazamento-gabarito",
+      "sem-corpus-empirico"
+    ]
+  },
+  "case_sha256": "d207f17676799752caaa1e2d2ce6898889db9763cd36ad4c0318bf3144b5681c",
+  "output": "Uma sociedade empresária ajuizou ação indenizatória perante juízo territorialmente incompetente e obteve, antes da citação da ré, tutela provisória de urgência que determinou a indisponibilidade de determinados ativos. Em preliminar de contestação, a ré arguiu a incompetência e requereu também a imediata cessação da medida constritiva. Após ouvir a autora, o magistrado acolheu a arguição e determinou a remessa dos autos ao juízo competente, mas não se pronunciou especificamente sobre a eficácia da tutela anteriormente concedida. Recebidos os autos, o novo juízo ainda não proferiu decisão sobre a medida.\n\nÀ luz do art. 64, §§ 2º a 4º, do Código de Processo Civil, assinale a afirmativa correta.\n\nA) O acolhimento da incompetência acarreta a nulidade de pleno direito da tutela provisória anteriormente concedida, pois a remessa dos autos transfere ao juízo competente, com eficácia retroativa, a competência para todos os atos decisórios do processo.\n\nB) A tutela provisória permanece eficaz apenas durante o prazo para interposição de recurso contra a decisão que reconheceu a incompetência, extinguindo-se automaticamente após o trânsito em julgado, ainda que o juízo competente não tenha reapreciado a medida.\n\nC) A tutela provisória conserva seus efeitos até que o juízo competente profira nova decisão, se cabível, pois o reconhecimento da incompetência e a remessa dos autos não eliminam automaticamente a eficácia das decisões anteriores, ressalvada decisão judicial em sentido contrário.\n\nD) A tutela provisória perde imediatamente sua eficácia com o acolhimento da incompetência, mas pode ser restaurada pelo juízo competente mediante ratificação expressa, hipótese em que voltará a produzir efeitos desde a data da decisão originária.\n\nE) A tutela provisória permanece eficaz somente se o magistrado que reconheceu a incompetência declarar expressamente sua preservação, pois o silêncio judicial quanto aos efeitos da decisão anterior equivale à sua revogação com a remessa dos autos.",
+  "output_sha256": "c61ef6b2760b31787ca05364fe5c6756e57cb1a0255c42aee6009c2d117fcdc6",
+  "evaluation": {
+    "case_id": "release08-pesquisa-pre-tentativa",
+    "status": "revisao_humana_pendente",
+    "assertions": [],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "avaliacao-posterior"
+    ]
+  }
+}

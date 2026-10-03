@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-candidate5",
+    "executed_at": "2026-10-03T17:54:40.233345+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_candidate5",
+    "round": 5,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-associacao-matriz",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Use o material Markdown enviado agora, no modo acervo_exclusivo. Quero apenas uma questão FGV/ENAM de associação de colunas. Associe três situações processuais a soluções completas que combinem competência e efeitos de decisão já proferida. Os efeitos importam tanto quanto o destino dos autos. Não forneça gabarito, correção ou indicação de qual combinação resolve o caso.\n\nMaterial do candidato — recorte de estudo sintético, norma conferida no Planalto em 2026-10-03, CPC art. 64, §§ 2º–4º:\nApós ouvir a parte contrária, o juiz decide imediatamente a arguição de incompetência. Acolhida a arguição, remete os autos ao juízo competente. Salvo decisão judicial em sentido contrário, os efeitos da decisão do juízo incompetente permanecem até que o juízo competente profira outra, se for o caso. A distinção relevante é entre destino do processo e conservação dos efeitos; declaração de incompetência não equivale por si a perda automática desses efeitos.\n",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato.",
+      "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "kind": "automatic",
+        "check": "option_count",
+        "expected": 5
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "kind": "automatic",
+        "check": "ends_after_option_e"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ],
+    "legal_grounding": {
+      "checked_at": "2026-10-03",
+      "cutoff_date": "2026-10-03",
+      "claims": [
+        {
+          "id": "competencia-e-efeitos",
+          "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+          "official_source": "src_cpc-art64",
+          "locator": "CPC art.64 §§2º–4º",
+          "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+        }
+      ],
+      "human_review": {
+        "review_status": "pending",
+        "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+      }
+    }
+  },
+  "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+  "output": "Com base exclusivamente no material fornecido sobre o art. 64, §§ 2º–4º, do CPC, associe as situações da primeira coluna às soluções da segunda. Considere, em cada caso, tanto o juízo em que o processo deve tramitar quanto os efeitos da decisão anteriormente proferida.\n\nPrimeira coluna — situações processuais\n\nI. O juízo Alfa concedeu tutela provisória. Após ouvir a parte contrária, acolheu a arguição de incompetência e determinou a remessa ao juízo Beta, identificado como competente, sem se pronunciar sobre os efeitos da tutela. Os autos ainda estão em trânsito, e Beta não proferiu outra decisão sobre a medida.\n\nII. O juízo Alfa concedeu tutela provisória. Após ouvir a parte contrária, acolheu a arguição de incompetência e determinou a remessa ao juízo Beta, identificado como competente. Na mesma decisão, determinou expressamente que os efeitos da tutela cessassem desde então. Beta ainda não decidiu sobre a medida.\n\nIII. O juízo Alfa concedeu tutela provisória e, depois de ouvir a parte contrária, acolheu a arguição de incompetência, remetendo os autos a Beta sem disposição sobre os efeitos da medida. Beta reconheceu sua competência e proferiu nova decisão sobre a mesma tutela, substituindo a medida anterior por outra de alcance mais restrito.\n\nSegunda coluna — soluções jurídicas\n\n1. O processo deve seguir para o juízo Beta; os efeitos da tutela anteriormente concedida permanecem durante a remessa e até eventual nova decisão do juízo competente sobre a medida.\n\n2. O processo deve prosseguir no juízo Beta; os efeitos da tutela passam a observar a nova decisão, com o alcance por ela estabelecido em substituição à medida anteriormente concedida.\n\n3. O processo deve seguir para o juízo Beta; os efeitos da tutela anteriormente concedida cessam no momento expressamente determinado por Alfa, sem depender de nova decisão de Beta para essa cessação.\n\nCada solução deve ser utilizada uma única vez. Assinale a alternativa que apresenta a associação correta, na ordem I, II e III.\n\nA) 2 – 1 – 3.\n\nB) 1 – 3 – 2.\n\nC) 3 – 2 – 1.\n\nD) 1 – 2 – 3.\n\nE) 3 – 1 – 2.\n",
+  "output_sha256": "af06d5b038981e159a54cbbd42bee48fa1fab2df1ee4d43977c1a9489cb0ca8a",
+  "evaluation": {
+    "case_id": "task5-associacao-matriz",
+    "status": "revisao_humana_pendente",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "passed": true,
+        "evidence": "alternativas encontradas: 5; esperado: 5"
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "passed": true,
+        "evidence": "última linha é a alternativa E"
+      }
+    ],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "validacao-fixture-juridica",
+      "aplicacao-fundamentacao-juridica"
+    ]
+  }
+}

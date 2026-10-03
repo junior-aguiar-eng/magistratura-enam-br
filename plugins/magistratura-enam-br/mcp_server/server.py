@@ -1,13 +1,21 @@
 import argparse
 import tomllib
 from pathlib import Path
-from typing import Any, Literal
+from typing import Literal
 
 from mcp.server import MCPServer
 from mcp.types import ToolAnnotations
 from pydantic import BaseModel, ConfigDict, Field
 
 from .config import LibraryConfig
+from .instructions import load_server_instructions
+from .outputs import (
+    DiagnosticOutput,
+    HistoryOutput,
+    IndexOutput,
+    SearchOutput,
+    SessionOutput,
+)
 from .resources import LEGACY_UI_URI, UI_MIME_TYPE, UI_URI, load_question_widget
 from .tools import StudyService, _utc_now
 
@@ -65,36 +73,49 @@ def build_server(config: LibraryConfig) -> MCPServer:
         "estudo-juridico-avancado",
         title="Estudo Jurídico Avançado",
         description="Acervo Markdown local e sessões jurídicas interativas.",
+        instructions=load_server_instructions(),
         version=tomllib.loads(
-            (Path(__file__).resolve().parent.parent / "pyproject.toml").read_text(encoding="utf-8")
+            (Path(__file__).resolve().parent.parent / "pyproject.toml").read_text(
+                encoding="utf-8"
+            )
         )["project"]["version"],
     )
 
     @server.tool(
         structured_output=True,
+        meta={"ui": {"visibility": ["model"]}},
         annotations=ToolAnnotations(
-            readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=False
+            readOnlyHint=False,
+            destructiveHint=False,
+            idempotentHint=True,
+            openWorldHint=False,
         ),
     )
-    def indexar_acervo(confirmar_gravacao_local: bool = False) -> dict[str, Any]:
+    def indexar_acervo(confirmar_gravacao_local: bool = False) -> IndexOutput:
         """Indexa recursivamente a biblioteca Markdown local autorizada."""
         return service.index_library(confirmed=confirmar_gravacao_local)
 
     @server.tool(
         structured_output=True,
-        annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False),
+        meta={"ui": {"visibility": ["model"]}},
+        annotations=ToolAnnotations(
+            readOnlyHint=True, destructiveHint=False, openWorldHint=False
+        ),
     )
     def buscar_acervo(
         consulta: str, limite: int = 8, prefixo: str | None = None
-    ) -> dict[str, Any]:
+    ) -> SearchOutput:
         """Busca trechos rastreáveis no índice Markdown local."""
         return service.search(consulta, limit=limite, path_prefix=prefixo)
 
     @server.tool(
         structured_output=True,
-        annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False),
+        meta={"ui": {"visibility": ["model"]}},
+        annotations=ToolAnnotations(
+            readOnlyHint=True, destructiveHint=False, openWorldHint=False
+        ),
     )
-    def diagnosticar_acervo() -> dict[str, Any]:
+    def diagnosticar_acervo() -> DiagnosticOutput:
         """Informa a raiz configurada e o estado do índice local sem gravar arquivos."""
         return service.diagnose_library()
 
@@ -106,40 +127,60 @@ def build_server(config: LibraryConfig) -> MCPServer:
             "como texto estático quando estas ferramentas estiverem disponíveis."
         ),
         structured_output=True,
+        meta={"ui": {"visibility": ["model"]}},
         annotations=ToolAnnotations(
-            readOnlyHint=False, destructiveHint=False, idempotentHint=False, openWorldHint=False
+            readOnlyHint=False,
+            destructiveHint=False,
+            idempotentHint=False,
+            openWorldHint=False,
         ),
     )
-    def criar_sessao_questao(questao: QuestionInput) -> dict[str, Any]:
+    def criar_sessao_questao(questao: QuestionInput) -> SessionOutput:
         """Valida e guarda uma questão privada, devolvendo somente sua projeção pública."""
-        return service.create_question(questao.model_dump(mode="json", exclude_none=True))
+        return service.create_question(
+            questao.model_dump(mode="json", exclude_none=True)
+        )
 
     @server.tool(
         structured_output=True,
-        meta={"openai/widgetAccessible": True},
+        meta={"ui": {"visibility": ["model", "app"]}, "openai/widgetAccessible": True},
         annotations=ToolAnnotations(
-            readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=False
+            readOnlyHint=False,
+            destructiveHint=False,
+            idempotentHint=True,
+            openWorldHint=False,
         ),
     )
-    def responder_questao(session_id: str, alternativa: str) -> dict[str, Any]:
+    def responder_questao(session_id: str, alternativa: str) -> SessionOutput:
         """Registra a primeira tentativa e somente então libera a correção completa."""
         return service.answer_question(session_id, alternativa)
 
     @server.tool(
         structured_output=True,
+        meta={"ui": {"visibility": ["model"]}},
         annotations=ToolAnnotations(
-            readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=False
+            readOnlyHint=False,
+            destructiveHint=False,
+            idempotentHint=True,
+            openWorldHint=False,
         ),
     )
-    def invalidar_questao(session_id: str, motivo: str) -> dict[str, Any]:
+    def invalidar_questao(session_id: str, motivo: str) -> SessionOutput:
         """Invalida questão ambígua ou defeituosa, mesmo após a tentativa; preserva os logs e retira seus efeitos pedagógicos."""
-        return service.questions.invalidate(session_id, reason=motivo, invalidated_at=_utc_now())
+        return service.questions.invalidate(
+            session_id, reason=motivo, invalidated_at=_utc_now()
+        )
 
     @server.tool(
         structured_output=True,
-        annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False),
+        meta={"ui": {"visibility": ["model"]}},
+        annotations=ToolAnnotations(
+            readOnlyHint=True, destructiveHint=False, openWorldHint=False
+        ),
     )
-    def consultar_historico_questoes(limite: int = 20, cursor: int = 0) -> dict[str, Any]:
+    def consultar_historico_questoes(
+        limite: int = 20, cursor: int = 0
+    ) -> HistoryOutput:
         """Lista sessões locais resumidas e paginadas."""
         return service.history(limit=limite, cursor=cursor)
 
@@ -159,10 +200,29 @@ def build_server(config: LibraryConfig) -> MCPServer:
             "openai/toolInvocation/invoked": "Questão pronta",
         },
         structured_output=True,
-        annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=False),
+        annotations=ToolAnnotations(
+            readOnlyHint=True, destructiveHint=False, openWorldHint=False
+        ),
     )
-    def renderizar_questao(session_id: str) -> dict[str, Any]:
+    def renderizar_questao(session_id: str) -> SessionOutput:
         """Carrega a projeção pública atual de uma sessão para o widget."""
+        return service.questions.get_session(session_id)
+
+    @server.tool(
+        description=(
+            "Consulte o estado atual da sessão antes de atender uma ação do card. "
+            "Só aprofunde após tentativa; explique erro apenas em resposta incorreta. "
+            "Sessão invalidada permite somente pedir outra questão com aviso do defeito. "
+            "Não confie no estado observado pelo widget como autoridade."
+        ),
+        structured_output=True,
+        meta={"ui": {"visibility": ["model", "app"]}, "openai/widgetAccessible": True},
+        annotations=ToolAnnotations(
+            readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False
+        ),
+    )
+    def obter_questao(session_id: str) -> SessionOutput:
+        """Consulta a projeção atual autorizada, sem renderização ou gravação."""
         return service.questions.get_session(session_id)
 
     @server.resource(
@@ -176,6 +236,7 @@ def build_server(config: LibraryConfig) -> MCPServer:
                 "prefersBorder": True,
                 "csp": {"connectDomains": [], "resourceDomains": []},
             },
+            "openai/ui": {"availableDisplayModes": ["inline", "fullscreen"]},
             "openai/widgetPrefersBorder": True,
             "openai/widgetCSP": {
                 "connect_domains": [],
@@ -195,6 +256,7 @@ def build_server(config: LibraryConfig) -> MCPServer:
                 "csp": {"connectDomains": [], "resourceDomains": []},
             },
             "openai/widgetDescription": "Questão jurídica objetiva com correção após a tentativa.",
+            "openai/ui": {"availableDisplayModes": ["inline", "fullscreen"]},
             "openai/widgetPrefersBorder": True,
             "openai/widgetCSP": {
                 "connect_domains": [],
@@ -216,9 +278,13 @@ def _port(value: str) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Servidor MCP local do Estudo Jurídico Avançado")
+    parser = argparse.ArgumentParser(
+        description="Servidor MCP local do Estudo Jurídico Avançado"
+    )
     parser.add_argument("--config", type=Path, required=True)
-    parser.add_argument("--transport", choices=("stdio", "streamable-http"), default="stdio")
+    parser.add_argument(
+        "--transport", choices=("stdio", "streamable-http"), default="stdio"
+    )
     parser.add_argument("--host", choices=("127.0.0.1", "::1"), default="127.0.0.1")
     parser.add_argument("--port", type=_port, default=8765)
     return parser

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://magistratura-enam-br.local/schemas/exam-corpus-v1.json",
+  "title": "Registro de metadados/classificações de uma edição e caderno, sem prova ou respostas pessoais",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "corpus_id", "evidence_kind", "edition", "exam_type", "date", "expected_questions", "official_source", "document_review", "answer_key", "questions"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "corpus_id": {"$ref": "#/$defs/id"},
+    "evidence_kind": {"enum": ["synthetic", "official"]},
+    "edition": {"$ref": "#/$defs/text"},
+    "exam_type": {"enum": ["enam", "magistratura"]},
+    "date": {"$ref": "#/$defs/date"},
+    "expected_questions": {"type": "integer", "minimum": 1},
+    "official_source": {"$ref": "#/$defs/document"},
+    "document_review": {"$ref": "#/$defs/review_identity"},
+    "answer_key": {"$ref": "#/$defs/answer_key"},
+    "questions": {"type": "array", "items": {"$ref": "#/$defs/question"}}
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "id": {"type": "string", "pattern": "^[\\w.:-]+(?![\\s\\S])"},
+    "date": {"type": "string", "format": "date"},
+    "hash": {"type": "string", "minLength": 64, "maxLength": 64, "pattern": "^[a-f0-9]{64}(?![\\s\\S])"},
+    "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "document": {
+      "type": "object", "additionalProperties": false,
+      "required": ["url", "sha256", "accessed_at"],
+      "properties": {"url": {"$ref": "#/$defs/url"}, "sha256": {"$ref": "#/$defs/hash"}, "accessed_at": {"$ref": "#/$defs/date"}}
+    },
+    "answer_key": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status"],
+      "properties": {"status": {"enum": ["definitivo", "provisorio", "ausente"]}, "url": {"$ref": "#/$defs/url"}, "sha256": {"$ref": "#/$defs/hash"}},
+      "allOf": [{"if": {"properties": {"status": {"const": "definitivo"}}}, "then": {"required": ["url", "sha256"]}}]
+    },
+    "review_identity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reviewer", "date", "note"],
+      "properties": {"reviewer": {"$ref": "#/$defs/text"}, "date": {"$ref": "#/$defs/date"}, "note": {"$ref": "#/$defs/text"}}
+    },
+    "point_source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "reference"],
+      "properties": {"type": {"enum": ["legislacao", "jurisprudencia", "doutrina", "material", "outro"]}, "reference": {"$ref": "#/$defs/text"}, "url": {"$ref": "#/$defs/url"}}
+    },
+    "difficulty": {
+      "type": "object", "additionalProperties": false,
+      "required": ["label", "author", "method"],
+      "properties": {"label": {"enum": ["baixa", "media", "alta"]}, "author": {"$ref": "#/$defs/text"}, "method": {"$ref": "#/$defs/text"}}
+    },
+    "classification_review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "reviewer", "date", "note", "format", "discipline", "point_source"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "reviewer": {"$ref": "#/$defs/text"}, "date": {"$ref": "#/$defs/date"}, "note": {"$ref": "#/$defs/text"},
+        "format": {"enum": ["direto", "numerado", "vf", "associacao", null]},
+        "discipline": {"anyOf": [{"$ref": "#/$defs/text"}, {"type": "null"}]},
+        "point_source": {"anyOf": [{"$ref": "#/$defs/point_source"}, {"type": "null"}]},
+        "difficulty": {"anyOf": [{"$ref": "#/$defs/difficulty"}, {"type": "null"}]}
+      }
+    },
+    "resolution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["selected_review_id", "reviewer", "date", "note"],
+      "properties": {"selected_review_id": {"$ref": "#/$defs/id"}, "reviewer": {"$ref": "#/$defs/text"}, "date": {"$ref": "#/$defs/date"}, "note": {"$ref": "#/$defs/text"}}
+    },
+    "question": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "status", "reviews"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "status": {"enum": ["valida", "anulada", "pendente"]},
+        "reviews": {"type": "array", "items": {"$ref": "#/$defs/classification_review"}},
+        "resolution": {"$ref": "#/$defs/resolution"}
+      }
+    }
+  }
+}

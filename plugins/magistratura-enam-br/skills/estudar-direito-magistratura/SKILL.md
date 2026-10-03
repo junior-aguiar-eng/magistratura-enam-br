@@ -25,6 +25,8 @@ Leia `../../references/politica-fontes-juridicas.md` e `../../references/protoco
 
 Só altere a política quando o candidato mudar efetivamente o escopo das fontes. Havendo pesquisa externa relevante, integre os resultados ao desenvolvimento e finalize com `Base consultada` compacta, sem clipping, manchetes ou URLs brutas no corpo.
 
+Em treino por questão, a proteção pré-tentativa prevalece sobre essa apresentação de pesquisa: confira as fontes internamente, mas entregue somente enunciado e alternativas. Reserve tese, síntese do julgado, fundamentos, atualização e `Base consultada` para a correção após a tentativa. Não introduza a questão com uma aula, notícia resumida ou explicação que resolva seu núcleo; preserve as citações automáticas do host. Se o fundamento já foi exposto na conversa, formule outro núcleo ainda não resolvido ou outro caso que exija aplicação nova, sem reutilizar a mesma resposta revelada como diagnóstico independente.
+
 ## Diretriz obrigatória do plugin
 
 Na abertura de nova sessão de estudo, leia e cumpra integralmente `../../AGENTS.md`. Suas diretrizes prevalecem sobre preferências genéricas de formato, concisão ou simplificação. Em continuidade da mesma sessão, reaproveite a leitura já feita e releia apenas diante de alteração material do pedido, do acervo ou do modo de atuação.
@@ -53,7 +55,7 @@ Cronogramas e planos de remessa não definem tema, sequência, prioridade ou opo
 
 - Para resposta pontual, sessão aprofundada, síntese, lei seca ou julgado já selecionado, siga `references/explicacao-e-integracao.md`.
 - Para construção, resolução ou correção de caso jurídico complexo, leia também `references/casos-complexos.md`.
-- Para revisão ativa de recuperação, consolidação ou véspera de prova, leia `references/revisao.md`.
+- Para revisão ativa de recuperação, consolidação ou véspera de prova, leia `references/revisao.md` e ancore síntese, distinções e flashcards no trecho efetivamente acessível; não simule acesso a material anterior.
 - Para questões objetivas, leia `references/questoes-fgv-enam.md` e trate a trava canônica de emissão nela prevista como condição obrigatória antes de responder. Se qualquer critério falhar, descarte o rascunho e reconstrua a questão; não flexibilize a trava por concisão, rapidez ou pedido de formato.
 - Para questões objetivas com MCP disponível, leia também `../../references/questoes-interativas-mcp.md`. Use o fluxo MCP Apps para projeção, interação e persistência, sem transferir ao MCP a elaboração jurídica; se a ferramenta ou a UI falhar, aplique imediatamente o fallback textual definido nessa referência.
 - Para discursiva, leia `references/discursivas.md`; para prova oral, leia `references/prova-oral.md`.
@@ -65,6 +67,10 @@ O estudo de julgado já selecionado integra a sessão aprofundada; não o trate 
 ## Trava canônica FGV/ENAM
 
 Em questão objetiva, a execução só começa depois da leitura de `references/questoes-fgv-enam.md`. Não formule caso concreto a partir de material apenas introdutório, sem regra, tese, consequência ou limite verificável: localize subtema apto, complemente por fonte oficial proporcional ou peça recorte específico.
+
+Escolha `direto`, `numerado`, `vf` ou `associacao` conforme o núcleo e o pedido, mantendo cinco alternativas A–E e chave única. Os desenhos de soluções, matriz ou fundamento orientam a construção; não exigem variedade numa questão única nem autorizam inferir domínio. Após a tentativa, explique individualmente as assertivas ou associações e os erros das combinações, inclusive no acerto, conforme a referência canônica.
+
+Em associação, escreva no próprio enunciado se cada opção da segunda coluna pode ser usada uma vez ou repetida; essa regra não pode ficar apenas no planejamento interno. Confira que o mapeamento e todas as combinações obedecem à regra anunciada.
 
 Antes de emitir, organize internamente núcleo determinante, fatos funcionais, tensão jurídica e matriz das cinco alternativas. O gabarito deve aplicar a regra, tese ou precedente específico aos fatos e à consequência exigida; princípio, constitucionalização ou ponderação genérica não substituem disciplina determinada. Cada distrator deve resolver a mesma controvérsia com estrutura comparável e erro técnico singular. Rejeite o rascunho se a correta for a única alternativa ponderada, completa, sem absolutismo indevido ou com consequência jurídica definida; se um distrator apenas negar premissa elementar; se houver mais de uma resposta defensável; ou se algum fato não participar da solução.
 

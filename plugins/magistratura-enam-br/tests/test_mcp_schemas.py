@@ -13,6 +13,41 @@ def carregar_schema(nome: str) -> dict:
     return json.loads((SCHEMAS / nome).read_text(encoding="utf-8"))
 
 
+@pytest.mark.parametrize(
+    "text",
+    [
+        "sem bloco",
+        "<!-- mcp-instructions:start -->incompleto",
+        "<!-- mcp-instructions:end -->fora de ordem<!-- mcp-instructions:start -->",
+        "<!-- mcp-instructions:start -->  <!-- mcp-instructions:end -->",
+        "<!-- mcp-instructions:start -->a<!-- mcp-instructions:end -->" * 2,
+    ],
+)
+def test_instrucoes_incompletas_falham_com_erro_de_manutencao(
+    tmp_path, monkeypatch, text
+):
+    from mcp_server import instructions
+
+    reference = tmp_path / "reference.md"
+    reference.write_text(text, encoding="utf-8")
+    monkeypatch.setattr(instructions, "REFERENCE_PATH", reference)
+    with pytest.raises(ValueError, match="instruções MCP"):
+        instructions.load_server_instructions()
+
+
+def test_instrucoes_leem_so_o_bloco_canonico(tmp_path, monkeypatch):
+    from mcp_server import instructions
+
+    reference = tmp_path / "reference.md"
+    reference.write_text(
+        "fora\n<!-- mcp-instructions:start -->\nOrientação jurídica.\n"
+        "<!-- mcp-instructions:end -->\nfora",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(instructions, "REFERENCE_PATH", reference)
+    assert instructions.load_server_instructions() == "Orientação jurídica."
+
+
 def validar(nome: str, instancia: dict) -> None:
     schema = carregar_schema(nome)
     Draft202012Validator.check_schema(schema)
@@ -23,6 +58,24 @@ def test_sdk_mcp_v2_esta_disponivel():
     from mcp.server import MCPServer
 
     assert MCPServer is not None
+
+
+def test_schema_saida_pronta_rejeita_resultado_de_tentativa():
+    from test_mcp_question_sessions import sessao
+
+    from mcp_server.outputs import SessionOutput
+
+    public = sessao()
+    public.pop("correct_option")
+    public.pop("correction")
+    public["projection"] = "public"
+    public.update(
+        selected_option="C", result="correct", answered_at="2026-09-05T18:05:00Z"
+    )
+    with pytest.raises(ValidationError):
+        Draft202012Validator(SessionOutput.model_json_schema()).validate(public)
+    with pytest.raises(ValueError, match="projeção de sessão"):
+        SessionOutput.model_validate(public)
 
 
 @pytest.fixture
@@ -56,7 +109,9 @@ def correcao() -> dict:
             {"option": letra, "analysis": f"Erro jurídico da alternativa {letra}."}
             for letra in ("A", "B", "D", "E")
         ],
-        "exceptions": ["A conclusão muda se o pressuposto fático não estiver presente."],
+        "exceptions": [
+            "A conclusão muda se o pressuposto fático não estiver presente."
+        ],
         "traps": ["Confusão entre regra e exceção."],
     }
 

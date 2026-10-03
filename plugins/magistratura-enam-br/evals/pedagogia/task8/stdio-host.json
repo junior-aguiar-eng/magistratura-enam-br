@@ -1,0 +1,278 @@
+{
+  "client": "Codex CLI 0.148.0",
+  "candidate_ref": "8ac72de1fd0aa2343f1b08bb467a61b8a198eacc",
+  "transport": "stdio",
+  "scope": "synthetic isolated library; ephemeral MCP override, no installation",
+  "exit": 0,
+  "duration_seconds": 95.338,
+  "session_id": "01a103a9-fad2-73a3-91ae-236788410648",
+  "tool_calls": [
+    {
+      "server": "task8",
+      "tool": "diagnosticar_acervo",
+      "status": "completed",
+      "error": null,
+      "is_error": null,
+      "result_fields": [
+        "content",
+        "structured_content"
+      ]
+    },
+    {
+      "server": "task8",
+      "tool": "criar_sessao_questao",
+      "status": "failed",
+      "error": null,
+      "is_error": null,
+      "result_fields": [
+        "content",
+        "structured_content"
+      ]
+    },
+    {
+      "server": "task8",
+      "tool": "criar_sessao_questao",
+      "status": "completed",
+      "error": null,
+      "is_error": null,
+      "result_fields": [
+        "content",
+        "structured_content"
+      ]
+    },
+    {
+      "server": "task8",
+      "tool": "renderizar_questao",
+      "status": "completed",
+      "error": null,
+      "is_error": null,
+      "result_fields": [
+        "content",
+        "structured_content"
+      ]
+    },
+    {
+      "server": "task8",
+      "tool": "responder_questao",
+      "status": "completed",
+      "error": null,
+      "is_error": null,
+      "result_fields": [
+        "content",
+        "structured_content"
+      ]
+    },
+    {
+      "server": "task8",
+      "tool": "obter_questao",
+      "status": "completed",
+      "error": null,
+      "is_error": null,
+      "result_fields": [
+        "content",
+        "structured_content"
+      ]
+    },
+    {
+      "server": "task8",
+      "tool": "invalidar_questao",
+      "status": "completed",
+      "error": null,
+      "is_error": null,
+      "result_fields": [
+        "content",
+        "structured_content"
+      ]
+    },
+    {
+      "server": "task8",
+      "tool": "obter_questao",
+      "status": "completed",
+      "error": null,
+      "is_error": null,
+      "result_fields": [
+        "content",
+        "structured_content"
+      ]
+    }
+  ],
+  "ui_host": "not available in CLI; render result does not prove card presentation",
+  "observed_results": [
+    {
+      "tool": "diagnosticar_acervo",
+      "status": "completed",
+      "response_sha256": "03874b336bc362c108c229518e877d5eb95c2d3d735f1e2b0a165abaea11e62f",
+      "index_status": "missing",
+      "response_keys": [
+        "document_count",
+        "generated_at",
+        "index_path",
+        "index_status",
+        "library_root",
+        "schema_version",
+        "state_dir"
+      ]
+    },
+    {
+      "tool": "criar_sessao_questao",
+      "status": "failed",
+      "response_sha256": "0df230269126d52d2e1d8aa30387ed157fdb7f52b5eed1daefb3be2254b01331",
+      "failure_detail": "Model supplied five distractor analyses; schema requires exactly four. Corrected before persistence; next create succeeded."
+    },
+    {
+      "tool": "criar_sessao_questao",
+      "status": "completed",
+      "response_sha256": "49f929314eba5b2442c92a59d2d9a400077dda2623350dffda30993a085c2d4a",
+      "state": "ready",
+      "projection": "public",
+      "session_id": "qsn_5df1a0e6a9854680b5fb182b87e5c367",
+      "response_keys": [
+        "alternatives",
+        "caution_notice",
+        "created_at",
+        "mode",
+        "projection",
+        "prompt",
+        "schema_version",
+        "session_id",
+        "source_status",
+        "sources",
+        "state",
+        "subject",
+        "topic"
+      ],
+      "private_fields_absent": true
+    },
+    {
+      "tool": "renderizar_questao",
+      "status": "completed",
+      "response_sha256": "49f929314eba5b2442c92a59d2d9a400077dda2623350dffda30993a085c2d4a",
+      "state": "ready",
+      "projection": "public",
+      "session_id": "qsn_5df1a0e6a9854680b5fb182b87e5c367",
+      "response_keys": [
+        "alternatives",
+        "caution_notice",
+        "created_at",
+        "mode",
+        "projection",
+        "prompt",
+        "schema_version",
+        "session_id",
+        "source_status",
+        "sources",
+        "state",
+        "subject",
+        "topic"
+      ],
+      "private_fields_absent": true
+    },
+    {
+      "tool": "responder_questao",
+      "status": "completed",
+      "response_sha256": "390ccb7928c18b778bcba7113bd48ad30c2ec5ce031b7347fea33a0cd456916b",
+      "state": "answered",
+      "projection": "corrected",
+      "session_id": "qsn_5df1a0e6a9854680b5fb182b87e5c367",
+      "response_keys": [
+        "alternatives",
+        "answered_at",
+        "caution_notice",
+        "correct_option",
+        "correction",
+        "created_at",
+        "mode",
+        "projection",
+        "prompt",
+        "result",
+        "schema_version",
+        "selected_option",
+        "session_id",
+        "source_status",
+        "sources",
+        "state",
+        "subject",
+        "topic"
+      ]
+    },
+    {
+      "tool": "obter_questao",
+      "status": "completed",
+      "response_sha256": "390ccb7928c18b778bcba7113bd48ad30c2ec5ce031b7347fea33a0cd456916b",
+      "state": "answered",
+      "projection": "corrected",
+      "session_id": "qsn_5df1a0e6a9854680b5fb182b87e5c367",
+      "response_keys": [
+        "alternatives",
+        "answered_at",
+        "caution_notice",
+        "correct_option",
+        "correction",
+        "created_at",
+        "mode",
+        "projection",
+        "prompt",
+        "result",
+        "schema_version",
+        "selected_option",
+        "session_id",
+        "source_status",
+        "sources",
+        "state",
+        "subject",
+        "topic"
+      ]
+    },
+    {
+      "tool": "invalidar_questao",
+      "status": "completed",
+      "response_sha256": "ee3235c9679e1eae5d4d96a2efffd67bd07a1b5bbe5614eb87216b5dfe73dbca",
+      "state": "invalidated",
+      "projection": "public",
+      "session_id": "qsn_5df1a0e6a9854680b5fb182b87e5c367",
+      "response_keys": [
+        "alternatives",
+        "caution_notice",
+        "created_at",
+        "invalidation_reason",
+        "mode",
+        "projection",
+        "prompt",
+        "schema_version",
+        "session_id",
+        "source_status",
+        "sources",
+        "state",
+        "subject",
+        "topic"
+      ],
+      "private_fields_absent": true
+    },
+    {
+      "tool": "obter_questao",
+      "status": "completed",
+      "response_sha256": "ee3235c9679e1eae5d4d96a2efffd67bd07a1b5bbe5614eb87216b5dfe73dbca",
+      "state": "invalidated",
+      "projection": "public",
+      "session_id": "qsn_5df1a0e6a9854680b5fb182b87e5c367",
+      "response_keys": [
+        "alternatives",
+        "caution_notice",
+        "created_at",
+        "invalidation_reason",
+        "mode",
+        "projection",
+        "prompt",
+        "schema_version",
+        "session_id",
+        "source_status",
+        "sources",
+        "state",
+        "subject",
+        "topic"
+      ],
+      "private_fields_absent": true
+    }
+  ],
+  "model": "gpt-5.6-sol (CLI default; revision not exposed)"
+}

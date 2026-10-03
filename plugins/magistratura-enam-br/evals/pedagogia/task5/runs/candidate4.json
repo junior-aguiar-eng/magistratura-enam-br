@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "run_id": "task5-candidate4",
+    "executed_at": "2026-10-03T17:54:41.356887+00:00",
+    "plugin_version": "0.7.5",
+    "model": "identificador não exposto; configuração herdada da sessão principal",
+    "client": "Codex desktop / collaboration.spawn_agent, fork_turns=none",
+    "session_id": "/root/task5_candidate4",
+    "round": 4,
+    "origin": "captured_session"
+  },
+  "case_snapshot": {
+    "id": "task5-associacao-matriz",
+    "skill": "estudar-direito-magistratura",
+    "prompt": "Use o material Markdown enviado agora, no modo acervo_exclusivo. Quero apenas uma questão FGV/ENAM de associação de colunas. Associe três situações processuais a soluções completas que combinem competência e efeitos de decisão já proferida. Os efeitos importam tanto quanto o destino dos autos. Não forneça gabarito, correção ou indicação de qual combinação resolve o caso.\n\nMaterial do candidato — recorte de estudo sintético, norma conferida no Planalto em 2026-10-03, CPC art. 64, §§ 2º–4º:\nApós ouvir a parte contrária, o juiz decide imediatamente a arguição de incompetência. Acolhida a arguição, remete os autos ao juízo competente. Salvo decisão judicial em sentido contrário, os efeitos da decisão do juízo incompetente permanecem até que o juízo competente profira outra, se for o caso. A distinção relevante é entre destino do processo e conservação dos efeitos; declaração de incompetência não equivale por si a perda automática desses efeitos.\n",
+    "source_policy": "acervo_exclusivo",
+    "fixtures": [
+      "Caso sintético, sem prova protegida ou resposta real de candidato.",
+      "src_cpc-art64: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm; art.64 §§2º–4º, conferido em 2026-10-03."
+    ],
+    "expected_output": "Cumprimento do pedido e das travas do cenário, sujeito à rubrica posterior.",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "kind": "automatic",
+        "check": "option_count",
+        "expected": 5
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "kind": "automatic",
+        "check": "ends_after_option_e"
+      }
+    ],
+    "human_rubric": [
+      "suporte oficial/material",
+      "núcleo funcional",
+      "plausibilidade",
+      "unicidade",
+      "comparação dos distratores",
+      "limite de fonte"
+    ],
+    "risk_tags": [
+      "fundamento-sem-suporte",
+      "gabarito-ambiguo"
+    ],
+    "legal_grounding": {
+      "checked_at": "2026-10-03",
+      "cutoff_date": "2026-10-03",
+      "claims": [
+        {
+          "id": "competencia-e-efeitos",
+          "expected_conclusion": "Remessa e conservação dos efeitos são planos distintos; ressalva judicial e decisão substitutiva não podem ser ignoradas.",
+          "official_source": "src_cpc-art64",
+          "locator": "CPC art.64 §§2º–4º",
+          "supports": "Fonte oficial localizada; aplicação, unicidade e plausibilidade da fixture ainda exigem revisão humana."
+        }
+      ],
+      "human_review": {
+        "review_status": "pending",
+        "review_note": "Sem revisão humana identificada; conferência normativa pelo agente não aprova fixture ou saída."
+      }
+    }
+  },
+  "case_sha256": "6c0f21d23a213a3d69c669d6b4996457c25ef27883f113eaf7029569049d7bf7",
+  "output": "Considerando exclusivamente o material fornecido sobre o art. 64, §§ 2º–4º, do CPC, associe as situações da primeira coluna às soluções da segunda. Em cada processo, a arguição de incompetência foi decidida após a oitiva da parte contrária. Considere tanto o destino dos autos quanto os efeitos da tutela anteriormente concedida.\n\nPrimeira coluna — situações processuais\n\nI. O juízo concedeu tutela para impedir a cobrança de uma obrigação. Ao examinar a arguição de incompetência, rejeitou-a e não alterou a tutela. A parte vencida sustentou que a apresentação da arguição bastaria para exigir a remessa dos autos e interromper os efeitos da medida até novo pronunciamento judicial.\n\nII. O juízo concedeu tutela para assegurar o fornecimento de determinado bem. Posteriormente, acolheu a arguição de incompetência e determinou a remessa dos autos, sem se pronunciar sobre os efeitos da tutela. O juízo destinatário ainda não proferiu outra decisão, e o obrigado pretende interromper o fornecimento em razão da declaração de incompetência.\n\nIII. O juízo concedeu tutela para suspender a exigibilidade de uma cobrança. Ao acolher a arguição de incompetência e determinar a remessa dos autos, decidiu expressamente que os efeitos da tutela cessariam a partir daquele pronunciamento. O juízo destinatário ainda não decidiu, e o beneficiário pretende conservar a suspensão até que ele examine a medida.\n\nSegunda coluna — soluções jurídicas\n\n1. Os autos permanecem no juízo que examinou a arguição, e a tutela conserva seus efeitos, pois o resultado do incidente não deslocou a competência nem modificou a medida anteriormente concedida.\n\n2. Os autos devem seguir ao juízo competente, e os efeitos da tutela permanecem enquanto não houver outra decisão desse juízo, se for o caso, pois o deslocamento do processo não determina, por si, sua cessação.\n\n3. Os autos devem seguir ao juízo competente, e os efeitos da tutela cessam no marco fixado pelo pronunciamento que acolheu a arguição, pois a determinação judicial expressa afasta sua conservação durante a remessa.\n\nCada solução deve ser utilizada uma única vez. Assinale a alternativa que apresenta a associação correta, na ordem I–II–III.\n\nA) 1–3–2.\n\nB) 2–1–3.\n\nC) 3–2–1.\n\nD) 1–2–3.\n\nE) 2–3–1.\n",
+  "output_sha256": "e161f8c75bee19a472bad99b8f9d6ba4cd4e6703d8755ebafcb0a6e67b16b79d",
+  "evaluation": {
+    "case_id": "task5-associacao-matriz",
+    "status": "revisao_humana_pendente",
+    "assertions": [
+      {
+        "id": "cinco-alternativas",
+        "description": "Exatamente cinco alternativas.",
+        "passed": true,
+        "evidence": "alternativas encontradas: 5; esperado: 5"
+      },
+      {
+        "id": "encerra-em-e",
+        "description": "Termina na alternativa E.",
+        "passed": true,
+        "evidence": "última linha é a alternativa E"
+      }
+    ],
+    "human_review_required": [
+      "rubrica-1",
+      "rubrica-2",
+      "rubrica-3",
+      "rubrica-4",
+      "rubrica-5",
+      "rubrica-6",
+      "validacao-fixture-juridica",
+      "aplicacao-fundamentacao-juridica"
+    ]
+  }
+}
