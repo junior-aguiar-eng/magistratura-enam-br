@@ -14,6 +14,8 @@ Validação: 43 falhas RED confirmadas após contrato inicial, seguidas de 120 c
 
 Manifesto mantido em 0.7.5; task8, push, reinstalação e publicação permanecem pendentes. O achado menor da task6 sobre numeração arábica permanece registrado, sem ampliação incidental desta task.
 
+Revisão independente automatizada de `235c4f0..eb4ca69`: nenhum achado crítico ou menor, um importante — padrões de ID/hash aceitavam quebra de linha final, inflando identidade/cobertura e admitindo hash inválido. Oito regressões falharam antes da correção e passaram após uma passagem; schema exige fim real de string e hash de 64 caracteres. Agora 55 corpus/132 corpus+auditor/141 com catálogo e suíte completa com 520 Python (60,72 s) aprovados, além de Ruff/lock/42checks e MkDocs estrito; sem segunda revisão. O revisor não repetiu os gates gerais; autenticidade documental e identidade dos revisores, representatividade real, qualidade jurídica das classificações e homologação humana/hosts permanecem fora da comprovação automatizada.
+
 ## Incrementos MCP — task 6, 2026-10-03
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de `f94142d`, por autorização específica. `scripts/auditar_questoes.py` oferece dataclass, parser Markdown/JSON, auditor e CLI de leitura; não grava, reordena alternativas ou registra atividade. O parser conserva duplicatas e exige bloco interpretável; o auditor confronta IDs/A–E e chaves, detecta solução explícita e separa erros, avisos e checagens omitidas. O schema do relatório impede aprovação com erro ou cobertura explicitamente incompleta.

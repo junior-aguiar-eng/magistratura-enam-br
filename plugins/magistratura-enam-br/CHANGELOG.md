@@ -6,6 +6,7 @@
 - Exclui anuladas, pendências, gabarito não definitivo e classificações incompletas/divergentes sem resolução; preserva revisões e dificuldade editorial com autor/método, sem inferir acertos.
 - Integra perfil recomputável ao auditor para comparação descritiva de formatos; rejeita inconsistência, distingue fixtures sintéticas e mantém resultado parcial sem chave completa no bloco.
 - Documenta coleta oficial própria e perfil empírico pendente; amplia cenários e orientação de treino/simulado sem quotas, divisão 75/25 ou redução do padrão canônico.
+- Recusa quebra de linha final em identidades de corpus/questão/revisão e exige hashes com exatamente 64 caracteres, impedindo contagem duplicada por identidade visual ambígua.
 
 ## Não publicado — incrementos MCP, task 6
 

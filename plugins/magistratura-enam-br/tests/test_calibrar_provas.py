@@ -447,3 +447,68 @@ def test_novo_rotulo_de_dificuldade_divergente_permanece_pendente(calibration):
     assert profile["coverage"]["eligible"] == 1
     assert profile["distributions"]["difficulty"]["counts"] == {"alta": 1}
     assert "classification_unresolved" in profile["exclusions"][0]["reasons"]
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "corpus_id",
+        "question_id",
+        "review_id",
+        "resolution_id",
+        "source_hash",
+        "answer_hash",
+    ],
+)
+def test_newline_final_em_identidade_ou_hash_e_rejeitado(calibration, field):
+    data = corpus()
+    question = data["questions"][0]
+    match field:
+        case "corpus_id":
+            data["corpus_id"] += "\n"
+        case "question_id":
+            question["id"] += "\n"
+        case "review_id":
+            question["reviews"][0]["id"] += "\n"
+        case "resolution_id":
+            question["reviews"][0]["id"] += "\n"
+            question["resolution"] = {
+                "selected_review_id": "r1\n",
+                "reviewer": "Teste",
+                "date": "2026-10-03",
+                "note": "Seleção sintética",
+            }
+        case "source_hash":
+            data["official_source"]["sha256"] += "\n"
+        case "answer_hash":
+            data["answer_key"]["sha256"] += "\n"
+    with pytest.raises(ValueError):
+        calibration.build_calibration_profile(data)
+
+
+def test_identidade_visual_duplicada_nao_infla_corpus_ou_comparacao(calibration):
+    data = corpus(evidence_kind="official")
+    first = copy.deepcopy(data["questions"][0])
+    second = copy.deepcopy(first)
+    second["id"] = "1\n"
+    data["questions"] = [first, second]
+    data["expected_questions"] = 2
+    with pytest.raises(ValueError):
+        calibration.build_calibration_profile(data)
+
+
+def test_schema_da_comparacao_rejeita_hash_com_newline(calibration):
+    import auditar_questoes
+    from test_auditar_questoes import questao
+
+    result = auditar_questoes.audit_question_block(
+        [questao(auditar_questoes)],
+        profile=calibration.build_calibration_profile(corpus(evidence_kind="official")),
+    )
+    result["metrics"]["calibration"]["reference_corpus_sha256"] += "\n"
+    schema = json.loads(
+        (ROOT / "modelos/pedagogia/question-block-audit.schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert list(Draft202012Validator(schema).iter_errors(result))

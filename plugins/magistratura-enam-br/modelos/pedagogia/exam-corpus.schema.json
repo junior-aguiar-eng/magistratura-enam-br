@@ -20,9 +20,9 @@
   },
   "$defs": {
     "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
-    "id": {"type": "string", "pattern": "^[\\w.:-]+$"},
+    "id": {"type": "string", "pattern": "^[\\w.:-]+(?![\\s\\S])"},
     "date": {"type": "string", "format": "date"},
-    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "hash": {"type": "string", "minLength": 64, "maxLength": 64, "pattern": "^[a-f0-9]{64}(?![\\s\\S])"},
     "url": {"type": "string", "format": "uri", "pattern": "^https://"},
     "document": {
       "type": "object", "additionalProperties": false,

@@ -20,7 +20,7 @@
 - Logs históricos permanecem legíveis e não são reescritos; a UI nunca é fonte de verdade de resultado.
 - Não adicionar API paga, biblioteca de UI ou backend de coleta sem necessidade demonstrada. SDK instalado já contém sendMessage, updateModelContext e eventos de contexto.
 - Atualizar README, CHANGELOG e CONTINUACAO nos commits que alterem comportamento. Regerar bundle somente a partir de fonte validada.
-- Plano aprovado em 2026-10-02. Tasks 1–6 executadas localmente; a task 5 permanece candidata pendente de revisão humana. O pedido vigente autoriza executar e commitar somente a task 7 na mesma branch. Task 8, push, reinstalação e publicação permanecem fora desta execução.
+- Plano aprovado em 2026-10-02. Tasks 1–7 executadas localmente; as orientações pedagógicas permanecem candidatas pendentes de revisão humana, e o perfil empírico continua pendente. O pedido vigente autoriza executar e commitar somente a task 7 na mesma branch. Task 8, push, reinstalação e publicação permanecem fora desta execução.
 
 ## Review Focus
 
@@ -156,7 +156,7 @@ Extender `QuestionHost` com `requestDisplayMode(mode: "inline" | "fullscreen"): 
 - [x] Rodar testes do corpus/auditor e revisar amostra rotulada sintética, sem aprovação jurídica humana. Divergência entre classificadores permanece registrada; não resolver por média automática.
 - [x] Documentar o perfil comprovado ou a pendência; commitar separadamente do MCP.
 
-**Registro da execução:** schema e APIs/CLI por leitura entregues com registro por edição/caderno, classificação e resolução identificadas, cobertura e perfil recomputável. Auditor task6 consome referência declarada oficial/elegível para comparação descritiva de formatos, sem quota; fixture sintética não ativa referência empírica. Gabarito provisório, anuladas e classificações pendentes não alimentam distribuição. 47 testes do corpus e 77 do auditor aprovados, 133 incluindo catálogo e 512 Python completos; Ruff/lock/42checks aprovados. Controle já recusava default empírico 75/25; candidata passou três cenários automatizados, sem comparação repetida ou homologação humana. Nenhum corpus oficial selecionado/coletado: perfil empírico permanece pendente conforme exceção prevista no brief/spec. Manifesto 0.7.5, sem alteração MCP/widget/AGENTS e sem operação remota.
+**Registro da execução:** schema e APIs/CLI por leitura entregues com registro por edição/caderno, classificação e resolução identificadas, cobertura e perfil recomputável. Auditor task6 consome referência declarada oficial/elegível para comparação descritiva de formatos, sem quota; fixture sintética não ativa referência empírica. Gabarito provisório, anuladas e classificações pendentes não alimentam distribuição. Revisão independente encontrou um importante corrigido em oito regressões RED→GREEN: newline final em IDs/hashes; nenhum crítico/menor e sem segunda revisão. Agora 55 testes do corpus e 77 do auditor aprovados, 141 incluindo catálogo e 520 Python completos; Ruff/lock/42checks e docsstrict aprovados. Controle já recusava default empírico 75/25; candidata passou três cenários automatizados, sem comparação repetida ou homologação humana. Nenhum corpus oficial selecionado/coletado: perfil empírico permanece pendente conforme exceção prevista no brief/spec. Manifesto 0.7.5, sem alteração MCP/widget/AGENTS e sem operação remota.
 
 ## Task 8: Comparação, homologação e entrega
 
