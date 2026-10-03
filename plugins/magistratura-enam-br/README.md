@@ -18,9 +18,12 @@ A candidata local da task 5 explicita revisão ancorada no trecho acessível, fo
 
 A [validação da task 8](evals/pedagogia/task8/README.md) registra 42 capturas
 comparativas, MCP stdio real na CLI e ensaio de anexo sem MCP no ChatGPT.
-Revisão humana, corpus oficial e card/fullscreen da candidata no ChatGPT
-permanecem pendentes. A proposta 0.8.0 não é release; a instalação estável
-continua em v0.7.5.
+Os incrementos compõem a versão 0.8.0. A [preparação da release](evals/pedagogia/release-0.8.0/README.md)
+acrescenta doze capturas e corrige a apresentação de pesquisa antes da
+tentativa, a declaração de reutilização e a classificação de assertivas
+arábicas. O [corpus oficial ENAM 2026.1](evals/pedagogia/calibracao-enam/enam-2026.1-tipo1/README.md)
+foi adquirido; sua classificação revisada, aprovação jurídica humana e
+card/fullscreen no ChatGPT são gates separados da publicação.
 
 ## Questões interativas locais
 

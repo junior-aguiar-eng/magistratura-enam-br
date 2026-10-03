@@ -1,5 +1,39 @@
 # Continuação de manutenção
 
+## Resolução de pendências e entrega 0.8.0 — 2026-10-03
+
+Push, release e reinstalação autorizados pelo usuário, assim como resolução
+das pendências. Manifesto, projeto e lockfile passam a 0.8.0. Os registros
+das tasks abaixo permanecem históricos; não descrevem o estado atual da
+autorização nem da aquisição documental.
+
+Corrigidas instruções conflitantes de pesquisa/proteção pré-tentativa e
+omissão da regra pública de reutilização. Doze novas capturas reais,
+controle `c6dbd85` e candidata congelada por conteúdo/hash, estão em
+`evals/pedagogia/release-0.8.0/`. Ambas as variantes preservaram a tentativa
+nas três sessões com fonte fornecida; candidata declarou uso único nas
+três associações e controle omitiu em uma. Não reproduz a busca web real
+nem demonstra ganho geral. Todos os registros aguardam revisão humana.
+
+O achado de marcadores arábicos foi reproduzido em dois casos RED e
+corrigido; controles de anos/marcador único passaram. Suíte com 607 testes
+Python aprovada antes do bump. Verificação de integração após o bump:
+versão 0.8.0, 42 checks, 116 JSON e 103 Python aprovados.
+
+Corpus oficial ENAM 2026.1 Tipo 1 adquirido da FGV: 80 IDs confrontados
+com gabarito definitivo, questão 42 anulada, URLs/bytes/hashes registrados.
+PDFs e textos integrais ficam fora da distribuição. Sugestões automáticas
+de classificação não são revisão humana; perfil com zero elegíveis e
+`sem_calibracao`. Pacote concreto de revisão disponível em
+`evals/pedagogia/release-0.8.0/revisao-humana.md`.
+
+Servidor de homologação preparado em loopback com biblioteca sintética.
+Novo Secure MCP Tunnel e conexão ChatGPT aguardam a confirmação específica
+de concessão de acesso remoto; o túnel e o acervo pessoais não foram
+modificados. Card/fullscreen no host real, revisão humana e calibração
+aprovada permanecem pendentes. Estado remoto e instalação devem ser
+conferidos após publicação; não se presume entrega por bump local.
+
 ## Homologação dos incrementos — task 8, 2026-10-03
 
 Executada na branch `codex/incrementos-mcp-calibracao`, a partir de
