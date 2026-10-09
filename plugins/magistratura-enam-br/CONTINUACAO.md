@@ -19,6 +19,27 @@ e cache de busca aprovados; Ruff/lock/42 checks de integração aprovados em
 0.8.1. A suíte completa de 614 testes foi executada antes do bump, sem mudança
 subsequente no motor de busca ou nas instruções MCP.
 
+Commit de desempenho `c082bea` enviado à branch autorizada. Instalação Codex
+0.8.1 confirmada e habilitada; marketplace anterior preso à tag v0.8.0 foi
+registrado novamente para esta branch pelo CLI suportado. Fonte instalada
+conferida contra o checkout, normalizando somente CRLF/LF. Smoke do cache por
+stdio real em biblioteca sintética passou: nove ferramentas, instruções novas
+e diagnóstico somente leitura. Não é homologação do modelo/UI do ChatGPT.
+
+O CI inicial [37988787386](https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/runs/37988787386)
+passou em Python e instalação, mas falhou na auditoria npm por três alertas
+de dependências transitivas. `npm audit fix --package-lock-only --ignore-scripts`
+alterou somente SDK 1.30.0→1.32.1, proxy-addr 2.0.7→2.0.8 e source-map-js
+1.2.1→1.2.2, sem mudar dependências diretas ou relaxar o gate.
+Referências: [SDK](https://github.com/advisories/GHSA-6qxp-vccf-f47h),
+[proxy-addr](https://github.com/advisories/GHSA-jqcg-44mw-7w3h) e
+[source-map-js](https://github.com/advisories/GHSA-68fv-2mgg-jv7q).
+Auditoria local passou com zero vulnerabilidades e os 94 testes web passaram
+após reinstalar pelo lockfile. Lint e build passaram, com bundle reconstruído
+e apenas avisos não impeditivos de comentários da dependência Zod. A correção
+de dependências e seu bundle compõem commit separado; conferir o novo CI e
+a instalação final pelo HEAD efetivo.
+
 ## Redução local de latência — 2026-10-09
 
 Pedido: melhorar a primeira questão ou explicação no ChatGPT, app

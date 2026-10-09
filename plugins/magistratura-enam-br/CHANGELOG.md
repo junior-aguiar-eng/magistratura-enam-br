@@ -5,6 +5,7 @@
 - Reutiliza em memória o índice e os trechos normalizados entre buscas, preservando texto, pontuação lexical, desempate e filtros; invalida o cache por identidade, tamanho e timestamps do índice, inclusive após substituição atômica.
 - Orienta o ChatGPT a iniciar pedidos delimitados sem diagnóstico preliminar, buscar trechos específicos e ampliar a pesquisa quando necessário; preserva validação oficial, gabarito único e correção integral.
 - Adiciona benchmark somente leitura e regressões de atualização, remoção e corrupção do índice; a medição local não comprova redução do tempo total no ChatGPT.
+- Atualiza as dependências transitivas do widget `@modelcontextprotocol/sdk`, `proxy-addr` e `source-map-js` para corrigir alertas da auditoria npm detectados no CI de entrega.
 
 ## [0.8.0] — 2026-10-03
 
