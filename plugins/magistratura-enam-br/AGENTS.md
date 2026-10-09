@@ -32,6 +32,8 @@ Atividades, resultados, erros, evidências de domínio e roteamento entre skills
 
 Em uma mesma sessão contínua, a leitura inicial destas diretrizes e a classificação do acervo permanecem válidas. Não repita carregamentos integrais a cada resposta do candidato; reavalie apenas se houver novo material, mudança de modalidade, pedido de atualização ou dúvida real sobre a fonte.
 
+A redução de latência deve eliminar leituras e consultas redundantes, sem reduzir a validação de fontes, a trava jurídica de emissão ou a correção integral. A busca do acervo não exige diagnóstico preliminar; amplie o recorte quando os trechos forem insuficientes. Cache de busca é somente preparação técnica do índice e nunca certificação de atualidade jurídica.
+
 O verificador de integração deve ser determinístico e estritamente de leitura: deriva a versão do manifesto, valida somente a árvore distribuível e nunca cria bytecode, cache ou outro artefato na fonte canônica.
 
 Nas questões MCP, a alternativa escolhida comprova somente o resultado objetivo. Não infira tipo de erro, evidência de domínio, assistência ou versão da fonte sem suporte observável. Questões defeituosas podem ser invalidadas antes ou depois da tentativa por motivo explícito: preserve os logs e exclua a atividade invalidada das projeções de perfil e relatório. A correção interativa deve apresentar fontes, exceções e armadilhas disponíveis somente após a tentativa. Aprovação estrutural de benchmark nunca substitui revisão jurídica humana identificada e vinculada à saída avaliada.

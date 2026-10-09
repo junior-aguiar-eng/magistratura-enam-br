@@ -105,7 +105,10 @@ def build_server(config: LibraryConfig) -> MCPServer:
     def buscar_acervo(
         consulta: str, limite: int = 8, prefixo: str | None = None
     ) -> SearchOutput:
-        """Busca trechos rastreáveis no índice Markdown local."""
+        """Busca trechos rastreáveis diretamente, sem diagnóstico prévio do acervo.
+
+        Use termos específicos e amplie limite/prefixo quando faltar suporte ao pedido.
+        """
         return service.search(consulta, limit=limite, path_prefix=prefixo)
 
     @server.tool(
@@ -116,7 +119,10 @@ def build_server(config: LibraryConfig) -> MCPServer:
         ),
     )
     def diagnosticar_acervo() -> DiagnosticOutput:
-        """Informa a raiz configurada e o estado do índice local sem gravar arquivos."""
+        """Diagnostica o índice quando solicitado ou após falha da busca, sem gravar.
+
+        Não é pré-requisito para buscar_acervo nem para iniciar estudo delimitado.
+        """
         return service.diagnose_library()
 
     @server.tool(

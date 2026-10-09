@@ -4,6 +4,7 @@ import tempfile
 import uuid
 from datetime import UTC, datetime
 from pathlib import Path
+from threading import RLock
 
 from jsonschema import Draft202012Validator, FormatChecker
 
@@ -39,6 +40,10 @@ class StudyService:
             raise FileNotFoundError(f"Subpasta local não existe: {self.state_dir}")
         self.index_path = self.state_dir / "index.json"
         self.questions = QuestionRepository(self.state_dir)
+        self._search_lock = RLock()
+        self._search_signature: tuple | None = None
+        self._search_manifest: dict | None = None
+        self._normalized_content: dict[str, str] = {}
 
     def diagnose_library(self) -> dict:
         result = {
@@ -125,21 +130,46 @@ class StudyService:
             "removed_count": result.removed_count,
         }
 
+    def _read_search_manifest(self) -> dict:
+        # A single current snapshot, shared by searches but never written to disk.
+        # Identity catches atomic replacements even with equal size and mtime.
+        for _ in range(3):
+            if not self.index_path.is_file():
+                self._search_signature = None
+                self._search_manifest = None
+                self._normalized_content.clear()
+                raise FileNotFoundError("Índice local ainda não foi criado")
+            stat = self.index_path.stat()
+            signature = (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns)
+            if signature == self._search_signature and self._search_manifest is not None:
+                return self._search_manifest
+            self._search_signature = None
+            self._search_manifest = None
+            self._normalized_content.clear()
+            manifest = json.loads(self.index_path.read_text(encoding="utf-8"))
+            after = self.index_path.stat()
+            if signature != (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns):
+                continue
+            self._search_manifest = manifest
+            self._search_signature = signature
+            return manifest
+        raise OSError("Índice mudou durante a leitura; tente novamente")
+
     def search(self, query: str, *, limit: int, path_prefix: str | None) -> dict:
-        if not self.index_path.is_file():
-            raise FileNotFoundError("Índice local ainda não foi criado")
-        manifest = json.loads(self.index_path.read_text(encoding="utf-8"))
-        return {
-            "schema_version": "1.0.0",
-            "query": query,
-            "results": search_index(
-                manifest,
-                query,
-                limit=min(max(limit, 0), self.config.max_result_chunks),
-                config=self.config,
-                path_prefix=path_prefix,
-            ),
-        }
+        with self._search_lock:
+            manifest = self._read_search_manifest()
+            return {
+                "schema_version": "1.0.0",
+                "query": query,
+                "results": search_index(
+                    manifest,
+                    query,
+                    limit=min(max(limit, 0), self.config.max_result_chunks),
+                    config=self.config,
+                    path_prefix=path_prefix,
+                    normalized_content=self._normalized_content,
+                ),
+            }
 
     def create_question(self, question: dict) -> dict:
         private = {

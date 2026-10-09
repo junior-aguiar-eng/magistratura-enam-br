@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.1] — 2026-10-09
+
+- Reutiliza em memória o índice e os trechos normalizados entre buscas, preservando texto, pontuação lexical, desempate e filtros; invalida o cache por identidade, tamanho e timestamps do índice, inclusive após substituição atômica.
+- Orienta o ChatGPT a iniciar pedidos delimitados sem diagnóstico preliminar, buscar trechos específicos e ampliar a pesquisa quando necessário; preserva validação oficial, gabarito único e correção integral.
+- Adiciona benchmark somente leitura e regressões de atualização, remoção e corrupção do índice; a medição local não comprova redução do tempo total no ChatGPT.
+
 ## [0.8.0] — 2026-10-03
 
 - Corrige a classificação de assertivas com marcadores arábicos, sem confundir anos ou um único marcador com formato numerado.

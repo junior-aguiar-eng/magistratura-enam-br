@@ -15,6 +15,16 @@ def _terms(query: str) -> tuple[str, ...]:
     return tuple(dict.fromkeys(TOKEN.findall(_normalize(query))))
 
 
+def _normalized_content(value: str, cache: dict[str, str] | None) -> str:
+    if cache is None:
+        return _normalize(value)
+    normalized = cache.get(value)
+    if normalized is None:
+        normalized = _normalize(value)
+        cache[value] = normalized
+    return normalized
+
+
 def search_index(
     manifest: dict,
     query: str,
@@ -22,6 +32,7 @@ def search_index(
     limit: int,
     config: LibraryConfig,
     path_prefix: str | None = None,
+    normalized_content: dict[str, str] | None = None,
 ) -> list[dict]:
     terms = _terms(query)
     if not terms or limit <= 0:
@@ -35,8 +46,8 @@ def search_index(
             continue
         for chunk in document.get("chunks", []):
             heading = chunk.get("heading") or ""
-            normalized_heading = _normalize(heading)
-            normalized_text = _normalize(chunk["text"])
+            normalized_heading = _normalized_content(heading, normalized_content)
+            normalized_text = _normalized_content(chunk["text"], normalized_content)
             score = sum(3 * normalized_heading.count(term) + normalized_text.count(term) for term in terms)
             if score == 0:
                 continue

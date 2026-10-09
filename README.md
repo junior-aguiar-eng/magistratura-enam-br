@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.8.0" src="https://img.shields.io/badge/vers%C3%A3o-0.8.0-006B4F"></a>
+  <a href="plugins/magistratura-enam-br/.codex-plugin/plugin.json"><img alt="Versão 0.8.1" src="https://img.shields.io/badge/vers%C3%A3o-0.8.1-006B4F"></a>
   <a href="plugins/magistratura-enam-br/pyproject.toml"><img alt="Python 3.14" src="https://img.shields.io/badge/Python-3.14-1F6F54"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml"><img alt="Validação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/validar.yml/badge.svg"></a>
   <a href="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml"><img alt="Documentação" src="https://github.com/junior-aguiar-eng/magistratura-enam-br/actions/workflows/docs.yml/badge.svg"></a>
@@ -90,6 +90,15 @@ codex plugin add magistratura-enam-br@magistratura-enam-br
 ```
 
 Esse comando instala a tag `v0.8.0`. O repositório é público e pode ser obtido sem permissão individual de leitura. A instalação é local por computador e não é sincronizada automaticamente.
+
+Para instalar a atualização 0.8.1 de latência a partir da branch de desenvolvimento:
+
+```powershell
+codex plugin marketplace add junior-aguiar-eng/magistratura-enam-br --ref codex/incrementos-mcp-calibracao
+codex plugin add magistratura-enam-br@magistratura-enam-br
+```
+
+Essa instalação acompanha a branch indicada; não pressupõe nova tag ou release.
 
 ### Uso do MCP no Claude Code
 

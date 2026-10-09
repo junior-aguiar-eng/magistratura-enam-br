@@ -1,5 +1,77 @@
 # Continuação de manutenção
 
+## Entrega autorizada 0.8.1 — 2026-10-09
+
+O candidato autorizou commit, push e instalação da otimização de latência.
+Manifesto, projeto e lockfile identificam 0.8.1 para distinguir a instalação
+da versão 0.8.0 anterior. A entrega usa a branch existente
+`codex/incrementos-mcp-calibracao`; não altera a tag estável `v0.8.0` nem
+cria release GitHub. A medição e a ativação abaixo ocorreram antes deste bump.
+
+Instalação desta branch por `codex plugin marketplace add
+junior-aguiar-eng/magistratura-enam-br --ref codex/incrementos-mcp-calibracao`
+e `codex plugin add magistratura-enam-br@magistratura-enam-br`.
+Conferir o cache efetivo e o transporte após instalar; publicação Git e
+instalação Codex não demonstram comportamento do modelo/UI no ChatGPT.
+
+Gates após o bump: 38 testes de manifesto, integração, transporte, recurso UI
+e cache de busca aprovados; Ruff/lock/42 checks de integração aprovados em
+0.8.1. A suíte completa de 614 testes foi executada antes do bump, sem mudança
+subsequente no motor de busca ou nas instruções MCP.
+
+## Redução local de latência — 2026-10-09
+
+Pedido: melhorar a primeira questão ou explicação no ChatGPT, app
+Estudo Jurídico Avançado, preservando qualidade. Trabalho na árvore canônica,
+branch `codex/incrementos-mcp-calibracao`, base `6d5cd64`, versão mantida em
+0.8.0. Alterações locais, sem commit, publicação ou reinstalação.
+Reinício do serviço conectado autorizado e executado no mesmo dia;
+confirmação operacional abaixo. `.superpowers/` já estava não rastreada e
+foi preservada.
+
+Busca reutiliza índice/normalização no mesmo processo e invalida por identidade,
+tamanho e timestamps; atualização atômica, reindexação, remoção e corrupção
+estão cobertas. Conteúdo anterior não serve de fallback para índice inválido.
+Instruções MCP orientam busca direta, diagnóstico somente por necessidade,
+trechos proporcionais e leitura direta de fonte primária identificada,
+preservando validação oficial, emissão jurídica e correção integral.
+
+Medição somente leitura no índice real de 87 documentos/17.993.083 bytes:
+mediana posterior à primeira busca de 2.384,609 ms para 68,864 ms, cerca de
+97,1% de redução local. Resultado completo idêntico por SHA-256 em três
+consultas/três repetições. Primeira consulta ainda prepara o conteúdo;
+tempo total do ChatGPT não foi medido. Evidência e limites em
+`docs/latencia-2026-10-09.md`; reprodução com
+`uv run python -m scripts.benchmark_busca --library "CAMINHO" --repeats 3`.
+
+Validação: duas falhas RED por releitura/renormalização, 33 testes direcionados,
+614 testes Python completos aprovados (91,60 s), `uv sync --all-groups`, Ruff,
+`uv lock --check`, integração 0.8.0/42 checks/116 JSON/105 Python e
+`git diff --check` aprovados. Os testes usam `--basetemp` novo no checkout:
+o diretório temporário global do pytest deu acesso negado, falha de
+infraestrutura distinta das regressões. UI não foi alterada. Não há ensaio
+comportamental da nova orquestração no ChatGPT nem aprovação jurídica de
+questões novas; a igualdade dos resultados da busca não substitui esses gates.
+
+Ativação autorizada pelo candidato: supervisor existente preservado (PID
+21324), túnel 17524 e backend anterior encerrados; supervisor iniciou túnel
+30216 às 17:35:09 de 2026-10-09 (America/Fortaleza). Novos processos Python
+14004/35616 iniciaram nesta árvore canônica às 17:35:11. Endpoint de health
+efetivo `127.0.0.1:8766/readyz` retornou HTTP 200/ready. O reinício foi
+limitado ao túnel e ao backend MCP identificado; processos auxiliares fora
+desse backend não foram encerrados explicitamente.
+
+Diagnóstico pelo conector real confirmou o mesmo índice disponível com 87
+documentos e `generated_at` inalterado. Três buscas idênticas retornaram os
+mesmos quatro resultados: 7.213 ms na primeira chamada após o reinício,
+1.492 e 1.496 ms nas seguintes, incluindo conector/rede/túnel/busca.
+Essas chamadas não medem geração do modelo ou card e não são comparação
+controlada do tempo total antes/depois.
+
+Próximo gate: comparação em conversa nova no ChatGPT. A atualização do
+catálogo/instruções mantido pelo host, quando necessária, não foi comprovada
+pela leitura do acervo; não houve atualização manual da conexão na UI.
+
 ## Resolução de pendências e entrega 0.8.0 — 2026-10-03
 
 Push, release e reinstalação autorizados pelo usuário, assim como resolução
